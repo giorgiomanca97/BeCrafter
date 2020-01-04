@@ -5,7 +5,7 @@ addons:
   sonarcloud:
     organization: "ispw-becrafter"
     token:
-      secure: "3b14d3eb26f2a6d3ef51925364f1cf011c373179"
+      secure: "a60b7c72cdd1cfda416d9572c777add7db228d59"
 script: 
   - ant build
   - sonar-scanner
