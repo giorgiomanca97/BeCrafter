@@ -49,7 +49,7 @@ public class CloneStorableList extends StorableList{
 		for (Storable storable : otherStorables) {
 			
 			r = update(storable);
-			if(r == false) {
+			if(!r) {
 				result = false;
 			}
 		}
