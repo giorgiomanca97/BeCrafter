@@ -62,9 +62,9 @@ public class RawMaterial implements Storable {
 	}
 	@Override
 	public void pull(Storable from) {
-		int quantity = from.getQuantity();
+		int q = from.getQuantity();
 		from.resetQuantity();
-		this.addQuantity(quantity);
+		this.addQuantity(q);
 	}
 
 	@Override
@@ -78,9 +78,9 @@ public class RawMaterial implements Storable {
 	}
 	@Override
 	public void push(Storable to) {
-		int quantity = this.getQuantity();
+		int q = this.getQuantity();
 		this.resetQuantity();
-		to.addQuantity(quantity);
+		to.addQuantity(q);
 	}
 
 	@Override
