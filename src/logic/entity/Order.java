@@ -1,67 +1,86 @@
 package logic.entity;
 
+
 import java.util.ArrayList;
-import java.util.List;
+
+import logic.designclasses.CloneStorableList;
+import logic.entity.interfaces.Storable;
 
 public abstract class Order {
     private String id;
-
-    private String data;
-
+    private String date;
     private String email;
-
     private float price;
-
     private BillingInfo billingInfo;
+    private CloneStorableList products;
 
-    private List<Product> products = new ArrayList<Product> ();
-
+    
     public Order(String id) {
+    	this.id = id;
+    	this.date = "";
+    	this.email = "";
+    	this.price = 0;
+    	this.billingInfo = null;
+    	this.products = new CloneStorableList();
     }
 
+    
     public String getId() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.id;
     }
 
-    public String getData() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.data;
+    public String getDate() {
+        return this.date;
     }
 
-    public void setData(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.data = value;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getEmail() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.email;
     }
 
-    public void setEmail(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.email = value;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public float getPrice() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.price;
     }
 
-    public void setPrice(float value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.price = value;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public BillingInfo getBillingInfo() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.billingInfo;
     }
 
-    public void setBillingInfo(BillingInfo value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.billingInfo = value;
+    public void setBillingInfo(BillingInfo billingInfo) {
+        this.billingInfo = billingInfo;
     }
-
+    
+    
+    public ArrayList<Product> getProducts(){
+    	ArrayList<Product> result = new ArrayList<Product>();
+    	
+    	ArrayList<Storable> storables = products.getAll();
+    	for (Storable storable : storables) {
+			result.add((Product) storable);
+		}
+    	
+    	return result;
+    }
+    
+    public void addProduct(Product product) {
+		products.add(product);
+    }
+    
+    public Product removeProduct(Product product) {
+		return (Product) products.remove(product);
+    }
+    public Product removeProduct(Beer beer, Container container) {
+		return removeProduct(new Product(beer, container));
+    }
 }

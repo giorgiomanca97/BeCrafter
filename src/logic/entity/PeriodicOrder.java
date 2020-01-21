@@ -1,53 +1,78 @@
 package logic.entity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PeriodicOrder extends Order {
+	private Registered registered;
     private int daysForRenewal;
-
     private int daysToRenewal;
-
+    private int renewalsCounter;
     private String lastRenewalDate;
-
     private boolean active;
+    private ArrayList<ShippingOrder> shippingOrders;
 
-    private List<ShippingOrder> shippingOrders = new ArrayList<ShippingOrder> ();
-
-    public PeriodicOrder(String id) {
+    
+    public PeriodicOrder(String id, Registered registered, int daysForRenewal) {
     	super(id);
+    	this.registered = registered;
+    	this.daysForRenewal = daysForRenewal;
+    	this.daysToRenewal = daysForRenewal;
+    	this.renewalsCounter = 0;
+    	this.lastRenewalDate = "";
+    	this.active = true;
+    	this.shippingOrders = new ArrayList<ShippingOrder>();
     }
 
+    
     public int getDaysForRenewal() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.daysForRenewal;
     }
 
     public int getDaysToRenewal() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.daysToRenewal;
+    }
+    
+    public int getRenewalsCounter() {
+    	return this.renewalsCounter;
     }
 
     public String getLastRenewalDate() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.lastRenewalDate;
     }
 
-    public List<ShippingOrder> getShippingOrders() {
-        // Automatically generated method. Please delete this comment before entering specific code.
+    public ArrayList<ShippingOrder> getShippingOrders() {
         return this.shippingOrders;
     }
 
     public boolean isActive() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.active;
     }
 
     public ShippingOrder generateShippingOrder() {
-    	return null;
+    	String orderId = super.getId();
+    	String email = registered.getEmail();
+    	float price = super.getPrice();
+    	BillingInfo billingInfo = registered.getBillingInfo();
+    	ArrayList<Product> products = super.getProducts();
+    	
+    	String newId = orderId + "_" + String.valueOf(this.renewalsCounter + 1);
+    	ShippingOrder order = new ShippingOrder(newId);
+    	order.setDate("");
+    	order.setEmail(email);
+    	order.setPrice(price);
+    	order.setBillingInfo(billingInfo);
+    	for (Product product : products) {
+			order.addProduct(product);
+		}
+    	
+    	shippingOrders.add(order);
+    	this.renewalsCounter++;
+    	
+    	return order;
     }
 
     public void stopRenewal() {
+    	this.active = false;
+        this.daysToRenewal = -1;
     }
-
 }

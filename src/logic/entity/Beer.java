@@ -3,109 +3,95 @@ package logic.entity;
 
 public class Beer {
     private String id;
-
     private String name;
-
     private BeerType type;
-
     private BeerColor color;
-
     private boolean filtered;
-
     private float alcoholContent;
-
-    private float pricePerLiter;
-
+    private float pricePerCL;
     private String description;
-
     private Recipe recipe;
 
+    
     public Beer(String id) {
+    	this.id = id;
+    	this.name = "";
+    	this.type = null;
+    	this.color = null;
+    	this.filtered = false;
+    	this.alcoholContent = 0;
+    	this.pricePerCL = 0;
+    	this.description = "";
+    	this.recipe = null;
     }
 
+    
     public String getId() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.id;
     }
 
     public String getName() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.name;
     }
 
-    public void setName(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.name = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BeerType getType() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.type;
     }
 
-    public void setType(BeerType value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.type = value;
+    public void setType(BeerType type) {
+        this.type = type;
     }
 
     public BeerColor getColor() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.color;
     }
 
-    public void setColor(BeerColor value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.color = value;
+    public void setColor(BeerColor color) {
+        this.color = color;
     }
 
     public boolean isFiltered() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.filtered;
     }
 
-    public void setFiltered(boolean value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.filtered = value;
+    public void setFiltered(boolean filtered) {
+        this.filtered = filtered;
     }
 
     public float getAlcoholContent() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.alcoholContent;
     }
 
-    public void setAlcoholContent(float value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.alcoholContent = value;
+    public void setAlcoholContent(float perc) {
+        this.alcoholContent = perc;
     }
 
     public float getPricePerLiter() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.pricePerLiter;
+        return this.pricePerCL;
     }
 
-    public void setPricePerLiter(float value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.pricePerLiter = value;
+    public void setPricePerLiter(float price) {
+        this.pricePerCL = price;
     }
 
     public String getDescription() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.description;
     }
 
-    public void setDescription(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.description = value;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Recipe getRecipe() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.recipe;
     }
 
-    public void setRecipe(Recipe value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.recipe = value;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
 }

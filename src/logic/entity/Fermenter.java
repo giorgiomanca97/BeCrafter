@@ -4,39 +4,42 @@ import java.util.List;
 
 public class Fermenter {
     private int number;
-
     private int volume;
-
     private int beerVolume;
-
-    private boolean active;
-
+    private FermenterState state;
     private Beer beer;
 
+    
     public Fermenter(int number, int volume) {
+    	this.number = number;
+    	this.volume = volume;
+    	this.beerVolume = 0;
+    	this.state = FermenterState.EMPTY;
+    	this.beer = null;
     }
 
+    
     public int getNumber() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.number;
     }
 
     public int getVolume() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.volume;
     }
 
     public int getBeerVolume() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.beerVolume;
     }
 
-    public boolean isActive() {
-    	return active;
+    public FermenterState getState() {
+    	return state;
+    }
+    
+    public void setState(FermenterState state) {
+    	this.state = state;
     }
 
     public Beer getBeer() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.beer;
     }
 
@@ -48,14 +51,17 @@ public class Fermenter {
     }
 
     public float getTemperature() {
+    	// Socket
     	return 0;
     }
 
     public float getPressure() {
+    	// Socket
     	return 0;
     }
 
     public float getDensity() {
+    	// Socket
     	return 0;
     }
 

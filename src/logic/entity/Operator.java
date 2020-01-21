@@ -1,35 +1,36 @@
 package logic.entity;
 
-import java.util.List;
 
 public class Operator {
     private int number;
-
     private String password;
+    private OperatorRole role;
 
-    private List<JobName> roles;
-
-    public boolean hasRole(JobName role) {
-    	return false;
+    
+    public Operator(int number, String password) {
+    	this.number = number;
+    	this.password = password;
+    	this.role = null;
+    }
+    
+    
+    public int getNumber() {
+    	return this.number;
+    }
+    
+    public String getPassword() {
+    	return this.password;
+    }
+    
+    public void setPassword(String password) {
+    	this.password = password;
+    }
+    
+    public OperatorRole getRole() {
+    	return role;
     }
 
-    public List<JobName> getRoles() {
-    	return roles;
+    public void setRole(OperatorRole role) {
+    	this.role = role;
     }
-
-    public void addRole(JobName role) {
-    }
-
-    public void addRoles(List<JobName> roles) {
-    }
-
-    public void removeRole(JobName role) {
-    }
-
-    public void removeRoles(List<JobName> roles) {
-    }
-
-    public void removeAllRoles() {
-    }
-
 }

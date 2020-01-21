@@ -1,17 +1,27 @@
 package logic.entity.interfaces;
 
+import error.StorableIllegalQuantityException;
 
 public interface Storable {
-    int get();
+    public int getQuantity();
 
-    void set(int quantity);
+    public void setQuantity(int quantity) throws StorableIllegalQuantityException;
 
-    void add(int quantity);
+    public void addQuantity(int quantity);
 
-    void remove(int quantity);
+    public void removeQuantity(int quantity) throws StorableIllegalQuantityException;
+    
+    public void resetQuantity();
 
-    void pull(Storable to, int quantity);
+    public void pull(Storable from, int quantity) throws StorableIllegalQuantityException;
+    public void pull(Storable from);
 
-    void push(Storable from, int quantity);
-
+    public void push(Storable to, int quantity) throws StorableIllegalQuantityException;
+    public void push(Storable to);
+    
+    public boolean areSame(Storable other);
+    
+    public void copyQuantity(Storable other);
+    
+    public Storable copy();
 }

@@ -11,41 +11,38 @@ public class Shipment {
     private String deliveryDate;
 
     public Shipment(String shippingCode) {
+    	this.shippingCode = shippingCode;
+    	this.company = "";
+    	this.departureDate = "";
+    	this.deliveryDate = "";
     }
 
     public String getShippingCode() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.shippingCode;
     }
 
     public String getCompany() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.company;
     }
 
-    public void setCompany(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.company = value;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getDepartureDate() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.departureDate;
     }
 
-    public void setDepartureDate(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.departureDate = value;
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
     }
 
     public String getDeliveryDate() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.deliveryDate;
     }
 
-    public void setDeliveryDate(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.deliveryDate = value;
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
 }

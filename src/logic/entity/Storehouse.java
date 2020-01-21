@@ -1,45 +1,70 @@
 package logic.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import logic.designclasses.CloneStorableList;
 
 public class Storehouse {
-    private List<Product> products = new ArrayList<Product> ();
+    private CloneStorableList rawMaterials;
+    private CloneStorableList containers;
+    private CloneStorableList products;
 
-    private List<Container> containers = new ArrayList<Container> ();
-
-    private List<RawMaterial> rawMaterials = new ArrayList<RawMaterial> ();
-
+    
+    public Storehouse() {
+    	this.rawMaterials = new CloneStorableList();
+    	this.containers = new CloneStorableList();
+    	this.products = new CloneStorableList();
+    }
+    
+    
     public RawMaterial get(RawMaterialType type) {
-    	return null;
+    	RawMaterial rawMaterial = new RawMaterial(type);
+    	return (RawMaterial) rawMaterials.get(rawMaterial);
     }
 
     public Container get(ContainerType type, int volume) {
-    	return null;
+    	Container container = new Container(type, volume);
+    	return (Container) containers.get(container);
     }
 
     public Product get(Beer beer, ContainerType containerType, int containerVolume) {
-    	return null;
+    	Container container = new Container(containerType, containerVolume);
+    	Product product = new Product(beer, container);
+    	return (Product) products.get(product);
     }
 
     public void add(RawMaterial rawMaterial) {
+    	rawMaterials.add(rawMaterial);
     }
 
     public void add(Container container) {
+    	containers.add(container);
     }
 
     public void add(Product product) {
+    	products.add(product);
+    }
+    
+    public boolean update(RawMaterial rawMaterial) {
+    	return rawMaterials.update(rawMaterial);
+    }
+    
+    public boolean update(Container container) {
+    	return containers.update(container);
+    }
+    
+    public boolean update(Product product) {
+    	return products.update(product);
     }
 
-    public RawMaterial remove(RawMaterialType type) {
+    public RawMaterial delete(RawMaterialType type) {
     	return null;
     }
 
-    public Container remove(ContainerType type, int volume) {
+    public Container delete(ContainerType type, int volume) {
     	return null;
     }
 
-    public Product remove(Beer beer, ContainerType containerType, int containerVolume) {
+    public Product delete(Beer beer, ContainerType containerType, int containerVolume) {
     	return null;
     }
 

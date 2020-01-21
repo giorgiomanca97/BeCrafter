@@ -1,41 +1,46 @@
 package logic.entity;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import logic.designclasses.CloneStorableList;
+import logic.entity.interfaces.Storable;
 
 public class Recipe {
     private String id;
-
-    private List<RawMaterial> rawMaterials = new ArrayList<RawMaterial> ();
+    private CloneStorableList rawMaterials;
 
     public Recipe(String id) {
+    	this.id = id;
+    	this.rawMaterials = new CloneStorableList();
     }
 
     public String getId() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.id;
     }
 
-    public RawMaterial get(RawMaterialType type) {
-    	return null;
+    public ArrayList<RawMaterial> getIngredients() {
+    	ArrayList<RawMaterial> result = new ArrayList<RawMaterial>();
+    	
+    	ArrayList<Storable> storables = rawMaterials.getAll();
+    	for (Storable storable : storables) {
+			result.add((RawMaterial) storable);
+		}
+    	
+    	return result;
+    }
+    
+
+    public void addIngredient(RawMaterial rawMaterial) {
+    	rawMaterials.add(rawMaterial);
+    }
+    
+    public boolean updateIngredient(RawMaterial rawMaterial) {
+    	return rawMaterials.update(rawMaterial);
     }
 
-    public List<RawMaterial> getAll() {
-    	return rawMaterials;
-    }
-
-    public void add(RawMaterial rawMaterial) {
-    }
-
-    public void addAll(List<RawMaterial> rawMaterial) {
-    }
-
-    public RawMaterial remove(RawMaterialType type) {
-    	return null;
-    }
-
-    public List<RawMaterial> removeAll() {
-    	return rawMaterials;
+    public RawMaterial removeIngredient(RawMaterialType type) {
+    	RawMaterial rawMaterial = new RawMaterial(type);
+    	return (RawMaterial) rawMaterials.remove(rawMaterial);
     }
 
 }

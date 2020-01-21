@@ -1,66 +1,79 @@
 package logic.entity;
 
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Registered {
     private String email;
-
     private String password;
-
     private BillingInfo billingInfo;
+    private ArrayList<Order> orders;
 
-    private List<Order> orders = new ArrayList<Order> ();
-
-    public Registered(String email, String password) {
+    
+    public Registered(String email, String password, BillingInfo billingInfo) {
+    	this.email = email;
+    	this.password = password;
+    	this.billingInfo = billingInfo;
+    	this.orders = new ArrayList<Order>();
     }
 
+    
     public String getEmail() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.email;
     }
 
-    public void setEmail(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.email = value;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.password;
     }
 
-    public void setPassword(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.password = value;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public BillingInfo getBillingInfo() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.billingInfo;
     }
 
-    public void setBillingInfo(BillingInfo value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.billingInfo = value;
+    public void setBillingInfo(BillingInfo billingInfo) {
+        this.billingInfo = billingInfo;
     }
 
-    public List<Order> getOrders() {
-        // Automatically generated method. Please delete this comment before entering specific code.
+    public ArrayList<Order> getOrders() {
         return this.orders;
     }
 
     public Order getOrderById(String id) {
+    	for (Order order : orders) {
+			if(order.getId() == id) {
+				return order;
+			}
+		}
     	return null;
     }
 
     public void addOrder(Order order) {
+    	orders.add(order);
     }
 
     public void removeOrderById(String id) {
+    	Order o;
+    	
+    	for (int i = 0; i < orders.size(); i++) {
+			o = orders.get(i);
+    		
+    		if(o.getId() == id) {
+				orders.remove(i);
+				return;
+			}
+		}
     }
 
     public void removeAllOrders() {
+    	orders = new ArrayList<Order>();
     }
 
 }

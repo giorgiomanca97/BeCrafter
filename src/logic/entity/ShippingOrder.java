@@ -4,18 +4,19 @@ package logic.entity;
 public class ShippingOrder extends Order {
     private Shipment shipment;
 
+    
     public ShippingOrder(String id) {
     	super(id);
+    	this.shipment = null;
     }
 
+    
     public Shipment getShipment() {
-        // Automatically generated method. Please delete this comment before entering specific code.
         return this.shipment;
     }
 
-    public void setShipment(Shipment value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.shipment = value;
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
     }
 
 }
