@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import logic.boundary.Home_View;
 import logic.boundary.ProductCard_View;
 
 public class Main extends Application{
@@ -30,7 +31,7 @@ public class Main extends Application{
 		setPrimaryStage(primaryStage);
 		
 		//Thread.sleep(500);
-		ProductCard_View.start();
+		Home_View.start();
 	}
 	
 	
