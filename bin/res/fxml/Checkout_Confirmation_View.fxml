@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="335.0" layoutY="100.0" prefHeight="50.0" prefWidth="500.0" text="Congratulation">
@@ -61,6 +60,9 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="895.0" layoutY="485.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="OK" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+      <Button layoutX="895.0" layoutY="485.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="OK" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>
