@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
-	<!-- TODO Add Nodes -->
+   <children>
+      <TableView prefHeight="440.0" prefWidth="1170.0">
+        <columns>
+          <TableColumn prefWidth="50.0" text="#" />
+          <TableColumn prefWidth="66.66668701171875" />
+            <TableColumn prefWidth="98.33334350585938" text="Beer Name" />
+            <TableColumn prefWidth="75.0" text="Type" />
+            <TableColumn prefWidth="75.0" text="Color" />
+            <TableColumn prefWidth="123.33331298828125" text="Alcohol content" />
+            <TableColumn prefWidth="80.3333740234375" text="Filtering" />
+            <TableColumn minWidth="0.0" prefWidth="107.0" text="Container Size" />
+            <TableColumn text="Quantity" />
+            <TableColumn prefWidth="82.6666259765625" text="Total Volume" />
+            <TableColumn prefWidth="140.66668701171875" text="Price" />
+        </columns>
+      </TableView>
+      <AnchorPane prefHeight="100.0" prefWidth="1170.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="440.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="100.0" prefWidth="285.0" text="Overall cost" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="100.0" prefWidth="285.0" text="000,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="go back to shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="585.0" AnchorPane.topAnchor="25.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="confirm purchase" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="905.0" AnchorPane.topAnchor="25.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
