@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="108.0" prefWidth="192.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane prefHeight="108.0" prefWidth="192.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="logic.Main">
    <children>
       <Text layoutX="47.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BeCrafter" textOrigin="CENTER">
          <font>

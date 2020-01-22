@@ -31,6 +31,8 @@ public class BuyProduct_View {
 		Stage primaryStage = Main.getPrimaryStage();
 		Scene scene = new Scene(root);
 		
+		
+		
 		primaryStage.setTitle(WINDOW_TITLE);
 		primaryStage.setScene(scene);
 	}
