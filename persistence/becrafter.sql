@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `beers` (
   `name` text DEFAULT NULL,
   `type` enum('ALE','LAMBIC','LAGER') DEFAULT NULL,
   `color` enum('LIGHT','AMBER','RUBY','DARK') DEFAULT NULL,
-  `filtering` tinyint(4) DEFAULT NULL,
+  `filtering` enum('FILTERED','UNFILTERED') DEFAULT NULL,
   `alcohol` float DEFAULT NULL,
   `price` float DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `beers` (
 -- Dump dei dati della tabella becrafter.beers: ~2 rows (circa)
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;
 INSERT INTO `beers` (`id`, `name`, `type`, `color`, `filtering`, `alcohol`, `price`, `description`, `recipeId`) VALUES
-	('B001', 'The Wrecking', 'LAGER', 'LIGHT', 1, 4.1, 6, 'The simplest light beer', 'R001'),
-	('B002', 'The Sober', 'ALE', 'DARK', 1, 9.3, 9.5, 'An Ale beer brewed using warm fermentation method, resulting in a sweet, full-bodied and fruity taste.', 'R002'),
-	('B003', 'The Matryoshka', 'LAMBIC', 'AMBER', 1, 5.9, 7.5, 'A marriage between beer and wine', 'R003');
+	('B001', 'The Wrecking', 'LAGER', 'LIGHT', 'FILTERED', 4.1, 6, 'The simplest light beer', 'R001'),
+	('B002', 'The Sober', 'ALE', 'DARK', 'FILTERED', 9.3, 9.5, 'An Ale beer brewed using warm fermentation method, resulting in a sweet, full-bodied and fruity taste.', 'R002'),
+	('B003', 'The Matryoshka', 'LAMBIC', 'AMBER', 'FILTERED', 5.9, 7.5, 'A marriage between beer and wine', 'R003');
 /*!40000 ALTER TABLE `beers` ENABLE KEYS */;
 
 -- Dump della struttura di tabella becrafter.orders
