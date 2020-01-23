@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import logic.entity.Beer;
 import logic.entity.BeerColor;
+import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 
 public class Beer_dao {
@@ -55,7 +56,7 @@ public class Beer_dao {
                 	beer.setName(rs.getString(COL_NAME));
                 	beer.setType(BeerType.valueOf(rs.getString(COL_TYPE)));
                 	beer.setColor(BeerColor.valueOf(rs.getString(COL_COLOR)));
-                	beer.setFiltered(rs.getInt(COL_FILTERING) == 1);
+                	beer.setFiltered(BeerFiltering.valueOf(rs.getString(COL_FILTERING)));
                 	beer.setAlcoholContent(rs.getFloat(COL_ALCOHOL));
                 	beer.setPricePerLiter(rs.getFloat(COL_PRICE));
                 	beer.setDescription(rs.getString(COL_DESCRIPTION));
