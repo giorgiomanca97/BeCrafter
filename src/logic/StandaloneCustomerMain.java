@@ -6,11 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.boundary.Home_View;
-import logic.boundary.ProductCard_View;
+import logic.entity.Storehouse;
 
-public class Main extends Application{
+public class StandaloneCustomerMain extends Application{
 	private static Stage primaryStage; 
-	
+	private Storehouse storehouse;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -19,9 +19,8 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception{	
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/res/fxml/Splash.fxml"));
+		loader.setLocation(StandaloneCustomerMain.class.getResource("/res/fxml/Splash.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		
 		Scene scene = new Scene(root);
 		
 		primaryStage.setTitle("");
@@ -30,7 +29,6 @@ public class Main extends Application{
 		primaryStage.show();
 		setPrimaryStage(primaryStage);
 		
-		//Thread.sleep(500);
 		Home_View.start();
 	}
 	
@@ -41,6 +39,6 @@ public class Main extends Application{
 	
 	
 	private static void setPrimaryStage(Stage stage) {
-		Main.primaryStage = stage;
+		StandaloneCustomerMain.primaryStage = stage;
 	}
 }

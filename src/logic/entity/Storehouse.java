@@ -3,8 +3,8 @@ package logic.entity;
 
 import logic.designclasses.CloneStorableList;
 
-public class Storehouse {
-    private CloneStorableList rawMaterials;
+public class Storehouse {	
+	private CloneStorableList rawMaterials;
     private CloneStorableList containers;
     private CloneStorableList products;
 
