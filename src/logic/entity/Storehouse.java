@@ -1,6 +1,8 @@
 package logic.entity;
 
 
+import java.util.ArrayList;
+
 import logic.designclasses.CloneStorableList;
 import logic.entity.interfaces.Storable;
 
@@ -17,6 +19,37 @@ public class Storehouse {
     }
     
     
+    public ArrayList<RawMaterial> getAllRawMaterials(){
+    	ArrayList<RawMaterial> result = new ArrayList<RawMaterial>();
+    	
+    	for (Storable storable : rawMaterials.getAll()) {
+    		result.add((RawMaterial) storable);
+		}
+    	
+    	return result;
+    }
+    
+    public ArrayList<Container> getAllContainers(){
+    	ArrayList<Container> result = new ArrayList<Container>();
+    	
+    	for (Storable storable : containers.getAll()) {
+    		result.add((Container) storable);
+		}
+    	
+    	return result;
+    }
+    
+    public ArrayList<Product> getAllProduct(){
+    	ArrayList<Product> result = new ArrayList<Product>();
+    	
+    	for (Storable storable : products.getAll()) {
+    		result.add((Product) storable);
+		}
+    	
+    	return result;
+    }
+    
+    
     public RawMaterial get(RawMaterialType type) {
     	RawMaterial rawMaterial = new RawMaterial(type);
     	return (RawMaterial) rawMaterials.get(rawMaterial);
@@ -27,12 +60,14 @@ public class Storehouse {
     	return (Container) containers.get(container);
     }
 
-    public Product get(Beer beer, ContainerType containerType, int containerVolume) {
+    public Product get(String beerId, ContainerType containerType, int containerVolume) {
+    	Beer beer = new Beer(beerId);
     	Container container = new Container(containerType, containerVolume);
     	Product product = new Product(beer, container);
     	return (Product) products.get(product);
     }
 
+    
     public void add(RawMaterial rawMaterial) {
     	rawMaterials.add(rawMaterial);
     }
@@ -44,6 +79,7 @@ public class Storehouse {
     public void add(Product product) {
     	products.add(product);
     }
+    
     
     public boolean update(RawMaterial rawMaterial) {
     	return rawMaterials.update(rawMaterial);
@@ -57,16 +93,28 @@ public class Storehouse {
     	return products.update(product);
     }
 
+    
     public RawMaterial delete(RawMaterialType type) {
-    	return null;
+    	RawMaterial toDelete = new RawMaterial(type);
+    	Storable pop = rawMaterials.remove(toDelete);
+    	
+    	return (RawMaterial) pop;
     }
 
     public Container delete(ContainerType type, int volume) {
-    	return null;
+    	Container toDelete = new Container(type, volume);
+    	Storable pop = containers.remove(toDelete);
+    	
+    	return (Container) pop;
     }
 
-    public Product delete(Beer beer, ContainerType containerType, int containerVolume) {
-    	return null;
+    public Product delete(String beerId, ContainerType containerType, int containerVolume) {
+    	Beer beer = new Beer(beerId);
+    	Container container = new Container(containerType, containerVolume);
+    	Product toDelete = new Product(beer, container);
+    	Storable pop = products.remove(toDelete);
+    	
+    	return (Product) pop;
     }
 
     
