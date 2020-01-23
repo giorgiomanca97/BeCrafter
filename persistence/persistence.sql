@@ -11,6 +11,19 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dump della struttura del database becrafter
+CREATE DATABASE IF NOT EXISTS `becrafter` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `becrafter`;
+
+-- Dump della struttura di tabella becrafter.product
+CREATE TABLE IF NOT EXISTS `product` (
+  `idBeer` int(11) NOT NULL,
+  `containerType` int(11) NOT NULL,
+  `containerVolume` int(11) NOT NULL,
+  PRIMARY KEY (`idBeer`,`containerType`,`containerVolume`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Dump dei dati della tabella becrafter.product: ~5 rows (circa)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` (`idBeer`, `containerType`, `containerVolume`) VALUES
