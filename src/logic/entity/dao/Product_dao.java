@@ -8,9 +8,11 @@ import logic.entity.Product;
 public class Product_dao {
 	private static String SEP = "-";
 	
+	
 	private Product_dao () {
 		
 	}
+	
 	
 	public static String productToText(Product product) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -46,4 +48,5 @@ public class Product_dao {
 			throw new TextParseException(e);
 		}
 	}
+	
 }

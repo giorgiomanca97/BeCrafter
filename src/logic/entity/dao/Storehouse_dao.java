@@ -45,9 +45,11 @@ public class Storehouse_dao {
     // Singleton instance per la storehouse che rappresenta il magazzino dell'azienda
 	private static Storehouse storehouseInstance = null;
 	
+	
 	private Storehouse_dao() {
 		
 	}
+	
 	
 	synchronized public static Storehouse getStorehouse() {
 		if(storehouseInstance == null) {
@@ -164,11 +166,11 @@ public class Storehouse_dao {
 		return storehouseInstance;
 	}
 	
+	
 	public static void updateStorehouse() {
 		if(storehouseInstance != null) {
 			//TODO: aggioranare persistenza
 		}
 	}
-	
 	
 }

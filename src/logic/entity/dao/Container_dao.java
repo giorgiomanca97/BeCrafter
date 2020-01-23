@@ -7,9 +7,11 @@ import logic.entity.ContainerType;
 public class Container_dao {
 	private static String SEP = ";";
 	
+	
 	private Container_dao () {
 		
 	}
+	
 	
 	public static String containerToText(Container container) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -48,4 +50,5 @@ public class Container_dao {
 			throw new TextParseException(e);
 		}
 	}
+	
 }

@@ -8,9 +8,11 @@ import logic.entity.RawMaterialType;
 public class RawMaterial_dao {
 	private static String SEP = ";";
 	
+	
 	private RawMaterial_dao () {
 		
 	}
+	
 	
 	public static String rawMaterialToText(RawMaterial rawMaterial) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -45,4 +47,5 @@ public class RawMaterial_dao {
 			throw new TextParseException(e);
 		}
 	}
+	
 }

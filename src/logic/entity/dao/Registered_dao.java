@@ -19,8 +19,11 @@ public class Registered_dao {
 	private static String COL_POSTALCODE = "postalCode";
 	private static String COL_PHONE = "phone";
 	private static String COL_CARD = "card";
-		
+	
+	
 	private Registered_dao() {
 		
 	}
+	
+	
 }

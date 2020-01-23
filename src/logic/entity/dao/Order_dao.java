@@ -22,7 +22,10 @@ public class Order_dao {
 	private static String COL_PHONE = "phone";
 	private static String COL_CARD = "card";
 	
+	
 	private Order_dao() {
 		
 	}
+	
+	
 }

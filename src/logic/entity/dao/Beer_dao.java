@@ -35,8 +35,7 @@ public class Beer_dao {
 		
 	}
 	
-	
-	public ArrayList<Beer> getAllBeers(){
+	private static ArrayList<Beer> getBeers(String query){
 		ArrayList<Beer> result = new ArrayList<Beer>();
 		
 		Statement stmt = null;
@@ -47,11 +46,22 @@ public class Beer_dao {
         	Class.forName(DRIVER_CLASS_NAME);
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT * FROM " + TABLE_NAME + ";");
+            rs = stmt.executeQuery(query);
             
+            Beer beer = null;
             if(rs.first()) {
             	do {
-					result.add(readBeer(rs));
+            		beer = new Beer(rs.getString(COL_ID));
+                	beer.setName(rs.getString(COL_NAME));
+                	beer.setType(BeerType.valueOf(rs.getString(COL_TYPE)));
+                	beer.setColor(BeerColor.valueOf(rs.getString(COL_COLOR)));
+                	beer.setFiltered(rs.getInt(COL_FILTERING) == 1);
+                	beer.setAlcoholContent(rs.getFloat(COL_ALCOHOL));
+                	beer.setPricePerLiter(rs.getFloat(COL_PRICE));
+                	beer.setDescription(rs.getString(COL_DESCRIPTION));
+                	beer.setRecipe(Recipe_dao.getRecipeById(rs.getString(COL_RECIPEID)));
+            		
+					result.add(beer);
 				} while (rs.next());
             }
             
@@ -61,81 +71,47 @@ public class Beer_dao {
 			// TODO: handle exception
 		}
         finally {
-        	close(stmt, conn, rs);
+        	try {
+        		if(rs != null) {
+        			rs.close();
+        		}
+            } catch (SQLException se) {
+            }
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            }
         }
 		
 		return result;
-
+	}
+	
+	public static ArrayList<Beer> getAllBeers(){
+		ArrayList<Beer> result = getBeers("SELECT * FROM " + TABLE_NAME + ";");
+		
+		return result;
 	}
 	
 	public static Beer getBeerById(String id) {
-		Beer result = null;
+		ArrayList<Beer> result = getBeers("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = '" + id +"';");	
 		
-		Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-
-        try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = '" + id +"';");
-            
-            if(rs.first()) {
-            	result = readBeer(rs);
-            }
-            
-		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
-		} catch (SQLException se) {
-			// TODO: handle exception
+		if(result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
 		}
-        finally {
-        	close(stmt, conn, rs);
-        }
-		
-		return result;
 	}
 	
 	
 	public static void updateBeer(Beer beer) {
 		
-	}
-	
-	private static Beer readBeer(ResultSet rs) throws SQLException {
-		Beer beer = null;
-		
-		beer = new Beer(rs.getString(COL_ID));
-    	beer.setName(rs.getString(COL_NAME));
-    	beer.setType(BeerType.valueOf(rs.getString(COL_TYPE)));
-    	beer.setColor(BeerColor.valueOf(rs.getString(COL_COLOR)));
-    	beer.setFiltered(rs.getInt(COL_FILTERING) == 1);
-    	beer.setAlcoholContent(rs.getFloat(COL_ALCOHOL));
-    	beer.setPricePerLiter(rs.getFloat(COL_PRICE));
-    	beer.setDescription(rs.getString(COL_DESCRIPTION));
-    	beer.setRecipe(Recipe_dao.getRecipeById(rs.getString(COL_RECIPEID)));
-		
-		return beer;
-	}
-	
-	private static void close(Statement stmt, Connection conn, ResultSet rs) {
-		try {
-    		if(rs != null) {
-    			rs.close();
-    		}
-        } catch (SQLException se) {
-        }
-        try {
-            if (stmt != null) {
-            	stmt.close();
-            }      
-        } catch (SQLException se) {
-        }
-        try {
-            if (conn != null) {
-            	conn.close();
-            }
-        } catch (SQLException se) {
-        }
 	}
 }

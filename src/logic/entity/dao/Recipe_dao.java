@@ -7,35 +7,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import error.TextParseException;
+import logic.entity.RawMaterial;
 import logic.entity.Recipe;
 
 public class Recipe_dao {
-	private static String RECIPES_FOLDER_PATH = "persistence/recipes/"; 
+	private static String RECIPES_FOLDER_PATH = "persistence/recipes"; 
 	
-	public ArrayList<Recipe> getAllRecipes(){
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
+	
+	private Recipe_dao() {
 		
-		return result;
 	}
 	
-	public static Recipe getRecipeById(String id) {
+	
+	private static Recipe getRecipe(File file) {
 		Recipe result = null;
-		File file = null;
+		
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;
 		
-		try {
-			file = new File(RECIPES_FOLDER_PATH + id);
-			
+		try {			
 			if(file.exists()) {
 				fileReader = new FileReader(file);
 				bufferedReader = new BufferedReader(fileReader);
 				
-				result = new Recipe(id);
+				StringBuilder textBuilder = new StringBuilder();
 				String line;
 				while ((line = bufferedReader.readLine()) != null){
-					result.addIngredient(RawMaterial_dao.textToRawMaterial(line));
+					textBuilder.append(line + "\n");
 				}
+				
+				result = textToRecipe(textBuilder.toString());
 			}
 		} catch (IOException ioe) {
 
@@ -59,19 +60,66 @@ public class Recipe_dao {
 		return result;
 	}
 	
+	public static ArrayList<Recipe> getAllRecipes(){
+		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		
+		File directory = new File(RECIPES_FOLDER_PATH);
+		File[] files = directory.listFiles();
+		
+		for (File file : files) {
+			if(file.isFile()) {
+				result.add(getRecipe(file));
+			}
+		}
+		
+		return result;
+	}
+	
+	public static Recipe getRecipeById(String id) {
+		File file = new File(RECIPES_FOLDER_PATH + "/" + id);
+		
+		if(file.exists()) {
+			return getRecipe(file);
+		} else {
+			return null;
+		}
+	}
+	
+	
 	public static void updateRecipe(Recipe recipe) {
 		
 	}
 	
-	public String recipeToText(Recipe recipe) {
+	
+	public static String recipeToText(Recipe recipe) {
 		StringBuilder stringBuilder = new StringBuilder();
+		ArrayList<RawMaterial> ingredients = recipe.getIngredients();
+		
+		stringBuilder.append(recipe.getId() + "\n");
+		
+		for (RawMaterial rawMaterial : ingredients) {
+			stringBuilder.append(RawMaterial_dao.rawMaterialToText(rawMaterial) + "\n");
+		}
 		
 		return stringBuilder.toString();
 	}
 	
-	public Recipe textToRecipe(String text) {
-		Recipe result = null;
+	public static Recipe textToRecipe(String text) throws TextParseException {
+		Recipe result;
 		
-		return result;
+		String[] pieces = text.split("\n");
+		
+		try {
+			result = new Recipe(pieces[0]);
+			
+			for(int i = 1; i < pieces.length; i++) {
+				RawMaterial rawMaterial = RawMaterial_dao.textToRawMaterial(pieces[i]);
+				result.addIngredient(rawMaterial);
+			}
+					
+			return result;
+		} catch (Exception e) {
+			throw new TextParseException(e);
+		}
 	}
 }
