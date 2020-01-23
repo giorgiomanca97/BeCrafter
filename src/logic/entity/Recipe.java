@@ -43,4 +43,14 @@ public class Recipe {
     	return (RawMaterial) rawMaterials.remove(rawMaterial);
     }
 
+    @Override
+    public String toString() {
+    	StringBuilder stringBuilder = new StringBuilder();
+
+    	for (Storable s : rawMaterials.getAll()) {
+    		stringBuilder.append(s.toString() + "\n");
+		}
+    	
+    	return stringBuilder.toString();
+    }
 }

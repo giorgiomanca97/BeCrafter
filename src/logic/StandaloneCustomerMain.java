@@ -34,6 +34,7 @@ public class StandaloneCustomerMain extends Application{
 		setPrimaryStage(primaryStage);
 		
 		storehouse = Storehouse_dao.getStorehouse();
+
 		System.out.println(storehouse);
 		//Home_View.start();
 	}

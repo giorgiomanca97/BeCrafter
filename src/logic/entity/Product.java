@@ -2,7 +2,6 @@ package logic.entity;
 
 import error.StorableIllegalQuantityException;
 import logic.entity.dao.Product_dao;
-import logic.entity.dao.RawMaterial_dao;
 import logic.entity.interfaces.Storable;
 
 public class Product implements Storable {
