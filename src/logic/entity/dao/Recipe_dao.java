@@ -87,7 +87,7 @@ public class Recipe_dao {
 	
 	
 	public static void updateRecipe(Recipe recipe) {
-		
+		// TODO: non necessario per la parte di sistema implementata
 	}
 	
 	

@@ -112,38 +112,6 @@ public class Beer_dao {
 	
 	
 	public static void updateBeer(Beer beer) {
-		/*Statement stmt = null;
-        Connection conn = null;
-
-        try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
-            StringBuilder query = new StringBuilder();
-            query.append("UPDATE " + TABLE_NAME + "SET ");
-            query.append(b);
-            stmt.executeUpdate(query);
-            
-            
-            
-		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
-		} catch (SQLException se) {
-			// TODO: handle exception
-		}
-        finally {
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            }
-        }*/
+		// TODO: non necessario per la parte di sistema implementata
 	}
 }
