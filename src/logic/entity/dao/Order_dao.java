@@ -1,5 +1,9 @@
 package logic.entity.dao;
 
+import java.util.ArrayList;
+
+import logic.entity.Order;
+
 public class Order_dao {
 	// Informazioni database
 	private static String USER = "root";
@@ -27,5 +31,20 @@ public class Order_dao {
 		
 	}
 	
+	public static ArrayList<Order> getOrdersByEmail() {
+		ArrayList<Order> result = null;
+		
+		return result;
+	}
 	
+	public static Order getOrderById(String id) {
+		Order result = null;
+		
+		return result;
+	}
+	
+	
+	public static void updateOrder(Order order) {
+		
+	}
 }

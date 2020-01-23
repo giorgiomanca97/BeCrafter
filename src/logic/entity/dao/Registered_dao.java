@@ -1,5 +1,9 @@
 package logic.entity.dao;
 
+import java.util.ArrayList;
+
+import logic.entity.Registered;
+
 public class Registered_dao {
 	// Informazioni database
 	private static String USER = "root";
@@ -26,4 +30,20 @@ public class Registered_dao {
 	}
 	
 	
+	public static ArrayList<Registered> getAllRegistered(){
+		ArrayList<Registered> result = null;
+		
+		return result;
+	}
+	
+	public static Registered getRegisteredByEmail(String email) {
+		Registered registered = null;
+		
+		return registered;
+	}
+	
+	
+	public static void updateRegistered(Registered registered) {
+		
+	}
 }
