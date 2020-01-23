@@ -1,12 +1,14 @@
 package logic;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logic.boundary.Home_View;
 import logic.entity.Storehouse;
+
 
 public class StandaloneCustomerMain extends Application{
 	private static Stage primaryStage; 
@@ -19,7 +21,8 @@ public class StandaloneCustomerMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception{	
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(StandaloneCustomerMain.class.getResource("/res/fxml/Splash.fxml"));
+		URL url = StandaloneCustomerMain.class.getResource("/res/fxml/Splash.fxml");
+		loader.setLocation(url);
 		AnchorPane root = (AnchorPane) loader.load();
 		Scene scene = new Scene(root);
 		
@@ -29,7 +32,9 @@ public class StandaloneCustomerMain extends Application{
 		primaryStage.show();
 		setPrimaryStage(primaryStage);
 		
-		Home_View.start();
+		//storehouse = Storehouse_dao.getStorehouse();
+		
+		//Home_View.start();
 	}
 	
 	

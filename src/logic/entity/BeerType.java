@@ -6,20 +6,21 @@ public enum BeerType {
     LAMBIC("Lambic", 2),
     LAGER("Lager", 1);
 	
-	private String name;
+	private String text;
 	private int mult;
 	
-	private BeerType(String name, int mult) {
-		this.name = name;
+	private BeerType(String text, int mult) {
+		this.text = text;
 		this.mult = mult;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
 	
 	public int getMultiplier() {
 		return mult;
 	}
+
 }

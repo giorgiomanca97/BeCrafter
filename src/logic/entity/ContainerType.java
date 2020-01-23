@@ -6,14 +6,15 @@ public enum ContainerType {
     BARREL("Barrel"),
     CAN("Can");
 	
-	private String name;
+	private String text;
 	
-	private ContainerType(String name) {
-		this.name = name;
+	private ContainerType(String text) {
+		this.text = text;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
+	
 }

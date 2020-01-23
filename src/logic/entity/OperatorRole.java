@@ -7,14 +7,15 @@ public enum OperatorRole {
     PORTER("Porter"),
     MANAGER("Manager");
 	
-	private String name;
+	private String text;
 	
-	private OperatorRole(String name) {
-		this.name = name;
+	private OperatorRole(String text) {
+		this.text = text;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
+	
 }

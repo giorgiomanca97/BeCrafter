@@ -7,14 +7,15 @@ public enum FermenterState {
 	READY_TO_EMPTY("Ready to empty"),
 	DIRTY("Dirty");
 	
-	private String name;
+	private String text;
 	
-	private FermenterState(String name) {
-		this.name = name;
+	private FermenterState(String text) {
+		this.text = text;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
+	
 }

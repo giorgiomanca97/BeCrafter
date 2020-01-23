@@ -10,14 +10,15 @@ public enum RawMaterialType {
     SUGAR("Sugar"),
     WATER("Water");
 	
-	private String name;
+	private String text;
 	
-	private RawMaterialType(String name) {
-		this.name = name;
+	private RawMaterialType(String text) {
+		this.text = text;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
+	
 }

@@ -7,15 +7,15 @@ public enum BeerColor {
     RUBY("Ruby"),
     DARK("Dark");
 	
-	private String name;
+	private String text;
 	
-	private BeerColor(String name) {
-		this.name = name;
+	private BeerColor(String text) {
+		this.text = text;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return text;
 	}
 	
 }

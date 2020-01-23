@@ -80,7 +80,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="go back to shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
+            <Button alignment="CENTER" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -88,7 +88,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Confirm Purchase" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Confirm Products" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
