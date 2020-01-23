@@ -39,7 +39,33 @@ public class Beer_dao {
 	public ArrayList<Beer> getAllBeers(){
 		ArrayList<Beer> result = new ArrayList<Beer>();
 		
+		Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery("SELECT * FROM " + TABLE_NAME + ";");
+            
+            if(rs.first()) {
+            	do {
+					result.add(readBeer(rs));
+				} while (rs.next());
+            }
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+        finally {
+        	close(stmt, conn, rs);
+        }
+		
 		return result;
+
 	}
 	
 	public static Beer getBeerById(String id) {
@@ -65,24 +91,7 @@ public class Beer_dao {
 			// TODO: handle exception
 		}
         finally {
-        	try {
-        		if(rs != null) {
-        			rs.close();
-        		}
-            } catch (SQLException se) {
-            }
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            }
+        	close(stmt, conn, rs);
         }
 		
 		return result;
@@ -107,5 +116,26 @@ public class Beer_dao {
     	beer.setRecipe(Recipe_dao.getRecipeById(rs.getString(COL_RECIPEID)));
 		
 		return beer;
+	}
+	
+	private static void close(Statement stmt, Connection conn, ResultSet rs) {
+		try {
+    		if(rs != null) {
+    			rs.close();
+    		}
+        } catch (SQLException se) {
+        }
+        try {
+            if (stmt != null) {
+            	stmt.close();
+            }      
+        } catch (SQLException se) {
+        }
+        try {
+            if (conn != null) {
+            	conn.close();
+            }
+        } catch (SQLException se) {
+        }
 	}
 }
