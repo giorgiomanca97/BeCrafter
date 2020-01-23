@@ -49,6 +49,83 @@ public class Storehouse {
     	return result;
     }
     
+    public ArrayList<Product> getAllProduct(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings){
+    	ArrayList<Product> result = new ArrayList<Product>();
+    	ArrayList<Product> all = getAllProduct();
+    	
+    	ArrayList<BeerType> btChoice;
+    	ArrayList<BeerColor> bcChoice;
+    	ArrayList<ContainerType> ctChoice;
+    	ArrayList<BeerFiltering> bfChoice;
+    	
+    	if(beerTypes == null || beerTypes.size()==0) {
+    		btChoice = new ArrayList<BeerType>();
+    		for(BeerType beerType: BeerType.values()) {
+    			btChoice.add(beerType);
+    		}
+    	} else {
+    		btChoice = beerTypes;
+    	}
+    	
+    	if(beerColors == null || beerColors.size()==0) {
+    		bcChoice = new ArrayList<BeerColor>();
+    		for(BeerColor beerColor: BeerColor.values()) {
+    			bcChoice.add(beerColor);
+    		}
+    	} else {
+    		bcChoice = beerColors;
+    	}
+    	
+    	if(containerTypes == null || containerTypes.size()==0) {
+    		ctChoice = new ArrayList<ContainerType>();
+    		for(ContainerType containerType: ContainerType.values()) {
+    			ctChoice.add(containerType);
+    		}
+    	} else {
+    		ctChoice = containerTypes;
+    	}
+    	
+    	if(beerFilterings == null || beerFilterings.size()==0) {
+    		bfChoice = new ArrayList<BeerFiltering>();
+    		for(BeerFiltering beerFiltering: BeerFiltering.values()) {
+    			bfChoice.add(beerFiltering);
+    		}
+    	} else {
+    		bfChoice = beerFilterings;
+    	}
+    	
+    	for (Product product : all) {
+    		BeerType beerType = product.getBeer().getType();
+    		BeerColor beerColor = product.getBeer().getColor();
+    		ContainerType containerType = product.getContainer().getType();
+    		BeerFiltering beerFiltering = product.getBeer().getFiltering();
+    		
+    		if(btChoice.contains(beerType) && bcChoice.contains(beerColor) && ctChoice.contains(containerType) && bfChoice.contains(beerFiltering)) {
+    			result.add(product);
+    		}
+		}
+    	
+    	return result;
+    }
+    
+    public ArrayList<Product> getAllProduct(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
+    	ArrayList<Product> result = new ArrayList<Product>();
+    	
+    	if(searchName == null || searchName.length() == 0) {
+    		result = getAllProduct(beerTypes, beerColors, containerTypes, beerFilterings);
+    	} else {
+    		ArrayList<Product> all = getAllProduct(beerTypes, beerColors, containerTypes, beerFilterings);
+        	
+        	for (Product product : all) {
+        		if( product.getBeer().getName().contains(searchName) ) {
+        			result.add(product);
+        		}
+    		}
+    	}
+    	
+    	return result;
+    }
+    
     
     public RawMaterial get(RawMaterialType type) {
     	RawMaterial rawMaterial = new RawMaterial(type);
