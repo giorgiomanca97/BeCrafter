@@ -1,6 +1,8 @@
 package logic.entity;
 
 import error.StorableIllegalQuantityException;
+import logic.entity.dao.Container_dao;
+import logic.entity.dao.RawMaterial_dao;
 import logic.entity.interfaces.Storable;
 
 public class RawMaterial implements Storable {
@@ -109,5 +111,10 @@ public class RawMaterial implements Storable {
 		RawMaterial result = new RawMaterial(getType());
 		result.copyQuantity(this);
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return RawMaterial_dao.rawMaterialToText(this);
 	}
 }

@@ -2,6 +2,7 @@ package logic.entity;
 
 
 import logic.designclasses.CloneStorableList;
+import logic.entity.interfaces.Storable;
 
 public class Storehouse {	
 	private CloneStorableList rawMaterials;
@@ -68,4 +69,24 @@ public class Storehouse {
     	return null;
     }
 
+    
+    @Override
+    public String toString() {
+    	StringBuilder stringBuilder = new StringBuilder();
+    	stringBuilder.append("\nRaw Materials: \n");
+    	for (Storable s : rawMaterials.getAll()) {
+    		stringBuilder.append(s.toString() + "\n");
+		}
+    	stringBuilder.append("\nContainers: \n");
+    	for (Storable s : containers.getAll()) {
+    		stringBuilder.append(s.toString() + "\n");
+		}
+    	stringBuilder.append("\nProducts: \n");
+    	for (Storable s : products.getAll()) {
+    		stringBuilder.append(s.toString() + "\n");
+		}
+    	stringBuilder.append("\n");
+    	
+    	return stringBuilder.toString();
+    }
 }

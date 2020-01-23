@@ -7,7 +7,7 @@ public class BillingInfo {
     private String address;
     private String city;
     private String country;
-    private int postalCode;
+    private String postalCode;
     private String phone;
     private String card;
 
@@ -18,7 +18,7 @@ public class BillingInfo {
     	this.address = "";
     	this.city = "";
     	this.country = "";
-    	this.postalCode = 0;
+    	this.postalCode = "";
     	this.phone = "";
     	this.card = "";
     }
@@ -72,11 +72,11 @@ public class BillingInfo {
         this.phone = phone;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return this.postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

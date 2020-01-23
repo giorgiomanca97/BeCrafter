@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.entity.Storehouse;
+import logic.entity.dao.Storehouse_dao;
 
 
 public class StandaloneCustomerMain extends Application{
@@ -32,8 +33,8 @@ public class StandaloneCustomerMain extends Application{
 		primaryStage.show();
 		setPrimaryStage(primaryStage);
 		
-		//storehouse = Storehouse_dao.getStorehouse();
-		
+		storehouse = Storehouse_dao.getStorehouse();
+		System.out.println(storehouse);
 		//Home_View.start();
 	}
 	

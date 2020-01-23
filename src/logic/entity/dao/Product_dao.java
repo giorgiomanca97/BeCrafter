@@ -17,7 +17,7 @@ public class Product_dao {
 		Beer beer = product.getBeer();
 		Container container = product.getContainer();
 		
-		stringBuilder.append(beer);
+		stringBuilder.append(beer.getId());
 		stringBuilder.append(SEP);
 		stringBuilder.append(Container_dao.containerToText(container));
 		

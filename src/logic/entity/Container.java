@@ -2,6 +2,7 @@ package logic.entity;
 
 
 import error.StorableIllegalQuantityException;
+import logic.entity.dao.Container_dao;
 import logic.entity.interfaces.Storable;
 
 public class Container implements Storable {
@@ -115,5 +116,10 @@ public class Container implements Storable {
 		Container result = new Container(getType(), getVolume());
 		result.copyQuantity(this);
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return Container_dao.containerToText(this);
 	}
 }

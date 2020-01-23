@@ -3,8 +3,8 @@ package logic.entity;
 
 public enum ContainerType {
     BOTTLE("Bottle"),
-    BARREL("Barrel"),
-    CAN("Can");
+    CAN("Can"),
+    BARREL("Barrel");
 	
 	private String text;
 	

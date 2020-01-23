@@ -14,7 +14,7 @@ public class Recipe_dao {
 	}
 	
 	public static Recipe getRecipeById(String id) {
-		Recipe result = null;
+		Recipe result = new Recipe(id);
 		
 		return result;
 	}
