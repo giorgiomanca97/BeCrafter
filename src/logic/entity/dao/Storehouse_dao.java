@@ -167,10 +167,50 @@ public class Storehouse_dao {
 	}
 	
 	
-	public static void updateStorehouse() {
-		if(storehouseInstance != null) {
-			//TODO: aggioranare persistenza
+	public static void updateStorehouse(Storehouse storehouse) {
+		Statement stmt = null;
+        Connection conn = null;
+
+        try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            
+            stmt.executeUpdate("DELETE FROM " + RAWM_TABLE + ";");
+            stmt.executeUpdate("DELETE FROM " + CONT_TABLE + ";");
+            stmt.executeUpdate("DELETE FROM " + PROD_TABLE + ";");
+            
+            for (RawMaterial rawMaterial : storehouse.getAllRawMaterials()) {
+            	stmt.executeUpdate("INSERT INTO " + RAWM_TABLE + "VALUES ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");");
+			}
+            for (Container container : storehouse.getAllContainers()) {
+				stmt.executeUpdate("INSERT INTO " + CONT_TABLE + "VALUES ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");");
+			}
+            for (Product product : storehouse.getAllProducts()) {
+            	Beer beer = product.getBeer();
+            	Container container = product.getContainer();
+            	stmt.executeUpdate("INSERT INTO " + PROD_TABLE + "VALUES ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");");
+            }
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
 		}
+        finally {
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            }
+        }
 	}
 	
 }

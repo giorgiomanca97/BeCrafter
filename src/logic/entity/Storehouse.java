@@ -39,7 +39,7 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProduct(){
+    public ArrayList<Product> getAllProducts(){
     	ArrayList<Product> result = new ArrayList<Product>();
     	
     	for (Storable storable : products.getAll()) {
@@ -49,9 +49,9 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProduct(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings){
+    public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings){
     	ArrayList<Product> result = new ArrayList<Product>();
-    	ArrayList<Product> all = getAllProduct();
+    	ArrayList<Product> all = getAllProducts();
     	
     	ArrayList<BeerType> btChoice;
     	ArrayList<BeerColor> bcChoice;
@@ -108,13 +108,13 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProduct(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
+    public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
     	ArrayList<Product> result = new ArrayList<Product>();
     	
     	if(searchName == null || searchName.length() == 0) {
-    		result = getAllProduct(beerTypes, beerColors, containerTypes, beerFilterings);
+    		result = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
     	} else {
-    		ArrayList<Product> all = getAllProduct(beerTypes, beerColors, containerTypes, beerFilterings);
+    		ArrayList<Product> all = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
         	
         	for (Product product : all) {
         		if( product.getBeer().getName().contains(searchName) ) {

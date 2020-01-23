@@ -49,10 +49,9 @@ public class Beer_dao {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(query);
             
-            Beer beer = null;
             if(rs.first()) {
             	do {
-            		beer = new Beer(rs.getString(COL_ID));
+            		Beer beer = new Beer(rs.getString(COL_ID));
                 	beer.setName(rs.getString(COL_NAME));
                 	beer.setType(BeerType.valueOf(rs.getString(COL_TYPE)));
                 	beer.setColor(BeerColor.valueOf(rs.getString(COL_COLOR)));
@@ -113,6 +112,38 @@ public class Beer_dao {
 	
 	
 	public static void updateBeer(Beer beer) {
-		
+		/*Statement stmt = null;
+        Connection conn = null;
+
+        try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            StringBuilder query = new StringBuilder();
+            query.append("UPDATE " + TABLE_NAME + "SET ");
+            query.append(b);
+            stmt.executeUpdate(query);
+            
+            
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+        finally {
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            }
+        }*/
 	}
 }
