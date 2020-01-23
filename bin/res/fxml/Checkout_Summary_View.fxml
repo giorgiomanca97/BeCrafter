@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Checkout_Summary_View">
    <children>
       <HBox prefHeight="40.0" prefWidth="1170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -67,7 +67,7 @@
             </Label>
          </children>
       </HBox>
-      <ListView layoutX="40.0" prefHeight="420.0" prefWidth="1170.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <ListView fx:id="lv_cart" layoutX="40.0" prefHeight="420.0" prefWidth="1170.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
       <AnchorPane layoutY="460.0" prefHeight="80.0" prefWidth="1170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" prefHeight="80.0" prefWidth="260.0" text="Overall cost" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -75,12 +75,12 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="260.0" prefHeight="80.0" prefWidth="260.0" text="000,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="tb_overall_cost" alignment="CENTER" layoutX="260.0" prefHeight="80.0" prefWidth="260.0" text="000,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
+            <Button fx:id="btn_back_shopping" alignment="CENTER" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -88,7 +88,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Confirm Products" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+            <Button fx:id="btn_Confirm_Products" alignment="CENTER" contentDisplay="CENTER" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Confirm Products" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
