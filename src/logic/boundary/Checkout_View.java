@@ -2,8 +2,11 @@ package logic.boundary;
 
 import java.net.URL;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
@@ -12,9 +15,19 @@ public class Checkout_View {
 	private static final String WINDOW_TITLE = "Checkout";
 	private static final String FXML_FILEPATH = "/res/fxml/Checkout_View.fxml";
 	
-	// FXML Views
+	@FXML
+	private ImageView img_back;
 	
-	// ----------
+	@FXML
+	private Label tb_summary;
+	@FXML
+	private Label tb_payment;
+	@FXML
+	private Label tb_confirmation;
+	
+	@FXML
+	private AnchorPane ap_checkout;
+	
 	
 	public void initialize() {
 

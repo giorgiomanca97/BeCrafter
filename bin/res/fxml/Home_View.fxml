@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_View">
 	<children>
       <Label prefHeight="90.0" prefWidth="300.0" text="BeCrafter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -25,50 +25,33 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <HBox layoutX="330.0" layoutY="30.0" prefHeight="30.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/home.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="30.0" prefWidth="60.0" text="Home">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutX="480.0" layoutY="30.0" prefHeight="30.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/package.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="30.0" prefWidth="120.0" text="Check Order">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
       <HBox layoutX="1100.0" layoutY="30.0" prefHeight="30.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
          <children>
-            <HBox prefHeight="30.0">
+            <HBox fx:id="hb_check_order" prefHeight="30.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/package.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="30.0" prefWidth="120.0" text="Check Order">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="hb_cart" prefHeight="30.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/cart.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="0">
+                  <Label fx:id="tb_cart" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -77,15 +60,18 @@
                      </font>
                   </Label>
                </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </HBox>
-            <HBox prefHeight="100.0">
+            <HBox fx:id="hb_login" prefHeight="100.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/user.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="30.0" text="Login">
+                  <Label fx:id="tb_login" prefHeight="30.0" text="Login">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -128,12 +114,12 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField prefHeight="30.0">
+                  <TextField fx:id="tf_search" prefHeight="30.0">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" text="Search">
+                  <Button fx:id="btn_search" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" text="Search">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                      </VBox.margin>
@@ -183,12 +169,12 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Ale">
+                              <CheckBox fx:id="cb_ale" mnemonicParsing="false" prefWidth="120.0" text="Ale">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_ale_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -196,12 +182,12 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="36.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lambic">
+                              <CheckBox fx:id="cb_lambic" mnemonicParsing="false" prefWidth="120.0" text="Lambic">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_lambic_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -209,12 +195,12 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="58.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cb_lager" mnemonicParsing="false" prefWidth="120.0" text="Lager">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_lager_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -237,12 +223,12 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Ale">
+                              <CheckBox fx:id="cb_light" mnemonicParsing="false" prefWidth="120.0" text="Light">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_light_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -250,12 +236,12 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lambic">
+                              <CheckBox fx:id="cb_amber" mnemonicParsing="false" prefWidth="120.0" text="Amber">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_amber_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -263,12 +249,12 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cb_ruby" mnemonicParsing="false" prefWidth="120.0" text="Ruby">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_ruby_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -276,12 +262,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="65.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cb_dark" mnemonicParsing="false" prefWidth="120.0" text="Dark">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_dark_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -304,12 +290,12 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Ale">
+                              <CheckBox fx:id="cb_bottle" mnemonicParsing="false" prefWidth="120.0" text="Bottle">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_bottle_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -317,12 +303,12 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lambic">
+                              <CheckBox fx:id="cb_can" mnemonicParsing="false" prefWidth="120.0" text="Can">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_can_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -330,12 +316,12 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cb_barrel" mnemonicParsing="false" prefWidth="120.0" text="Barrel">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_barrel_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -358,12 +344,12 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lambic">
+                              <CheckBox fx:id="cb_filtered" mnemonicParsing="false" prefWidth="120.0" text="Filtered">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_filtered_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -371,12 +357,12 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cb_unfiltered" mnemonicParsing="false" prefWidth="120.0" text="Unfiltered">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label text="//" />
+                              <Label fx:id="tb_unfiltered_quantity" text="//" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -396,14 +382,14 @@
          <content>
             <AnchorPane>
                <children>
-                  <TilePane prefColumns="3" prefRows="1" prefTileWidth="348.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TilePane fx:id="tp_products" prefColumns="3" prefRows="1" prefTileWidth="348.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-      <VBox layoutX="1110.0" layoutY="75.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+      <VBox fx:id="vb_menu" layoutX="1110.0" layoutY="75.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
          <children>
-            <HBox>
+            <HBox fx:id="hb_my_profile">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -426,7 +412,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox layoutX="10.0" layoutY="10.0">
+            <HBox fx:id="hb_my_orders" layoutX="10.0" layoutY="10.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -449,7 +435,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox layoutX="10.0" layoutY="110.0">
+            <HBox fx:id="hb_logout" layoutX="10.0" layoutY="110.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
