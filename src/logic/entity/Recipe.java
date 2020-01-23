@@ -47,6 +47,7 @@ public class Recipe {
     public String toString() {
     	StringBuilder stringBuilder = new StringBuilder();
 
+    	stringBuilder.append("Recipe: " + id + "\n");
     	for (Storable s : rawMaterials.getAll()) {
     		stringBuilder.append(s.toString() + "\n");
 		}

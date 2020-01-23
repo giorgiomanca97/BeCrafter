@@ -57,4 +57,19 @@ public abstract class StorableList {
 		storables = new ArrayList<Storable>();
 		return result;
 	}
+	
+	public int size() {
+		return storables.size();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		for (Storable storable : storables) {
+			stringBuilder.append(storable.toString() + "\n");
+		}
+		
+		return stringBuilder.toString();
+	}
 }

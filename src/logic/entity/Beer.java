@@ -94,4 +94,8 @@ public class Beer {
         this.recipe = recipe;
     }
 
+    @Override
+    public String toString() {
+    	return "Beer: " + id + " " + name + " " + type.toString() + " " + color.toString() + " " + alcoholContent + " " + pricePerCL + " " + recipe.getId();
+    }
 }

@@ -121,17 +121,27 @@ public class Storehouse {
     @Override
     public String toString() {
     	StringBuilder stringBuilder = new StringBuilder();
-    	stringBuilder.append("\nRaw Materials: \n");
+    	int i;
+    	
+    	i = 1;
+    	stringBuilder.append("\nRaw Materials (" + rawMaterials.size() + "): \n");
     	for (Storable s : rawMaterials.getAll()) {
-    		stringBuilder.append(s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		i++;
 		}
-    	stringBuilder.append("\nContainers: \n");
+    	
+    	i = 1;
+    	stringBuilder.append("\nContainers (" + containers.size() + "): \n");
     	for (Storable s : containers.getAll()) {
-    		stringBuilder.append(s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		i++;
 		}
-    	stringBuilder.append("\nProducts: \n");
+    	
+    	i = 1;
+    	stringBuilder.append("\nProducts (" + products.size() + "): \n");
     	for (Storable s : products.getAll()) {
-    		stringBuilder.append(s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		i++;
 		}
     	stringBuilder.append("\n");
     	

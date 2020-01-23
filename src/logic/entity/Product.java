@@ -1,7 +1,6 @@
 package logic.entity;
 
 import error.StorableIllegalQuantityException;
-import logic.entity.dao.Product_dao;
 import logic.entity.interfaces.Storable;
 
 public class Product implements Storable {
@@ -104,6 +103,6 @@ public class Product implements Storable {
 	
 	@Override
 	public String toString() {
-		return Product_dao.productToText(this);
+		return "Product:  " + beer.toString() + "  -  " + container.toString();
 	}
 }
