@@ -19,18 +19,18 @@ USE `becrafter`;
 -- Dump della struttura di tabella becrafter.beers
 CREATE TABLE IF NOT EXISTS `beers` (
   `id` varchar(50) NOT NULL,
-  `name` text DEFAULT NULL,
-  `type` enum('ALE','LAMBIC','LAGER') DEFAULT NULL,
-  `color` enum('LIGHT','AMBER','RUBY','DARK') DEFAULT NULL,
-  `filtering` enum('FILTERED','UNFILTERED') DEFAULT NULL,
-  `alcohol` float DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `recipeId` varchar(50) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `type` enum('ALE','LAMBIC','LAGER') NOT NULL,
+  `color` enum('LIGHT','AMBER','RUBY','DARK') NOT NULL,
+  `filtering` enum('FILTERED','UNFILTERED') NOT NULL,
+  `alcohol` float NOT NULL,
+  `price` float NOT NULL,
+  `description` text NOT NULL,
+  `recipeId` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dump dei dati della tabella becrafter.beers: ~2 rows (circa)
+-- Dump dei dati della tabella becrafter.beers: ~3 rows (circa)
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;
 INSERT INTO `beers` (`id`, `name`, `type`, `color`, `filtering`, `alcohol`, `price`, `description`, `recipeId`) VALUES
 	('B001', 'The Wrecking', 'LAGER', 'LIGHT', 'FILTERED', 4.1, 6, 'The simplest light beer', 'R001'),
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `storehouse_rawmaterials` (
   PRIMARY KEY (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dump dei dati della tabella becrafter.storehouse_rawmaterials: ~0 rows (circa)
+-- Dump dei dati della tabella becrafter.storehouse_rawmaterials: ~7 rows (circa)
 /*!40000 ALTER TABLE `storehouse_rawmaterials` DISABLE KEYS */;
 INSERT INTO `storehouse_rawmaterials` (`type`, `quantity`) VALUES
 	('HOP', 1000000),
@@ -158,4 +158,3 @@ INSERT INTO `storehouse_rawmaterials` (`type`, `quantity`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-beers
