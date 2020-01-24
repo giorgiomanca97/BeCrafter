@@ -116,7 +116,76 @@ public class Registered_dao {
 	}
 	
 	
+	public static void insertRegistered(Registered registered) {
+		Statement stmt = null;
+        Connection conn = null;
+        
+		try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            BillingInfo bi = registered.getBillingInfo();
+            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + "VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
+            					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
+            
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+        finally {
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+        }
+	}
+	
 	public static void updateRegistered(Registered registered) {
-		
+		Statement stmt = null;
+        Connection conn = null;
+        
+		try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            BillingInfo bi = registered.getBillingInfo();
+            stmt.executeUpdate("UPDATE " + TABLE_NAME + " SET " + COL_PASSWORD + " = '" + registered.getPassword() + "', " + COL_FIRSTNAME + " = '" + bi.getFirstName() + "', " + COL_LASTNAME + " = '" + bi.getLastName() + "', " + 
+            					COL_ADDRESS + " = '" + bi.getAddress() + "', " + COL_CITY + " = '" + bi.getCity() + "', " + COL_COUNTRY + " = '" + bi.getCountry() + "', " + COL_POSTALCODE + " = '" + bi.getPostalCode() + 
+            					COL_PHONE + " = '" + bi.getPhone() + "', " + COL_CARD + " = '" + bi.getCard() + "' WHERE " + COL_EMAIL + " = '" + registered.getEmail() + "';");
+            
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+        finally {
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+        }
 	}
 }

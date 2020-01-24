@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_View">
+<AnchorPane minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_View">
 	<children>
       <Label prefHeight="90.0" prefWidth="300.0" text="BeCrafter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -64,7 +64,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </HBox>
-            <HBox fx:id="hb_login" prefHeight="100.0">
+            <HBox fx:id="hb_login" onMouseEntered="#hb_login_enter" prefHeight="100.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,7 +119,7 @@
                         <Insets left="15.0" right="15.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button fx:id="btn_search" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" text="Search">
+                  <Button fx:id="btn_search" mnemonicParsing="false" onAction="#btn_search_clicked" prefHeight="30.0" prefWidth="220.0" text="Search">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                      </VBox.margin>
@@ -174,7 +174,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_ale_quantity" text="//" />
+                              <Label fx:id="tb_ale_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -187,7 +187,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_lambic_quantity" text="//" />
+                              <Label fx:id="tb_lambic_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -200,7 +200,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_lager_quantity" text="//" />
+                              <Label fx:id="tb_lager_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -228,7 +228,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_light_quantity" text="//" />
+                              <Label fx:id="tb_light_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -241,7 +241,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_amber_quantity" text="//" />
+                              <Label fx:id="tb_amber_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -254,7 +254,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_ruby_quantity" text="//" />
+                              <Label fx:id="tb_ruby_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -267,7 +267,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_dark_quantity" text="//" />
+                              <Label fx:id="tb_dark_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -295,7 +295,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_bottle_quantity" text="//" />
+                              <Label fx:id="tb_bottle_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -308,7 +308,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_can_quantity" text="//" />
+                              <Label fx:id="tb_can_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -321,7 +321,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_barrel_quantity" text="//" />
+                              <Label fx:id="tb_barrel_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -349,7 +349,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_filtered_quantity" text="//" />
+                              <Label fx:id="tb_filtered_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -362,7 +362,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </CheckBox>
-                              <Label fx:id="tb_unfiltered_quantity" text="//" />
+                              <Label fx:id="tb_unfiltered_quantity" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
@@ -387,7 +387,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="vb_menu" layoutX="1110.0" layoutY="75.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+      <VBox fx:id="vb_menu" disable="true" layoutX="1110.0" layoutY="75.0" onMouseExited="#vb_menu_exit" opacity="0.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
          <children>
             <HBox fx:id="hb_my_profile">
                <children>

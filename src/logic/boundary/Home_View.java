@@ -1,7 +1,13 @@
 package logic.boundary;
 
 import java.net.URL;
+import java.util.ArrayList;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import javafx.event.Event;
+import javafx.event.EventDispatcher;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +21,10 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
+import logic.entity.BeerColor;
+import logic.entity.BeerFiltering;
+import logic.entity.BeerType;
+import logic.entity.ContainerType;
 
 public class Home_View {
 	private static final String WINDOW_TITLE = "Home";
@@ -101,7 +111,7 @@ public class Home_View {
 	
 	
 	public void initialize() {
-
+		
 	}
 	
 	
@@ -117,5 +127,91 @@ public class Home_View {
 		
 		primaryStage.setTitle(WINDOW_TITLE);
 		primaryStage.setScene(scene);
+	}
+	
+	public boolean searchProducts() {
+		
+		
+		return true;
+	}
+	
+	public void hb_login_enter() {
+		vb_menu.setDisable(false);
+		vb_menu.setOpacity(1);
+	}
+	
+	public void vb_menu_exit() {
+		vb_menu.setDisable(true);
+		vb_menu.setOpacity(0);
+	}
+	
+	public void btn_search_clicked() {
+		ArrayList<BeerType> beerTypes = new ArrayList<BeerType>();
+		ArrayList<BeerColor> beerColors = new ArrayList<BeerColor>();
+		ArrayList<ContainerType> containerTypes = new ArrayList<ContainerType>();
+		ArrayList<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
+		String search = new String();
+		if(cb_ale.isSelected()) {
+			beerTypes.add(BeerType.ALE);
+		}
+		if(cb_lambic.isSelected()) {
+			beerTypes.add(BeerType.LAMBIC);
+		}
+		if(cb_lager.isSelected()) {
+			beerTypes.add(BeerType.LAGER);
+		}
+		if(cb_light.isSelected()) {
+			beerColors.add(BeerColor.LIGHT);
+		}
+		if(cb_amber.isSelected()) {
+			beerColors.add(BeerColor.AMBER);
+		}
+		if(cb_ruby.isSelected()) {
+			beerColors.add(BeerColor.RUBY);
+		}
+		if(cb_dark.isSelected()) {
+			beerColors.add(BeerColor.DARK);
+		}
+		if(cb_bottle.isSelected()) {
+			containerTypes.add(ContainerType.BOTTLE);
+		}
+		if(cb_can.isSelected()) {
+			containerTypes.add(ContainerType.CAN);
+		}
+		if(cb_barrel.isSelected()) {
+			containerTypes.add(ContainerType.BARREL);
+		}
+		if(cb_filtered.isSelected()) {
+			beerFilterings.add(BeerFiltering.FILTERED);
+		}
+		if(cb_unfiltered.isSelected()) {
+			beerFilterings.add(BeerFiltering.UNFILTERED);
+		}
+		search = tf_search.getText();
+		
+		StringBuilder types = new StringBuilder();
+		StringBuilder colors = new StringBuilder();
+		StringBuilder containers = new StringBuilder();
+		StringBuilder filterings = new StringBuilder();
+		
+		for (BeerType beerType : beerTypes) {
+			types.append(beerType.name() + "\n");
+		}
+		for (BeerColor beerColor : beerColors) {
+			colors.append(beerColor.name() + "\n");
+		}
+		for (ContainerType containerType : containerTypes) {
+			containers.append(containerType.name() + "\n");
+		}
+		for (BeerFiltering beerFiltering : beerFilterings) {
+			filterings.append(beerFiltering.name() + "\n");
+		}
+		
+		System.out.println(types.toString());
+		System.out.println(colors.toString());
+		System.out.println(containers.toString());
+		System.out.println(filterings.toString());
+		System.out.println("search String = " + search + " <--");
+		
 	}
 }
