@@ -42,6 +42,10 @@ INSERT INTO `beers` (`id`, `name`, `type`, `color`, `filtering`, `alcohol`, `pri
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `price` float NOT NULL,
+  `shippingCode` varchar(50) DEFAULT NULL,
+  `shippingCompany` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
