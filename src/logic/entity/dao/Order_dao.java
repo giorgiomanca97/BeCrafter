@@ -1,8 +1,10 @@
 package logic.entity.dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,10 +17,6 @@ import error.TextParseException;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
 import logic.entity.Product;
-import logic.entity.Recipe;
-import logic.entity.Registered;
-import logic.entity.interfaces.Storable;
-import sun.print.resources.serviceui;
 
 public class Order_dao {
 	private static String ORDERS_FOLDER_PATH = "persistence/orders"; 
@@ -166,6 +164,38 @@ public class Order_dao {
 	}
 	
 	
+	private static void saveOrderData(Order order) {
+		File file = new File(ORDERS_FOLDER_PATH + "/" + order.getId());
+		
+		FileWriter fileWriter = null;
+		BufferedWriter bufferedWriter = null;
+		
+		try {
+			if(file.createNewFile()) {
+				fileWriter = new FileWriter(file);
+				bufferedWriter = new BufferedWriter(fileWriter);
+				
+				bufferedWriter.write(printOrderData(order));
+			}
+		} catch (IOException ioe) {
+			// TODO: handle exception
+		} finally {
+			try {
+                if (bufferedWriter != null) {
+                	bufferedWriter.close();
+                }
+            } catch (IOException ioe) {
+            }
+			try {
+                if (fileWriter != null) {
+                	fileWriter.close();
+                }
+            } catch (IOException ioe) {
+            }
+		}
+	}
+	
+	
 	public static void insertOrder(Order order) {
 		Statement stmt = null;
         Connection conn = null;
@@ -175,10 +205,10 @@ public class Order_dao {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + "VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
-            					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
+            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " (" + COL_EMAIL + ", " + COL_DATE + ", " + COL_PRICE + ", " + COL_SHIPCODE + ", " + COL_SHIPCOMP + ") " +
+            					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');");
             
-            
+            saveOrderData(order);
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception
 		} catch (SQLException se) {
