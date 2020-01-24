@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import logic.designclasses.CloneStorableList;
 import logic.entity.interfaces.Storable;
 
-public abstract class Order {
+public class Order {
     private String id;
-    private String date;
     private String email;
+    private String date;
     private float price;
+    private String shippingCode;
+    private String shippingCompany;
     private BillingInfo billingInfo;
     private CloneStorableList products;
 
@@ -24,8 +26,6 @@ public abstract class Order {
     	this.products = new CloneStorableList();
     }
 
-    
-    public abstract OrderType getType();
     
     public String getId() {
         return this.id;
@@ -54,6 +54,22 @@ public abstract class Order {
     public void setPrice(float price) {
         this.price = price;
     }
+    
+    public String getShippingCode() {
+		return shippingCode;
+	}
+
+	public String getShippingCompany() {
+		return shippingCompany;
+	}
+
+	public void setShippingCode(String shippingCode) {
+		this.shippingCode = shippingCode;
+	}
+
+	public void setShippingCompany(String shippingCompany) {
+		this.shippingCompany = shippingCompany;
+	}
 
     public BillingInfo getBillingInfo() {
         return this.billingInfo;

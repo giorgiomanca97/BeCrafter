@@ -1,5 +1,9 @@
 package logic.entity.dao;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,15 +11,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import error.TextParseException;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
-import logic.entity.OrderType;
 import logic.entity.Product;
+import logic.entity.Recipe;
 import logic.entity.Registered;
 import logic.entity.interfaces.Storable;
+import sun.print.resources.serviceui;
 
 public class Order_dao {
-	private static String SEP = ";";
+	private static String ORDERS_FOLDER_PATH = "persistence/orders"; 
 	
 	// Informazioni database
 	private static String USER = "root";
@@ -27,12 +33,57 @@ public class Order_dao {
 	private static String TABLE_NAME = "orders";
 	private static String COL_ID = "id";
 	private static String COL_EMAIL = "email";
+	private static String COL_DATE = "date";
+	private static String COL_PRICE = "price";
+	private static String COL_SHIPCODE = "shippingCode";
+	private static String COL_SHIPCOMP = "shippingCompany";
 	
 	
 	private Order_dao() {
 		
 	}
 	
+	
+	private static OrderDataFetch getOrderData(File file) {
+		OrderDataFetch result = null;
+		
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		
+		try {			
+			if(file.exists()) {
+				fileReader = new FileReader(file);
+				bufferedReader = new BufferedReader(fileReader);
+				
+				StringBuilder textBuilder = new StringBuilder();
+				String line;
+				while ((line = bufferedReader.readLine()) != null){
+					textBuilder.append(line + "\n");
+				}
+				
+				result = fetchOrderData(textBuilder.toString());
+			}
+		} catch (IOException ioe) {
+
+		} catch (TextParseException tpe) {
+
+		} finally {
+			try {
+                if (bufferedReader != null) {
+                	bufferedReader.close();
+                }
+            } catch (IOException ioe) {
+            }
+			try {
+                if (fileReader != null) {
+                	fileReader.close();
+                }
+            } catch (IOException ioe) {
+            }
+		}
+		
+		return result;
+	}
 	
 	private static ArrayList<Order> getOrders(String query){
 		ArrayList<Order> result = new ArrayList<Order>();
@@ -49,7 +100,21 @@ public class Order_dao {
             
             if(rs.first()) {
             	do {
-            		Order order = null; //TODO: modificare
+            		String orderId = rs.getString(COL_ID);
+            		Order order = new Order(orderId);
+            		order.setEmail(rs.getString(COL_EMAIL));
+            		order.setDate(rs.getString(COL_DATE));
+            		order.setPrice(rs.getFloat(COL_PRICE));
+            		order.setShippingCode(rs.getString(COL_SHIPCODE));
+            		order.setShippingCompany(rs.getString(COL_SHIPCOMP));
+            		
+            		File file = new File(ORDERS_FOLDER_PATH + "/" + orderId);
+            		OrderDataFetch orderDataFetch = getOrderData(file);
+            		
+            		order.setBillingInfo(orderDataFetch.getBillingInfo());
+            		for (Product product : orderDataFetch.getProducts()) {
+						order.addProduct(product);
+					}
             		
 					result.add(order);
 				} while (rs.next());
@@ -84,51 +149,120 @@ public class Order_dao {
 		return result;
 	}
 	
-	public static ArrayList<Order> getOrdersByEmail() {
-		ArrayList<Order> result = null;
+	public static ArrayList<Order> getOrdersByEmail(String email) {
+		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_EMAIL + " = '" + email +"';");;
 		
 		return result;
 	}
 	
 	public static Order getOrderById(String id) {
-		Order result = null;
+		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = '" + id +"';");	
 		
-		return result;
+		if(result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
+		}
 	}
 	
 	
-	public static void updateOrder(Order order) {
-		
+	public static void insertOrder(Order order) {
+		Statement stmt = null;
+        Connection conn = null;
+        
+		try {
+        	Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + "VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
+            					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
+            
+            
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+        finally {
+            try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+        }
 	}
 	
 	
-	public static String orderToText(Order order) {
+	private static String printOrderData(Order order) {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		OrderType type = order.getType();
 		BillingInfo billingInfo = order.getBillingInfo();
 		
-		stringBuilder.append(type.name());
-		stringBuilder.append("\n");
-		
 		stringBuilder.append(order.getId());
-		stringBuilder.append(SEP);
-		stringBuilder.append(order.getEmail());
-		stringBuilder.append(SEP);
-		stringBuilder.append(order.getPrice());
+		stringBuilder.append(BillingInfo_dao.billingInfoToText(billingInfo));
 		stringBuilder.append("\n");
-		
-		stringBuilder.append(BillingInfo_dao.periodicOrderToText(billingInfo));
-		stringBuilder.append("\n");
-		
+
 		for (Product product : order.getProducts()) {
 			stringBuilder.append(Product_dao.productToText(product) + "\n");
-		}
+		}		
 		
 		return stringBuilder.toString();
 	}
 	
-	public static Order textToOrder(String text) {
-		return null;
+	public static OrderDataFetch fetchOrderData(String text) throws TextParseException{
+		String[] lines = text.split("\n");
+		
+		if(lines.length < 1) {
+			throw new TextParseException();
+		}
+		
+		try {
+			BillingInfo billingInfo = BillingInfo_dao.textToBillingInfo(lines[0]);
+			OrderDataFetch orderDataFetch = new OrderDataFetch(billingInfo);
+			
+			for(int i = 1; i < lines.length; i++) {
+				Product product = Product_dao.textToProduct(lines[i]);
+				orderDataFetch.addProduct(product);
+			}
+			
+			return orderDataFetch;
+		} catch (Exception e) {
+			throw new TextParseException(e);
+		}
+	}
+	
+	
+	static class OrderDataFetch {
+		private BillingInfo billingInfo;
+		private ArrayList<Product> products;
+
+		
+		private OrderDataFetch(BillingInfo billingInfo) {
+			this.billingInfo = billingInfo;
+			this.products = new ArrayList<Product>();
+		}
+		
+		
+		private BillingInfo getBillingInfo() {
+			return this.billingInfo;
+		}
+		
+		private void addProduct(Product product) {
+			products.add(product);
+		}
+		
+		private ArrayList<Product> getProducts() {
+			return this.products;
+		}
 	}
 }

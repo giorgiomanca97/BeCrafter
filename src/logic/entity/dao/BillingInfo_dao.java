@@ -10,7 +10,7 @@ public class BillingInfo_dao {
 		
 	}
 	
-	public static String periodicOrderToText(BillingInfo billingInfo) {
+	public static String billingInfoToText(BillingInfo billingInfo) {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		stringBuilder.append(billingInfo.getFirstName());
@@ -32,7 +32,7 @@ public class BillingInfo_dao {
 		return stringBuilder.toString();
 	}
 	
-	public static BillingInfo periodicOrderToText(String text) throws TextParseException{	
+	public static BillingInfo textToBillingInfo(String text) throws TextParseException{	
 		String[] pieces = text.split(SEP);
 		
 		if(pieces.length != 8) {

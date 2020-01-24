@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import logic.entity.BillingInfo;
+import logic.entity.Order;
 import logic.entity.Registered;
 
 public class Registered_dao {
@@ -65,6 +66,12 @@ public class Registered_dao {
             		billingInfo.setFirstName(rs.getString(COL_CARD));
             		
             		Registered registered = new Registered(email, password, billingInfo);
+            		
+            		ArrayList<Order> orders = Order_dao.getOrdersByEmail(email);
+            		for (Order order : orders) {
+            			registered.addOrder(order);
+					}
+            		
 					result.add(registered);
 				} while (rs.next());
             }
