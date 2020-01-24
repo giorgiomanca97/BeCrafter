@@ -40,20 +40,10 @@ INSERT INTO `beers` (`id`, `name`, `type`, `color`, `filtering`, `alcohol`, `pri
 
 -- Dump della struttura di tabella becrafter.orders
 CREATE TABLE IF NOT EXISTS `orders` (
-  `id` varchar(50) NOT NULL DEFAULT '',
-  `date` varchar(50) NOT NULL DEFAULT '',
-  `email` varchar(50) NOT NULL DEFAULT '',
-  `price` float NOT NULL DEFAULT 0,
-  `firstName` varchar(50) NOT NULL DEFAULT '',
-  `lastName` varchar(50) NOT NULL DEFAULT '',
-  `address` varchar(50) NOT NULL DEFAULT '',
-  `city` varchar(50) NOT NULL DEFAULT '',
-  `country` varchar(50) NOT NULL DEFAULT '',
-  `postalCode` varchar(50) NOT NULL DEFAULT '0',
-  `phone` varchar(50) NOT NULL DEFAULT '0',
-  `card` varchar(50) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- Dump dei dati della tabella becrafter.orders: ~0 rows (circa)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
