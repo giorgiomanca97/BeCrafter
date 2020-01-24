@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import error.TextParseException;
+import logic.designclasses.IDconverter;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
 import logic.entity.Product;
@@ -98,7 +99,7 @@ public class Order_dao {
             
             if(rs.first()) {
             	do {
-            		String orderId = rs.getString(COL_ID);
+            		String orderId = IDconverter.intToId(rs.getInt(COL_ID), IDconverter.Type.ORDER);
             		Order order = new Order(orderId);
             		order.setEmail(rs.getString(COL_EMAIL));
             		order.setDate(rs.getString(COL_DATE));
@@ -108,6 +109,10 @@ public class Order_dao {
             		
             		File file = new File(ORDERS_FOLDER_PATH + "/" + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
+            		
+            		if(orderDataFetch == null) {
+            			throw new IOException();
+            		}
             		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
             		for (Product product : orderDataFetch.getProducts()) {
@@ -121,6 +126,8 @@ public class Order_dao {
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception
 		} catch (SQLException se) {
+			// TODO: handle exception
+		} catch (IOException ioe) {
 			// TODO: handle exception
 		}
         finally {
@@ -164,6 +171,55 @@ public class Order_dao {
 	}
 	
 	
+	public static String getNextId() {
+		String result = null;
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(DRIVER_CLASS_NAME);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            rs = stmt.executeQuery("SELECT MAX(" + COL_ID + ") FROM " + TABLE_NAME + ";");
+            
+            if(rs.first()) {
+            	result = rs.getString(COL_ID);
+            }
+		} catch (ClassNotFoundException ce) {
+			// TODO: handle exception
+		} catch (SQLException se) {
+			// TODO: handle exception
+		}
+		finally {
+			try {
+        		if(rs != null) {
+        			rs.close();
+        		}
+            } catch (SQLException se) {
+            }
+			try {
+                if (stmt != null) {
+                	stmt.close();
+                }      
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+            try {
+                if (conn != null) {
+                	conn.close();
+                }
+            } catch (SQLException se) {
+            	// TODO: handle exception
+            }
+		}
+		
+		return result;
+	}
+	
+	
 	private static void saveOrderData(Order order) {
 		File file = new File(ORDERS_FOLDER_PATH + "/" + order.getId());
 		
@@ -195,16 +251,15 @@ public class Order_dao {
 		}
 	}
 	
-	
 	public static void insertOrder(Order order) {
+		Connection conn = null;
 		Statement stmt = null;
-        Connection conn = null;
         
 		try {
         	Class.forName(DRIVER_CLASS_NAME);
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
             stmt = conn.createStatement();
-
             stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " (" + COL_EMAIL + ", " + COL_DATE + ", " + COL_PRICE + ", " + COL_SHIPCODE + ", " + COL_SHIPCOMP + ") " +
             					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');");
             
