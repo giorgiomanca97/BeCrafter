@@ -24,6 +24,11 @@ public class PeriodicOrder extends Order {
     }
 
     
+    @Override
+	public OrderType getType() {
+		return OrderType.PERIODIC;
+	}
+    
     public int getDaysForRenewal() {
         return this.daysForRenewal;
     }

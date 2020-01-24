@@ -25,6 +25,8 @@ public abstract class Order {
     }
 
     
+    public abstract OrderType getType();
+    
     public String getId() {
         return this.id;
     }

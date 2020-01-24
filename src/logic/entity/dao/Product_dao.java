@@ -26,11 +26,7 @@ public class Product_dao {
 		return stringBuilder.toString();
 	}
 	
-	public static Product textToProduct(String text) throws TextParseException {
-		Product product;
-		Beer beer;
-		Container container;
-		
+	public static Product textToProduct(String text) throws TextParseException {		
 		String[] pieces = text.split(SEP);
 		
 		if(pieces.length != 2) {
@@ -38,10 +34,10 @@ public class Product_dao {
 		}
 		
 		try {
-			beer = Beer_dao.getBeerById(pieces[0]);
-			container = Container_dao.textToContainer(pieces[1]);
+			Beer beer = Beer_dao.getBeerById(pieces[0]);
+			Container container = Container_dao.textToContainer(pieces[1]);
 			
-			product = new Product(beer, container);
+			Product product = new Product(beer, container);
 			
 			return product;
 		} catch (Exception e){

@@ -25,10 +25,6 @@ public class RawMaterial_dao {
 	}
 	
 	public static RawMaterial textToRawMaterial(String text) throws TextParseException {
-		RawMaterial rawMaterial;
-		RawMaterialType type;
-		int quantity;
-		
 		String[] pieces = text.split(SEP);
 		
 		if(pieces.length != 2) {
@@ -36,10 +32,10 @@ public class RawMaterial_dao {
 		}
 		
 		try {
-			type = RawMaterialType.valueOf(pieces[0]);
-			quantity = Integer.valueOf(pieces[1]);
+			RawMaterialType type = RawMaterialType.valueOf(pieces[0]);
+			int quantity = Integer.valueOf(pieces[1]);
 			
-			rawMaterial = new RawMaterial(type);
+			RawMaterial rawMaterial = new RawMaterial(type);
 			rawMaterial.setQuantity(quantity);
 			
 			return rawMaterial;

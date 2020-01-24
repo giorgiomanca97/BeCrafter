@@ -25,12 +25,7 @@ public class Container_dao {
 		return stringBuilder.toString();
 	}
 	
-	public static Container textToContainer(String text) throws TextParseException{
-		Container container;
-		ContainerType type;
-		int volume;
-		int quantity;
-		
+	public static Container textToContainer(String text) throws TextParseException{		
 		String[] pieces = text.split(SEP);
 		
 		if(pieces.length != 3) {
@@ -38,11 +33,11 @@ public class Container_dao {
 		}
 		
 		try {
-			type = ContainerType.valueOf(pieces[0]);
-			volume = Integer.valueOf(pieces[1]);
-			quantity = Integer.valueOf(pieces[2]);
+			ContainerType type = ContainerType.valueOf(pieces[0]);
+			int volume = Integer.valueOf(pieces[1]);
+			int quantity = Integer.valueOf(pieces[2]);
 			
-			container = new Container(type, volume);
+			Container container = new Container(type, volume);
 			container.setQuantity(quantity);
 			
 			return container;
