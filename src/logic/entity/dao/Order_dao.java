@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import error.IdException;
 import error.TextParseException;
 import logic.designclasses.IDconverter;
 import logic.entity.BillingInfo;
@@ -129,6 +130,8 @@ public class Order_dao {
 			// TODO: handle exception
 		} catch (IOException ioe) {
 			// TODO: handle exception
+		} catch (IdException ie) {
+			// TODO: handle exception
 		}
         finally {
         	try {
@@ -171,7 +174,7 @@ public class Order_dao {
 	}
 	
 	
-	public static String getNextId() {
+	public static String getLastId() {
 		String result = null;
 		
 		Connection conn = null;
