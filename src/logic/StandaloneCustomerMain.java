@@ -7,21 +7,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logic.boundary.Home_View;
-import logic.entity.Storehouse;
-import logic.entity.dao.Storehouse_dao;
 
 
 public class StandaloneCustomerMain extends Application{
-	private static final String WINDOW_TITLE = "Splash";
-	private static final String FXML_FILEPATH = "/res/fxml/Home_View.fxml";
+	private static StandaloneCustomerMain instance = null;
 	
-	private static Stage primaryStage; 
-	private Storehouse storehouse;
+	private static final String WINDOW_TITLE = "BeCrater";
+	private static final String FXML_FILEPATH = "/res/fxml/Splash.fxml";
 	
-	public static void main(String[] args) {
-		launch(args);
+	private static Stage primaryStage = null; 
+	
+	
+	private StandaloneCustomerMain() {
+		
 	}
+	
+	synchronized public static StandaloneCustomerMain getInstance() {
+		if(instance == null) {
+			instance = new StandaloneCustomerMain();
+		}
+		
+		return instance;
+	}
+	
+	
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	
+	private static void setPrimaryStage(Stage stage) {
+		StandaloneCustomerMain.primaryStage = stage;
+	}
+	
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{	
@@ -37,19 +54,11 @@ public class StandaloneCustomerMain extends Application{
 		primaryStage.show();
 		setPrimaryStage(primaryStage);
 		
-		storehouse = Storehouse_dao.getStorehouse();
-
-		//System.out.println(storehouse);
-		Home_View.start();
+		HomeController homeController = HomeController.getInstance();
+		homeController.init();
 	}
 	
-	
-	public static Stage getPrimaryStage() {
-		return primaryStage;
-	}
-	
-	
-	private static void setPrimaryStage(Stage stage) {
-		StandaloneCustomerMain.primaryStage = stage;
+	public static void main(String[] args) {
+		launch(args);
 	}
 }
