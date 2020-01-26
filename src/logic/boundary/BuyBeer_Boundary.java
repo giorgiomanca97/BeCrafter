@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import logic.designclasses.PageLoader;
@@ -21,8 +22,6 @@ public class BuyBeer_Boundary {
 	@FXML
 	private Label tb_beer_desc;
 	@FXML
-	private Label tb_selected_num;
-	@FXML
 	private Label tb_total_price;
 	
 	@FXML
@@ -36,6 +35,9 @@ public class BuyBeer_Boundary {
 	
 	@FXML
 	private Button btn_add_to_cart;
+	
+	@FXML
+	private TextField tf_quantity;
 	
 	
 	public void initialize() {
@@ -54,7 +56,7 @@ public class BuyBeer_Boundary {
 	}
 	
 	public void loadProduct(Product_Bean product) {
-		
+		//tb_beer_name;
 	}
 	
 	public void addProductToCart() {

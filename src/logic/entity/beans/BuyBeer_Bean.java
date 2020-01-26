@@ -1,6 +1,5 @@
 package logic.entity.beans;
 
-import logic.BuyBeer_Controller;
 import logic.entity.ContainerType;
 import logic.entity.Volume;
 
@@ -10,6 +9,5 @@ public class BuyBeer_Bean {
 		ContainerType containerType = product_Bean.getContainerType();
 		Volume volume = new Volume(product_Bean.getContainerVolume());
 		
-		BuyBeer_Controller.getInstance().buyProduct(beerId, containerType, volume);
 	}
 }

@@ -31,20 +31,6 @@ public class BuyBeer_Controller {
 		cart = new Storehouse();
 	}
 	
-	public void displayProductDetails(String beerId, ContainerType containerType, Volume containerVolume) {
-		Beer beer = Beer_dao.getBeerById(beerId);
-		Container container = new Container(containerType, containerVolume);
-		Product product = new Product(beer, container);
-		
-		PageLoader pageLoader = new PageLoader(resource)
-		try {
-			BuyBeer_Boundary.start();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-	
 	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
 		//aggiunge al carrello il prodotto selezionato
 		
