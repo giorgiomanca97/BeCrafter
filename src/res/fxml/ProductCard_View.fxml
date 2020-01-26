@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.ProductCard_View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="332.0" style="-fx-background-color: #E0E0E0; -fx-background-radius: 16;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.ProductCard_View">
    <children>
-      <ImageView fx:id="iv_beer_icon" fitHeight="165.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0" />
-      <VBox layoutX="110.0" prefHeight="165.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="iv_beer_icon" fitHeight="110.0" fitWidth="110.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="28.0" />
+      <VBox layoutX="110.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="tb_beer_name" alignment="CENTER" prefHeight="55.0" prefWidth="222.0" text="Beer name" textAlignment="CENTER">
+            <Label fx:id="tb_beer_name" alignment="CENTER" prefHeight="54.0" prefWidth="222.0" text="Beer name" textAlignment="CENTER">
                <font>
-                  <Font size="32.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <HBox prefHeight="30.0" prefWidth="222.0">
@@ -50,9 +50,9 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="tb_price" alignment="CENTER" prefHeight="50.0" prefWidth="222.0" text="00,00 €">
+            <Label fx:id="tb_price" alignment="CENTER" prefHeight="52.0" prefWidth="222.0" text="00,00 €">
                <font>
-                  <Font size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>
