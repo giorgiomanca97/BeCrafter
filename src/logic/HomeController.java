@@ -1,17 +1,20 @@
 package logic;
 
-import java.net.URL;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import java.util.ArrayList;
+
+import logic.boundary.Home_View;
+import logic.entity.BeerColor;
+import logic.entity.BeerFiltering;
+import logic.entity.BeerType;
+import logic.entity.ContainerType;
+import logic.entity.Product;
+import logic.entity.Storehouse;
+import logic.entity.dao.Storehouse_dao;
 
 public class HomeController {
 	private static HomeController instance = null;
-	
-	private static final String WINDOW_TITLE = "Home";
-	private static final String FXML_FILEPATH = "/res/fxml/Home_View.fxml";
+	private Storehouse storehouse;
 	
 	
 	private HomeController() {
@@ -28,17 +31,14 @@ public class HomeController {
 	
 	
 	public void init() throws Exception {
-		FXMLLoader loader = new FXMLLoader();
-		URL url = StandaloneCustomerMain.class.getResource(FXML_FILEPATH);
-		loader.setLocation(url);
-		AnchorPane root = (AnchorPane) loader.load();
-		Scene scene = new Scene(root);
+		this.storehouse = Storehouse_dao.getStorehouse();
 		
-		Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
-		primaryStage.setTitle(WINDOW_TITLE);
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.show();
+		Home_View.start();
 	}
+	
+	public ArrayList<Product> showProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
+		return storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
+	}
+	
 	
 }

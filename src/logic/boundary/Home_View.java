@@ -1,5 +1,6 @@
 package logic.boundary;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -16,14 +17,18 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
+import logic.designclasses.PageLoader;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.beans.Home_View_Bean;
+import logic.entity.beans.Product_Bean;
 
 public class Home_View {
 	private static final String WINDOW_TITLE = "Home";
 	private static final String FXML_FILEPATH = "/res/fxml/Home_View.fxml";
+	private static final String PRODUCTCARD_FILEPATH = "/res/fxml/ProductCard_View.fxml";
 	
 	@FXML
 	private Label tb_ale_quantity;
@@ -105,11 +110,9 @@ public class Home_View {
 	private TilePane tp_products;
 	
 	
-	public void initialize() {
+	private Home_View_Bean bean;
+	
 		
-	}
-	
-	
 	public static void start() throws Exception {
 		FXMLLoader loader = new FXMLLoader();
 		URL url = StandaloneCustomerMain.class.getResource(FXML_FILEPATH);
@@ -124,28 +127,18 @@ public class Home_View {
 		primaryStage.setScene(scene);
 	}
 	
-	public boolean searchProducts() {
-		
-		
-		return true;
+	public void initialize() {
+		bean = new Home_View_Bean();
+		updateProducts();
 	}
 	
-	public void hb_login_enter() {
-		vb_menu.setDisable(false);
-		vb_menu.setOpacity(1);
-	}
-	
-	public void vb_menu_exit() {
-		vb_menu.setDisable(true);
-		vb_menu.setOpacity(0);
-	}
-	
-	public void btn_search_clicked() {
+	public void updateProducts() {
 		ArrayList<BeerType> beerTypes = new ArrayList<BeerType>();
 		ArrayList<BeerColor> beerColors = new ArrayList<BeerColor>();
 		ArrayList<ContainerType> containerTypes = new ArrayList<ContainerType>();
 		ArrayList<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
-		String search = new String();
+		String searchName = tf_search.getText();
+		
 		if(cb_ale.isSelected()) {
 			beerTypes.add(BeerType.ALE);
 		}
@@ -182,31 +175,30 @@ public class Home_View {
 		if(cb_unfiltered.isSelected()) {
 			beerFilterings.add(BeerFiltering.UNFILTERED);
 		}
-		search = tf_search.getText();
 		
-		StringBuilder types = new StringBuilder();
-		StringBuilder colors = new StringBuilder();
-		StringBuilder containers = new StringBuilder();
-		StringBuilder filterings = new StringBuilder();
-		
-		for (BeerType beerType : beerTypes) {
-			types.append(beerType.name() + "\n");
+		tp_products.getChildren().clear();
+		try {
+			for (Product_Bean product : bean.showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName)) {
+				PageLoader pageLoader = new PageLoader(PRODUCTCARD_FILEPATH);
+				ProductCard_View product_view = (ProductCard_View) pageLoader.getController();
+				product_view.setHomeView(this);
+				product_view.loadProduct(product);
+				tp_products.getChildren().add(pageLoader.getRootView());
+			}
+		} catch (IOException ie) {
+			// TODO: handle exception
 		}
-		for (BeerColor beerColor : beerColors) {
-			colors.append(beerColor.name() + "\n");
-		}
-		for (ContainerType containerType : containerTypes) {
-			containers.append(containerType.name() + "\n");
-		}
-		for (BeerFiltering beerFiltering : beerFilterings) {
-			filterings.append(beerFiltering.name() + "\n");
-		}
-		
-		System.out.println(types.toString());
-		System.out.println(colors.toString());
-		System.out.println(containers.toString());
-		System.out.println(filterings.toString());
-		System.out.println("search String = " + search + " <--");
-		
 	}
+	
+	
+	public void hb_login_enter() {
+		vb_menu.setDisable(false);
+		vb_menu.setOpacity(1);
+	}
+	
+	public void vb_menu_exit() {
+		vb_menu.setDisable(true);
+		vb_menu.setOpacity(0);
+	}
+	
 }
