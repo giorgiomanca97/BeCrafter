@@ -117,7 +117,7 @@ public class Storehouse {
     		ArrayList<Product> all = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
         	
         	for (Product product : all) {
-        		if( product.getBeer().getName().contains(searchName) ) {
+        		if( product.getBeer().getName().toLowerCase().contains(searchName.toLowerCase()) ) {
         			result.add(product);
         		}
     		}
