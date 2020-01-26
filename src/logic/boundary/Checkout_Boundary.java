@@ -1,6 +1,8 @@
 package logic.boundary;
 
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -33,13 +35,22 @@ public class Checkout_Boundary {
 	}
 	
 	
-	public static void start() throws Exception {
-		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
-		
-		Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
-		Scene scene = new Scene(pageLoader.getRootView());
-		
-		primaryStage.setTitle(WINDOW_TITLE);
-		primaryStage.setScene(scene);
+	public static void start(){
+		PageLoader pageLoader;
+		try {
+			pageLoader = new PageLoader(FXML_FILEPATH);
+			Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
+			Scene scene = new Scene(pageLoader.getRootView());
+			
+			primaryStage.setTitle(WINDOW_TITLE);
+			primaryStage.setScene(scene);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void onBackPressed() {
+		Home_Boundary.start();
 	}
 }

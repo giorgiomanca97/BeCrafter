@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import logic.boundary.Checkout_Boundary;
 import logic.designclasses.PageLoader;
 import logic.designclasses.RefStorableList;
 import logic.entity.Beer;
@@ -42,7 +43,6 @@ public class BuyBeer_Controller {
 	
 	
 	
-	
 	public void openProductDetails(String beerId, ContainerType containerType, Volume containerVolume) {
 		try {
 			selectedProduct = getProduct(beerId, containerType, containerVolume);
@@ -77,11 +77,12 @@ public class BuyBeer_Controller {
 		}
 		buyProductStage = null;
 		
+		//Home_Controller.getInstance().setCartCounter(cart.size());
 		System.out.println(cart);
 	}
 	
 	public void checkout() {
-		
+		Checkout_Boundary.start();
 	}
 	
 	public void updateProductInsideCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
@@ -114,4 +115,5 @@ public class BuyBeer_Controller {
 		
 		return product;
 	}
+	
 }

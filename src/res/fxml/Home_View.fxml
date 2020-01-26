@@ -44,20 +44,23 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="hb_cart" prefHeight="30.0">
+            <HBox fx:id="hb_cart" onMouseClicked="#onCartPressed" prefHeight="30.0" prefWidth="156.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/cart.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="tb_cart" alignment="CENTER" prefHeight="30.0" prefWidth="40.0" text="0">
+                  <Label prefHeight="30.0" prefWidth="128.0" text="Checkout">
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </Label>
                </children>
                <HBox.margin>

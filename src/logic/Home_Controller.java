@@ -40,4 +40,8 @@ public class Home_Controller {
 		return storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 	}
 	
+	public void goToCheckout()  {
+		BuyBeer_Controller.getInstance().checkout();
+	}
+	
 }

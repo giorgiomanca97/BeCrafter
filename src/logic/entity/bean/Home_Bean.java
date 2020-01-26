@@ -25,6 +25,10 @@ public class Home_Bean {
 		 return converted;
 	}	
 	
+	public void goToCheckout() {
+		Home_Controller.getInstance().goToCheckout();
+	}
+	
 	private Product_Bean generateBean(Product product) {
 		Product_Bean product_Bean = new Product_Bean();
 		
@@ -40,4 +44,5 @@ public class Home_Bean {
 		
 		return product_Bean;
 	}
+	
 }

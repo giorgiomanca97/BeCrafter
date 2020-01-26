@@ -52,8 +52,6 @@ public class Home_Boundary {
 	@FXML
 	private Label tb_unfiltered_quantity;
 	@FXML
-	private Label tb_cart;
-	@FXML
 	private Label tb_login;
 	
 	@FXML
@@ -110,14 +108,19 @@ public class Home_Boundary {
 	private Home_Bean bean;
 	
 		
-	public static void start() throws Exception {
-		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
-		
-		Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
-		Scene scene = new Scene(pageLoader.getRootView());
-		
-		primaryStage.setTitle(WINDOW_TITLE);
-		primaryStage.setScene(scene);
+	public static void start() {
+		PageLoader pageLoader;
+		try {
+			pageLoader = new PageLoader(FXML_FILEPATH);
+			Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
+			Scene scene = new Scene(pageLoader.getRootView());
+			
+			primaryStage.setTitle(WINDOW_TITLE);
+			primaryStage.setScene(scene);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void initialize() {		
@@ -191,6 +194,10 @@ public class Home_Boundary {
 	public void closeMenu() {
 		vb_menu.setDisable(true);
 		vb_menu.setOpacity(0);
+	}
+	
+	public void onCartPressed() {
+		bean.goToCheckout();
 	}
 	
 }
