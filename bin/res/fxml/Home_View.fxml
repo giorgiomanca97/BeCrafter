@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_Boundary">
+<AnchorPane minHeight="700.0" minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_Boundary">
 	<children>
       <Label prefHeight="90.0" prefWidth="300.0" text="BeCrafter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -378,7 +378,7 @@
          </children>
       </VBox>
       <Separator layoutX="250.0" layoutY="90.0" orientation="VERTICAL" prefHeight="630.0" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="90.0" />
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="226.0" layoutY="75.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="75.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="220.0" layoutY="90.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
          <content>
             <AnchorPane>
                <children>

@@ -1,10 +1,12 @@
 package logic.entity.beans;
 
 
+import logic.BuyBeer_Controller;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.Volume;
 
 public class Product_Bean {
 	private String beerId;
@@ -113,4 +115,9 @@ public class Product_Bean {
 		this.price = price;
 	}
 
+	
+	public void openProductDetails() {
+		Volume volume = new Volume(this.containerVolume);
+		BuyBeer_Controller.getInstance().openProductDetails(this.beerId, this.containerType, volume);
+	}
 }

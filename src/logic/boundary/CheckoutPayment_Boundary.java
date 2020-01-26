@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
 
-public class Checkout_Payment_Boundary {
+public class CheckoutPayment_Boundary {
 	private static final String WINDOW_TITLE = "Checkout Payment";
 	private static final String FXML_FILEPATH = "/res/fxml/Checkout_Payment_View.fxml";
 	

@@ -1,10 +1,13 @@
 package logic.entity.beans;
 
 
+import logic.BuyBeer_Controller;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.Product;
+import logic.entity.Volume;
 
 public class BuyBeer_Bean {
 	private String beerId;
@@ -124,15 +127,23 @@ public class BuyBeer_Bean {
 	}
 	
 	
-	public void getSelectedProduct() {
-		// Chiede al BuyBeer_Controller
-		// Imposta i suoi parametri
-		// Dopo la lista leggerà i vari get
+	public void loadSelectedProduct() {
+		Product product = BuyBeer_Controller.getInstance().getSelectedProduct();
+		beerId = product.getBeer().getId();
+		beerName = product.getBeer().getName();
+		beerType = product.getBeer().getType();
+		beerColor = product.getBeer().getColor();
+		beerAlcohol = product.getBeer().getAlcoholContent();
+		beerFiltering = product.getBeer().getFiltering();
+		beerDescription = product.getBeer().getDescription();
+		containerType = product.getContainer().getType();
+		containerVolume = product.getContainer().getVolume();
+		price = product.getPrice();
 	}
 	
 	public void addProductToCart() {
-		// Prendi propri parametri
-		// Chiama BuyBeer_Controller
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, volume, quantity);
 	}
 
 }

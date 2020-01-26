@@ -1,9 +1,10 @@
 package logic;
 
 
+import java.io.IOException;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.boundary.BuyBeer_Boundary;
 import logic.designclasses.PageLoader;
 import logic.designclasses.RefStorableList;
 import logic.entity.Beer;
@@ -19,6 +20,7 @@ public class BuyBeer_Controller {
 	private static final String WINDOW_TITLE = "Buy Product";
 	private static final String FXML_FILEPATH = "/res/fxml/BuyBeer_View.fxml";
 	
+	private Product selectedProduct;
 	private RefStorableList cart;
 	private Stage buyProductStage;
 	
@@ -39,29 +41,43 @@ public class BuyBeer_Controller {
 	}
 	
 	
-	public Product getSelectedProduct() {
-		
+	
+	
+	public void openProductDetails(String beerId, ContainerType containerType, Volume containerVolume) {
+		try {
+			selectedProduct = getProduct(beerId, containerType, containerVolume);
+			
+			PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
+			
+			if(buyProductStage != null) {
+				buyProductStage.close();
+			}
+			buyProductStage = new Stage();
+			buyProductStage.setTitle(WINDOW_TITLE);
+			buyProductStage.setScene(new Scene(pageLoader.getRootView()));
+			buyProductStage.setResizable(false);
+			buyProductStage.show();
+		} catch (IOException e) {
+			//TODO: handle exception
+		}
 	}
 	
-	public void displayProductDetails(String beerId, ContainerType containerType, Volume containerVolume) {
-		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
-		BuyBeer_Boundary buyBeer_Boundary = (BuyBeer_Boundary) pageLoader.getController();
-		buyBeer_Boundary.loadProduct(product);
+	
+	public Product getSelectedProduct() {
+		return selectedProduct;
+	}
+	
+	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
+		Product product =  getProduct(beerId, containerType, containerVolume);
+		product.addQuantity(quantity);
+		cart.add(product);
 		
 		if(buyProductStage != null) {
 			buyProductStage.close();
 		}
-		buyProductStage = new Stage();
-		buyProductStage.setTitle(WINDOW_TITLE);
-		buyProductStage.setScene(new Scene(pageLoader.getRootView()));
-		buyProductStage.show();
-	}
-	
-	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
-		Product product =  getProduct(beerId, containerType, containerVolume);		
-		cart.add(product);
+		buyProductStage = null;
 		
-		
+		System.out.println(cart);
 	}
 	
 	public void checkout() {

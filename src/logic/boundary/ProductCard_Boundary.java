@@ -38,7 +38,7 @@ public class ProductCard_Boundary {
 	
 	
 	public void initialize() {
-
+		
 	}
 	
 	public void loadProduct(Product_Bean product) {
@@ -69,7 +69,7 @@ public class ProductCard_Boundary {
 	
 	public void onMousePressed() {
 		if(product != null) {
-			
+			product.openProductDetails();
 		}
 	}
 }

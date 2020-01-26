@@ -2,20 +2,15 @@ package logic.boundary;
 
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import logic.BuyBeer_Controller;
 import logic.StandaloneCustomerMain;
-import logic.designclasses.PageLoader;
-import logic.entity.ContainerType;
 import logic.entity.Price;
 import logic.entity.Volume;
-import logic.entity.beans.Product_Bean;
+import logic.entity.beans.BuyBeer_Bean;
 
 public class BuyBeer_Boundary {	
 	private static final String IMAGE_BOTTLE_FILEPATH = "/res/icons/beer_bottle.png";
@@ -47,42 +42,37 @@ public class BuyBeer_Boundary {
 	private TextField tf_quantity;
 	
 	
-	private Product_Bean product;
-	private int quantity;
+	private BuyBeer_Bean bean;
 	
 	
 	public void initialize() {
-		quantity = 1;
-		tf_quantity.setText(String.valueOf(quantity));
-	}
-	
-	
-	
-	
-	
-	public void loadProduct(Product_Bean product) {
-		this.product = product;
+		bean = new BuyBeer_Bean();
+		bean.setQuantity(1);
 		
-		tb_beer_name.setText(product.getBeerName());
+		tf_quantity.setText(String.valueOf(bean.getQuantity()));
+		
+		bean.loadSelectedProduct();
+		
+		tb_beer_name.setText(bean.getBeerName());
 		
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(product.getContainerType().toString());
+		stringBuilder.append(bean.getContainerType().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(product.getBeerColor().toString());
+		stringBuilder.append(bean.getBeerColor().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(product.getBeerAlcohol() + "%");
+		stringBuilder.append(bean.getBeerAlcohol() + "%");
 		stringBuilder.append("  -  ");
-		stringBuilder.append(product.getBeerFiltering().toString());
+		stringBuilder.append(bean.getBeerFiltering().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(Volume.toText(product.getContainerVolume()));
+		stringBuilder.append(Volume.toText(bean.getContainerVolume()));
 		tb_beer_cc.setText(stringBuilder.toString());
 		
-		tb_beer_desc.setText(product.getBeerDescription());
+		tb_beer_desc.setText(bean.getBeerDescription());
 		
-		tb_total_price.setText(Price.toText(product.getPrice()));
+		tb_total_price.setText(Price.toText(bean.getPrice()));
 		
 		Image image = null;
-		switch(product.getContainerType()) {
+		switch(bean.getContainerType()) {
 			case BOTTLE:
 				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BOTTLE_FILEPATH));
 				break;
@@ -97,34 +87,34 @@ public class BuyBeer_Boundary {
 	}
 	
 	
+	
 	public void increaseQuantity() {
-		quantity++;
-		tf_quantity.setText(String.valueOf(quantity));
+		int q = bean.getQuantity() + 1;
+		bean.setQuantity(q);
+		tf_quantity.setText(String.valueOf(q));
 	}
 	
 	
 	public void decreaseQuantity() {
-		quantity--;
-		if(quantity < 1) {
-			quantity = 1;
+		int q = bean.getQuantity() - 1;
+		if(q < 1) {
+			q = 1;
 		}
-		tf_quantity.setText(String.valueOf(quantity));
+		bean.setQuantity(q);
+		tf_quantity.setText(String.valueOf(q));
 	}
 	
 	public void updateQuantity() {
 		try {
-			quantity = Integer.parseUnsignedInt(tf_quantity.getText());
+			int q = Integer.parseUnsignedInt(tf_quantity.getText());
+			bean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(quantity));
+			tf_quantity.setText(String.valueOf(bean.getQuantity()));
 		} 
 	}
 	
 	
 	public void addProductToCart() {
-		String beerId = product.getBeerId();
-		ContainerType containerType = product.getContainerType();
-		Volume containerVolume = new Volume(product.getContainerVolume());
-		
-		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, containerVolume, quantity);
+		bean.addProductToCart();
 	}
 }
