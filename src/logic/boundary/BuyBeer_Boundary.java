@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import logic.StandaloneCustomerMain;
 import logic.entity.Price;
 import logic.entity.Volume;
-import logic.entity.beans.BuyBeer_Bean;
+import logic.entity.bean.BuyBeer_Bean;
 
 public class BuyBeer_Boundary {	
 	private static final String IMAGE_BOTTLE_FILEPATH = "/res/icons/beer_bottle.png";

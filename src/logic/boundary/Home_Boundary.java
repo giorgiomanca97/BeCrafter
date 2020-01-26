@@ -19,8 +19,8 @@ import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
-import logic.entity.beans.Home_Bean;
-import logic.entity.beans.Product_Bean;
+import logic.entity.bean.Home_Bean;
+import logic.entity.bean.Product_Bean;
 
 public class Home_Boundary {
 	private static final String WINDOW_TITLE = "Home";

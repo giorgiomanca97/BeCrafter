@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import logic.StandaloneCustomerMain;
 import logic.entity.Price;
 import logic.entity.Volume;
-import logic.entity.beans.Product_Bean;
+import logic.entity.bean.Product_Bean;
 
 public class ProductCard_Boundary {
 	private static final String IMAGE_BOTTLE_FILEPATH = "/res/icons/beer_bottle.png";

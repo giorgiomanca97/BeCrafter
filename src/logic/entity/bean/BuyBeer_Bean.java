@@ -1,4 +1,4 @@
-package logic.entity.beans;
+package logic.entity.bean;
 
 
 import logic.BuyBeer_Controller;
@@ -6,9 +6,10 @@ import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.Product;
 import logic.entity.Volume;
 
-public class Product_Bean {
+public class BuyBeer_Bean {
 	private String beerId;
 	private String beerName;
 	private BeerType beerType;
@@ -19,9 +20,10 @@ public class Product_Bean {
 	private ContainerType containerType;
 	private int containerVolume;
 	private float price;
-
+	private int quantity;
 	
-	public Product_Bean() {
+	
+	public BuyBeer_Bean() {
 		
 	}
 
@@ -114,10 +116,34 @@ public class Product_Bean {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
 	
-	public void openProductDetails() {
-		Volume volume = new Volume(this.containerVolume);
-		BuyBeer_Controller.getInstance().openProductDetails(this.beerId, this.containerType, volume);
+	
+	public int getQuantity() {
+		return quantity;
 	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	
+	public void loadSelectedProduct() {
+		Product product = BuyBeer_Controller.getInstance().getSelectedProduct();
+		beerId = product.getBeer().getId();
+		beerName = product.getBeer().getName();
+		beerType = product.getBeer().getType();
+		beerColor = product.getBeer().getColor();
+		beerAlcohol = product.getBeer().getAlcoholContent();
+		beerFiltering = product.getBeer().getFiltering();
+		beerDescription = product.getBeer().getDescription();
+		containerType = product.getContainer().getType();
+		containerVolume = product.getContainer().getVolume();
+		price = product.getPrice();
+	}
+	
+	public void addProductToCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, volume, quantity);
+	}
+
 }
