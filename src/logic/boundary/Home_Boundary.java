@@ -19,10 +19,10 @@ import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
-import logic.entity.beans.Home_View_Bean;
+import logic.entity.beans.Home_Bean;
 import logic.entity.beans.Product_Bean;
 
-public class Home_View {
+public class Home_Boundary {
 	private static final String WINDOW_TITLE = "Home";
 	private static final String FXML_FILEPATH = "/res/fxml/Home_View.fxml";
 	private static final String PRODUCTCARD_FILEPATH = "/res/fxml/ProductCard_View.fxml";
@@ -107,7 +107,7 @@ public class Home_View {
 	private TilePane tp_products;
 	
 	
-	private Home_View_Bean bean;
+	private Home_Bean bean;
 	
 		
 	public static void start() throws Exception {
@@ -120,8 +120,8 @@ public class Home_View {
 		primaryStage.setScene(scene);
 	}
 	
-	public void initialize() {
-		bean = new Home_View_Bean();
+	public void initialize() {		
+		bean = new Home_Bean();
 		updateProducts();
 	}
 	
@@ -168,13 +168,12 @@ public class Home_View {
 		if(cb_unfiltered.isSelected()) {
 			beerFilterings.add(BeerFiltering.UNFILTERED);
 		}
-		
+				
 		tp_products.getChildren().clear();
 		try {
 			for (Product_Bean product : bean.showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName)) {
 				PageLoader pageLoader = new PageLoader(PRODUCTCARD_FILEPATH);
-				ProductCard_View product_view = (ProductCard_View) pageLoader.getController();
-				product_view.setHomeView(this);
+				ProductCard_Boundary product_view = (ProductCard_Boundary) pageLoader.getController();
 				product_view.loadProduct(product);
 				tp_products.getChildren().add(pageLoader.getRootView());
 			}
@@ -182,14 +181,14 @@ public class Home_View {
 			// TODO: handle exception
 		}
 	}
+		
 	
-	
-	public void hb_login_enter() {
+	public void openMenu() {
 		vb_menu.setDisable(false);
 		vb_menu.setOpacity(1);
 	}
 	
-	public void vb_menu_exit() {
+	public void closeMenu() {
 		vb_menu.setDisable(true);
 		vb_menu.setOpacity(0);
 	}

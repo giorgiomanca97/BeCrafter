@@ -1,8 +1,9 @@
 package logic.entity.beans;
 
+
 import java.util.ArrayList;
 
-import logic.HomeController;
+import logic.Home_Controller;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
@@ -10,20 +11,20 @@ import logic.entity.ContainerType;
 import logic.entity.Product;
 import logic.entity.Volume;
 
-public class Home_View_Bean {	
-	public Home_View_Bean() {
+public class Home_Bean {
+	public Home_Bean() {
 		
 	}
 	
 	public ArrayList<Product_Bean> showProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
-		 ArrayList<Product> products = HomeController.getInstance().showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
+		 ArrayList<Product> products = Home_Controller.getInstance().showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 		 ArrayList<Product_Bean> converted = new ArrayList<Product_Bean>();
 		 
 		 for (Product product : products) {
 			 converted.add(generateBean(product));
 		}
 		 return converted;
-	}
+	}	
 	
 	private Product_Bean generateBean(Product product) {
 		Product_Bean product_Bean = new Product_Bean();

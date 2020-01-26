@@ -3,7 +3,7 @@ package logic;
 
 import java.util.ArrayList;
 
-import logic.boundary.Home_View;
+import logic.boundary.Home_Boundary;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
@@ -12,18 +12,18 @@ import logic.entity.Product;
 import logic.entity.Storehouse;
 import logic.entity.dao.Storehouse_dao;
 
-public class HomeController {
-	private static HomeController instance = null;
+public class Home_Controller {
+	private static Home_Controller instance = null;
 	private Storehouse storehouse;
 	
 	
-	private HomeController() {
+	private Home_Controller() {
 		
 	}
 	
-	synchronized public static HomeController getInstance() {
+	synchronized public static Home_Controller getInstance() {
 		if(instance == null) {
-			instance = new HomeController();
+			instance = new Home_Controller();
 		}
 		
 		return instance;
@@ -32,40 +32,12 @@ public class HomeController {
 	
 	public void init() throws Exception {
 		this.storehouse = Storehouse_dao.getStorehouse();
-		
-		Home_View.start();
+		Home_Boundary.start();
+		BuyBeer_Controller.getInstance().init();
 	}
 	
 	public ArrayList<Product> showProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
 		return storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
-	}
-	
-	public boolean buyProduct() {
-		//chiama l'apertura della buy_product_view in una finestra a parte
-		
-		return true;
-	}
-	
-	public boolean addProduct() {
-		//aggiunge al carrello il prodotto selezionato
-		
-		return true;
-	}
-	
-	public boolean updateProduct() {
-		//aggiunge al carrello il prodotto selezionato
-		
-		return true;
-	}
-	
-	public boolean removeProduct() {
-		//aggiunge al carrello il prodotto selezionato
-		
-		return true;
-	}
-	
-	public void checkout() {
-		
 	}
 	
 }

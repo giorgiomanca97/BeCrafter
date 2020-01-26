@@ -15,6 +15,12 @@ public class Container implements Storable {
     	this.volume = new Volume(volume);
     	this.quantity = 0;
     }
+    
+    public Container(ContainerType type, Volume volume) {
+    	this.type = type;
+    	this.volume = new Volume(volume.getVolume());
+    	this.quantity = 0;
+    }
 
     
     public ContainerType getType() {

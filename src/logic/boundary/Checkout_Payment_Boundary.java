@@ -6,26 +6,38 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
 
-public class Checkout_Summary_View {
-	private static final String WINDOW_TITLE = "Checkout Summary";
-	private static final String FXML_FILEPATH = "/res/fxml/Checkout_Summary_View.fxml";
+public class Checkout_Payment_Boundary {
+	private static final String WINDOW_TITLE = "Checkout Payment";
+	private static final String FXML_FILEPATH = "/res/fxml/Checkout_Payment_View.fxml";
 	
 	@FXML
-	private Button btn_back_shopping;
+	private TextField tf_email;
 	@FXML
-	private Button btn_Confirm_Products;
+	private TextField tf_firstname;
+	@FXML
+	private TextField tf_lastname;
+	@FXML
+	private TextField tf_address;
+	@FXML
+	private TextField tf_city;
+	@FXML
+	private TextField tf_country;
+	@FXML
+	private TextField tf_postalcode;
+	@FXML
+	private TextField tf_phone_number;
+	@FXML
+	private TextField tf_creditcard_number;
 	
 	@FXML
-	private Label tb_overall_cost;
-	
+	private Button btn_back_summary;
 	@FXML
-	private ListView<String> lv_cart;
+	private Button btn_confirm_purchase;
 	
 	public void initialize() {
 

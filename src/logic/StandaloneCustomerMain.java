@@ -34,8 +34,7 @@ public class StandaloneCustomerMain extends Application{
 		primaryStage.show();
 		setPrimaryStage(primaryStage);
 		
-		HomeController homeController = HomeController.getInstance();
-		homeController.init();
+		Home_Controller.getInstance().init();
 	}
 	
 	public static void main(String[] args) {

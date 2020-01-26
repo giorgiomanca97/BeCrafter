@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
 
-public class Login_View {
+public class Login_Boundary {
 	private static final String WINDOW_TITLE = "Login";
 	private static final String FXML_FILEPATH = "/res/fxml/Login_View.fxml";
 	

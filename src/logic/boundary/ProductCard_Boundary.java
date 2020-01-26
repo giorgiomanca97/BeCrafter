@@ -5,12 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import logic.BuyBeer_Controller;
 import logic.StandaloneCustomerMain;
 import logic.entity.Price;
 import logic.entity.Volume;
+import logic.entity.beans.BuyBeer_Bean;
 import logic.entity.beans.Product_Bean;
 
-public class ProductCard_View {
+public class ProductCard_Boundary {
 	private static final String IMAGE_BOTTLE_FILEPATH = "/res/icons/beer_bottle.png";
 	private static final String IMAGE_CAN_FILEPATH = "/res/icons/beer_can.png";
 	private static final String IMAGE_BARREL_FILEPATH = "/res/icons/beer_barrel.png";
@@ -34,31 +36,26 @@ public class ProductCard_View {
 	private Label tb_price;
 	
 	
-	private Home_View home_View;
-	private Product_Bean bean;
+	private Product_Bean product;
 	
 	
 	public void initialize() {
 
 	}
 	
-	public void setHomeView(Home_View home_View) {
-		this.home_View = home_View;
-	}
-	
-	public void loadProduct(Product_Bean bean) {
-		this.bean = bean;
+	public void loadProduct(Product_Bean product) {
+		this.product = product;
 		
-		tb_beer_name.setText(bean.getBeerName());
-		tb_type.setText(bean.getBeerType().toString());
-		tb_color.setText(bean.getBeerColor().toString());
-		tb_alcohol.setText(String.valueOf(bean.getBeerAlcohol()) + "%");
-		tb_filtering.setText(bean.getBeerFiltering().toString());
-		tb_volume.setText(Volume.toText(bean.getContainerVolume()));
-		tb_price.setText(Price.toText(bean.getPrice()));
+		tb_beer_name.setText(product.getBeerName());
+		tb_type.setText(product.getBeerType().toString());
+		tb_color.setText(product.getBeerColor().toString());
+		tb_alcohol.setText(String.valueOf(product.getBeerAlcohol()) + "%");
+		tb_filtering.setText(product.getBeerFiltering().toString());
+		tb_volume.setText(Volume.toText(product.getContainerVolume()));
+		tb_price.setText(Price.toText(product.getPrice()));
 		
 		Image image = null;
-		switch(bean.getContainerType()) {
+		switch(product.getContainerType()) {
 			case BOTTLE:
 				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BOTTLE_FILEPATH));
 				break;
@@ -73,8 +70,9 @@ public class ProductCard_View {
 	}
 	
 	public void onMousePressed() {
-		if(home_View != null) {
-			
+		if(product != null) {
+			BuyBeer_Bean buyBeer_Bean = new BuyBeer_Bean();
+			buyBeer_Bean.buyProduct(product);
 		}
 	}
 }

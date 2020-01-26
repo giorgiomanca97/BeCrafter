@@ -1,18 +1,16 @@
 package logic.boundary;
 
-import java.net.URL;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logic.StandaloneCustomerMain;
+import logic.designclasses.PageLoader;
+import logic.entity.beans.Product_Bean;
 
-public class BuyProduct_View {
+public class BuyBeer_Boundary {
 	private static final String WINDOW_TITLE = "Buy Product";
 	private static final String FXML_FILEPATH = "/res/fxml/BuyProduct_View.fxml";
 	
@@ -39,24 +37,27 @@ public class BuyProduct_View {
 	@FXML
 	private Button btn_add_to_cart;
 	
+	
 	public void initialize() {
 
 	}
 	
 	
 	public static void start() throws Exception {
-		FXMLLoader loader = new FXMLLoader();
-		URL url = StandaloneCustomerMain.class.getResource(FXML_FILEPATH);
+		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
 		
-		loader.setLocation(url);
-		AnchorPane root = (AnchorPane) loader.load();
+		Scene scene = new Scene(pageLoader.getRootView());
 		
-		Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
-		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setTitle(WINDOW_TITLE);
+		stage.setScene(scene);
+	}
+	
+	public void loadProduct(Product_Bean product) {
 		
+	}
+	
+	public void addProductToCart() {
 		
-		
-		primaryStage.setTitle(WINDOW_TITLE);
-		primaryStage.setScene(scene);
 	}
 }
