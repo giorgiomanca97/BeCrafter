@@ -25,14 +25,10 @@ public class StandaloneCustomerMain extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{	
-		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
-		Scene scene = new Scene(pageLoader.getRootView());
-		
-		primaryStage.setTitle(WINDOW_TITLE);
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.show();
 		setPrimaryStage(primaryStage);
+		
+		PageLoader pageLoader = new PageLoader(FXML_FILEPATH, WINDOW_TITLE);
+		pageLoader.showOnPrimaryStage();
 		
 		Home_Controller.getInstance().init();
 	}

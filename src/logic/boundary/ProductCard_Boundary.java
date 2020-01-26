@@ -6,33 +6,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import logic.StandaloneCustomerMain;
+import logic.designclasses.BeerImageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
 import logic.entity.bean.Product_Bean;
 
 public class ProductCard_Boundary {
-	private static final String IMAGE_BOTTLE_FILEPATH = "/res/icons/beer_bottle.png";
-	private static final String IMAGE_CAN_FILEPATH = "/res/icons/beer_can.png";
-	private static final String IMAGE_BARREL_FILEPATH = "/res/icons/beer_barrel.png";
-	
-	@FXML
-	private ImageView iv_beer_icon;
-	
-	@FXML
-	private Label tb_beer_name;
-	@FXML
-	private Label tb_type;
-	@FXML
-	private Label tb_color;
-	@FXML
-	private Label tb_alcohol;
-	@FXML
-	private Label tb_filtering;
-	@FXML
-	private Label tb_volume;
-	@FXML
-	private Label tb_price;
-	
+	@FXML private ImageView iv_beer_icon;
+	@FXML private Label tb_beer_name;
+	@FXML private Label tb_type;
+	@FXML private Label tb_color;
+	@FXML private Label tb_alcohol;
+	@FXML private Label tb_filtering;
+	@FXML private Label tb_volume;
+	@FXML private Label tb_price;
 	
 	private Product_Bean product;
 	
@@ -51,20 +38,7 @@ public class ProductCard_Boundary {
 		tb_filtering.setText(product.getBeerFiltering().toString());
 		tb_volume.setText(Volume.toText(product.getContainerVolume()));
 		tb_price.setText(Price.toText(product.getPrice()));
-		
-		Image image = null;
-		switch(product.getContainerType()) {
-			case BOTTLE:
-				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BOTTLE_FILEPATH));
-				break;
-			case CAN:
-				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_CAN_FILEPATH));
-				break;
-			case BARREL:
-				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BARREL_FILEPATH));
-				break;
-		}
-		iv_beer_icon.setImage(image);
+		iv_beer_icon.setImage(BeerImageLoader.loadImage(product.getContainerType()));
 	}
 	
 	public void onMousePressed() {

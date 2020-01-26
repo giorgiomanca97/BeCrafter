@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="40.0" prefWidth="1170.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="logic.boundary.CheckoutSummaryElement_Boundary">
+   <children>
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lbl_number" alignment="CENTER" prefHeight="40.0" prefWidth="40.0" text="#">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img_containerType" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="lbl_beerName" prefHeight="40.0" prefWidth="160.0" text="Beer Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lbl_beerType" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Type">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerColor" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Color">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerAlcohol" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Alcohol %">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerFiltering" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Filtering">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_containerVolume" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Container Size">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="40.0" prefWidth="160.0">
+               <children>
+                  <ImageView fx:id="img_sub" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../icons/op_sub.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="tf_quantity" alignment="CENTER" prefHeight="30.0" prefWidth="60.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="img_add" fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../icons/op_add.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="lbl_totalVolume" alignment="CENTER" prefHeight="40.0" prefWidth="90.0" text="Total Volume">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_price" alignment="CENTER" prefHeight="40.0" prefWidth="120.0" text="Price">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img_del" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../icons/delete.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
