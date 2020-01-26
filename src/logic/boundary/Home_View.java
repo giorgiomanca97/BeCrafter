@@ -114,14 +114,10 @@ public class Home_View {
 	
 		
 	public static void start() throws Exception {
-		FXMLLoader loader = new FXMLLoader();
-		URL url = StandaloneCustomerMain.class.getResource(FXML_FILEPATH);
-		
-		loader.setLocation(url);
-		AnchorPane root = (AnchorPane) loader.load();
+		PageLoader pageLoader = new PageLoader(FXML_FILEPATH);
 		
 		Stage primaryStage = StandaloneCustomerMain.getPrimaryStage();
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(pageLoader.getRootView());
 		
 		primaryStage.setTitle(WINDOW_TITLE);
 		primaryStage.setScene(scene);
