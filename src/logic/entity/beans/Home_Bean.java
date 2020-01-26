@@ -9,7 +9,6 @@ import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
 import logic.entity.Product;
-import logic.entity.Volume;
 
 public class Home_Bean {
 	public Home_Bean() {
@@ -35,6 +34,7 @@ public class Home_Bean {
 		product_Bean.setBeerColor(product.getBeer().getColor());
 		product_Bean.setBeerAlcohol(product.getBeer().getAlcoholContent());
 		product_Bean.setBeerFiltering(product.getBeer().getFiltering());
+		product_Bean.setBeerDescription(product.getBeer().getDescription());
 		product_Bean.setContainerType(product.getContainer().getType());
 		product_Bean.setContainerVolume(product.getContainer().getVolume());
 		product_Bean.setPrice(product.getPrice());

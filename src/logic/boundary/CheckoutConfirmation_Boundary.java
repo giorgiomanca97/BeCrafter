@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
 
-public class Checkout_Confirmation_Boundary {
+public class CheckoutConfirmation_Boundary {
 	private static final String WINDOW_TITLE = "Checkout Confirmation";
 	private static final String FXML_FILEPATH = "/res/fxml/Checkout_Confirmation_View.fxml";
 	

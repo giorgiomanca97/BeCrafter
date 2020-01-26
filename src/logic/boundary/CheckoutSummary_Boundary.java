@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.StandaloneCustomerMain;
 
-public class Checkout_Summary_Boundary {
+public class CheckoutSummary_Boundary {
 	private static final String WINDOW_TITLE = "Checkout Summary";
 	private static final String FXML_FILEPATH = "/res/fxml/Checkout_Summary_View.fxml";
 	

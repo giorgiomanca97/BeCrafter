@@ -1,12 +1,11 @@
 package logic.entity.beans;
 
-
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
 
-public class Product_Bean {
+public class CheckoutSummary_Bean {
 	private String beerId;
 	private String beerName;
 	private BeerType beerType;
@@ -17,9 +16,10 @@ public class Product_Bean {
 	private ContainerType containerType;
 	private int containerVolume;
 	private float price;
+	private int quantity;
 
 	
-	public Product_Bean() {
+	public CheckoutSummary_Bean() {
 		
 	}
 
@@ -112,5 +112,33 @@ public class Product_Bean {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+		
+	public boolean selectProduct(int index) {
+		// carica il prodotto i-esimo dal controller
+		// setta i propri attributi se il prodotto esiste (in questo caso torna true)
+		// altrimenti torna false
+		
+		// la vista, dopo avere selezionato il prodotto, se lo carica
+		
+		return true;
+	}
+	
+	
+	public void updateProductInsideCart(int index, int newQuantity) {
+		
+	}
+	
+	public void removeProductFromCart(int index) {
+		
+	}
 }

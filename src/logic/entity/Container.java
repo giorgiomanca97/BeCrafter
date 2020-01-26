@@ -105,7 +105,8 @@ public class Container implements Storable {
 		Container otherContainer = (Container) other;
 		boolean result = false;
 		
-		if(otherContainer.type == this.type && otherContainer.volume == this.volume) {
+		if(otherContainer.type == this.type && 
+		   otherContainer.getVolume() == this.getVolume()) {
 			result = true;
 		}
 		else {

@@ -77,7 +77,7 @@ public class Product implements Storable {
 		
 		boolean result = false;
 		
-		if(this.getBeer().getId() == otherProduct.getBeer().getId() && 
+		if(this.getBeer().getId().equals(otherProduct.getBeer().getId())  && 
 		   this.getContainer().areSame(otherProduct.getContainer())) {
 			result = true;
 		}

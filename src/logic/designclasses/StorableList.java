@@ -58,6 +58,11 @@ public abstract class StorableList {
 		return result;
 	}
 	
+	
+	public Storable getAt(int index) {
+		return this.get(storables.get(index));
+	}
+	
 	public int size() {
 		return storables.size();
 	}
