@@ -40,5 +40,20 @@ public class HomeController {
 		return storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 	}
 	
+	public boolean buyProduct(Product product) {
+		//chiama l'apertura della buy_product_view in una finestra a parte
+		
+		return true;
+	}
+	
+	public boolean addProduct(Product product) {
+		//aggiunge al carrello il prodotto selezionato
+		
+		return true;
+	}
+	
+	public void checkout() {
+		
+	}
 	
 }
