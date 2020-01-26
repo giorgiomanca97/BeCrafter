@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import logic.StandaloneCustomerMain;
+import logic.entity.Price;
+import logic.entity.Volume;
 import logic.entity.beans.Product_Bean;
 
 public class ProductCard_View {
@@ -50,10 +52,10 @@ public class ProductCard_View {
 		tb_beer_name.setText(bean.getBeerName());
 		tb_type.setText(bean.getBeerType().toString());
 		tb_color.setText(bean.getBeerColor().toString());
-		tb_alcohol.setText(String.valueOf(bean.getBeerAlcohol()));
+		tb_alcohol.setText(String.valueOf(bean.getBeerAlcohol()) + "%");
 		tb_filtering.setText(bean.getBeerFiltering().toString());
-		tb_volume.setText(String.valueOf(bean.getContainerVolume()));
-		tb_price.setText(String.valueOf(bean.getPrice()));
+		tb_volume.setText(Volume.toText(bean.getContainerVolume()));
+		tb_price.setText(Price.toText(bean.getPrice()));
 		
 		Image image = null;
 		switch(bean.getContainerType()) {
@@ -68,5 +70,11 @@ public class ProductCard_View {
 				break;
 		}
 		iv_beer_icon.setImage(image);
+	}
+	
+	public void onMousePressed() {
+		if(home_View != null) {
+			
+		}
 	}
 }

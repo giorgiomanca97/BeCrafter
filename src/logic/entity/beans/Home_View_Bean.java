@@ -8,6 +8,7 @@ import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
 import logic.entity.Product;
+import logic.entity.Volume;
 
 public class Home_View_Bean {	
 	public Home_View_Bean() {

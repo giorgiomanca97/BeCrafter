@@ -6,13 +6,13 @@ import logic.entity.interfaces.Storable;
 
 public class Container implements Storable {
     private ContainerType type;
-    private int volume;
+    private Volume volume;
     private int quantity;
     
     
     public Container(ContainerType type, int volume) {
     	this.type = type;
-    	this.volume = volume;
+    	this.volume = new Volume(volume);
     	this.quantity = 0;
     }
 
@@ -22,7 +22,11 @@ public class Container implements Storable {
     }
 
     public int getVolume() {
-        return this.volume;
+        return volume.getVolume();
+    }
+    
+    public String printVolume() {
+    	return volume.toString();
     }
 
     
@@ -119,6 +123,6 @@ public class Container implements Storable {
 	
 	@Override
 	public String toString() {
-		return "Container: " + type.toString() + " " + volume + "cl " + quantity;
+		return "Container: " + type.toString() + " " + volume.toString() + " " + quantity;
 	}
 }
