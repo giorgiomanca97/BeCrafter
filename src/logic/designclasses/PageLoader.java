@@ -30,6 +30,7 @@ public class PageLoader {
 		URL url = StandaloneCustomerMain.class.getResource(resource);
 		this.loader.setLocation(url);
 		this.rootViev = loader.load();
+		this.title = title;
 	}
 	
 	
@@ -51,6 +52,10 @@ public class PageLoader {
 		Scene scene = new Scene(this.getRootView());
 		StandaloneCustomerMain.getPrimaryStage().setTitle(this.title);
 		StandaloneCustomerMain.getPrimaryStage().setScene(scene);
+		StandaloneCustomerMain.getPrimaryStage().setResizable(false);
+		StandaloneCustomerMain.getPrimaryStage().setMaximized(false);
+		StandaloneCustomerMain.getPrimaryStage().setFullScreen(false);
+		StandaloneCustomerMain.getPrimaryStage().show();
 	}
 	
 	public void showOnOwnStage(boolean resizable) {
@@ -72,7 +77,16 @@ public class PageLoader {
 	
 	
 	public enum Page{
-		PAGE("resource", "title");
+		BUYBEER("/res/fxml/BuyBeer_View.fxml", "Buy Beer"),
+		CHECKOUT("/res/fxml/Checkout_View.fxml", "Checkout"),
+		CHECKOUT_CONFIRMATION("/res/fxml/CheckoutConfirmation_View.fxml", "Checkout Confirmation"),
+		CHECKOUT_PAYMENT("/res/fxml/CheckoutPayment_View.fxml", "Checkout Payment"),
+		CHECKOUT_SUMMARY("/res/fxml/CheckoutSummary_View.fxml", "Checkout Summary"),
+		CHECKOUT_SUMMARY_ELEMENT("/res/fxml/CheckoutSummaryElement_View.fxml", "Checkout Summary Element"),
+		HOME("/res/fxml/Home_View.fxml", "Home"),
+		LOGIN("/res/fxml/Login_View.fxml", "Login"),
+		PRODUCTCARD("/res/fxml/ProductCard_View.fxml", "Product"),
+		REGISTER("/res/fxml/Register_View.fxml", "Register");
 		
 		private String resource;
 		private String title;

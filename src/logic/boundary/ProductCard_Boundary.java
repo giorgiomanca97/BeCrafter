@@ -1,12 +1,13 @@
 package logic.boundary;
 
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import logic.StandaloneCustomerMain;
 import logic.designclasses.BeerImageLoader;
+import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
 import logic.entity.bean.Product_Bean;
@@ -21,7 +22,7 @@ public class ProductCard_Boundary {
 	@FXML private Label tb_volume;
 	@FXML private Label tb_price;
 	
-	private Product_Bean product;
+	private Product_Bean productBean;
 	
 	
 	public void initialize() {
@@ -29,7 +30,7 @@ public class ProductCard_Boundary {
 	}
 	
 	public void loadProduct(Product_Bean product) {
-		this.product = product;
+		this.productBean = product;
 		
 		tb_beer_name.setText(product.getBeerName());
 		tb_type.setText(product.getBeerType().toString());
@@ -42,8 +43,14 @@ public class ProductCard_Boundary {
 	}
 	
 	public void onMousePressed() {
-		if(product != null) {
-			product.openProductDetails();
+		if(productBean != null) {
+			try {
+				productBean.selectProduct();
+				PageLoader pageLoader = new PageLoader(PageLoader.Page.BUYBEER);
+				pageLoader.showOnPrimaryStage();
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}			
 		}
 	}
 }

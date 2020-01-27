@@ -6,63 +6,68 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="275.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.BuyBeer_Boundary">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.BuyBeer_Boundary">
    <children>
       <AnchorPane prefHeight="50.0" prefWidth="570.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="img_back" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <ImageView fx:id="img_back" fitHeight="40.0" fitWidth="40.0" onMousePressed="#onBackPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                <image>
                   <Image url="@../icons/back.png" />
                </image>
             </ImageView>
-            <Label fx:id="tb_beer_name" alignment="CENTER" layoutX="30.0" prefHeight="50.0" prefWidth="540.0" text="Beer name" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
-      <ImageView fx:id="img_beer_container" fitHeight="180.0" fitWidth="180.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="39.0" />
-      <AnchorPane layoutX="180.0" layoutY="53.0" prefWidth="390.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <ImageView fx:id="img_beer_container" fitHeight="180.0" fitWidth="180.0" layoutX="300.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="240.0" />
+      <VBox layoutX="480.0" layoutY="260.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="480.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="270.0">
          <children>
-            <Label fx:id="tb_beer_cc" prefHeight="50.0" prefWidth="430.0" text="Type - Color - 0% - Filter - 0 cl" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="tb_beer_cc" prefHeight="40.0" text="Type - Color - 0% - Filter - 0 cl">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="tb_beer_desc" alignment="TOP_LEFT" layoutX="-20.0" layoutY="50.0" prefHeight="130.0" prefWidth="390.0" text="Beer description here... This is an example of beer description to describe the beer." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <Label fx:id="tb_beer_desc" alignment="TOP_LEFT" prefWidth="500.0" text="Beer description here... This is an example of beer description to describe the beer." wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutY="230.0" prefHeight="45.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      </VBox>
+      <AnchorPane layoutX="300.0" layoutY="450.0" prefHeight="50.0" prefWidth="570.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="450.0">
          <children>
-            <ImageView fx:id="img_sub" fitHeight="25.0" fitWidth="25.0" layoutX="35.0" layoutY="10.0" onMousePressed="#decreaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="img_sub" fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="10.0" onMousePressed="#decreaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../icons/op_sub.png" />
                </image>
             </ImageView>
-            <TextField fx:id="tf_quantity" alignment="CENTER" layoutX="66.0" layoutY="10.0" onAction="#updateQuantity" prefHeight="25.0" prefWidth="50.0" text="1">
+            <TextField fx:id="tf_quantity" alignment="CENTER" layoutX="66.0" layoutY="10.0" onAction="#updateQuantity" prefHeight="30.0" prefWidth="60.0" text="1" AnchorPane.leftAnchor="70.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
-            <ImageView fx:id="img_add" fitHeight="25.0" fitWidth="25.0" layoutX="120.0" layoutY="10.0" onMousePressed="#increaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="img_add" fitHeight="30.0" fitWidth="30.0" layoutX="120.0" layoutY="10.0" onMousePressed="#increaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../icons/op_add.png" />
                </image>
             </ImageView>
-            <Label fx:id="tb_total_price" alignment="CENTER" layoutX="155.0" layoutY="5.0" prefHeight="35.0" prefWidth="280.0" text="00,00 €" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="tb_total_price" alignment="CENTER" layoutX="-1.0" layoutY="5.0" prefHeight="50.0" prefWidth="546.0" text="00,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btn_add_to_cart" layoutX="445.0" layoutY="5.0" mnemonicParsing="false" onAction="#addProductToCart" prefHeight="35.0" prefWidth="120.0" text="Add to Cart" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <Button fx:id="btn_add_to_cart" layoutX="445.0" layoutY="5.0" mnemonicParsing="false" onAction="#addProductToCart" prefHeight="30.0" prefWidth="120.0" text="Add to Cart" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
+      <Label fx:id="tb_beer_name" alignment="CENTER" layoutX="300.0" layoutY="210.0" prefHeight="60.0" prefWidth="540.0" text="Beer name" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="210.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

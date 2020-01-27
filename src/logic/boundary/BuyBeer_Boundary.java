@@ -1,14 +1,15 @@
 package logic.boundary;
 
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import logic.StandaloneCustomerMain;
 import logic.designclasses.BeerImageLoader;
+import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
 import logic.entity.bean.BuyBeer_Bean;
@@ -25,64 +26,73 @@ public class BuyBeer_Boundary {
 	@FXML private Button btn_add_to_cart;
 	@FXML private TextField tf_quantity;
 	
-	private BuyBeer_Bean bean;
+	private BuyBeer_Bean buyBeerBean;
 	
 	
 	public void initialize() {
-		bean = new BuyBeer_Bean();
-		bean.setQuantity(1);
+		buyBeerBean = new BuyBeer_Bean();
+		buyBeerBean.setQuantity(1);
 		
-		tf_quantity.setText(String.valueOf(bean.getQuantity()));
+		tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
 		
-		bean.loadSelectedProduct();
+		buyBeerBean.loadSelectedProduct();
 		
-		tb_beer_name.setText(bean.getBeerName());
+		tb_beer_name.setText(buyBeerBean.getBeerName());
 		
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(bean.getContainerType().toString());
+		stringBuilder.append(buyBeerBean.getContainerType().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(bean.getBeerColor().toString());
+		stringBuilder.append(buyBeerBean.getBeerColor().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(bean.getBeerAlcohol() + "%");
+		stringBuilder.append(buyBeerBean.getBeerAlcohol() + "%");
 		stringBuilder.append("  -  ");
-		stringBuilder.append(bean.getBeerFiltering().toString());
+		stringBuilder.append(buyBeerBean.getBeerFiltering().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(Volume.toText(bean.getContainerVolume()));
+		stringBuilder.append(Volume.toText(buyBeerBean.getContainerVolume()));
 		tb_beer_cc.setText(stringBuilder.toString());
 		
-		tb_beer_desc.setText(bean.getBeerDescription());
-		tb_total_price.setText(Price.toText(bean.getPrice()));
-		img_beer_container.setImage(BeerImageLoader.loadImage(bean.getContainerType()));
+		tb_beer_desc.setText(buyBeerBean.getBeerDescription());
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice()));
+		img_beer_container.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
 	}
 	
 	
 	public void increaseQuantity() {
-		int q = bean.getQuantity() + 1;
-		bean.setQuantity(q);
+		int q = buyBeerBean.getQuantity() + 1;
+		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
 	}
 	
 	
 	public void decreaseQuantity() {
-		int q = bean.getQuantity() - 1;
+		int q = buyBeerBean.getQuantity() - 1;
 		if(q < 1) {
 			q = 1;
 		}
-		bean.setQuantity(q);
+		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
 	}
 	
 	public void updateQuantity() {
 		try {
 			int q = Integer.parseUnsignedInt(tf_quantity.getText());
-			bean.setQuantity(q);
+			buyBeerBean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(bean.getQuantity()));
+			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
 		} 
 	}
 	
-	
 	public void addProductToCart() {
-		bean.addProductToCart();
+		buyBeerBean.addProductToCart();
+		onBackPressed();
+	}
+	
+	public void onBackPressed() {
+		try {
+			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
+			pageLoader.showOnPrimaryStage();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 }

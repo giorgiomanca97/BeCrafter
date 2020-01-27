@@ -1,16 +1,13 @@
 package logic;
 
 
+import java.io.IOException;
+
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import logic.designclasses.PageLoader;
 
-
 public class StandaloneCustomerMain extends Application{
-	private static final String WINDOW_TITLE = "BeCrater";
-	private static final String FXML_FILEPATH = "/res/fxml/Splash.fxml";
-	
 	private static Stage primaryStage = null; 
 	
 	
@@ -27,10 +24,12 @@ public class StandaloneCustomerMain extends Application{
 	public void start(Stage primaryStage) throws Exception{	
 		setPrimaryStage(primaryStage);
 		
-		PageLoader pageLoader = new PageLoader(FXML_FILEPATH, WINDOW_TITLE);
-		pageLoader.showOnPrimaryStage();
-		
-		Home_Controller.getInstance().init();
+		try {
+			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
+			pageLoader.showOnPrimaryStage();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {

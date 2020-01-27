@@ -3,7 +3,6 @@ package logic;
 
 import java.util.ArrayList;
 
-import logic.boundary.Home_Boundary;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
@@ -18,7 +17,8 @@ public class Home_Controller {
 	
 	
 	private Home_Controller() {
-		
+		this.storehouse = Storehouse_dao.getStorehouse();
+		BuyBeer_Controller.getInstance().init();
 	}
 	
 	synchronized public static Home_Controller getInstance() {
@@ -30,18 +30,7 @@ public class Home_Controller {
 	}
 	
 	
-	public void init() throws Exception {
-		this.storehouse = Storehouse_dao.getStorehouse();
-		Home_Boundary.start();
-		BuyBeer_Controller.getInstance().init();
-	}
-	
 	public ArrayList<Product> showProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
 		return storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
-	}
-	
-	public void goToCheckout()  {
-		BuyBeer_Controller.getInstance().checkout();
-	}
-	
+	}	
 }
