@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `shippingCode` varchar(50) DEFAULT NULL,
   `shippingCompany` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- Dump dei dati della tabella becrafter.orders: ~0 rows (circa)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
@@ -152,3 +152,4 @@ INSERT INTO `storehouse_rawmaterials` (`type`, `quantity`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+orders

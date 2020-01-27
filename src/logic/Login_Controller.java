@@ -36,6 +36,10 @@ public class Login_Controller {
 			return false;
 		}
 	}
+	
+	public Registered getLoggedCustomer() {
+		return this.loggedCustomer;
+	}
 
 	public void login(String email, String password) throws InexistentEmailException, WrongPasswordException{
 		Registered registered = Registered_dao.getRegisteredByEmail(email);

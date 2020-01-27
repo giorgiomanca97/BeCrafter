@@ -90,13 +90,11 @@ public class BuyBeer_Controller {
 	
 	public String confirmPurchase(String email, BillingInfo billingInfo) throws Exception{
 		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.GetInstance().isLogged(email)) {
-			throw new UsedEmailException();
+			throw new UsedEmailException("Email already used. Please login!");
 		}
 		
 		String lastOrderId = Order_dao.getLastId();
 		String orderId;
-		
-		System.out.println(lastOrderId);
 		
 		if(lastOrderId == null) {
 			orderId = IDconverter.intToId(1, IDconverter.Type.ORDER);
@@ -104,7 +102,6 @@ public class BuyBeer_Controller {
 		else {
 			orderId = IDconverter.nextId(lastOrderId);
 		}
-		System.out.println(orderId);
 		
 		Order order = new Order(orderId);
 		order.setEmail(email);

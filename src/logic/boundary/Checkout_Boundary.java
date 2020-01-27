@@ -15,8 +15,7 @@ public class Checkout_Boundary {
 	@FXML private Label tb_confirmation;
 	@FXML private AnchorPane ap_checkout;
 	
-	Tab currentTab;
-	String orderId;
+	private String orderId;
 	
 	
 	public void initialize() {
@@ -66,7 +65,6 @@ public class Checkout_Boundary {
 			if(pageLoader != null) {
 				ap_checkout.getChildren().clear();
 				ap_checkout.getChildren().add(pageLoader.getRootView());
-				currentTab = tab;
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();

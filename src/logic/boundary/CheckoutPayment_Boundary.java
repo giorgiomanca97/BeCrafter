@@ -4,7 +4,7 @@ package logic.boundary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import logic.bean.CheckoutPayment_Bean;
+import logic.bean.Customer_Bean;
 
 public class CheckoutPayment_Boundary {	
 	@FXML private TextField tf_email;
@@ -20,11 +20,11 @@ public class CheckoutPayment_Boundary {
 	
 	
 	private Checkout_Boundary checkoutBoundary = null;
-	CheckoutPayment_Bean checkoutPaymentBean = null;
+	Customer_Bean checkoutPaymentBean = null;
 	
 	
 	public void initialize() {
-		checkoutPaymentBean = new CheckoutPayment_Bean();
+		checkoutPaymentBean = new Customer_Bean();
 		lbl_error.setOpacity(0);
 	}
 	
@@ -60,10 +60,15 @@ public class CheckoutPayment_Boundary {
 			String orderId = checkoutPaymentBean.confirmPurchase();
 			
 			if(checkoutBoundary != null) {
-				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
 				checkoutBoundary.setOrderId(orderId);
+				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
 			}
 		} catch (Exception e) {
+			String message = e.getMessage();
+			if(message == null || message.length() == 0) {
+				message = "Unexpected Error. Please retry";
+			}
+			lbl_error.setText(message);
 			lbl_error.setOpacity(1);
 		}
 	}

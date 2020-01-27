@@ -1,12 +1,16 @@
 package logic.bean;
 
 
+import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
+import error.login.WrongPasswordException;
 import logic.BuyBeer_Controller;
+import logic.Login_Controller;
 import logic.entity.BillingInfo;
 
-public class CheckoutPayment_Bean {
+public class Customer_Bean {
 	private String email;
+	private String password;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -16,84 +20,95 @@ public class CheckoutPayment_Bean {
 	private String phoneNumber;
 	private String creditCard;
 	
-	public CheckoutPayment_Bean() {
+	
+	public Customer_Bean() {
 		
 	}
 
+
 	public String getEmail() {
 		return email;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	
-	public String getLastName() {
-		return lastName;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	
-	public String getCity() {
-		return city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	
-	public String getCrediCard() {
-		return creditCard;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	
+
+	public String getAddress() {
+		return address;
+	}
+
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+
+	public String getCity() {
+		return city;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	
+
+	public String getCountry() {
+		return country;
+	}
+
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+
+	public String getPostalCode() {
+		return postalCode;
 	}
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
-	
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+
+	public String getCreditCard() {
+		return creditCard;
 	}
 
 	public void setCreditCard(String creditCard) {
@@ -109,10 +124,23 @@ public class CheckoutPayment_Bean {
 		if(firstName == "" || lastName == "" || address == "" || city == "" ||
 				country == "" || postalCode == "" || phoneNumber == "" ||
 				creditCard == "") {
-			throw new Exception();
+			throw new Exception("Fill all fields before continue");
 		}
 		
+		BillingInfo billingInfo = getBillingInfo();
+		
+		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
+	}
+	
+	
+	public void login() throws InexistentEmailException, WrongPasswordException {
+		Login_Controller.GetInstance().login(email, password);
+	}
+	
+	
+	private BillingInfo getBillingInfo() {
 		BillingInfo billingInfo = new BillingInfo();
+		
 		billingInfo.setFirstName(firstName);
 		billingInfo.setLastName(lastName);
 		billingInfo.setAddress(address);
@@ -122,6 +150,6 @@ public class CheckoutPayment_Bean {
 		billingInfo.setPhone(phoneNumber);
 		billingInfo.setCard(creditCard);
 		
-		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
+		return billingInfo;
 	}
 }

@@ -3,13 +3,11 @@ package logic.boundary;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import logic.bean.BuyBeer_Bean;
 
 public class CheckoutConfirmation_Boundary {
 	@FXML private Label tb_order_code;
 	
 	private Checkout_Boundary checkoutBoundary = null;
-	BuyBeer_Bean buyBeerBean = null;
 	
 	
 	public void initialize() {

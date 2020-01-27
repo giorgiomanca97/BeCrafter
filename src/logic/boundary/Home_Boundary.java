@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import logic.Login_Controller;
 import logic.bean.Home_Bean;
 import logic.bean.Product_Bean;
 import logic.designclasses.PageLoader;
@@ -57,6 +58,7 @@ public class Home_Boundary {
 		
 	public void initialize() {		
 		homeBean = new Home_Bean();
+		closeMenu();
 		updateProducts();
 	}
 	
@@ -117,11 +119,21 @@ public class Home_Boundary {
 		}
 	}
 	
+	
+	public void setLoggedCustomer(String email) {
+		if(email == null) {
+			lbl_login.setText("Login");
+		} else {
+			lbl_login.setText(email);
+		}
+	}
 		
 	@FXML
 	public void openMenu() {
-		vb_menu.setDisable(false);
-		vb_menu.setOpacity(1);
+		if(Login_Controller.GetInstance().getLoggedCustomer() != null) {
+			vb_menu.setDisable(false);
+			vb_menu.setOpacity(1);
+		}	
 	}
 	
 	@FXML
@@ -138,6 +150,23 @@ public class Home_Boundary {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+	}
+
+	@FXML 
+	public void onLoginPressed() {
+		if(Login_Controller.GetInstance().getLoggedCustomer() == null) {
+			try {
+				PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
+				pageLoader.showOnPrimaryStage();
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+		}
+	}
+
+	@FXML 
+	public void onLogoutPressed() {
+		
 	}
 	
 }

@@ -70,7 +70,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </HBox>
-            <HBox onMouseEntered="#openMenu" prefHeight="100.0">
+            <HBox onMouseEntered="#openMenu" onMousePressed="#onLoginPressed" prefHeight="100.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -393,9 +393,9 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="vb_menu" disable="true" layoutX="1110.0" layoutY="75.0" onMouseExited="#closeMenu" opacity="0.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+      <VBox fx:id="vb_menu" layoutX="1110.0" layoutY="75.0" onMouseExited="#closeMenu" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
          <children>
-            <HBox>
+            <HBox disable="true">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -418,7 +418,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox layoutX="10.0" layoutY="10.0">
+            <HBox disable="true" layoutX="10.0" layoutY="10.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -441,7 +441,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox layoutX="10.0" layoutY="110.0">
+            <HBox layoutX="10.0" layoutY="110.0" onMousePressed="#onLogoutPressed">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
