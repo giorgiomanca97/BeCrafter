@@ -19,6 +19,7 @@ import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.Registered;
 
 public class Home_Boundary {	
 	@FXML private Label tb_ale_quantity;
@@ -166,7 +167,12 @@ public class Home_Boundary {
 
 	@FXML 
 	public void onLogoutPressed() {
+		Registered registered = Login_Controller.GetInstance().getLoggedCustomer();
 		
+		if(registered != null) {
+			Login_Controller.GetInstance().logout(registered.getEmail());
+			lbl_login.setText("Login");
+		}
 	}
 	
 }

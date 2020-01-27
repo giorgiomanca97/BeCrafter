@@ -55,6 +55,12 @@ public class Login_Controller {
 		}
 	}
 	
+	public void logout(String email) {
+		if(loggedCustomer != null && loggedCustomer.getEmail().equals(email)) {
+			loggedCustomer = null;
+		}
+	}
+	
 	public void register(String email, String password, BillingInfo billingInfo) throws InvalidEmailException, UsedEmailException, InvalidPasswordException {
 		if(email.length() == 0) {
 			throw new InvalidEmailException();

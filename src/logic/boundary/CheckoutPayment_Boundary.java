@@ -1,6 +1,9 @@
 package logic.boundary;
 
 
+import error.EmptyFieldException;
+import error.login.InvalidEmailException;
+import error.login.UsedEmailException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -63,13 +66,19 @@ public class CheckoutPayment_Boundary {
 				checkoutBoundary.setOrderId(orderId);
 				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
 			}
+		} catch(InvalidEmailException iee) {
+			setErrorMessage("Wrong email format");
+		} catch(UsedEmailException uee) {
+			setErrorMessage("This email is already registered");
+		} catch(EmptyFieldException uee) {
+			setErrorMessage("Please fill all the empty fields");
 		} catch (Exception e) {
-			String message = e.getMessage();
-			if(message == null || message.length() == 0) {
-				message = "Unexpected Error. Please retry";
-			}
-			lbl_error.setText(message);
-			lbl_error.setOpacity(1);
+			setErrorMessage("Unexpected Error. Please retry");
 		}
+	}
+	
+	private void setErrorMessage(String message) {
+		lbl_error.setText(message);
+		lbl_error.setOpacity(1);
 	}
 }

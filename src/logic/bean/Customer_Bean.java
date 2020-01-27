@@ -1,8 +1,11 @@
 package logic.bean;
 
 
+import error.EmptyFieldException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
+import error.login.InvalidPasswordException;
+import error.login.UsedEmailException;
 import error.login.WrongPasswordException;
 import logic.BuyBeer_Controller;
 import logic.Login_Controller;
@@ -116,15 +119,9 @@ public class Customer_Bean {
 	}
 	
 	
-	public String confirmPurchase() throws Exception {
+	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, Exception  {
 		if(email.length() == 0 || !email.contains("@")) {
 			throw new InvalidEmailException();
-		}
-		
-		if(firstName == "" || lastName == "" || address == "" || city == "" ||
-				country == "" || postalCode == "" || phoneNumber == "" ||
-				creditCard == "") {
-			throw new Exception("Fill all fields before continue");
 		}
 		
 		BillingInfo billingInfo = getBillingInfo();
@@ -132,14 +129,33 @@ public class Customer_Bean {
 		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
 	}
 	
-	
-	public void login() throws InexistentEmailException, WrongPasswordException {
+	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException {
+		if(email.length() == 0 || password.length() == 0) {
+			throw new EmptyFieldException();
+		}
+		
 		Login_Controller.GetInstance().login(email, password);
 	}
 	
+	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException {
+		if(email.length() == 0 || password.length() == 0) {
+			throw new EmptyFieldException();
+		}
+		
+		BillingInfo billingInfo = getBillingInfo();
+		
+		Login_Controller.GetInstance().register(email, password, billingInfo);
+	}
 	
-	private BillingInfo getBillingInfo() {
+	
+	private BillingInfo getBillingInfo() throws EmptyFieldException {
 		BillingInfo billingInfo = new BillingInfo();
+		
+		if(firstName == "" || lastName == "" || address == "" || city == "" ||
+				country == "" || postalCode == "" || phoneNumber == "" ||
+				creditCard == "") {
+			throw new EmptyFieldException();
+		}
 		
 		billingInfo.setFirstName(firstName);
 		billingInfo.setLastName(lastName);

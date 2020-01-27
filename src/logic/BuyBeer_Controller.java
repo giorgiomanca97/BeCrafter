@@ -88,7 +88,7 @@ public class BuyBeer_Controller {
 		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
-	public String confirmPurchase(String email, BillingInfo billingInfo) throws Exception{
+	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, Exception {
 		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.GetInstance().isLogged(email)) {
 			throw new UsedEmailException("Email already used. Please login!");
 		}
