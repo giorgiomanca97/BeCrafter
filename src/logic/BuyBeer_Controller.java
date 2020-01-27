@@ -1,22 +1,29 @@
 package logic;
 
 
+import java.util.Calendar;
+
 import error.StorableIllegalQuantityException;
-import logic.designclasses.RefStorableList;
+import error.login.UsedEmailException;
+import logic.designclasses.CloneStorableList;
+import logic.designclasses.IDconverter;
 import logic.entity.Beer;
 import logic.entity.BillingInfo;
 import logic.entity.Container;
 import logic.entity.ContainerType;
+import logic.entity.Order;
 import logic.entity.Product;
 import logic.entity.Volume;
 import logic.entity.dao.Beer_dao;
+import logic.entity.dao.Order_dao;
+import logic.entity.dao.Registered_dao;
 import logic.entity.interfaces.Storable;
 
 public class BuyBeer_Controller {
 	private static BuyBeer_Controller instance = null;
 	
 	private Product selectedProduct;
-	private RefStorableList cart;
+	private CloneStorableList cart;
 	
 	
 	private BuyBeer_Controller() {
@@ -33,7 +40,7 @@ public class BuyBeer_Controller {
 	
 	
 	public void initCart() {
-		cart = new RefStorableList();
+		cart = new CloneStorableList();
 	}
 	
 	
@@ -81,8 +88,47 @@ public class BuyBeer_Controller {
 		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
-	public boolean confirmPurchase(String email, BillingInfo billingInfo) {
-		return true;
+	public String confirmPurchase(String email, BillingInfo billingInfo) throws Exception{
+		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.GetInstance().isLogged(email)) {
+			throw new UsedEmailException();
+		}
+		
+		String lastOrderId = Order_dao.getLastId();
+		String orderId = IDconverter.nextId(lastOrderId);
+		Order order = new Order(orderId);
+		order.setEmail(email);
+		
+		Calendar calendar = Calendar.getInstance();
+		String year = String.valueOf(calendar.get(Calendar.YEAR));
+		String month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+		if(month.length() == 1) {
+			month = "0" + month;
+		}
+		String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		if(day.length() == 1) {
+			day = "0" + day;
+		}
+		String date = year + "/" + month + "/" + day;
+		order.setDate(date);
+		
+		float price = 0;
+		for (Storable storable : cart.getAll()) {
+			Product product = (Product) storable;
+			price += product.getTotalPrice();
+			order.addProduct(product);
+		}
+		order.setPrice(price);
+		
+		order.setShippingCode("");
+		order.setShippingCompany("");
+		
+		order.setBillingInfo(billingInfo);
+		
+		Order_dao.insertOrder(order);
+		
+		initCart();
+		
+		return order.getId();
 	}
 
 	

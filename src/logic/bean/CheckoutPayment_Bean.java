@@ -1,5 +1,10 @@
 package logic.bean;
 
+
+import error.login.InvalidEmailException;
+import logic.BuyBeer_Controller;
+import logic.entity.BillingInfo;
+
 public class CheckoutPayment_Bean {
 	private String email;
 	private String firstName;
@@ -96,7 +101,21 @@ public class CheckoutPayment_Bean {
 	}
 	
 	
-	public boolean confirmPurchase() {
-		return true;
+	public String confirmPurchase() throws Exception {
+		if(email.length() == 0 || !email.contains("@")) {
+			throw new InvalidEmailException();
+		}
+		
+		BillingInfo billingInfo = new BillingInfo();
+		billingInfo.setFirstName(firstName);
+		billingInfo.setLastName(lastName);
+		billingInfo.setAddress(address);
+		billingInfo.setCity(city);
+		billingInfo.setCountry(country);
+		billingInfo.setPostalCode(postalCode);
+		billingInfo.setPhone(phoneNumber);
+		billingInfo.setCard(crediCard);
+		
+		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
 	}
 }
