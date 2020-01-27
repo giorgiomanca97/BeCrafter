@@ -105,7 +105,6 @@ public class Registered_dao {
 		return result;
 	}
 	
-	
 	public static ArrayList<Registered> getAllRegistered(){
 		ArrayList<Registered> result = getRegistered("SELECT * FROM " + TABLE_NAME + ";");;
 		

@@ -1,4 +1,4 @@
-package error;
+package error.id;
 
 public class OutOfRangeIdException extends IdException {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package error;
+package error.id;
 
 public class IdException extends Exception{
 	private static final long serialVersionUID = 1L;

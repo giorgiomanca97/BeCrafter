@@ -4,6 +4,7 @@ package logic;
 import error.StorableIllegalQuantityException;
 import logic.designclasses.RefStorableList;
 import logic.entity.Beer;
+import logic.entity.BillingInfo;
 import logic.entity.Container;
 import logic.entity.ContainerType;
 import logic.entity.Product;
@@ -80,16 +81,8 @@ public class BuyBeer_Controller {
 		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
-	public void confirmProducts() {
-		
-	}
-	
-	public void confirmPurchase() {
-		
-	}
-	
-	public void endCheckout() {
-		
+	public boolean confirmPurchase(String email, BillingInfo billingInfo) {
+		return true;
 	}
 
 	

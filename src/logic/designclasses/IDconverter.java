@@ -1,9 +1,9 @@
 package logic.designclasses;
 
 
-import error.IdException;
-import error.OutOfRangeIdException;
-import error.UnsupportedIdException;
+import error.id.IdException;
+import error.id.OutOfRangeIdException;
+import error.id.UnsupportedIdException;
 
 public class IDconverter {
 	private IDconverter() {

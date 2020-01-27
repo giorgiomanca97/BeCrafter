@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import error.IdException;
 import error.TextParseException;
+import error.id.IdException;
 import logic.designclasses.IDconverter;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
