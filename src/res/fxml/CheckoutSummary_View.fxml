@@ -69,7 +69,7 @@
             </Label>
          </children>
       </HBox>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <ScrollPane hbarPolicy="NEVER" prefWidth="1170.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <content>
             <VBox fx:id="vbox_products" prefWidth="1170.0" />
          </content>
@@ -82,12 +82,12 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="tb_overallCost" alignment="CENTER" layoutX="260.0" prefHeight="80.0" prefWidth="260.0" text="000,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="tb_overallCost" alignment="CENTER" layoutX="260.0" prefHeight="80.0" prefWidth="260.0" text="0,00 €" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btn_backShopping" alignment="CENTER" cancelButton="true" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBackToShoppingPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
+            <Button alignment="CENTER" cancelButton="true" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBackToShoppingPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

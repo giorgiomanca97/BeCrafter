@@ -10,13 +10,16 @@ import javafx.scene.layout.VBox;
 import logic.bean.BuyBeer_Bean;
 import logic.designclasses.PageLoader;
 import logic.entity.Price;
+import javafx.scene.control.Button;
 
 public class CheckoutSummary_Boundary {	
 	@FXML private VBox vbox_products;
 	@FXML private Label tb_overallCost;
+	@FXML private Button btn_ConfirmProducts;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	private ArrayList<Float> prices;
+	
 	
 	
 	public void initialize() {
@@ -27,19 +30,25 @@ public class CheckoutSummary_Boundary {
 		BuyBeer_Bean buyBeerBean = new BuyBeer_Bean();
 		prices = new ArrayList<Float>();
 		
-		try {
-			tb_overallCost.setText(Price.toText(0f));
-			vbox_products.getChildren().clear();
-			
-			for(int i = 0; i < buyBeerBean.cartSize(); i++) {
-				PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_SUMMARY_ELEMENT);
-				CheckoutSummaryElement_Boundary cseBoundary = (CheckoutSummaryElement_Boundary) pageLoader.getController();
-				prices.add(0f);
-				cseBoundary.setElement(this, i);
-				vbox_products.getChildren().add(pageLoader.getRootView());
+		tb_overallCost.setText(Price.toText(0f));
+		vbox_products.getChildren().clear();
+		int cartSize = buyBeerBean.cartSize();
+		
+		if(cartSize == 0) {
+			btn_ConfirmProducts.setDisable(true);
+		} else {
+			btn_ConfirmProducts.setDisable(false);
+			try {
+				for(int i = 0; i < buyBeerBean.cartSize(); i++) {
+					PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_SUMMARY_ELEMENT);
+					CheckoutSummaryElement_Boundary cseBoundary = (CheckoutSummaryElement_Boundary) pageLoader.getController();
+					prices.add(0f);
+					cseBoundary.setElement(this, i);
+					vbox_products.getChildren().add(pageLoader.getRootView());
+				}
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
 			}
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		}
 	}
 	
