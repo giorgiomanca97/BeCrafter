@@ -151,9 +151,9 @@ public class Customer_Bean {
 	private BillingInfo getBillingInfo() throws EmptyFieldException {
 		BillingInfo billingInfo = new BillingInfo();
 		
-		if(firstName == "" || lastName == "" || address == "" || city == "" ||
-				country == "" || postalCode == "" || phoneNumber == "" ||
-				creditCard == "") {
+		if(firstName.length() == 0 || lastName.length() == 0 || address.length() == 0 || 
+				city.length() == 0 || country.length() == 0 || postalCode.length() == 0 || 
+		   		phoneNumber.length() == 0 || creditCard.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
