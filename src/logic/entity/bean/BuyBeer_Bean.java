@@ -146,4 +146,22 @@ public class BuyBeer_Bean {
 		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, volume, quantity);
 	}
 
+	public boolean selectProduct(int index) {
+		// carica il prodotto i-esimo dal controller
+		// setta i propri attributi se il prodotto esiste (in questo caso torna true)
+		// altrimenti torna false
+		
+		// la vista, dopo avere selezionato il prodotto, se lo carica
+		
+		return true;
+	}
+	
+	
+	public void updateProductInsideCart(int index, int newQuantity) {
+		
+	}
+	
+	public void removeProductFromCart(int index) {
+		
+	}
 }

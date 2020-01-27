@@ -18,7 +18,6 @@ public class Home_Controller {
 	
 	private Home_Controller() {
 		this.storehouse = Storehouse_dao.getStorehouse();
-		BuyBeer_Controller.getInstance().init();
 	}
 	
 	synchronized public static Home_Controller getInstance() {

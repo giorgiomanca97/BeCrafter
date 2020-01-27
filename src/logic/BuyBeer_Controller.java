@@ -19,7 +19,7 @@ public class BuyBeer_Controller {
 	
 	
 	private BuyBeer_Controller() {
-		
+		initCart();
 	}
 	
 	synchronized public static BuyBeer_Controller getInstance() {
@@ -31,7 +31,7 @@ public class BuyBeer_Controller {
 	}
 	
 	
-	public void init() {
+	public void initCart() {
 		cart = new RefStorableList();
 	}
 	
