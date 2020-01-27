@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutPayment_Boundary">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutPayment_Boundary">
    <children>
       <ScrollPane prefHeight="415.0" prefWidth="585.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
          <content>
@@ -246,15 +246,65 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="895.0" layoutY="33.0" mnemonicParsing="false" onMousePressed="#onLoginPressed" prefHeight="30.0" prefWidth="250.0" text="Login" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="35.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Label fx:id="lbl_login" alignment="CENTER" layoutX="984.0" layoutY="108.0" prefWidth="270.0" text="Please login to auto-fill your billing details" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="80.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <VBox layoutX="856.0" layoutY="25.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <Label prefHeight="20.0" text="email">
+               <VBox.margin>
+                  <Insets left="25.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox>
+               <children>
+                  <TextField fx:id="tf_login_email" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <Label text="password">
+               <VBox.margin>
+                  <Insets left="25.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox>
+               <children>
+                  <TextField fx:id="tf_login_password" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onMousePressed="#onLoginPressed" prefHeight="30.0" prefWidth="250.0" text="Login" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="lbl_login" alignment="CENTER" prefWidth="300.0" text="Please login to auto-fill your billing details">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
