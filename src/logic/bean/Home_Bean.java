@@ -1,4 +1,4 @@
-package logic.entity.bean;
+package logic.bean;
 
 
 import java.util.ArrayList;

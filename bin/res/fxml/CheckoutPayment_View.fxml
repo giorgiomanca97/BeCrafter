@@ -234,12 +234,12 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="btn_back_summary" layoutX="835.0" layoutY="474.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Go back to Summary" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0">
+      <Button layoutX="835.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBackToSummaryPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Summary" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btn_confirm_purchase" layoutX="893.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Confirm Purchase" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+      <Button layoutX="893.0" layoutY="475.0" mnemonicParsing="false" onAction="#onConfirmPurchasePressed" prefHeight="30.0" prefWidth="250.0" text="Confirm Purchase" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -8,11 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import logic.bean.BuyBeer_Bean;
 import logic.designclasses.BeerImageLoader;
 import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
-import logic.entity.bean.BuyBeer_Bean;
 
 public class BuyBeer_Boundary {		
 	@FXML private Label tb_beer_name;
@@ -56,37 +56,8 @@ public class BuyBeer_Boundary {
 		img_beer_container.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
 	}
 	
-	
-	public void increaseQuantity() {
-		int q = buyBeerBean.getQuantity() + 1;
-		buyBeerBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
-	}
-	
-	
-	public void decreaseQuantity() {
-		int q = buyBeerBean.getQuantity() - 1;
-		if(q < 1) {
-			q = 1;
-		}
-		buyBeerBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
-	}
-	
-	public void updateQuantity() {
-		try {
-			int q = Integer.parseUnsignedInt(tf_quantity.getText());
-			buyBeerBean.setQuantity(q);
-		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
-		} 
-	}
-	
-	public void addProductToCart() {
-		buyBeerBean.addProductToCart();
-		onBackPressed();
-	}
-	
+		
+	@FXML 
 	public void onBackPressed() {
 		try {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
@@ -95,4 +66,40 @@ public class BuyBeer_Boundary {
 			ioe.printStackTrace();
 		}
 	}
+
+	@FXML 
+	public void onSubPressed() {
+		int q = buyBeerBean.getQuantity() - 1;
+		if(q < 1) {
+			q = 1;
+		}
+		buyBeerBean.setQuantity(q);
+		tf_quantity.setText(String.valueOf(q));
+	}
+
+
+	@FXML 
+	public void onQuantityChange() {
+		try {
+			int q = Integer.parseUnsignedInt(tf_quantity.getText());
+			buyBeerBean.setQuantity(q);
+		} catch (NumberFormatException nfe) {
+			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
+		} 
+	}
+
+
+	@FXML 
+	public void onAddPressed() {
+		int q = buyBeerBean.getQuantity() + 1;
+		buyBeerBean.setQuantity(q);
+		tf_quantity.setText(String.valueOf(q));
+	}
+	
+	@FXML 
+	public void onAddToCartPressed() {
+		buyBeerBean.addProductToCart();
+		onBackPressed();
+	}
+	
 }

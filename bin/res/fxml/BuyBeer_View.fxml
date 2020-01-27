@@ -37,17 +37,17 @@
       </VBox>
       <AnchorPane layoutX="300.0" layoutY="450.0" prefHeight="50.0" prefWidth="570.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="450.0">
          <children>
-            <ImageView fx:id="img_sub" fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="10.0" onMousePressed="#decreaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="img_sub" fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="10.0" onMousePressed="#onSubPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../icons/op_sub.png" />
                </image>
             </ImageView>
-            <TextField fx:id="tf_quantity" alignment="CENTER" layoutX="66.0" layoutY="10.0" onAction="#updateQuantity" prefHeight="30.0" prefWidth="60.0" text="1" AnchorPane.leftAnchor="70.0">
+            <TextField fx:id="tf_quantity" alignment="CENTER" layoutX="66.0" layoutY="10.0" onAction="#onQuantityChange" prefHeight="30.0" prefWidth="60.0" text="1" AnchorPane.leftAnchor="70.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
-            <ImageView fx:id="img_add" fitHeight="30.0" fitWidth="30.0" layoutX="120.0" layoutY="10.0" onMousePressed="#increaseQuantity" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="img_add" fitHeight="30.0" fitWidth="30.0" layoutX="120.0" layoutY="10.0" onMousePressed="#onAddPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../icons/op_add.png" />
                </image>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btn_add_to_cart" layoutX="445.0" layoutY="5.0" mnemonicParsing="false" onAction="#addProductToCart" prefHeight="30.0" prefWidth="120.0" text="Add to Cart" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="btn_add_to_cart" layoutX="445.0" layoutY="5.0" mnemonicParsing="false" onAction="#onAddToCartPressed" prefHeight="30.0" prefWidth="120.0" text="Add to Cart" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

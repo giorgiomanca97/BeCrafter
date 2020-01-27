@@ -1,4 +1,4 @@
-package logic.entity.bean;
+package logic.bean;
 
 public class CheckoutPayment_Bean {
 	private String email;

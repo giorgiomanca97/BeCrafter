@@ -6,11 +6,11 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import logic.bean.Product_Bean;
 import logic.designclasses.BeerImageLoader;
 import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
-import logic.entity.bean.Product_Bean;
 
 public class ProductCard_Boundary {
 	@FXML private ImageView iv_beer_icon;

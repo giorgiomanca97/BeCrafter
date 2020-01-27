@@ -11,13 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import logic.bean.Home_Bean;
+import logic.bean.Product_Bean;
 import logic.designclasses.PageLoader;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
-import logic.entity.bean.Home_Bean;
-import logic.entity.bean.Product_Bean;
 
 public class Home_Boundary {	
 	@FXML private Label tb_ale_quantity;

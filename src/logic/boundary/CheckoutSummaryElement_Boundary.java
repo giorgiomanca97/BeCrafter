@@ -14,15 +14,25 @@ public class CheckoutSummaryElement_Boundary {
 	@FXML private Label lbl_beerAlcohol;
 	@FXML private Label lbl_beerFiltering;
 	@FXML private Label lbl_containerVolume;
-	@FXML private ImageView img_sub;
 	@FXML private TextField tf_quantity;
-	@FXML private ImageView img_add;
 	@FXML private Label lbl_totalVolume;
 	@FXML private Label lbl_price;
-	@FXML private ImageView img_del;
 	
 	
 	public void loadProduct(BuyBeer_Boundary product) {
 		
 	}
+
+
+	@FXML 
+	public void onSubPressed() {}
+
+	@FXML 
+	public void onChangeQuantity() {}
+
+	@FXML 
+	public void onAddPressed() {}
+
+	@FXML 
+	public void onDelPressed() {}
 }

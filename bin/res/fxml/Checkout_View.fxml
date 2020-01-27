@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Checkout_Boundary">
    <children>
-      <ImageView fx:id="img_back" fitHeight="40.0" fitWidth="40.0" onMousePressed="#onBackPressed" pickOnBounds="true" preserveRatio="true" x="10.0" y="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <ImageView fitHeight="40.0" fitWidth="40.0" onMousePressed="#onBackPressed" pickOnBounds="true" preserveRatio="true" x="10.0" y="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <image>
             <Image url="@../icons/back.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" onMousePressed="#onBackPressed" prefHeight="50.0" prefWidth="1280.0" text="Checkout" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+      <Label alignment="CENTER" onMousePressed="#onBackPressed" prefHeight="50.0" prefWidth="1280.0" text="Checkout" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="32.0" />
          </font>
