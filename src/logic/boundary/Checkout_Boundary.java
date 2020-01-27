@@ -16,6 +16,7 @@ public class Checkout_Boundary {
 	@FXML private AnchorPane ap_checkout;
 	
 	Tab currentTab;
+	String orderId;
 	
 	
 	public void initialize() {
@@ -83,6 +84,13 @@ public class Checkout_Boundary {
 		}
 	}
 	
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	
+	public String getOrderId() {
+		return this.orderId;
+	}
 	
 	public enum Tab{
 		SUMMARY,

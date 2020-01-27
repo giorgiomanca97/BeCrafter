@@ -189,11 +189,13 @@ public class Order_dao {
             rs = stmt.executeQuery("SELECT MAX(" + COL_ID + ") FROM " + TABLE_NAME + ";");
             
             if(rs.first()) {
-            	result = rs.getString(COL_ID);
+            	result = IDconverter.intToId(rs.getInt(COL_ID), IDconverter.Type.ORDER);
             }
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception
 		} catch (SQLException se) {
+			// TODO: handle exception
+		} catch (IdException ie) {
 			// TODO: handle exception
 		}
 		finally {
@@ -296,7 +298,6 @@ public class Order_dao {
 		
 		BillingInfo billingInfo = order.getBillingInfo();
 		
-		stringBuilder.append(order.getId());
 		stringBuilder.append(BillingInfo_dao.billingInfoToText(billingInfo));
 		stringBuilder.append("\n");
 

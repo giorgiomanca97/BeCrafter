@@ -2,8 +2,8 @@ package logic.boundary;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import logic.bean.BuyBeer_Bean;
 import logic.bean.CheckoutPayment_Bean;
 
 public class CheckoutPayment_Boundary {	
@@ -16,6 +16,7 @@ public class CheckoutPayment_Boundary {
 	@FXML private TextField tf_postalcode;
 	@FXML private TextField tf_phoneNumber;
 	@FXML private TextField tf_creditcardNumber;
+	@FXML private Label lbl_error;
 	
 	
 	private Checkout_Boundary checkoutBoundary = null;
@@ -24,6 +25,7 @@ public class CheckoutPayment_Boundary {
 	
 	public void initialize() {
 		checkoutPaymentBean = new CheckoutPayment_Bean();
+		lbl_error.setOpacity(0);
 	}
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
@@ -43,6 +45,7 @@ public class CheckoutPayment_Boundary {
 	}
 	
 	public void confirmPurchase() {
+		lbl_error.setOpacity(0);
 		checkoutPaymentBean.setEmail(tf_email.getText());
 		checkoutPaymentBean.setFirstName(tf_firstname.getText());
 		checkoutPaymentBean.setLastName(tf_lastname.getText());
@@ -50,14 +53,18 @@ public class CheckoutPayment_Boundary {
 		checkoutPaymentBean.setCity(tf_city.getText());
 		checkoutPaymentBean.setCountry(tf_country.getText());
 		checkoutPaymentBean.setPostalCode(tf_postalcode.getText());
-		checkoutPaymentBean.setPhoneNumber(tf_creditcardNumber.getText());
+		checkoutPaymentBean.setPhoneNumber(tf_phoneNumber.getText());
+		checkoutPaymentBean.setCreditCard(tf_creditcardNumber.getText());
 		
-		if(checkoutPaymentBean.confirmPurchase()) {
+		try {
+			String orderId = checkoutPaymentBean.confirmPurchase();
+			
 			if(checkoutBoundary != null) {
 				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
+				checkoutBoundary.setOrderId(orderId);
 			}
-		} else {
-			// Mostra errore
+		} catch (Exception e) {
+			lbl_error.setOpacity(1);
 		}
 	}
 }

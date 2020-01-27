@@ -94,9 +94,21 @@ public class BuyBeer_Controller {
 		}
 		
 		String lastOrderId = Order_dao.getLastId();
-		String orderId = IDconverter.nextId(lastOrderId);
+		String orderId;
+		
+		System.out.println(lastOrderId);
+		
+		if(lastOrderId == null) {
+			orderId = IDconverter.intToId(1, IDconverter.Type.ORDER);
+		}
+		else {
+			orderId = IDconverter.nextId(lastOrderId);
+		}
+		System.out.println(orderId);
+		
 		Order order = new Order(orderId);
 		order.setEmail(email);
+		
 		
 		Calendar calendar = Calendar.getInstance();
 		String year = String.valueOf(calendar.get(Calendar.YEAR));

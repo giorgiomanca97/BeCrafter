@@ -14,7 +14,7 @@ public class CheckoutPayment_Bean {
 	private String country;
 	private String postalCode;
 	private String phoneNumber;
-	private String crediCard;
+	private String creditCard;
 	
 	public CheckoutPayment_Bean() {
 		
@@ -57,7 +57,7 @@ public class CheckoutPayment_Bean {
 
 	
 	public String getCrediCard() {
-		return crediCard;
+		return creditCard;
 	}
 
 	public void setEmail(String email) {
@@ -96,14 +96,20 @@ public class CheckoutPayment_Bean {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setCrediCard(String crediCard) {
-		this.crediCard = crediCard;
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
 	}
 	
 	
 	public String confirmPurchase() throws Exception {
 		if(email.length() == 0 || !email.contains("@")) {
 			throw new InvalidEmailException();
+		}
+		
+		if(firstName == "" || lastName == "" || address == "" || city == "" ||
+				country == "" || postalCode == "" || phoneNumber == "" ||
+				creditCard == "") {
+			throw new Exception();
 		}
 		
 		BillingInfo billingInfo = new BillingInfo();
@@ -114,7 +120,7 @@ public class CheckoutPayment_Bean {
 		billingInfo.setCountry(country);
 		billingInfo.setPostalCode(postalCode);
 		billingInfo.setPhone(phoneNumber);
-		billingInfo.setCard(crediCard);
+		billingInfo.setCard(creditCard);
 		
 		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
 	}

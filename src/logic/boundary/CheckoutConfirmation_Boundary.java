@@ -18,6 +18,7 @@ public class CheckoutConfirmation_Boundary {
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
 		this.checkoutBoundary = checkoutBoundary;
+		tb_order_code.setText(checkoutBoundary.getOrderId());
 	}
 
 	@FXML 
