@@ -1,5 +1,6 @@
 package logic.boundary;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import logic.bean.Home_Bean;
@@ -32,7 +32,6 @@ public class Home_Boundary {
 	@FXML private Label tb_barrel_quantity;
 	@FXML private Label tb_filtered_quantity;
 	@FXML private Label tb_unfiltered_quantity;
-	@FXML private Label tb_login;
 	@FXML private TextField tf_search;
 	@FXML private Button btn_search;
 	@FXML private CheckBox cb_ale;
@@ -47,16 +46,13 @@ public class Home_Boundary {
 	@FXML private CheckBox cb_barrel;
 	@FXML private CheckBox cb_filtered;
 	@FXML private CheckBox cb_unfiltered;
-	@FXML private VBox vb_menu;
-	@FXML private HBox hb_check_order;
-	@FXML private HBox hb_cart;
-	@FXML private HBox hb_login;
-	@FXML private HBox hb_my_profile;
-	@FXML private HBox hb_my_orders;
-	@FXML private HBox hb_logout;
 	@FXML private TilePane tp_products;
+	@FXML private Label lbl_cartCounter;
+	@FXML private Label lbl_login;
+	@FXML private VBox vb_menu;
 	
 	private Home_Bean homeBean;
+	
 	
 		
 	public void initialize() {		
@@ -120,18 +116,21 @@ public class Home_Boundary {
 			ioe.printStackTrace();
 		}
 	}
-		
 	
+		
+	@FXML
 	public void openMenu() {
 		vb_menu.setDisable(false);
 		vb_menu.setOpacity(1);
 	}
 	
+	@FXML
 	public void closeMenu() {
 		vb_menu.setDisable(true);
 		vb_menu.setOpacity(0);
 	}
-	
+
+	@FXML 
 	public void onCartPressed() {
 		try {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT);

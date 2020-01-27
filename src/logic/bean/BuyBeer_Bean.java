@@ -139,6 +139,7 @@ public class BuyBeer_Bean {
 		containerType = product.getContainer().getType();
 		containerVolume = product.getContainer().getVolume();
 		price = product.getPrice();
+		quantity = product.getQuantity();
 	}
 	
 	public void addProductToCart() {
@@ -146,22 +147,21 @@ public class BuyBeer_Bean {
 		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, volume, quantity);
 	}
 
-	public boolean selectProduct(int index) {
-		// carica il prodotto i-esimo dal controller
-		// setta i propri attributi se il prodotto esiste (in questo caso torna true)
-		// altrimenti torna false
-		
-		// la vista, dopo avere selezionato il prodotto, se lo carica
-		
-		return true;
+	public boolean selectProductInCart(int index) {		
+		return BuyBeer_Controller.getInstance().selectProductInCart(index);
 	}
 	
-	
-	public void updateProductInsideCart(int index, int newQuantity) {
-		
+	public int cartSize() {
+		return BuyBeer_Controller.getInstance().getCartSize();
 	}
 	
-	public void removeProductFromCart(int index) {
-		
+	public void updateProductInsideCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().updateProductInsideCart(beerId, containerType, volume, quantity);
+	}
+	
+	public void removeProductFromCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().removeProductFromCart(beerId, containerType, volume);
 	}
 }

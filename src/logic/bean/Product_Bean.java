@@ -106,8 +106,8 @@ public class Product_Bean {
 	}
 
 	
-	public void selectProduct() {
+	public void selectForSaleProduct() {
 		Volume volume = new Volume(this.containerVolume);
-		BuyBeer_Controller.getInstance().selectProduct(this.beerId, this.containerType, volume);
+		BuyBeer_Controller.getInstance().selectForSaleProduct(this.beerId, this.containerType, volume);
 	}
 }

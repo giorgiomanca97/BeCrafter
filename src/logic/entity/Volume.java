@@ -25,7 +25,7 @@ public class Volume {
 		if(volume < 100) {
 			return String.valueOf(volume) + " cl";
 		} else {
-			return String.valueOf(volume/100) + " l";
+			return String.valueOf(((float) volume)/100f) + " l";
 		}
 	}
 	

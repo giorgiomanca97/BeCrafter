@@ -2,14 +2,16 @@ package logic.entity;
 
 
 public enum ContainerType {
-    BOTTLE("Bottle"),
-    CAN("Can"),
-    BARREL("Barrel");
+    BOTTLE("Bottle", 1f),
+    CAN("Can", 0.5f),
+    BARREL("Barrel", 30f);
 	
 	private String text;
+	private float price;
 	
-	private ContainerType(String text) {
+	private ContainerType(String text, float price) {
 		this.text = text;
+		this.price = price;
 	}
 	
 	@Override
@@ -17,4 +19,7 @@ public enum ContainerType {
 		return text;
 	}
 	
+	public float getPrice() {
+		return price;
+	}
 }

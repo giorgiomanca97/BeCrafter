@@ -24,7 +24,11 @@ public class Product implements Storable {
 
     
     public float getPrice() {
-    	return 0;
+    	return beer.getPricePerLiter() * container.getVolume() / 100f + container.getType().getPrice();
+    }
+    
+    public float getTotalPrice() {
+    	return getPrice() * getQuantity();
     }
 
     

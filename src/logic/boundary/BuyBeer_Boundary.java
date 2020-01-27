@@ -30,13 +30,11 @@ public class BuyBeer_Boundary {
 	
 	
 	public void initialize() {
-		buyBeerBean = new BuyBeer_Bean();
+		buyBeerBean = new BuyBeer_Bean();	
+		buyBeerBean.loadSelectedProduct();
 		buyBeerBean.setQuantity(1);
 		
 		tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
-		
-		buyBeerBean.loadSelectedProduct();
-		
 		tb_beer_name.setText(buyBeerBean.getBeerName());
 		
 		StringBuilder stringBuilder = new StringBuilder();
@@ -52,7 +50,7 @@ public class BuyBeer_Boundary {
 		tb_beer_cc.setText(stringBuilder.toString());
 		
 		tb_beer_desc.setText(buyBeerBean.getBeerDescription());
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice()));
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
 		img_beer_container.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
 	}
 	
@@ -75,6 +73,7 @@ public class BuyBeer_Boundary {
 		}
 		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
 	}
 
 
@@ -85,7 +84,8 @@ public class BuyBeer_Boundary {
 			buyBeerBean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
 			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
-		} 
+		}
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
 	}
 
 
@@ -94,6 +94,7 @@ public class BuyBeer_Boundary {
 		int q = buyBeerBean.getQuantity() + 1;
 		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
 	}
 	
 	@FXML 

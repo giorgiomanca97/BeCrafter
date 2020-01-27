@@ -45,7 +45,7 @@ public class ProductCard_Boundary {
 	public void onMousePressed() {
 		if(productBean != null) {
 			try {
-				productBean.selectProduct();
+				productBean.selectForSaleProduct();
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.BUYBEER);
 				pageLoader.showOnPrimaryStage();
 			} catch (IOException ioe) {

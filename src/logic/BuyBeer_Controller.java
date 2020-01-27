@@ -1,7 +1,7 @@
 package logic;
 
 
-import javafx.stage.Stage;
+import error.StorableIllegalQuantityException;
 import logic.designclasses.RefStorableList;
 import logic.entity.Beer;
 import logic.entity.Container;
@@ -9,13 +9,13 @@ import logic.entity.ContainerType;
 import logic.entity.Product;
 import logic.entity.Volume;
 import logic.entity.dao.Beer_dao;
+import logic.entity.interfaces.Storable;
 
 public class BuyBeer_Controller {
 	private static BuyBeer_Controller instance = null;
 	
 	private Product selectedProduct;
 	private RefStorableList cart;
-	private Stage buyProductStage;
 	
 	
 	private BuyBeer_Controller() {
@@ -36,38 +36,48 @@ public class BuyBeer_Controller {
 	}
 	
 	
-	public void selectProduct(String beerId, ContainerType containerType, Volume containerVolume) {
-		selectedProduct = getProduct(beerId, containerType, containerVolume);
+	public void selectForSaleProduct(String beerId, ContainerType containerType, Volume containerVolume) {
+		Product product = getProduct(beerId, containerType, containerVolume);
+		this.selectedProduct = product;
 	}
 	
+	public boolean selectProductInCart(int index) {
+		if(index < cart.size()) {
+			Storable storable = cart.getAt(index);
+			selectedProduct = (Product) storable;
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public Product getSelectedProduct() {
 		return selectedProduct;
 	}
 	
-	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
-		Product product =  getProduct(beerId, containerType, containerVolume);
-		product.addQuantity(quantity);
-		cart.add(product);
-		
-		if(buyProductStage != null) {
-			buyProductStage.close();
-		}
-		buyProductStage = null;
-		
-		//Home_Controller.getInstance().setCartCounter(cart.size());
-		System.out.println(cart);
+	public int getCartSize() {
+		return cart.size();
 	}
 	
+	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
+		Product product = getProduct(beerId, containerType, containerVolume);
+		product.addQuantity(quantity);
+		cart.add(product);
+	}
 	
 	public void updateProductInsideCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
-		//aggiunge al carrello il prodotto selezionato
+		Product product = (Product) cart.get(getProduct(beerId, containerType, containerVolume));
 		
+		try {
+			product.setQuantity(quantity);
+			cart.update(product);
+		} catch (StorableIllegalQuantityException siqe) {
+			// TODO: handle exception
+		}
 	}
 	
 	public void removeProductFromCart(String beerId, ContainerType containerType, Volume containerVolume) {
-		//aggiunge al carrello il prodotto selezionato
-		
+		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
 	public void confirmProducts() {

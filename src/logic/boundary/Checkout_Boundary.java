@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import logic.bean.BuyBeer_Bean;
 import logic.designclasses.PageLoader;
 
 public class Checkout_Boundary {	
@@ -16,17 +15,11 @@ public class Checkout_Boundary {
 	@FXML private Label tb_confirmation;
 	@FXML private AnchorPane ap_checkout;
 	
-	BuyBeer_Bean buyBeerBean;
 	Tab currentTab;
 	
 	
 	public void initialize() {
-		buyBeerBean = new BuyBeer_Bean();
 		openTab(Tab.SUMMARY);
-	}
-	
-	public BuyBeer_Bean getBuyBeerBean() {
-		return buyBeerBean;
 	}
 	
 	public void openTab(Tab tab) {
@@ -69,9 +62,11 @@ public class Checkout_Boundary {
 				label.setStyle("-fx-text-fill: black;");
 			}
 			
-			ap_checkout.getChildren().clear();
-			ap_checkout.getChildren().add(pageLoader.getRootView());
-			currentTab = tab;
+			if(pageLoader != null) {
+				ap_checkout.getChildren().clear();
+				ap_checkout.getChildren().add(pageLoader.getRootView());
+				currentTab = tab;
+			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}

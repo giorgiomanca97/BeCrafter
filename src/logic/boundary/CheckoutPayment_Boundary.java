@@ -27,7 +27,6 @@ public class CheckoutPayment_Boundary {
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
 		this.checkoutBoundary = checkoutBoundary;
-		this.buyBeerBean = checkoutBoundary.getBuyBeerBean();
 	}
 
 	@FXML 

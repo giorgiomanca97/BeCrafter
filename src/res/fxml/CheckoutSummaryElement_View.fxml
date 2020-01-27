@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="40.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutSummaryElement_Boundary">
+<AnchorPane prefHeight="50.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutSummaryElement_Boundary">
    <children>
-      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
          <children>
             <Label fx:id="lbl_number" alignment="CENTER" prefHeight="40.0" prefWidth="40.0" text="#">
                <font>
@@ -62,7 +62,7 @@
                         <Image url="@../icons/op_sub.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="tf_quantity" alignment="CENTER" onAction="#onChangeQuantity" prefHeight="30.0" prefWidth="60.0">
+                  <TextField fx:id="tf_quantity" alignment="CENTER" onAction="#onQuantityChange" prefHeight="30.0" prefWidth="60.0">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>

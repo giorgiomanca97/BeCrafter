@@ -8,7 +8,7 @@ public class Beer {
     private BeerColor color;
     private BeerFiltering filtering;
     private float alcoholContent;
-    private float pricePerCL;
+    private float pricePerLiter;
     private String description;
     private Recipe recipe;
 
@@ -20,7 +20,7 @@ public class Beer {
     	this.color = null;
     	this.filtering = null;
     	this.alcoholContent = 0;
-    	this.pricePerCL = 0;
+    	this.pricePerLiter = 0;
     	this.description = "";
     	this.recipe = null;
     }
@@ -71,11 +71,11 @@ public class Beer {
     }
 
     public float getPricePerLiter() {
-        return this.pricePerCL;
+        return this.pricePerLiter;
     }
 
     public void setPricePerLiter(float price) {
-        this.pricePerCL = price;
+        this.pricePerLiter = price;
     }
 
     public String getDescription() {
@@ -96,6 +96,6 @@ public class Beer {
 
     @Override
     public String toString() {
-    	return "Beer: " + id + " " + name + " " + type.toString() + " " + color.toString() + " " + filtering.toString() + " " + alcoholContent + " " + pricePerCL + " " + recipe.getId();
+    	return "Beer: " + id + " " + name + " " + type.toString() + " " + color.toString() + " " + filtering.toString() + " " + alcoholContent + " " + pricePerLiter + " " + recipe.getId();
     }
 }
