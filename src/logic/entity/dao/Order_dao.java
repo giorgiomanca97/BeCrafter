@@ -189,7 +189,7 @@ public class Order_dao {
             rs = stmt.executeQuery("SELECT MAX(" + COL_ID + ") FROM " + TABLE_NAME + ";");
             
             if(rs.first()) {
-            	result = IDconverter.intToId(rs.getInt(COL_ID), IDconverter.Type.ORDER);
+            	result = IDconverter.intToId(rs.getInt(1), IDconverter.Type.ORDER);
             }
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <HBox layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <Label fx:id="lbl_number" alignment="CENTER" prefHeight="40.0" prefWidth="40.0" text="#">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img_containerType" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="lbl_beerName" prefHeight="40.0" prefWidth="160.0" text="Beer Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lbl_beerType" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Type">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerColor" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Color">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerAlcohol" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Alcohol %">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_beerFiltering" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Filtering">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_containerVolume" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" text="Container Size">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_quantity" alignment="CENTER" layoutX="650.0" layoutY="10.0" prefHeight="40.0" prefWidth="110.0" text="Quantity">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_totalVolume" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Total Volume">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_price" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Price">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
