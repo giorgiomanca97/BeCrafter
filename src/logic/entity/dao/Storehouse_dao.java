@@ -2,13 +2,14 @@ package logic.entity.dao;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import error.StorableIllegalQuantityException;
+import logic.designclasses.DaoHelper;
+import logic.designclasses.DaoHelper.StatementMode;
 import logic.entity.Beer;
 import logic.entity.Container;
 import logic.entity.ContainerType;
@@ -18,12 +19,6 @@ import logic.entity.RawMaterialType;
 import logic.entity.Storehouse;
 
 public class Storehouse_dao {
-	// Informazioni database
-	private static String USER = "root";
-    private static String PASS = "becrafter";
-    private static String DB_URL = "jdbc:mariadb://localhost:3306/becrafter";
-    private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
-    
     // Informazioni della tabella dei raw materials
     private static String RAWM_TABLE = "storehouse_rawmaterials";
     private static String RAWM_COL_TYPE = "type";
@@ -60,9 +55,10 @@ public class Storehouse_dao {
             ResultSet rs_products = null;
 	        
 	        try {
-	            Class.forName(DRIVER_CLASS_NAME);
-	            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	        	DaoHelper.loadDriver();
+	            conn = DaoHelper.getConnection();
+	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
+	            
 	            rs_rawMaterials = stmt.executeQuery("SELECT * FROM " + RAWM_TABLE + ";");
 	            rs_containers = stmt.executeQuery("SELECT * FROM " + CONT_TABLE + ";");
 	            rs_products = stmt.executeQuery("SELECT * FROM " + PROD_TABLE + ";");
@@ -172,9 +168,9 @@ public class Storehouse_dao {
         Connection conn = null;
 
         try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             stmt.executeUpdate("DELETE FROM " + RAWM_TABLE + ";");
             stmt.executeUpdate("DELETE FROM " + CONT_TABLE + ";");

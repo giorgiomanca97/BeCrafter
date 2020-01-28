@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +14,8 @@ import java.util.ArrayList;
 
 import error.TextParseException;
 import error.id.IdException;
+import logic.designclasses.DaoHelper;
+import logic.designclasses.DaoHelper.StatementMode;
 import logic.designclasses.IDconverter;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
@@ -23,12 +24,6 @@ import logic.entity.Product;
 public class Order_dao {
 	private static String ORDERS_FOLDER_PATH = "persistence/orders"; 
 	
-	// Informazioni database
-	private static String USER = "root";
-	private static String PASS = "becrafter";
-	private static String DB_URL = "jdbc:mariadb://localhost:3306/becrafter";
-	private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
-	    
 	// Informazioni tabella ordini
 	private static String TABLE_NAME = "orders";
 	private static String COL_ID = "id";
@@ -93,9 +88,9 @@ public class Order_dao {
         ResultSet rs = null;
 
         try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
             
             if(rs.first()) {
@@ -182,9 +177,9 @@ public class Order_dao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             
             rs = stmt.executeQuery("SELECT MAX(" + COL_ID + ") FROM " + TABLE_NAME + ";");
             
@@ -261,10 +256,10 @@ public class Order_dao {
 		Statement stmt = null;
         
 		try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            stmt = conn.createStatement();
             stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " (" + COL_EMAIL + ", " + COL_DATE + ", " + COL_PRICE + ", " + COL_SHIPCODE + ", " + COL_SHIPCOMP + ") " +
             					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');");
             

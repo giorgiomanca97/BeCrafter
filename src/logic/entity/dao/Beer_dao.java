@@ -1,24 +1,19 @@
 package logic.entity.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import logic.designclasses.DaoHelper;
+import logic.designclasses.DaoHelper.StatementMode;
 import logic.entity.Beer;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 
 public class Beer_dao {
-	// Informazioni database
-	private static String USER = "root";
-	private static String PASS = "becrafter";
-	private static String DB_URL = "jdbc:mariadb://localhost:3306/becrafter";
-	private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
-	
 	// Informazioni tabella birre
 	private static String TABLE_NAME = "beers";
     private static String COL_ID = "id";
@@ -44,9 +39,9 @@ public class Beer_dao {
         ResultSet rs = null;
 
         try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
             
             if(rs.first()) {

@@ -1,23 +1,18 @@
 package logic.entity.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import logic.designclasses.DaoHelper;
+import logic.designclasses.DaoHelper.StatementMode;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
 import logic.entity.Registered;
 
 public class Registered_dao {
-	// Informazioni database
-	private static String USER = "root";
-	private static String PASS = "becrafter";
-	private static String DB_URL = "jdbc:mariadb://localhost:3306/becrafter";
-	private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
-	
 	// Informazioni tabella ordini
 	private static String TABLE_NAME = "registered";
 	private static String COL_EMAIL = "email";
@@ -45,9 +40,9 @@ public class Registered_dao {
         ResultSet rs = null;
 
         try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
             
             if(rs.first()) {
@@ -127,9 +122,10 @@ public class Registered_dao {
         Connection conn = null;
         
 		try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
+        	DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
+            
             BillingInfo bi = registered.getBillingInfo();
             stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
             					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
@@ -163,9 +159,10 @@ public class Registered_dao {
         Connection conn = null;
         
 		try {
-        	Class.forName(DRIVER_CLASS_NAME);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
+			DaoHelper.loadDriver();
+            conn = DaoHelper.getConnection();
+            stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
+            
             BillingInfo bi = registered.getBillingInfo();
             stmt.executeUpdate("UPDATE " + TABLE_NAME + " SET " + COL_PASSWORD + " = '" + registered.getPassword() + "', " + COL_FIRSTNAME + " = '" + bi.getFirstName() + "', " + COL_LASTNAME + " = '" + bi.getLastName() + "', " + 
             					COL_ADDRESS + " = '" + bi.getAddress() + "', " + COL_CITY + " = '" + bi.getCity() + "', " + COL_COUNTRY + " = '" + bi.getCountry() + "', " + COL_POSTALCODE + " = '" + bi.getPostalCode() + 
