@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
+import error.WrongFieldException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
 import error.login.UsedEmailException;
@@ -69,6 +70,8 @@ public class Register_Boundary {
 					lbl_error.setText("Please fill all the fields");
 				} catch (IllegalCharacterException ice) {
 					lbl_error.setText("Please remove the ' character from the fields");
+				} catch (WrongFieldException wfe) {
+					lbl_error.setText("Some fields are not correct");
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
 				}

@@ -3,6 +3,7 @@ package logic.boundary;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
+import error.WrongFieldException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.LoginException;
@@ -97,6 +98,8 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Please fill all the empty fields");
 		} catch (IllegalCharacterException ice) {
 			lbl_error.setText("Please remove the ' character from the fields");
+		} catch (WrongFieldException wfe) {
+			lbl_error.setText("Some fields are not correct");
 		} catch (Exception e) {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}

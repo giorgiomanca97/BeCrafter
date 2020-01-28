@@ -3,6 +3,7 @@ package logic.bean;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
+import error.WrongFieldException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
@@ -121,6 +122,7 @@ public class Customer_Bean {
 		this.creditCard = creditCard;
 	}
 	
+	
 	public void loadLoggedCustomer() throws LoginException {	
 		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
 		
@@ -160,7 +162,7 @@ public class Customer_Bean {
 		Login_Controller.getInstance().login(email, password);
 	}
 	
-	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException {
+	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException, WrongFieldException {
 		if(email.length() == 0 || password.length() == 0) {
 			throw new EmptyFieldException();
 		}
@@ -174,7 +176,7 @@ public class Customer_Bean {
 	}
 	
 	
-	private BillingInfo getBillingInfo() throws EmptyFieldException, IllegalCharacterException {
+	private BillingInfo getBillingInfo() throws EmptyFieldException, IllegalCharacterException, WrongFieldException {
 		BillingInfo billingInfo = new BillingInfo();
 		
 		if(firstName.length() == 0 || lastName.length() == 0 || address.length() == 0 || 
@@ -189,6 +191,18 @@ public class Customer_Bean {
 			throw new IllegalCharacterException();
 		}
 		
+		if(!isOnlyLetters(firstName) ||
+		   !isOnlyLetters(lastName) || 
+		   !isValidString(address) ||
+		   !isOnlyLetters(city) ||
+		   !isOnlyLetters(country) ||
+		   !isOnlyDigits(postalCode) ||
+		   !isOnlyDigits(phoneNumber) ||
+		   !isValidCreditCard(creditCard)) {
+			throw new WrongFieldException();
+		}
+		
+		
 		billingInfo.setFirstName(firstName);
 		billingInfo.setLastName(lastName);
 		billingInfo.setAddress(address);
@@ -199,5 +213,55 @@ public class Customer_Bean {
 		billingInfo.setCard(creditCard);
 		
 		return billingInfo;
+	}
+	
+	
+	private boolean isValidString(String string) {
+		for(int i = 0; i < string.length(); i++){
+			char c = string.charAt(i);
+			if(!Character.isLetter(c) && !(c == ',')) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean isOnlyLetters(String string) {
+		for(int i = 0; i < string.length(); i++){
+			char c = string.charAt(i);
+			if(!Character.isLetter(c)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean isOnlyDigits(String string) {
+		for(int i = 0; i < string.length(); i++){
+			char c = string.charAt(i);
+			if(!Character.isDigit(c)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean isValidCreditCard(String card) {
+		String[] pieces = card.split("-");
+		
+		if(pieces.length != 4) {
+			return false;
+		}
+		
+		for (String string : pieces) {
+			if(string.length() != 4 || !isOnlyDigits(string)) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
