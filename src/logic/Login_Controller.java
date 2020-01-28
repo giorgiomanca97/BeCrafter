@@ -21,7 +21,7 @@ public class Login_Controller {
 		
 	}
 	
-	synchronized public static Login_Controller GetInstance() {
+	synchronized public static Login_Controller getInstance() {
 		if(instance == null) {
 			instance = new Login_Controller();
 		}

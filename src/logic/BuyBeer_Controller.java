@@ -89,7 +89,7 @@ public class BuyBeer_Controller {
 	}
 	
 	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, Exception {
-		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.GetInstance().isLogged(email)) {
+		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.getInstance().isLogged(email)) {
 			throw new UsedEmailException("Email already used. Please login!");
 		}
 		

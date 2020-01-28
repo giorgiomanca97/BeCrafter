@@ -123,7 +123,7 @@ public class Home_Boundary {
 	
 	
 	public void setLoggedCustomer() {
-		Registered registered = Login_Controller.GetInstance().getLoggedCustomer();
+		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
 		
 		if(registered != null) {
 			lbl_login.setText(registered.getEmail());
@@ -132,7 +132,7 @@ public class Home_Boundary {
 		
 	@FXML
 	public void openMenu() {
-		if(Login_Controller.GetInstance().getLoggedCustomer() != null) {
+		if(Login_Controller.getInstance().getLoggedCustomer() != null) {
 			vb_menu.setDisable(false);
 			vb_menu.setOpacity(1);
 		}	
@@ -156,7 +156,7 @@ public class Home_Boundary {
 
 	@FXML 
 	public void onLoginPressed() {
-		if(Login_Controller.GetInstance().getLoggedCustomer() == null) {
+		if(Login_Controller.getInstance().getLoggedCustomer() == null) {
 			try {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 				pageLoader.showOnPrimaryStage();
@@ -168,10 +168,10 @@ public class Home_Boundary {
 
 	@FXML 
 	public void onLogoutPressed() {
-		Registered registered = Login_Controller.GetInstance().getLoggedCustomer();
+		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
 		
 		if(registered != null) {
-			Login_Controller.GetInstance().logout(registered.getEmail());
+			Login_Controller.getInstance().logout(registered.getEmail());
 			lbl_login.setText("Login");
 		}
 	}

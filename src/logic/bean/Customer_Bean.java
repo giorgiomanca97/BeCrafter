@@ -6,11 +6,13 @@ import error.IllegalCharacterException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
+import error.login.LoginException;
 import error.login.UsedEmailException;
 import error.login.WrongPasswordException;
 import logic.BuyBeer_Controller;
 import logic.Login_Controller;
 import logic.entity.BillingInfo;
+import logic.entity.Registered;
 
 public class Customer_Bean {
 	private String email;
@@ -119,6 +121,23 @@ public class Customer_Bean {
 		this.creditCard = creditCard;
 	}
 	
+	public void loadLoggedCustomer() throws LoginException {	
+		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
+		
+		if(registered != null) {
+			this.email = registered.getEmail();
+			this.firstName = registered.getBillingInfo().getFirstName();
+			this.lastName = registered.getBillingInfo().getLastName();
+			this.address = registered.getBillingInfo().getAddress();
+			this.city = registered.getBillingInfo().getCity();
+			this.country = registered.getBillingInfo().getCountry();
+			this.postalCode = registered.getBillingInfo().getPostalCode();
+			this.phoneNumber = registered.getBillingInfo().getPhone();
+			this.creditCard = registered.getBillingInfo().getCard();
+		} else {
+			throw new LoginException();
+		}
+	}
 	
 	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, Exception  {
 		if(email.length() == 0 || !email.contains("@")) {
@@ -138,7 +157,7 @@ public class Customer_Bean {
 			throw new IllegalCharacterException();
 		}
 		
-		Login_Controller.GetInstance().login(email, password);
+		Login_Controller.getInstance().login(email, password);
 	}
 	
 	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException {
@@ -151,7 +170,7 @@ public class Customer_Bean {
 		
 		BillingInfo billingInfo = getBillingInfo();
 		
-		Login_Controller.GetInstance().register(email, password, billingInfo);
+		Login_Controller.getInstance().register(email, password, billingInfo);
 	}
 	
 	
