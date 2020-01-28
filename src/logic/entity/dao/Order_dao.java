@@ -25,13 +25,13 @@ public class Order_dao {
 	private static String ORDERS_FOLDER_PATH = "persistence/orders"; 
 	
 	// Informazioni tabella ordini
-	private static String TABLE_NAME = "orders";
-	private static String COL_ID = "id";
-	private static String COL_EMAIL = "email";
-	private static String COL_DATE = "date";
-	private static String COL_PRICE = "price";
-	private static String COL_SHIPCODE = "shippingCode";
-	private static String COL_SHIPCOMP = "shippingCompany";
+	private static String TABLE_ORDERS = "orders";
+	private static String TABLE_ORDERS_COL_ID = "id";
+	private static String TABLE_ORDERS_COL_EMAIL = "email";
+	private static String TABLE_ORDERS_COL_DATE = "date";
+	private static String TABLE_ORDERS_COL_PRICE = "price";
+	private static String TABLE_ORDERS_COL_SHIPCODE = "shippingCode";
+	private static String TABLE_ORDERS_COL_SHIPCOMP = "shippingCompany";
 	
 	
 	private Order_dao() {
@@ -95,13 +95,13 @@ public class Order_dao {
             
             if(rs.first()) {
             	do {
-            		String orderId = IDconverter.intToId(rs.getInt(COL_ID), IDconverter.Type.ORDER);
+            		String orderId = IDconverter.intToId(rs.getInt(TABLE_ORDERS_COL_ID), IDconverter.Type.ORDER);
             		Order order = new Order(orderId);
-            		order.setEmail(rs.getString(COL_EMAIL));
-            		order.setDate(rs.getString(COL_DATE));
-            		order.setPrice(rs.getFloat(COL_PRICE));
-            		order.setShippingCode(rs.getString(COL_SHIPCODE));
-            		order.setShippingCompany(rs.getString(COL_SHIPCOMP));
+            		order.setEmail(rs.getString(TABLE_ORDERS_COL_EMAIL));
+            		order.setDate(rs.getString(TABLE_ORDERS_COL_DATE));
+            		order.setPrice(rs.getFloat(TABLE_ORDERS_COL_PRICE));
+            		order.setShippingCode(rs.getString(TABLE_ORDERS_COL_SHIPCODE));
+            		order.setShippingCompany(rs.getString(TABLE_ORDERS_COL_SHIPCOMP));
             		
             		File file = new File(ORDERS_FOLDER_PATH + "/" + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
@@ -153,13 +153,13 @@ public class Order_dao {
 	}
 	
 	public static ArrayList<Order> getOrdersByEmail(String email) {
-		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_EMAIL + " = '" + email +"';");;
+		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_EMAIL + " = '" + email +"';");;
 		
 		return result;
 	}
 	
 	public static Order getOrderById(String id) {
-		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = '" + id +"';");	
+		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_ID + " = '" + id +"';");	
 		
 		if(result.size() == 0) {
 			return null;
@@ -181,7 +181,7 @@ public class Order_dao {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             
-            rs = stmt.executeQuery("SELECT MAX(" + COL_ID + ") FROM " + TABLE_NAME + ";");
+            rs = stmt.executeQuery("SELECT MAX(" + TABLE_ORDERS_COL_ID + ") FROM " + TABLE_ORDERS + ";");
             
             if(rs.first()) {
             	result = IDconverter.intToId(rs.getInt(1), IDconverter.Type.ORDER);
@@ -260,7 +260,7 @@ public class Order_dao {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " (" + COL_EMAIL + ", " + COL_DATE + ", " + COL_PRICE + ", " + COL_SHIPCODE + ", " + COL_SHIPCOMP + ") " +
+            stmt.executeUpdate("INSERT INTO " + TABLE_ORDERS + " (" + TABLE_ORDERS_COL_EMAIL + ", " + TABLE_ORDERS_COL_DATE + ", " + TABLE_ORDERS_COL_PRICE + ", " + TABLE_ORDERS_COL_SHIPCODE + ", " + TABLE_ORDERS_COL_SHIPCOMP + ") " +
             					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');");
             
             saveOrderData(order);
