@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `registered` (
 -- Dump dei dati della tabella becrafter.registered: ~2 rows (circa)
 /*!40000 ALTER TABLE `registered` DISABLE KEYS */;
 INSERT INTO `registered` (`email`, `password`, `firstname`, `lastname`, `address`, `city`, `country`, `postalCode`, `phone`, `card`) VALUES
-	('bianchidavide97@gmail.com', 'becrafter1', 'Davide', 'Bianchi', 'via cerreto, 32', 'Frosinone', 'Italy', '03100', '3403788794', '1234-5678-9012-3456'),
-	('giorgio.manca.97@gmail.com', 'becrafter2', 'Giorgio', 'Manca', 'via lago di como, 2', 'Frosinone', 'Italy', '03100', '3348566902', '0123-4567-8901-2345');
+	('bianchidavide97@gmail.com', 'BeCrafter1', 'Davide', 'Bianchi', 'via cerreto, 32', 'Frosinone', 'Italy', '03100', '3403788794', '1234-5678-9012-3456'),
+	('giorgio.manca.97@gmail.com', 'BeCrafter2', 'Giorgio', 'Manca', 'via lago di como, 2', 'Frosinone', 'Italy', '03100', '3348566902', '0123-4567-8901-2345');
 /*!40000 ALTER TABLE `registered` ENABLE KEYS */;
 
 -- Dump della struttura di tabella becrafter.storehouse_containers
@@ -130,7 +130,7 @@ INSERT INTO `storehouse_products` (`beerId`, `containerType`, `containerVolume`,
 	('B003', 'BARREL', 10000, 250);
 /*!40000 ALTER TABLE `storehouse_products` ENABLE KEYS */;
 
--- Dump della struttura di tabella becrafter.storehouse_rawmaterialsorders
+-- Dump della struttura di tabella becrafter.storehouse_rawmaterials
 CREATE TABLE IF NOT EXISTS `storehouse_rawmaterials` (
   `type` enum('HOP','BARLEY','RICE','CORN','WHEAT','SUGAR','WATER') NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 0,

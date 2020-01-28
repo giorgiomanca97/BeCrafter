@@ -58,6 +58,8 @@ public class Login_Controller {
 			} else {
 				throw new InexistentEmailException();
 			}
+		} else if(!loggedCustomer.getPassword().equals(password)) {
+			throw new WrongPasswordException();
 		}
 	}
 	
