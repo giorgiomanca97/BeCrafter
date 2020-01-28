@@ -109,7 +109,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_firstname" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_firstname" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -132,7 +132,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_lastname" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_lastname" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -155,7 +155,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_address" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_address" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -178,7 +178,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_city" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_city" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -201,7 +201,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_country" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_country" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -224,7 +224,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_postalcode" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_postalcode" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -247,7 +247,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_phoneNumber" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_phoneNumber" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -270,7 +270,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_creditCardNumber" prefHeight="30.0" prefWidth="320.0">
+                  <TextField fx:id="tf_r_creditCardNumber" prefHeight="30.0" prefWidth="320.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

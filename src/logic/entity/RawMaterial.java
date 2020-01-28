@@ -5,12 +5,12 @@ import logic.entity.interfaces.Storable;
 
 public class RawMaterial implements Storable {
     private RawMaterialType type;
-    private int quantity;
+    private int mass;
 
     
     public RawMaterial(RawMaterialType type) {
     	this.type = type;
-    	this.quantity = 0;
+    	this.mass = 0;
     }
 
     
@@ -21,44 +21,44 @@ public class RawMaterial implements Storable {
     
     @Override
 	public int getQuantity() {
-		return this.quantity;
+		return this.mass;
 	}
 
 	@Override
-	public void setQuantity(int quantity) throws StorableIllegalQuantityException {
-		if(quantity < 0) {
+	public void setQuantity(int mass) throws StorableIllegalQuantityException {
+		if(mass < 0) {
 			throw new StorableIllegalQuantityException();
 		}
 		
-		this.quantity = quantity;
+		this.mass = mass;
 	}
 
 	@Override
-	public void addQuantity(int quantity) {
-		this.quantity += quantity;
+	public void addQuantity(int mass) {
+		this.mass += mass;
 	}
 
 	@Override
-	public void removeQuantity(int quantity) throws StorableIllegalQuantityException {
-		if(quantity > this.quantity) {
+	public void removeQuantity(int mass) throws StorableIllegalQuantityException {
+		if(mass > this.mass) {
 			throw new StorableIllegalQuantityException();
 		}
-		this.quantity -= quantity;
+		this.mass -= mass;
 	}
 
 	@Override
 	public void resetQuantity() {
-		this.quantity = 0;
+		this.mass = 0;
 	}
 	
 	@Override
-	public void pull(Storable from, int quantity) throws StorableIllegalQuantityException {
-		if(from.getQuantity() > quantity) {
+	public void pull(Storable from, int mass) throws StorableIllegalQuantityException {
+		if(from.getQuantity() > mass) {
 			throw new StorableIllegalQuantityException();
 		}
 		
-		from.removeQuantity(quantity);
-		this.addQuantity(quantity);
+		from.removeQuantity(mass);
+		this.addQuantity(mass);
 	}
 	@Override
 	public void pull(Storable from) {
@@ -68,13 +68,13 @@ public class RawMaterial implements Storable {
 	}
 
 	@Override
-	public void push(Storable to, int quantity) throws StorableIllegalQuantityException{
-		if(this.getQuantity() > quantity) {
+	public void push(Storable to, int mass) throws StorableIllegalQuantityException{
+		if(this.getQuantity() > mass) {
 			throw new StorableIllegalQuantityException();
 		}
 		
-		this.removeQuantity(quantity);
-		to.addQuantity(quantity);
+		this.removeQuantity(mass);
+		to.addQuantity(mass);
 	}
 	@Override
 	public void push(Storable to) {
@@ -101,7 +101,7 @@ public class RawMaterial implements Storable {
 	
 	@Override
 	public void copyQuantity(Storable other) {
-		this.quantity = other.getQuantity();
+		this.mass = other.getQuantity();
 	}
 
 	@Override
@@ -113,6 +113,6 @@ public class RawMaterial implements Storable {
 	
 	@Override
 	public String toString() {
-		return "RawMaterial: " + type.toString() + " " + quantity;
+		return "RawMaterial: " + type.toString() + " " + mass;
 	}
 }

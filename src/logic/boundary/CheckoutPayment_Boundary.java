@@ -20,14 +20,14 @@ import javafx.scene.control.Button;
 
 public class CheckoutPayment_Boundary {	
 	@FXML private TextField tf_email;
-	@FXML private TextField tf_firstname;
-	@FXML private TextField tf_lastname;
-	@FXML private TextField tf_address;
-	@FXML private TextField tf_city;
-	@FXML private TextField tf_country;
-	@FXML private TextField tf_postalcode;
-	@FXML private TextField tf_phoneNumber;
-	@FXML private TextField tf_creditcardNumber;
+	@FXML private TextField tf_cp_firstname;
+	@FXML private TextField tf_cp_lastname;
+	@FXML private TextField tf_cp_address;
+	@FXML private TextField tf_cp_city;
+	@FXML private TextField tf_cp_country;
+	@FXML private TextField tf_cp_postalcode;
+	@FXML private TextField tf_cp_phoneNumber;
+	@FXML private TextField tf_cp_creditcardNumber;
 	@FXML private Label lbl_error;
 	@FXML private Label lbl_login;
 	@FXML private TextField tf_loginEmail;
@@ -76,14 +76,14 @@ public class CheckoutPayment_Boundary {
 	public void confirmPurchase() {
 		lbl_error.setText("");
 		checkoutPaymentBean.setEmail(tf_email.getText());
-		checkoutPaymentBean.setFirstName(tf_firstname.getText());
-		checkoutPaymentBean.setLastName(tf_lastname.getText());
-		checkoutPaymentBean.setAddress(tf_address.getText());
-		checkoutPaymentBean.setCity(tf_city.getText());
-		checkoutPaymentBean.setCountry(tf_country.getText());
-		checkoutPaymentBean.setPostalCode(tf_postalcode.getText());
-		checkoutPaymentBean.setPhoneNumber(tf_phoneNumber.getText());
-		checkoutPaymentBean.setCreditCard(tf_creditcardNumber.getText());
+		checkoutPaymentBean.setFirstName(tf_cp_firstname.getText());
+		checkoutPaymentBean.setLastName(tf_cp_lastname.getText());
+		checkoutPaymentBean.setAddress(tf_cp_address.getText());
+		checkoutPaymentBean.setCity(tf_cp_city.getText());
+		checkoutPaymentBean.setCountry(tf_cp_country.getText());
+		checkoutPaymentBean.setPostalCode(tf_cp_postalcode.getText());
+		checkoutPaymentBean.setPhoneNumber(tf_cp_phoneNumber.getText());
+		checkoutPaymentBean.setCreditCard(tf_cp_creditcardNumber.getText());
 		
 		try {
 			String orderId = checkoutPaymentBean.confirmPurchase();
@@ -141,14 +141,14 @@ public class CheckoutPayment_Boundary {
 	private void autoFill() {
 		if(checkoutPaymentBean != null) {
 			tf_email.setText(checkoutPaymentBean.getEmail());
-			tf_firstname.setText(checkoutPaymentBean.getFirstName());
-			tf_lastname.setText(checkoutPaymentBean.getLastName());
-			tf_address.setText(checkoutPaymentBean.getAddress());
-			tf_city.setText(checkoutPaymentBean.getCity());
-			tf_country.setText(checkoutPaymentBean.getCountry());
-			tf_postalcode.setText(checkoutPaymentBean.getPostalCode());
-			tf_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
-			tf_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
+			tf_cp_firstname.setText(checkoutPaymentBean.getFirstName());
+			tf_cp_lastname.setText(checkoutPaymentBean.getLastName());
+			tf_cp_address.setText(checkoutPaymentBean.getAddress());
+			tf_cp_city.setText(checkoutPaymentBean.getCity());
+			tf_cp_country.setText(checkoutPaymentBean.getCountry());
+			tf_cp_postalcode.setText(checkoutPaymentBean.getPostalCode());
+			tf_cp_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
+			tf_cp_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
 		}
 	}
 }

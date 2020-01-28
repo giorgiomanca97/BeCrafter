@@ -33,13 +33,13 @@ public class Recipe_dao {
 				fileReader = new FileReader(file);
 				bufferedReader = new BufferedReader(fileReader);
 				
-				StringBuilder textBuilder = new StringBuilder();
+				StringBuilder recipeTextBuilder = new StringBuilder();
 				String line;
 				while ((line = bufferedReader.readLine()) != null){
-					textBuilder.append(line + "\n");
+					recipeTextBuilder.append(line + "\n");
 				}
 				
-				result = textToRecipe(textBuilder.toString());
+				result = textToRecipe(recipeTextBuilder.toString());
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");

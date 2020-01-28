@@ -52,13 +52,13 @@ public class Order_dao {
 				fileReader = new FileReader(file);
 				bufferedReader = new BufferedReader(fileReader);
 				
-				StringBuilder textBuilder = new StringBuilder();
+				StringBuilder orderTextBuilder = new StringBuilder();
 				String line;
 				while ((line = bufferedReader.readLine()) != null){
-					textBuilder.append(line + "\n");
+					orderTextBuilder.append(line + "\n");
 				}
 				
-				result = fetchOrderData(textBuilder.toString());
+				result = fetchOrderData(orderTextBuilder.toString());
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");

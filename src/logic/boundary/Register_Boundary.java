@@ -23,14 +23,14 @@ public class Register_Boundary {
 	@FXML private TextField tf_email;
 	@FXML private PasswordField psw_password;
 	@FXML private PasswordField psw_passwordConfirm;
-	@FXML private TextField tf_firstname;
-	@FXML private TextField tf_lastname;
-	@FXML private TextField tf_address;
-	@FXML private TextField tf_city;
-	@FXML private TextField tf_country;
-	@FXML private TextField tf_postalcode;
-	@FXML private TextField tf_phoneNumber;
-	@FXML private TextField tf_creditCardNumber;
+	@FXML private TextField tf_r_firstname;
+	@FXML private TextField tf_r_lastname;
+	@FXML private TextField tf_r_address;
+	@FXML private TextField tf_r_city;
+	@FXML private TextField tf_r_country;
+	@FXML private TextField tf_r_postalcode;
+	@FXML private TextField tf_r_phoneNumber;
+	@FXML private TextField tf_r_creditCardNumber;
 	@FXML private CheckBox cb_agreement;
 	@FXML private Label lbl_error;
 	
@@ -47,14 +47,14 @@ public class Register_Boundary {
 		lbl_error.setText("");
 		customerBean.setEmail(tf_email.getText());
 		customerBean.setPassword(psw_password.getText());
-		customerBean.setFirstName(tf_firstname.getText());
-		customerBean.setLastName(tf_lastname.getText());
-		customerBean.setAddress(tf_address.getText());
-		customerBean.setCity(tf_city.getText());
-		customerBean.setCountry(tf_country.getText());
-		customerBean.setPostalCode(tf_postalcode.getText());
-		customerBean.setPhoneNumber(tf_phoneNumber.getText());
-		customerBean.setCreditCard(tf_creditCardNumber.getText());
+		customerBean.setFirstName(tf_r_firstname.getText());
+		customerBean.setLastName(tf_r_lastname.getText());
+		customerBean.setAddress(tf_r_address.getText());
+		customerBean.setCity(tf_r_city.getText());
+		customerBean.setCountry(tf_r_country.getText());
+		customerBean.setPostalCode(tf_r_postalcode.getText());
+		customerBean.setPhoneNumber(tf_r_phoneNumber.getText());
+		customerBean.setCreditCard(tf_r_creditCardNumber.getText());
 		
 		if(cb_agreement.isSelected()) {
 			if(psw_password.getText().equals(psw_passwordConfirm.getText())) {
