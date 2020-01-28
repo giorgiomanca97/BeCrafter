@@ -41,26 +41,37 @@ public class Order_dao {
 	}
 	
 	
-	private static OrderDataFetch getOrderData(File file) throws IOException, TextParseException {
+	private static OrderDataFetch getOrderData(File file) throws TextParseException {
+		OrderDataFetch result = null;
+		
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;
+		
+		try {			
+			if(file.exists()) {
+				fileReader = new FileReader(file);
+				bufferedReader = new BufferedReader(fileReader);
 				
-		if(file.exists()) {
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			StringBuilder textBuilder = new StringBuilder();
-			String line;
-			while ((line = bufferedReader.readLine()) != null){
-				textBuilder.append(line + "\n");
+				StringBuilder textBuilder = new StringBuilder();
+				String line;
+				while ((line = bufferedReader.readLine()) != null){
+					textBuilder.append(line + "\n");
+				}
+				
+				result = fetchOrderData(textBuilder.toString());
 			}
-			
+		} catch (IOException ioe) {
+			Logger.getGlobal().log(Level.SEVERE, "File reading error");
+		} finally {
 			DaoHelper.close(bufferedReader);
 			DaoHelper.close(fileReader);
-			return fetchOrderData(textBuilder.toString());
-		} else {
-			throw new IOException();
+			
+			if(result == null) {
+				throw new NullPointerException();
+			}
 		}
+		
+		return result;
 	}
 	
 	private static ArrayList<Order> getOrders(String query){
@@ -101,10 +112,8 @@ public class Order_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		} catch (IOException ioe) {
+		} catch (TextParseException tpe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
-		}catch (TextParseException tpe) {
-			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} catch (IdException ie) {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
