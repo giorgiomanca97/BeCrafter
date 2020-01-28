@@ -117,7 +117,7 @@ public class Home_Boundary {
 				tp_products.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 	
@@ -150,7 +150,7 @@ public class Home_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 
@@ -161,7 +161,7 @@ public class Home_Boundary {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 				pageLoader.showOnPrimaryStage();
 			} catch (IOException ioe) {
-				ioe.printStackTrace();
+				// TODO: handle exception
 			}
 		}
 	}

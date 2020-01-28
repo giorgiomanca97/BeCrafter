@@ -67,7 +67,7 @@ public class Checkout_Boundary {
 				ap_checkout.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class Checkout_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 	

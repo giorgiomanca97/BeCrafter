@@ -47,7 +47,7 @@ public class CheckoutSummary_Boundary {
 					vbox_products.getChildren().add(pageLoader.getRootView());
 				}
 			} catch (IOException ioe) {
-				ioe.printStackTrace();
+				// TODO: handle exception
 			}
 		}
 	}

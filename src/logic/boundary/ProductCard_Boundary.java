@@ -49,7 +49,7 @@ public class ProductCard_Boundary {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.BUYBEER);
 				pageLoader.showOnPrimaryStage();
 			} catch (IOException ioe) {
-				ioe.printStackTrace();
+				// TODO: handle exception
 			}			
 		}
 	}

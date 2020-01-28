@@ -134,7 +134,7 @@ public class Registered_dao {
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception
 		} catch (SQLException se) {
-			se.printStackTrace();
+			// TODO: handle exception
 		}
         finally {
             try {

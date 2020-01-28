@@ -73,7 +73,7 @@ public class Register_Boundary {
 				} catch (WrongFieldException wfe) {
 					lbl_error.setText("Some fields are not correct");
 				} catch (IOException ioe) {
-					ioe.printStackTrace();
+					// TODO: handle exception
 				}
 			} else {
 				lbl_error.setText("The password fields do not match");
@@ -90,7 +90,7 @@ public class Register_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			// TODO: handle exception
 		}
 	}	
 }

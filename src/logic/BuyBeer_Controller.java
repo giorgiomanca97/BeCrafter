@@ -26,7 +26,7 @@ public class BuyBeer_Controller {
 	
 	private Product selectedProduct;
 	private CloneStorableList cart;
-	
+	private Random random = null; 		// Attributo per metodo dummy
 	
 	private BuyBeer_Controller() {
 		initCart();
@@ -82,7 +82,7 @@ public class BuyBeer_Controller {
 			product.setQuantity(quantity);
 			cart.update(product);
 		} catch (StorableIllegalQuantityException siqe) {
-			// TODO: handle exception
+			//TODO: handle exception
 		}
 	}
 	
@@ -147,7 +147,10 @@ public class BuyBeer_Controller {
 	
 	private boolean checkPayment(float price, String creditCard) {
 		// Metodo dummy
-		Random random = new Random();
+		if(random == null) {
+			random = new Random();
+		}
+
 		int value = random.nextInt(100);
 		
 		if(value < 75) {
