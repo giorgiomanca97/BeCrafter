@@ -5,6 +5,7 @@ import error.EmptyFieldException;
 import error.IllegalCharacterException;
 import error.PaymentRefusedException;
 import error.WrongFieldException;
+import error.id.IdException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.LoginException;
@@ -103,7 +104,7 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Some fields are not correct");
 		} catch (PaymentRefusedException pre) {
 			lbl_error.setText("Payment refused. Please retry");
-		} catch (Exception e) {
+		} catch (IdException e) {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}
 	}

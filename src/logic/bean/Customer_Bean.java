@@ -5,6 +5,7 @@ import error.EmptyFieldException;
 import error.IllegalCharacterException;
 import error.PaymentRefusedException;
 import error.WrongFieldException;
+import error.id.IdException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
@@ -142,7 +143,7 @@ public class Customer_Bean {
 		}
 	}
 	
-	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, Exception  {
+	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
 		if(email.length() == 0 || password.length() == 0) {
 			throw new EmptyFieldException();
 		}

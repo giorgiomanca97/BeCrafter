@@ -18,7 +18,7 @@ import error.TextParseException;
 import error.id.IdException;
 import logic.designclasses.DaoHelper;
 import logic.designclasses.DaoHelper.StatementMode;
-import logic.designclasses.IDconverter;
+import logic.designclasses.IdConverter;
 import logic.entity.BillingInfo;
 import logic.entity.Order;
 import logic.entity.Product;
@@ -99,7 +99,7 @@ public class Order_dao {
             
             if(rs.first()) {
             	do {
-            		String orderId = IDconverter.intToId(rs.getInt(TABLE_ORDERS_COL_ID), IDconverter.Type.ORDER);
+            		String orderId = IdConverter.intToId(rs.getInt(TABLE_ORDERS_COL_ID), IdConverter.Type.ORDER);
             		Order order = new Order(orderId);
             		order.setEmail(rs.getString(TABLE_ORDERS_COL_EMAIL));
             		order.setDate(rs.getString(TABLE_ORDERS_COL_DATE));
@@ -193,7 +193,7 @@ public class Order_dao {
             rs = stmt.executeQuery(query);
             
             if(rs.first()) {
-            	result = IDconverter.intToId(rs.getInt(1), IDconverter.Type.ORDER);
+            	result = IdConverter.intToId(rs.getInt(1), IdConverter.Type.ORDER);
             }
 		} catch (ClassNotFoundException ce) {
 			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");

@@ -8,9 +8,10 @@ import java.util.logging.Logger;
 
 import error.PaymentRefusedException;
 import error.StorableIllegalQuantityException;
+import error.id.IdException;
 import error.login.UsedEmailException;
 import logic.designclasses.CloneStorableList;
-import logic.designclasses.IDconverter;
+import logic.designclasses.IdConverter;
 import logic.entity.Beer;
 import logic.entity.BillingInfo;
 import logic.entity.Container;
@@ -97,7 +98,7 @@ public class BuyBeer_Controller {
 		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
-	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, PaymentRefusedException, Exception {
+	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, PaymentRefusedException, IdException {
 		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.getInstance().isLogged(email)) {
 			throw new UsedEmailException("Email already used. Please login!");
 		}
@@ -106,10 +107,10 @@ public class BuyBeer_Controller {
 		String orderId;
 		
 		if(lastOrderId == null) {
-			orderId = IDconverter.intToId(1, IDconverter.Type.ORDER);
+			orderId = IdConverter.intToId(1, IdConverter.Type.ORDER);
 		}
 		else {
-			orderId = IDconverter.nextId(lastOrderId);
+			orderId = IdConverter.nextId(lastOrderId);
 		}
 		
 		Order order = new Order(orderId);
