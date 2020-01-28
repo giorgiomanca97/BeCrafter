@@ -27,9 +27,14 @@
             <Image url="@../icons/back.png" />
          </image>
       </ImageView>
+      <Label fx:id="lbl_warning" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text="warning message" textFill="RED" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="125.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <HBox layoutX="245.0" layoutY="126.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="75.0">
          <children>
-            <Label prefHeight="40.0" prefWidth="400.0" text="Insert the order code you are looking for here:" textAlignment="CENTER">
+            <Label prefHeight="40.0" prefWidth="400.0" text="Insert here the order code you are looking for:" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -54,7 +59,7 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <HBox layoutX="465.0" layoutY="152.0" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="152.0">
+      <HBox layoutX="465.0" layoutY="152.0" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="175.0">
          <children>
             <VBox>
                <children>
@@ -214,7 +219,7 @@
             </VBox>
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="400.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="425.0">
          <content>
             <VBox fx:id="vb_products" fillWidth="false" prefWidth="1170.0" />
          </content></ScrollPane>
