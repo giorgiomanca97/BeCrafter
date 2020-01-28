@@ -1,6 +1,7 @@
 package logic;
 
 import logic.entity.Order;
+import logic.entity.dao.Order_dao;
 
 public class CheckOrder_Controller {
 	
@@ -17,6 +18,7 @@ public class CheckOrder_Controller {
 	public Order searchOrder(String orderId) {
 		Order order = new Order(orderId);
 		//TODO: search in database and set bean
+		Order_dao.getOrderById(orderId);
 		return order;
 	}
 	
