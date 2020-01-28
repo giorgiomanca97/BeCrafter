@@ -86,7 +86,8 @@ public class PageLoader {
 		HOME("/res/fxml/Home_View.fxml", "Home"),
 		LOGIN("/res/fxml/Login_View.fxml", "Login"),
 		PRODUCTCARD("/res/fxml/ProductCard_View.fxml", "Product"),
-		REGISTER("/res/fxml/Register_View.fxml", "Register");
+		REGISTER("/res/fxml/Register_View.fxml", "Register"),
+		REGISTER_CONFIRMATION("/res/fxml/RegisterConfirmation_View.fxml", "Register Confirmation");
 		
 		private String resource;
 		private String title;

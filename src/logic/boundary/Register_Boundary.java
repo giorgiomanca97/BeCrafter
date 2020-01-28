@@ -58,7 +58,7 @@ public class Register_Boundary {
 			if(psw_password.getText().equals(psw_passwordConfirm.getText())) {
 				try {
 					customerBean.register();
-					PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
+					PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
 					pageLoader.showOnPrimaryStage();
 				} catch (InvalidEmailException iee) {
 					lbl_error.setText("The email is not a valid mail");
@@ -92,6 +92,5 @@ public class Register_Boundary {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-	}
-	
+	}	
 }
