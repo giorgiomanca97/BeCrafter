@@ -65,10 +65,10 @@ public class Order_dao {
 		} finally {
 			DaoHelper.close(bufferedReader);
 			DaoHelper.close(fileReader);
-			
-			if(result == null) {
-				throw new NullPointerException();
-			}
+		}
+		
+		if(result == null) {
+			throw new NullPointerException();
 		}
 		
 		return result;
@@ -113,6 +113,8 @@ public class Order_dao {
 		} catch (SQLException se) {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		} catch (TextParseException tpe) {
+			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
+		} catch (NullPointerException npe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (IdException ie) {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
