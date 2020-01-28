@@ -52,13 +52,13 @@ public class Registered_dao {
             		            		
             		BillingInfo billingInfo = new BillingInfo();
             		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_FIRSTNAME));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_LASTNAME));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_ADDRESS));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_CITY));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_COUNTRY));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_POSTALCODE));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_PHONE));
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_CARD));
+            		billingInfo.setLastName(rs.getString(TABLE_REGISTERED_COL_LASTNAME));
+            		billingInfo.setAddress(rs.getString(TABLE_REGISTERED_COL_ADDRESS));
+            		billingInfo.setCity(rs.getString(TABLE_REGISTERED_COL_CITY));
+            		billingInfo.setCountry(rs.getString(TABLE_REGISTERED_COL_COUNTRY));
+            		billingInfo.setPostalCode(rs.getString(TABLE_REGISTERED_COL_POSTALCODE));
+            		billingInfo.setPhone(rs.getString(TABLE_REGISTERED_COL_PHONE));
+            		billingInfo.setCard(rs.getString(TABLE_REGISTERED_COL_CARD));
             		
             		Registered registered = new Registered(email, password, billingInfo);
             		
