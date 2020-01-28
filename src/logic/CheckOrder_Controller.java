@@ -16,9 +16,7 @@ public class CheckOrder_Controller {
 	}
 	
 	public Order searchOrder(String orderId) {
-		Order order = new Order(orderId);
-		//TODO: search in database and set bean
-		Order_dao.getOrderById(orderId);
+		Order order = Order_dao.getOrderById(orderId);
 		return order;
 	}
 	

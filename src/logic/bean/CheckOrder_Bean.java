@@ -76,6 +76,14 @@ public class CheckOrder_Bean {
 		setEmail(order.getEmail());
 		setShippingCode(order.getShippingCode());
 		setShippingCompany(order.getShippingCompany());
+		
+		if(shippingCode.length() == 0) {
+			shippingCode = "not yet available";
+		}
+		
+		if(shippingCompany.length() == 0) {
+			shippingCompany = "not yet available";
+		}
 	}
 	
 }
