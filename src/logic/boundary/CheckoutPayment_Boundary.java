@@ -3,6 +3,7 @@ package logic.boundary;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
+import error.PaymentRefusedException;
 import error.WrongFieldException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
@@ -100,6 +101,8 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Please remove the ' character from the fields");
 		} catch (WrongFieldException wfe) {
 			lbl_error.setText("Some fields are not correct");
+		} catch (PaymentRefusedException pre) {
+			lbl_error.setText("Payment refused. Please retry");
 		} catch (Exception e) {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}

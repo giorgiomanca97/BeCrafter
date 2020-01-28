@@ -3,6 +3,7 @@ package logic.bean;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
+import error.PaymentRefusedException;
 import error.WrongFieldException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
@@ -141,8 +142,12 @@ public class Customer_Bean {
 		}
 	}
 	
-	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, Exception  {
-		if(email.length() == 0 || !email.contains("@")) {
+	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, Exception  {
+		if(email.length() == 0 || password.length() == 0) {
+			throw new EmptyFieldException();
+		}
+		
+		if(!email.contains("@")) {
 			throw new InvalidEmailException();
 		}
 		
@@ -219,7 +224,7 @@ public class Customer_Bean {
 	private boolean isValidString(String string) {
 		for(int i = 0; i < string.length(); i++){
 			char c = string.charAt(i);
-			if(!Character.isLetter(c) && !(c == ',') && !(c == ' ')) {
+			if(!Character.isLetter(c) && !Character.isDigit(c) && c != ',' && c != ' ') {
 				return false;
 			}
 		}
@@ -250,13 +255,13 @@ public class Customer_Bean {
 	}
 	
 	private boolean isValidPhoneNumber(String string) {
-		if(string.charAt(0) != '+' || !Character.isDigit(string.charAt(0))) {
+		if(string.length() == 0 || (string.charAt(0) != '+' && !Character.isDigit(string.charAt(0)))) {
 			return false;
 		}
 		
-		for(int i = 0; i < string.length(); i++){
+		for(int i = 1; i < string.length(); i++){
 			char c = string.charAt(i);
-			if(!Character.isDigit(c) && !(c == ' ')) {
+			if(!Character.isDigit(c) && c != ' ') {
 				return false;
 			}
 		}

@@ -2,7 +2,9 @@ package logic;
 
 
 import java.util.Calendar;
+import java.util.Random;
 
+import error.PaymentRefusedException;
 import error.StorableIllegalQuantityException;
 import error.login.UsedEmailException;
 import logic.designclasses.CloneStorableList;
@@ -88,7 +90,7 @@ public class BuyBeer_Controller {
 		cart.remove(getProduct(beerId, containerType, containerVolume));
 	}
 	
-	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, Exception {
+	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, PaymentRefusedException, Exception {
 		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.getInstance().isLogged(email)) {
 			throw new UsedEmailException("Email already used. Please login!");
 		}
@@ -133,11 +135,26 @@ public class BuyBeer_Controller {
 		
 		order.setBillingInfo(billingInfo);
 		
-		Order_dao.insertOrder(order);
+		if(!checkPayment(price, billingInfo.getCard())) {
+			throw new PaymentRefusedException();
+		}
 		
+		Order_dao.insertOrder(order);
 		initCart();
 		
 		return order.getId();
+	}
+	
+	private boolean checkPayment(float price, String creditCard) {
+		// Metodo dummy
+		Random random = new Random();
+		int value = random.nextInt(100);
+		
+		if(value < 75) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	
