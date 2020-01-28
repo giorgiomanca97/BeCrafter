@@ -23,7 +23,7 @@ public class CheckOrder_Boundary {
 	}
 	
 	@FXML
-	public void searchOrder() {
+	public void onSearchPressed() {
 		
 	}
 	

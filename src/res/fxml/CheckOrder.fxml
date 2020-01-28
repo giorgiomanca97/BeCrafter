@@ -45,7 +45,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="40.0" prefWidth="200.0" text="Search Order">
+            <Button mnemonicParsing="false" onAction="#onSearchPressed" prefHeight="40.0" prefWidth="200.0" text="Search Order">
                <font>
                   <Font size="18.0" />
                </font>
