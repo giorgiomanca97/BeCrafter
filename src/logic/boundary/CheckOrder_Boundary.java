@@ -63,7 +63,7 @@ public class CheckOrder_Boundary {
 			lbl_shippingCode.setText(checkOrder_Bean.getShippingCode());
 			lbl_shippingCompany.setText(checkOrder_Bean.getShippingCompany());
 		} catch (OrderNotFoundException onfe) {
-			lbl_warning.setText("No order found with this order code");
+			lbl_warning.setText("no order found with this order code");
 			lbl_order.setText("");
 			lbl_date.setText("");
 			lbl_price.setText("");

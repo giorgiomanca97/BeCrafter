@@ -6,6 +6,7 @@ import error.id.OutOfRangeIdException;
 import error.id.UnsupportedIdException;
 
 public class IdConverter {
+	
 	private IdConverter() {
 		
 	}
@@ -40,11 +41,11 @@ public class IdConverter {
 		return stringBuilder.toString();
 	}
 	
-	public static int idToInt(String id) throws IdException, UnsupportedIdException, OutOfRangeIdException {		
-		Type type = getTypeOf(id);
-		
+	public static int idToInt(String id) throws IdException, UnsupportedIdException, OutOfRangeIdException {
 		try {
-			int value = Integer.valueOf(id.substring(1));
+			Type type = getTypeOf(id);
+			
+			int value = Integer.valueOf(id.substring(1, id.length()));
 			
 			if(value > type.maxValue()) {
 				throw new OutOfRangeIdException();
@@ -63,11 +64,25 @@ public class IdConverter {
 		return intToId(value + 1, type);
 	}
 	
+	public static boolean isIdValid(String id, Type type) {
+		try {
+			Type t = getTypeOf(id);
+			if(t == type) {
+				idToInt(id);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (IdException ie) {
+			return false;
+		}
+	}
+	
 	
 	public enum Type{
 		BEER("B",3),
 		RECIPE("R", 3),
-		ORDER("O", 6);
+		ORDER("X", 6);
 		
 		private String identifier;
 		private int digits;

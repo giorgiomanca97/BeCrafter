@@ -2,6 +2,7 @@ package logic.bean;
 
 import error.OrderNotFoundException;
 import logic.CheckOrder_Controller;
+import logic.designclasses.IdConverter;
 import logic.entity.Order;
 import logic.entity.Price;
 
@@ -71,6 +72,9 @@ public class CheckOrder_Bean {
 	}
 	
 	public void searchOrder() throws OrderNotFoundException {
+		if(!IdConverter.isIdValid(orderId, IdConverter.Type.ORDER)) {
+			throw new OrderNotFoundException();
+		}
 		Order order = CheckOrder_Controller.getInstance().searchOrder(this.orderId);
 		setDate(order.getDate());
 		setPrice(Price.toText( order.getPrice() ));

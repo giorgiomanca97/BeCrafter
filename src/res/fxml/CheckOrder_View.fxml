@@ -219,7 +219,7 @@
             </VBox>
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="425.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" opacity="0.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="425.0">
          <content>
             <VBox fx:id="vb_products" fillWidth="false" prefWidth="1170.0" />
          </content></ScrollPane>
