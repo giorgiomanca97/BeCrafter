@@ -39,22 +39,5 @@ public class CloneStorableList extends StorableList{
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public boolean updateAll(ArrayList<Storable> otherStorables) {
-		boolean result = true;
-		boolean r;
-		
-		for (Storable storable : otherStorables) {
-			
-			r = update(storable);
-			if(!r) {
-				result = false;
-			}
-		}
-		
-		return result;
-	}
-	
+	}	
 }

@@ -32,11 +32,32 @@ public abstract class StorableList {
 	
 	public abstract Storable get(Storable storable);
 	
-	public abstract ArrayList<Storable> getAll();
+	public ArrayList<Storable> getAll() {
+		ArrayList<Storable> result = new ArrayList<Storable>();
+		
+		for (Storable s : storables) {
+			result.add(get(s));
+		}
+		
+		return result;
+	}
 	
 	public abstract boolean update(Storable storable);
 	
-	public abstract boolean updateAll(ArrayList<Storable> otherStorables);
+	public boolean updateAll(ArrayList<Storable> otherStorables) {
+		boolean result = true;
+		boolean r;
+		
+		for (Storable storable : otherStorables) {
+			
+			r = update(storable);
+			if(!r) {
+				result = false;
+			}
+		}
+		
+		return result;
+	}
 	
 	public Storable remove(Storable storable) {
 		Storable s;
