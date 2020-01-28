@@ -14,15 +14,7 @@ public abstract class StorableList {
 	}
 	
 	
-	public void add(Storable storable) {
-		for (Storable s : storables) {
-			if(s.areSame(storable)) {
-				s.pull(storable);
-				return;
-			}
-		}
-		storables.add(storable);
-	}
+	public abstract void add(Storable storable);
 	
 	public void addAll(ArrayList<Storable> otherStorables) {
 		for (Storable s : otherStorables) {
@@ -59,23 +51,14 @@ public abstract class StorableList {
 		return result;
 	}
 	
-	public Storable remove(Storable storable) {
-		Storable s;
-    	
-    	for (int i = 0; i < storables.size(); i++) {
-    		s = storables.get(i);
-			if(s.areSame(storable)) {
-				storables.remove(i);
-				return s;
-			}
-		}
-    	
-		return null;
-	}
+	public abstract Storable remove(Storable storable);
 	
 	public ArrayList<Storable> removeAll() {
-		ArrayList<Storable> result = storables;
-		storables = new ArrayList<Storable>();
+		ArrayList<Storable> result = new ArrayList<Storable>();
+		
+		for (Storable storable : storables) {
+			result.add(remove(storable));
+		}
 		return result;
 	}
 	
