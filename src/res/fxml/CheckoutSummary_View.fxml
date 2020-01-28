@@ -87,7 +87,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" cancelButton="true" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBackToShoppingPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
+            <Button alignment="CENTER" layoutX="585.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBackToShoppingPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Shopping" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -95,7 +95,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_ConfirmProducts" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmProductsPressed" prefHeight="30.0" prefWidth="250.0" text="Confirm Products" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+            <Button fx:id="btn_ConfirmProducts" alignment="CENTER" defaultButton="true" layoutX="895.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmProductsPressed" prefHeight="30.0" prefWidth="250.0" text="Confirm Products" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

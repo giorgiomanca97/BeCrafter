@@ -12,7 +12,7 @@ import logic.entity.dao.Registered_dao;
 
 public class Login_Controller {
 	private static Login_Controller instance = null;
-	private static String invalidEmailChars = ",:;!?^*+-/%[](){}";
+	private static String invalidEmailChars = ",:;!?^*+/%[](){}";
 	
 	private Registered loggedCustomer = null;
 	
@@ -44,7 +44,7 @@ public class Login_Controller {
 	public void login(String email, String password) throws InexistentEmailException, WrongPasswordException{
 		Registered registered = Registered_dao.getRegisteredByEmail(email);
 		
-		if(registered.getEmail().equals(email)) {
+		if(registered != null && registered.getEmail().equals(email)) {
 			if(registered.getPassword().equals(password)) {
 				loggedCustomer = registered;
 			} else {
@@ -76,7 +76,10 @@ public class Login_Controller {
 		// Troppe chiocciole
 		int atCounter = 0;
 		for (int i = 0; i < email.length(); i++) {
-			atCounter++;
+			char c = email.charAt(i);
+			if(c == '@') {
+				atCounter++;
+			}
 		}
 		if(atCounter != 1) {
 			throw new InvalidEmailException();

@@ -60,6 +60,7 @@ public class Home_Boundary {
 	public void initialize() {		
 		homeBean = new Home_Bean();
 		closeMenu();
+		setLoggedCustomer();
 		updateProducts();
 	}
 	
@@ -121,11 +122,11 @@ public class Home_Boundary {
 	}
 	
 	
-	public void setLoggedCustomer(String email) {
-		if(email == null) {
-			lbl_login.setText("Login");
-		} else {
-			lbl_login.setText(email);
+	public void setLoggedCustomer() {
+		Registered registered = Login_Controller.GetInstance().getLoggedCustomer();
+		
+		if(registered != null) {
+			lbl_login.setText(registered.getEmail());
 		}
 	}
 		

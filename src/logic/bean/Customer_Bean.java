@@ -2,6 +2,7 @@ package logic.bean;
 
 
 import error.EmptyFieldException;
+import error.IllegalCharacterException;
 import error.login.InexistentEmailException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
@@ -119,7 +120,7 @@ public class Customer_Bean {
 	}
 	
 	
-	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, Exception  {
+	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, Exception  {
 		if(email.length() == 0 || !email.contains("@")) {
 			throw new InvalidEmailException();
 		}
@@ -129,17 +130,23 @@ public class Customer_Bean {
 		return BuyBeer_Controller.getInstance().confirmPurchase(email, billingInfo);
 	}
 	
-	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException {
+	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException, IllegalCharacterException {
 		if(email.length() == 0 || password.length() == 0) {
 			throw new EmptyFieldException();
+		}
+		if(email.contains("'") || password.contains("'")) {
+			throw new IllegalCharacterException();
 		}
 		
 		Login_Controller.GetInstance().login(email, password);
 	}
 	
-	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException {
+	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException {
 		if(email.length() == 0 || password.length() == 0) {
 			throw new EmptyFieldException();
+		}
+		if(email.contains("'") || password.contains("'")) {
+			throw new IllegalCharacterException();
 		}
 		
 		BillingInfo billingInfo = getBillingInfo();
@@ -148,13 +155,19 @@ public class Customer_Bean {
 	}
 	
 	
-	private BillingInfo getBillingInfo() throws EmptyFieldException {
+	private BillingInfo getBillingInfo() throws EmptyFieldException, IllegalCharacterException {
 		BillingInfo billingInfo = new BillingInfo();
 		
 		if(firstName.length() == 0 || lastName.length() == 0 || address.length() == 0 || 
 				city.length() == 0 || country.length() == 0 || postalCode.length() == 0 || 
 		   		phoneNumber.length() == 0 || creditCard.length() == 0) {
 			throw new EmptyFieldException();
+		}
+		
+		if(firstName.contains("'") || lastName.contains("'") || address.contains("'") || 
+				city.contains("'") || country.contains("'") || postalCode.contains("'") || 
+		   		phoneNumber.contains("'") || creditCard.contains("'")) {
+			throw new IllegalCharacterException();
 		}
 		
 		billingInfo.setFirstName(firstName);

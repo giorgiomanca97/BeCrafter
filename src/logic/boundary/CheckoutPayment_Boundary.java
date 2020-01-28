@@ -2,6 +2,7 @@ package logic.boundary;
 
 
 import error.EmptyFieldException;
+import error.IllegalCharacterException;
 import error.login.InvalidEmailException;
 import error.login.UsedEmailException;
 import javafx.fxml.FXML;
@@ -20,15 +21,17 @@ public class CheckoutPayment_Boundary {
 	@FXML private TextField tf_phoneNumber;
 	@FXML private TextField tf_creditcardNumber;
 	@FXML private Label lbl_error;
-	
+	@FXML private Label lbl_login;
+	@FXML private TextField tf_loginEmail;
+	@FXML private TextField tf_loginPassword;
 	
 	private Checkout_Boundary checkoutBoundary = null;
-	Customer_Bean checkoutPaymentBean = null;
+	private Customer_Bean checkoutPaymentBean = null;
 	
 	
 	public void initialize() {
 		checkoutPaymentBean = new Customer_Bean();
-		lbl_error.setOpacity(0);
+		lbl_error.setText("");
 	}
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
@@ -48,7 +51,7 @@ public class CheckoutPayment_Boundary {
 	}
 	
 	public void confirmPurchase() {
-		lbl_error.setOpacity(0);
+		lbl_error.setText("");
 		checkoutPaymentBean.setEmail(tf_email.getText());
 		checkoutPaymentBean.setFirstName(tf_firstname.getText());
 		checkoutPaymentBean.setLastName(tf_lastname.getText());
@@ -67,18 +70,20 @@ public class CheckoutPayment_Boundary {
 				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
 			}
 		} catch(InvalidEmailException iee) {
-			setErrorMessage("Wrong email format");
+			lbl_error.setText("Wrong email format");
 		} catch(UsedEmailException uee) {
-			setErrorMessage("This email is already registered");
+			lbl_error.setText("This email is already registered");
 		} catch(EmptyFieldException uee) {
-			setErrorMessage("Please fill all the empty fields");
+			lbl_error.setText("Please fill all the empty fields");
+		} catch (IllegalCharacterException ice) {
+			lbl_error.setText("Please remove the ' character from the fields");
 		} catch (Exception e) {
-			setErrorMessage("Unexpected Error. Please retry");
+			lbl_error.setText("Unexpected Error. Please retry");
 		}
 	}
-	
-	private void setErrorMessage(String message) {
-		lbl_error.setText(message);
-		lbl_error.setOpacity(1);
+
+	@FXML 
+	public void onLoginPressed() {
+		
 	}
 }

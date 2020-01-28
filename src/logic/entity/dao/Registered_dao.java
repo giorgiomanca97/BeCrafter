@@ -131,14 +131,14 @@ public class Registered_dao {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
             BillingInfo bi = registered.getBillingInfo();
-            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + "VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
+            stmt.executeUpdate("INSERT INTO " + TABLE_NAME + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
             					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
             
             
 		} catch (ClassNotFoundException ce) {
 			// TODO: handle exception
 		} catch (SQLException se) {
-			// TODO: handle exception
+			se.printStackTrace();
 		}
         finally {
             try {

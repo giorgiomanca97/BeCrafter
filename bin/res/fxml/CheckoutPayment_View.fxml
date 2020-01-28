@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutPayment_Boundary">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutPayment_Boundary">
    <children>
       <ScrollPane prefHeight="415.0" prefWidth="585.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="25.0">
          <content>
@@ -231,12 +231,12 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="835.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBackToSummaryPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Summary" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0">
+      <Button alignment="CENTER" layoutX="835.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBackToSummaryPressed" prefHeight="30.0" prefWidth="250.0" text="Go back to Summary" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="335.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" defaultButton="true" layoutX="893.0" layoutY="475.0" mnemonicParsing="false" onAction="#onConfirmPurchasePressed" prefHeight="30.0" prefWidth="250.0" text="Confirm Purchase" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
+      <Button alignment="CENTER" defaultButton="true" layoutX="893.0" layoutY="475.0" mnemonicParsing="false" onAction="#onConfirmPurchasePressed" prefHeight="30.0" prefWidth="250.0" text="Confirm Purchase" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -255,7 +255,7 @@
             </Label>
             <HBox>
                <children>
-                  <TextField fx:id="tf_login_email" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
+                  <TextField fx:id="tf_loginEmail" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -275,7 +275,7 @@
             </Label>
             <HBox>
                <children>
-                  <TextField fx:id="tf_login_password" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
+                  <TextField fx:id="tf_loginPassword" alignment="CENTER" prefHeight="30.0" prefWidth="250.0">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
