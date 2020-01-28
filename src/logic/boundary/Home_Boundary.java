@@ -177,5 +177,15 @@ public class Home_Boundary {
 			lbl_login.setText("Login");
 		}
 	}
+
+	@FXML
+	public void onCheckOrderPressed() {
+		try {
+			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT);
+			pageLoader.showOnPrimaryStage();
+		} catch (IOException ioe) {
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+		}
+	}
 	
 }

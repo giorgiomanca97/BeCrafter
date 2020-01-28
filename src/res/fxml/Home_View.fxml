@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_Boundary">
+<AnchorPane minHeight="700.0" minWidth="600.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.Home_Boundary">
 	<children>
       <Label prefHeight="90.0" prefWidth="300.0" text="BeCrafter" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -27,7 +27,7 @@
       </Label>
       <HBox layoutX="1100.0" layoutY="30.0" prefHeight="30.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
          <children>
-            <HBox prefHeight="30.0">
+            <HBox onMousePressed="#onCheckOrderPressed" prefHeight="30.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
