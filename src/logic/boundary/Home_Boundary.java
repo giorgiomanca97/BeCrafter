@@ -181,7 +181,7 @@ public class Home_Boundary {
 	@FXML
 	public void onCheckOrderPressed() {
 		try {
-			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT);
+			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKORDER);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
