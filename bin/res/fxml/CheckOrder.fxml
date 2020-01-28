@@ -9,10 +9,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckOrder_Boundary">
    <children>
       <Label alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="1180.0" text="Check order" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -22,29 +22,201 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <ImageView fx:id="img_back" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMousePressed="#onBackPressed" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMousePressed="#onBackPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/back.png" />
          </image>
       </ImageView>
-      <HBox layoutX="20.0" layoutY="90.0">
+      <HBox layoutX="245.0" layoutY="126.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="75.0">
          <children>
-            <Label prefHeight="30.0" text="Insert the order code you are looking for here">
+            <Label prefHeight="40.0" prefWidth="400.0" text="Insert the order code you are looking for here:" textAlignment="CENTER">
                <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <TextField prefHeight="30.0" prefWidth="100.0">
-               <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets left="30.0" right="30.0" />
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="tf_order" prefHeight="40.0" prefWidth="120.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Search" />
+            <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="40.0" prefWidth="200.0" text="Search Order">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
-      <ScrollPane layoutX="73.0" layoutY="450.0" prefHeight="200.0" prefWidth="900.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" />
+      <HBox layoutX="465.0" layoutY="152.0" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="152.0">
+         <children>
+            <VBox>
+               <children>
+                  <Label prefWidth="155.0" text="Order Code">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="155.0" text="Purchase Date">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="155.0" text="Overall Price">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="155.0" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="155.0" text="Shipping Code">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="155.0" text="Shipping Company">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="5.0" text=": ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label fx:id="lbl_order" prefWidth="320.0" text="O000001">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_date" prefWidth="320.0" text="01/01/1919">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_price" prefWidth="320.0" text="0,00 €">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_email" prefWidth="320.0" text="example@provider.org">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_shippingCode" prefWidth="320.0" text="Shipping Code">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_shippingCompany" prefWidth="320.0" text="Shipping Company">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="400.0">
+         <content>
+            <VBox fx:id="vb_products" fillWidth="false" prefWidth="1170.0" />
+         </content></ScrollPane>
    </children>
 </AnchorPane>
