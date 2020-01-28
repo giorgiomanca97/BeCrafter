@@ -277,7 +277,7 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </PasswordField>
-            <Button alignment="CENTER" mnemonicParsing="false" onMousePressed="#onLoginPressed" prefHeight="30.0" prefWidth="250.0" text="Login" textAlignment="CENTER">
+            <Button fx:id="btn_login" alignment="CENTER" mnemonicParsing="false" onMousePressed="#onLoginPressed" prefHeight="30.0" prefWidth="250.0" text="Login" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

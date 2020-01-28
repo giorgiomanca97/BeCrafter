@@ -42,22 +42,30 @@ public class Login_Controller {
 	}
 
 	public void login(String email, String password) throws InexistentEmailException, WrongPasswordException{
-		Registered registered = Registered_dao.getRegisteredByEmail(email);
+		if(loggedCustomer != null && !loggedCustomer.getEmail().equals(email)) {
+			logout(loggedCustomer.getEmail());
+		}
 		
-		if(registered != null && registered.getEmail().equals(email)) {
-			if(registered.getPassword().equals(password)) {
-				loggedCustomer = registered;
+		if(loggedCustomer == null) {
+			Registered registered = Registered_dao.getRegisteredByEmail(email);
+			
+			if(registered != null && registered.getEmail().equals(email)) {
+				if(registered.getPassword().equals(password)) {
+					loggedCustomer = registered;
+				} else {
+					throw new WrongPasswordException();
+				}
 			} else {
-				throw new WrongPasswordException();
+				throw new InexistentEmailException();
 			}
-		} else {
-			throw new InexistentEmailException();
 		}
 	}
+	
 	
 	public void logout(String email) {
 		if(loggedCustomer != null && loggedCustomer.getEmail().equals(email)) {
 			loggedCustomer = null;
+			BuyBeer_Controller.getInstance().initCart();
 		}
 	}
 	

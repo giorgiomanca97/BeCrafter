@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import logic.bean.Customer_Bean;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Button;
 
 public class CheckoutPayment_Boundary {	
 	@FXML private TextField tf_email;
@@ -29,15 +30,26 @@ public class CheckoutPayment_Boundary {
 	@FXML private TextField tf_loginEmail;
 	@FXML private PasswordField psw_password;
 	@FXML private Label lbl_error2;
+	@FXML private Button btn_login;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	private Customer_Bean checkoutPaymentBean = null;
-
-
 	
 	
 	public void initialize() {
 		checkoutPaymentBean = new Customer_Bean();
+		
+		try {
+			checkoutPaymentBean.loadLoggedCustomer();
+			tf_loginEmail.setText(checkoutPaymentBean.getEmail());
+			tf_loginEmail.setDisable(true);
+			tf_email.setText(checkoutPaymentBean.getEmail());
+			tf_email.setDisable(true);
+			lbl_login.setText("Please insert the password to procede");
+		} catch (LoginException e) {
+			
+		}
+		
 		lbl_error.setText("");
 		lbl_error2.setText("");
 	}
@@ -89,7 +101,8 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}
 	}
-
+	
+	
 	@FXML 
 	public void onLoginPressed() {
 		checkoutPaymentBean.setEmail(tf_loginEmail.getText());
@@ -97,22 +110,14 @@ public class CheckoutPayment_Boundary {
 		lbl_error2.setText("");
 		try {
 			checkoutPaymentBean.login();
-
 			checkoutPaymentBean.loadLoggedCustomer();
 			
-			//Auto-fill
-			tf_email.setText(checkoutPaymentBean.getEmail());
-			tf_firstname.setText(checkoutPaymentBean.getFirstName());
-			tf_lastname.setText(checkoutPaymentBean.getLastName());
-			tf_address.setText(checkoutPaymentBean.getAddress());
-			tf_city.setText(checkoutPaymentBean.getCity());
-			tf_country.setText(checkoutPaymentBean.getCountry());
-			tf_postalcode.setText(checkoutPaymentBean.getPostalCode());
-			tf_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
-			tf_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
+			lbl_error.setText("");
+			tf_loginEmail.setDisable(true);
+			psw_password.setDisable(true);
+			btn_login.setDisable(true);
 			
-			tf_loginEmail.setText("");
-			psw_password.setText("");
+			autoFill();
 			
 			tf_email.setDisable(true);
 			lbl_login.setText("Logged as " + checkoutPaymentBean.getEmail());
@@ -123,6 +128,20 @@ public class CheckoutPayment_Boundary {
 			lbl_error2.setText("Please fill all the fields");
 		} catch (LoginException le) {
 			lbl_error2.setText("Something unexpected happen. Please retry");
+		}
+	}
+	
+	private void autoFill() {
+		if(checkoutPaymentBean != null) {
+			tf_email.setText(checkoutPaymentBean.getEmail());
+			tf_firstname.setText(checkoutPaymentBean.getFirstName());
+			tf_lastname.setText(checkoutPaymentBean.getLastName());
+			tf_address.setText(checkoutPaymentBean.getAddress());
+			tf_city.setText(checkoutPaymentBean.getCity());
+			tf_country.setText(checkoutPaymentBean.getCountry());
+			tf_postalcode.setText(checkoutPaymentBean.getPostalCode());
+			tf_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
+			tf_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
 		}
 	}
 }
