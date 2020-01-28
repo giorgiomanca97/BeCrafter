@@ -6,6 +6,7 @@ import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
+import logic.entity.Product;
 import logic.entity.Volume;
 
 public class Product_Bean {
@@ -15,10 +16,12 @@ public class Product_Bean {
 	private BeerColor beerColor;
 	private float beerAlcohol;
 	private BeerFiltering beerFiltering;
+	private String beerDescription;
 	private ContainerType containerType;
 	private int containerVolume;
 	private float price;
-
+	private int quantity;
+	
 	
 	public Product_Bean() {
 		
@@ -77,6 +80,15 @@ public class Product_Bean {
 	public void setBeerFiltering(BeerFiltering beerFiltering) {
 		this.beerFiltering = beerFiltering;
 	}
+
+	
+	public String getBeerDescription() {
+		return beerDescription;
+	}
+
+	public void setBeerDescription(String beerDescription) {
+		this.beerDescription = beerDescription;
+	}
 	
 
 	public ContainerType getContainerType() {
@@ -104,10 +116,57 @@ public class Product_Bean {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
 	
 	public void selectForSaleProduct() {
 		Volume volume = new Volume(this.containerVolume);
 		BuyBeer_Controller.getInstance().selectForSaleProduct(this.beerId, this.containerType, volume);
+	}
+	
+	public void loadSelectedProduct() {
+		Product product = BuyBeer_Controller.getInstance().getSelectedProduct();
+		beerId = product.getBeer().getId();
+		beerName = product.getBeer().getName();
+		beerType = product.getBeer().getType();
+		beerColor = product.getBeer().getColor();
+		beerAlcohol = product.getBeer().getAlcoholContent();
+		beerFiltering = product.getBeer().getFiltering();
+		beerDescription = product.getBeer().getDescription();
+		containerType = product.getContainer().getType();
+		containerVolume = product.getContainer().getVolume();
+		price = product.getPrice();
+		quantity = product.getQuantity();
+	}
+	
+	public void addProductToCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().addProductToCart(beerId, containerType, volume, quantity);
+	}
+
+	public boolean selectProductInCart(int index) {		
+		return BuyBeer_Controller.getInstance().selectProductInCart(index);
+	}
+	
+	public int cartSize() {
+		return BuyBeer_Controller.getInstance().getCartSize();
+	}
+	
+	public void updateProductInsideCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().updateProductInsideCart(beerId, containerType, volume, quantity);
+	}
+	
+	public void removeProductFromCart() {
+		Volume volume = new Volume(containerVolume);
+		BuyBeer_Controller.getInstance().removeProductFromCart(beerId, containerType, volume);
 	}
 }

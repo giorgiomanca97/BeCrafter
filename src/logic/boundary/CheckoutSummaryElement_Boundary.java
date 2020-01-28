@@ -3,7 +3,7 @@ package logic.boundary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import logic.bean.BuyBeer_Bean;
+import logic.bean.Product_Bean;
 import logic.designclasses.BeerImageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
@@ -24,11 +24,11 @@ public class CheckoutSummaryElement_Boundary {
 	
 	private CheckoutSummary_Boundary csBoundary;
 	private int index;
-	private BuyBeer_Bean buyBeerBean;
+	private Product_Bean buyBeerBean;
 	
 	
 	public boolean setElement(CheckoutSummary_Boundary csBoundary, int index) {
-		this.buyBeerBean = new BuyBeer_Bean();
+		this.buyBeerBean = new Product_Bean();
 		if(this.buyBeerBean.selectProductInCart(index)) {
 			this.csBoundary = csBoundary;
 			this.index = index;	

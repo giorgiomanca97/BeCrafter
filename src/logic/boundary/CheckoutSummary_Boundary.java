@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import logic.bean.BuyBeer_Bean;
+import logic.bean.Product_Bean;
 import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import javafx.scene.control.Button;
@@ -29,7 +29,7 @@ public class CheckoutSummary_Boundary {
 	}
 	
 	public void displayCart() {
-		BuyBeer_Bean buyBeerBean = new BuyBeer_Bean();
+		Product_Bean buyBeerBean = new Product_Bean();
 		prices = new ArrayList<Float>();
 		
 		tb_overallCost.setText(Price.toText(0f));
