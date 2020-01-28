@@ -2,6 +2,8 @@ package logic;
 
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,7 +30,7 @@ public class StandaloneCustomerMain extends Application{
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
 	}
 	

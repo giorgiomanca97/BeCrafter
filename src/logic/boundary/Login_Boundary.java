@@ -2,6 +2,8 @@ package logic.boundary;
 
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
@@ -50,7 +52,7 @@ public class Login_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
 	}
 
@@ -60,7 +62,7 @@ public class Login_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
 	}
 	

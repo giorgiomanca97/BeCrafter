@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.designclasses.DaoHelper;
 import logic.designclasses.DaoHelper.StatementMode;
@@ -61,9 +63,9 @@ public class Beer_dao {
             }
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
         	try {
@@ -71,18 +73,21 @@ public class Beer_dao {
         			rs.close();
         		}
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
             }
             try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 		
@@ -107,6 +112,6 @@ public class Beer_dao {
 	
 	
 	public static void updateBeer(Beer beer) {
-		// TODO: non necessario per la parte di sistema implementata
+		// Non necessario per la parte di sistema implementata
 	}
 }

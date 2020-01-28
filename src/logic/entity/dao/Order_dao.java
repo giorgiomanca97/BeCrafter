@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.TextParseException;
 import error.id.IdException;
@@ -59,21 +61,23 @@ public class Order_dao {
 				result = fetchOrderData(textBuilder.toString());
 			}
 		} catch (IOException ioe) {
-
+			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (TextParseException tpe) {
-
+			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} finally {
 			try {
                 if (bufferedReader != null) {
                 	bufferedReader.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "BufferedReader closure error");
             }
 			try {
                 if (fileReader != null) {
                 	fileReader.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "FileReader closure error");
             }
 		}
 		
@@ -120,13 +124,13 @@ public class Order_dao {
             }
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (IdException ie) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
         finally {
         	try {
@@ -134,18 +138,21 @@ public class Order_dao {
         			rs.close();
         		}
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
             }
             try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 		
@@ -175,23 +182,25 @@ public class Order_dao {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		String query = "";
 		
 		try {
 			DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             
-            rs = stmt.executeQuery("SELECT MAX(" + TABLE_ORDERS_COL_ID + ") FROM " + TABLE_ORDERS + ";");
+            query = "SELECT MAX(" + TABLE_ORDERS_COL_ID + ") FROM " + TABLE_ORDERS + ";";
+            rs = stmt.executeQuery(query);
             
             if(rs.first()) {
             	result = IDconverter.intToId(rs.getInt(1), IDconverter.Type.ORDER);
             }
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		} catch (IdException ie) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
 		finally {
 			try {
@@ -199,20 +208,21 @@ public class Order_dao {
         			rs.close();
         		}
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
             }
-			try {
+            try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
 		}
 		
@@ -234,19 +244,21 @@ public class Order_dao {
 				bufferedWriter.write(printOrderData(order));
 			}
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} finally {
 			try {
                 if (bufferedWriter != null) {
                 	bufferedWriter.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "BufferedWriter closure error");
             }
 			try {
                 if (fileWriter != null) {
                 	fileWriter.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "FileWriter closure error");
             }
 		}
 	}
@@ -254,35 +266,37 @@ public class Order_dao {
 	public static void insertOrder(Order order) {
 		Connection conn = null;
 		Statement stmt = null;
+		String query = "";
         
 		try {
         	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            stmt.executeUpdate("INSERT INTO " + TABLE_ORDERS + " (" + TABLE_ORDERS_COL_EMAIL + ", " + TABLE_ORDERS_COL_DATE + ", " + TABLE_ORDERS_COL_PRICE + ", " + TABLE_ORDERS_COL_SHIPCODE + ", " + TABLE_ORDERS_COL_SHIPCOMP + ") " +
-            					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');");
+            query = "INSERT INTO " + TABLE_ORDERS + " (" + TABLE_ORDERS_COL_EMAIL + ", " + TABLE_ORDERS_COL_DATE + ", " + TABLE_ORDERS_COL_PRICE + ", " + TABLE_ORDERS_COL_SHIPCODE + ", " + TABLE_ORDERS_COL_SHIPCOMP + ") " +
+					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');";
+            stmt.executeUpdate(query);
             
             saveOrderData(order);
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-            try {
+        	try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 	}

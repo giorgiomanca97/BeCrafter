@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.designclasses.DaoHelper;
 import logic.designclasses.DaoHelper.StatementMode;
@@ -72,9 +74,9 @@ public class Registered_dao {
             }
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
         	try {
@@ -82,18 +84,21 @@ public class Registered_dao {
         			rs.close();
         		}
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
             }
             try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 		
@@ -120,6 +125,7 @@ public class Registered_dao {
 	public static void insertRegistered(Registered registered) {
 		Statement stmt = null;
         Connection conn = null;
+        String query = "";
         
 		try {
         	DaoHelper.loadDriver();
@@ -127,29 +133,30 @@ public class Registered_dao {
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             BillingInfo bi = registered.getBillingInfo();
-            stmt.executeUpdate("INSERT INTO " + TABLE_REGISTERED + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
-            					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');");
+            query = "INSERT INTO " + TABLE_REGISTERED + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
+					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');";
             
+            stmt.executeUpdate(query);
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-            try {
+        	try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 	}
@@ -157,6 +164,7 @@ public class Registered_dao {
 	public static void updateRegistered(Registered registered) {
 		Statement stmt = null;
         Connection conn = null;
+        String query = "";
         
 		try {
 			DaoHelper.loadDriver();
@@ -164,30 +172,31 @@ public class Registered_dao {
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             BillingInfo bi = registered.getBillingInfo();
-            stmt.executeUpdate("UPDATE " + TABLE_REGISTERED + " SET " + TABLE_REGISTERED_COL_PASSWORD + " = '" + registered.getPassword() + "', " + TABLE_REGISTERED_COL_FIRSTNAME + " = '" + bi.getFirstName() + "', " + TABLE_REGISTERED_COL_LASTNAME + " = '" + bi.getLastName() + "', " + 
-            					TABLE_REGISTERED_COL_ADDRESS + " = '" + bi.getAddress() + "', " + TABLE_REGISTERED_COL_CITY + " = '" + bi.getCity() + "', " + TABLE_REGISTERED_COL_COUNTRY + " = '" + bi.getCountry() + "', " + TABLE_REGISTERED_COL_POSTALCODE + " = '" + bi.getPostalCode() + 
-            					TABLE_REGISTERED_COL_PHONE + " = '" + bi.getPhone() + "', " + TABLE_REGISTERED_COL_CARD + " = '" + bi.getCard() + "' WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + registered.getEmail() + "';");
+            query = "UPDATE " + TABLE_REGISTERED + " SET " + TABLE_REGISTERED_COL_PASSWORD + " = '" + registered.getPassword() + "', " + TABLE_REGISTERED_COL_FIRSTNAME + " = '" + bi.getFirstName() + "', " + TABLE_REGISTERED_COL_LASTNAME + " = '" + bi.getLastName() + "', " + 
+					TABLE_REGISTERED_COL_ADDRESS + " = '" + bi.getAddress() + "', " + TABLE_REGISTERED_COL_CITY + " = '" + bi.getCity() + "', " + TABLE_REGISTERED_COL_COUNTRY + " = '" + bi.getCountry() + "', " + TABLE_REGISTERED_COL_POSTALCODE + " = '" + bi.getPostalCode() + 
+					TABLE_REGISTERED_COL_PHONE + " = '" + bi.getPhone() + "', " + TABLE_REGISTERED_COL_CARD + " = '" + bi.getCard() + "' WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + registered.getEmail() + "';";
             
+            stmt.executeUpdate(query);
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-            try {
+        	try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
-            	// TODO: handle exception
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 	}

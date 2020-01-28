@@ -2,6 +2,8 @@ package logic.boundary;
 
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,7 +63,7 @@ public class BuyBeer_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
 	}
 

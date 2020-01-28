@@ -3,6 +3,8 @@ package logic;
 
 import java.util.Calendar;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.PaymentRefusedException;
 import error.StorableIllegalQuantityException;
@@ -71,8 +73,13 @@ public class BuyBeer_Controller {
 	
 	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
 		Product product = getProduct(beerId, containerType, containerVolume);
-		product.addQuantity(quantity);
-		cart.add(product);
+		
+		try {
+			product.setQuantity(quantity);
+			cart.add(product);
+		} catch (StorableIllegalQuantityException siqe) {
+			Logger.getGlobal().log(Level.SEVERE, "Illegat quantity for product");
+		}
 	}
 	
 	public void updateProductInsideCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
@@ -82,7 +89,7 @@ public class BuyBeer_Controller {
 			product.setQuantity(quantity);
 			cart.update(product);
 		} catch (StorableIllegalQuantityException siqe) {
-			//TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Illegat quantity for product");
 		}
 	}
 	

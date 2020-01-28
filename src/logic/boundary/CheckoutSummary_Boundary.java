@@ -3,6 +3,8 @@ package logic.boundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -47,7 +49,7 @@ public class CheckoutSummary_Boundary {
 					vbox_products.getChildren().add(pageLoader.getRootView());
 				}
 			} catch (IOException ioe) {
-				// TODO: handle exception
+				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 			}
 		}
 	}

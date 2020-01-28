@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.TextParseException;
 import logic.entity.RawMaterial;
@@ -39,21 +41,23 @@ public class Recipe_dao {
 				result = textToRecipe(textBuilder.toString());
 			}
 		} catch (IOException ioe) {
-
+			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (TextParseException tpe) {
-
+			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} finally {
 			try {
                 if (bufferedReader != null) {
                 	bufferedReader.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "BufferedReader closure error");
             }
 			try {
                 if (fileReader != null) {
                 	fileReader.close();
                 }
             } catch (IOException ioe) {
+            	Logger.getGlobal().log(Level.WARNING, "FileReader closure error");
             }
 		}
 		
@@ -87,7 +91,7 @@ public class Recipe_dao {
 	
 	
 	public static void updateRecipe(Recipe recipe) {
-		// TODO: non necessario per la parte di sistema implementata
+		// Non necessario per la parte di sistema implementata
 	}
 	
 	

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.StorableIllegalQuantityException;
 import logic.designclasses.DaoHelper;
@@ -53,16 +55,15 @@ public class Storehouse_dao {
 	        ResultSet rs_rawMaterials = null;
             ResultSet rs_containers = null;
             ResultSet rs_products = null;
+            String query = "";
 	        
 	        try {
 	        	DaoHelper.loadDriver();
 	            conn = DaoHelper.getConnection();
 	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
 	            
-	            rs_rawMaterials = stmt.executeQuery("SELECT * FROM " + TABLE_STORE_RAWM + ";");
-	            rs_containers = stmt.executeQuery("SELECT * FROM " + TABLE_STORE_CONT + ";");
-	            rs_products = stmt.executeQuery("SELECT * FROM " + TABLE_STORE_PROD + ";");
-	            
+	            query = "SELECT * FROM " + TABLE_STORE_RAWM + ";";
+	            rs_rawMaterials = stmt.executeQuery(query);
 	            ArrayList<RawMaterial> rawMaterials = new ArrayList<RawMaterial>();
 	            if(rs_rawMaterials.first()) {
 	            	do {
@@ -76,6 +77,8 @@ public class Storehouse_dao {
 	            	} while (rs_rawMaterials.next());
 	            }
 	            
+	            query = "SELECT * FROM " + TABLE_STORE_CONT + ";";
+	            rs_containers = stmt.executeQuery(query);
 	            ArrayList<Container> containers = new ArrayList<Container>();
 	            if(rs_containers.first()) {
 	            	do {
@@ -90,6 +93,8 @@ public class Storehouse_dao {
 	            	} while (rs_containers.next());
 	            }
 	            
+	            query = "SELECT * FROM " + TABLE_STORE_PROD + ";";
+	            rs_products = stmt.executeQuery(query);
 	            ArrayList<Product> products = new ArrayList<Product>();
 	            if(rs_products.first()) {
 	            	do {
@@ -120,41 +125,46 @@ public class Storehouse_dao {
 				}
 	            
 	        } catch (ClassNotFoundException ce) {
-				// TODO: handle exception
+				Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 			} catch (SQLException se) {
-				// TODO: handle exception
+				Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 			} catch (StorableIllegalQuantityException siqe) {
-				// TODO: handle exception
+				Logger.getGlobal().log(Level.SEVERE, "Database Storable wrong quantity");
 			} 
 	        finally {
 	        	try {
 	                if (rs_rawMaterials != null)
 	                	rs_rawMaterials.close();
 	            } catch (SQLException se) {
+	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
 	            }
 	        	try {
 	        		if(rs_containers != null) {
 	        			rs_containers.close();
 	        		}
 	            } catch (SQLException se) {
+	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
 	            }
 	        	try {
 	        		if(rs_products != null) {
 	        			rs_products.close();
 	        		}
 	            } catch (SQLException se) {
+	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
 	            }
 	            try {
 	                if (stmt != null) {
 	                	stmt.close();
 	                }      
 	            } catch (SQLException se) {
+	            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
 	            }
 	            try {
 	                if (conn != null) {
 	                	conn.close();
 	                }
 	            } catch (SQLException se) {
+	            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
 	            }
 	        }
 		}
@@ -166,45 +176,55 @@ public class Storehouse_dao {
 	public static void updateStorehouse(Storehouse storehouse) {
 		Statement stmt = null;
         Connection conn = null;
+        String query = "";
 
         try {
         	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            stmt.executeUpdate("DELETE FROM " + TABLE_STORE_RAWM + ";");
-            stmt.executeUpdate("DELETE FROM " + TABLE_STORE_CONT + ";");
-            stmt.executeUpdate("DELETE FROM " + TABLE_STORE_PROD + ";");
-            
+            query = "DELETE FROM " + TABLE_STORE_RAWM + ";";
+            stmt.executeUpdate(query);
             for (RawMaterial rawMaterial : storehouse.getAllRawMaterials()) {
-            	stmt.executeUpdate("INSERT INTO " + TABLE_STORE_RAWM + "VALUES ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");");
+            	query = "INSERT INTO " + TABLE_STORE_RAWM + "VALUES ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");";
+            	stmt.executeUpdate(query);
 			}
+            
+            query = "DELETE FROM " + TABLE_STORE_CONT + ";";
+            stmt.executeUpdate(query);
             for (Container container : storehouse.getAllContainers()) {
-				stmt.executeUpdate("INSERT INTO " + TABLE_STORE_CONT + "VALUES ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");");
+            	query = "INSERT INTO " + TABLE_STORE_CONT + "VALUES ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+				stmt.executeUpdate(query);
 			}
+            
+            query = "DELETE FROM " + TABLE_STORE_PROD + ";";
+            stmt.executeUpdate(query);
             for (Product product : storehouse.getAllProducts()) {
             	Beer beer = product.getBeer();
             	Container container = product.getContainer();
-            	stmt.executeUpdate("INSERT INTO " + TABLE_STORE_PROD + "VALUES ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");");
+            	query = "INSERT INTO " + TABLE_STORE_PROD + "VALUES ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+            	stmt.executeUpdate(query);
             }
             
 		} catch (ClassNotFoundException ce) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-            try {
+        	try {
                 if (stmt != null) {
                 	stmt.close();
                 }      
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
             }
             try {
                 if (conn != null) {
                 	conn.close();
                 }
             } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
             }
         }
 	}

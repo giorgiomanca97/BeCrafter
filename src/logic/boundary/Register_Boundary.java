@@ -1,6 +1,8 @@
 package logic.boundary;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
@@ -73,7 +75,7 @@ public class Register_Boundary {
 				} catch (WrongFieldException wfe) {
 					lbl_error.setText("Some fields are not correct");
 				} catch (IOException ioe) {
-					// TODO: handle exception
+					Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 				}
 			} else {
 				lbl_error.setText("The password fields do not match");
@@ -90,7 +92,7 @@ public class Register_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			// TODO: handle exception
+			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
 	}	
 }
