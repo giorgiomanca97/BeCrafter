@@ -45,6 +45,10 @@ public class IdConverter {
 		try {
 			Type type = getTypeOf(id);
 			
+			if(id.length() != (1 + type.getDigits())) {
+				throw new UnsupportedIdException();
+			}
+			
 			int value = Integer.valueOf(id.substring(1, id.length()));
 			
 			if(value > type.maxValue()) {
