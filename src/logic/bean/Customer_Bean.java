@@ -197,7 +197,7 @@ public class Customer_Bean {
 		   !isOnlyLetters(city) ||
 		   !isOnlyLetters(country) ||
 		   !isOnlyDigits(postalCode) ||
-		   !isOnlyDigits(phoneNumber) ||
+		   !isValidPhoneNumber(phoneNumber) ||
 		   !isValidCreditCard(creditCard)) {
 			throw new WrongFieldException();
 		}
@@ -219,7 +219,7 @@ public class Customer_Bean {
 	private boolean isValidString(String string) {
 		for(int i = 0; i < string.length(); i++){
 			char c = string.charAt(i);
-			if(!Character.isLetter(c) && !(c == ',')) {
+			if(!Character.isLetter(c) && !(c == ',') && !(c == ' ')) {
 				return false;
 			}
 		}
@@ -242,6 +242,21 @@ public class Customer_Bean {
 		for(int i = 0; i < string.length(); i++){
 			char c = string.charAt(i);
 			if(!Character.isDigit(c)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean isValidPhoneNumber(String string) {
+		if(string.charAt(0) != '+' || !Character.isDigit(string.charAt(0))) {
+			return false;
+		}
+		
+		for(int i = 0; i < string.length(); i++){
+			char c = string.charAt(i);
+			if(!Character.isDigit(c) && !(c == ' ')) {
 				return false;
 			}
 		}
