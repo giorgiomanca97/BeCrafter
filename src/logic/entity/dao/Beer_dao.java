@@ -41,7 +41,6 @@ public class Beer_dao {
         ResultSet rs = null;
 
         try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
@@ -68,27 +67,7 @@ public class Beer_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-        		if(rs != null) {
-        			rs.close();
-        		}
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-            }
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt, rs);
         }
 		
 		return result;

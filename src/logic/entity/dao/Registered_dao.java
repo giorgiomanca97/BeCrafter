@@ -42,7 +42,6 @@ public class Registered_dao {
         ResultSet rs = null;
 
         try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
@@ -79,27 +78,7 @@ public class Registered_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-        		if(rs != null) {
-        			rs.close();
-        		}
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-            }
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt, rs);
         }
 		
 		return result;
@@ -123,12 +102,11 @@ public class Registered_dao {
 	
 	
 	public static void insertRegistered(Registered registered) {
+		Connection conn = null;
 		Statement stmt = null;
-        Connection conn = null;
         String query = "";
         
 		try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
@@ -144,20 +122,7 @@ public class Registered_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt);
         }
 	}
 	
@@ -167,7 +132,6 @@ public class Registered_dao {
         String query = "";
         
 		try {
-			DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
@@ -184,20 +148,7 @@ public class Registered_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt);
         }
 	}
 }

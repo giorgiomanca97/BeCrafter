@@ -58,7 +58,6 @@ public class Storehouse_dao {
             String query = "";
 	        
 	        try {
-	        	DaoHelper.loadDriver();
 	            conn = DaoHelper.getConnection();
 	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
 	            
@@ -132,40 +131,12 @@ public class Storehouse_dao {
 				Logger.getGlobal().log(Level.SEVERE, "Database Storable wrong quantity");
 			} 
 	        finally {
-	        	try {
-	                if (rs_rawMaterials != null)
-	                	rs_rawMaterials.close();
-	            } catch (SQLException se) {
-	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-	            }
-	        	try {
-	        		if(rs_containers != null) {
-	        			rs_containers.close();
-	        		}
-	            } catch (SQLException se) {
-	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-	            }
-	        	try {
-	        		if(rs_products != null) {
-	        			rs_products.close();
-	        		}
-	            } catch (SQLException se) {
-	            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-	            }
-	            try {
-	                if (stmt != null) {
-	                	stmt.close();
-	                }      
-	            } catch (SQLException se) {
-	            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-	            }
-	            try {
-	                if (conn != null) {
-	                	conn.close();
-	                }
-	            } catch (SQLException se) {
-	            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-	            }
+	        	ArrayList<ResultSet> rsList = new ArrayList<ResultSet>();
+	        	rsList.add(rs_rawMaterials);
+	        	rsList.add(rs_containers);
+	        	rsList.add(rs_products);
+	        	
+	        	DaoHelper.close(conn, stmt, rsList);
 	        }
 		}
 		
@@ -174,12 +145,11 @@ public class Storehouse_dao {
 	
 	
 	public static void updateStorehouse(Storehouse storehouse) {
+		Connection conn = null;
 		Statement stmt = null;
-        Connection conn = null;
         String query = "";
 
         try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
@@ -212,20 +182,7 @@ public class Storehouse_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt);
         }
 	}
 	

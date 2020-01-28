@@ -41,7 +41,7 @@ public class Order_dao {
 	}
 	
 	
-	private static OrderDataFetch getOrderData(File file) {
+	private static OrderDataFetch getOrderData(File file) throws TextParseException {
 		OrderDataFetch result = null;
 		
 		FileReader fileReader = null;
@@ -62,23 +62,9 @@ public class Order_dao {
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
-		} catch (TextParseException tpe) {
-			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} finally {
-			try {
-                if (bufferedReader != null) {
-                	bufferedReader.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "BufferedReader closure error");
-            }
-			try {
-                if (fileReader != null) {
-                	fileReader.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "FileReader closure error");
-            }
+			DaoHelper.close(bufferedReader);
+			DaoHelper.close(fileReader);
 		}
 		
 		return result;
@@ -92,7 +78,6 @@ public class Order_dao {
         ResultSet rs = null;
 
         try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             rs = stmt.executeQuery(query);
@@ -109,11 +94,7 @@ public class Order_dao {
             		
             		File file = new File(ORDERS_FOLDER_PATH + "/" + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
-            		
-            		if(orderDataFetch == null) {
-            			throw new IOException();
-            		}
-            		
+            		          		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
             		for (Product product : orderDataFetch.getProducts()) {
 						order.addProduct(product);
@@ -127,33 +108,13 @@ public class Order_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		} catch (IOException ioe) {
+		} catch (TextParseException tpe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (IdException ie) {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
         finally {
-        	try {
-        		if(rs != null) {
-        			rs.close();
-        		}
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-            }
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt, rs);
         }
 		
 		return result;
@@ -185,7 +146,6 @@ public class Order_dao {
 		String query = "";
 		
 		try {
-			DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             
@@ -203,27 +163,7 @@ public class Order_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
 		finally {
-			try {
-        		if(rs != null) {
-        			rs.close();
-        		}
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-            }
-            try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+			DaoHelper.close(conn, stmt, rs);
 		}
 		
 		return result;
@@ -246,20 +186,8 @@ public class Order_dao {
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} finally {
-			try {
-                if (bufferedWriter != null) {
-                	bufferedWriter.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "BufferedWriter closure error");
-            }
-			try {
-                if (fileWriter != null) {
-                	fileWriter.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "FileWriter closure error");
-            }
+			DaoHelper.close(bufferedWriter);
+			DaoHelper.close(fileWriter);
 		}
 	}
 	
@@ -269,7 +197,6 @@ public class Order_dao {
 		String query = "";
         
 		try {
-        	DaoHelper.loadDriver();
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
@@ -284,20 +211,7 @@ public class Order_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
 		}
         finally {
-        	try {
-                if (stmt != null) {
-                	stmt.close();
-                }      
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-            }
-            try {
-                if (conn != null) {
-                	conn.close();
-                }
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
+        	DaoHelper.close(conn, stmt);
         }
 	}
 	

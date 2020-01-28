@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import error.TextParseException;
+import logic.designclasses.DaoHelper;
 import logic.entity.RawMaterial;
 import logic.entity.Recipe;
 
@@ -45,20 +46,8 @@ public class Recipe_dao {
 		} catch (TextParseException tpe) {
 			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} finally {
-			try {
-                if (bufferedReader != null) {
-                	bufferedReader.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "BufferedReader closure error");
-            }
-			try {
-                if (fileReader != null) {
-                	fileReader.close();
-                }
-            } catch (IOException ioe) {
-            	Logger.getGlobal().log(Level.WARNING, "FileReader closure error");
-            }
+			DaoHelper.close(bufferedReader);
+			DaoHelper.close(fileReader);
 		}
 		
 		return result;
