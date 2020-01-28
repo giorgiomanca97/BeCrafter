@@ -5,8 +5,8 @@ import error.id.IdException;
 import error.id.OutOfRangeIdException;
 import error.id.UnsupportedIdException;
 
-public class IdConverterTest {
-	private IdConverterTest() {
+public class IdConverter {
+	private IdConverter() {
 		
 	}
 	
@@ -14,7 +14,7 @@ public class IdConverterTest {
 	public static Type getTypeOf(String id) throws UnsupportedIdException {
 		String identifier = id.substring(0,1);
 		
-		for (Type t : IdConverterTest.Type.values()) {
+		for (Type t : IdConverter.Type.values()) {
 			if(identifier.equals(t.getIdentifier())) {
 				return t;
 			}

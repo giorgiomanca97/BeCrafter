@@ -11,7 +11,7 @@ import error.StorableIllegalQuantityException;
 import error.id.IdException;
 import error.login.UsedEmailException;
 import logic.designclasses.CloneStorableList;
-import logic.designclasses.IdConverterTest;
+import logic.designclasses.IdConverter;
 import logic.entity.Beer;
 import logic.entity.BillingInfo;
 import logic.entity.Container;
@@ -107,10 +107,10 @@ public class BuyBeer_Controller {
 		String orderId;
 		
 		if(lastOrderId == null) {
-			orderId = IdConverterTest.intToId(1, IdConverterTest.Type.ORDER);
+			orderId = IdConverter.intToId(1, IdConverter.Type.ORDER);
 		}
 		else {
-			orderId = IdConverterTest.nextId(lastOrderId);
+			orderId = IdConverter.nextId(lastOrderId);
 		}
 		
 		Order order = new Order(orderId);
