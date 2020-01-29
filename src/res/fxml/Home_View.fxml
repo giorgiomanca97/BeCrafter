@@ -343,7 +343,7 @@
                   </VBox>
                   <VBox layoutX="40.0" layoutY="295.0">
                      <children>
-                        <Label prefHeight="20.0" text="Other">
+                        <Label prefHeight="20.0" text="Filtering">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
