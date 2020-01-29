@@ -4,12 +4,11 @@ import error.OrderNotFoundException;
 import logic.CheckOrder_Controller;
 import logic.designclasses.IdConverter;
 import logic.entity.Order;
-import logic.entity.Price;
 
 public class CheckOrder_Bean {
 	private String co_orderId;
 	private String co_date;
-	private String co_price;
+	private float co_price;
 	private String co_email;
 	private String co_shippingCode;
 	private String co_shippingCompany;
@@ -39,11 +38,11 @@ public class CheckOrder_Bean {
 	}
 	
 	
-	public String getPrice() {
+	public float getPrice() {
 		return co_price;
 	}
 	
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.co_price = price;
 	}
 	
@@ -76,14 +75,15 @@ public class CheckOrder_Bean {
 	// ==============================
 	
 	
-	public void searchOrder() throws OrderNotFoundException {
-		if(!IdConverter.isIdValid(co_orderId, IdConverter.Type.ORDER)) {
+	public void searchOrder(String id) throws OrderNotFoundException {
+		if(!IdConverter.isIdValid(id, IdConverter.Type.ORDER)) {
 			throw new OrderNotFoundException();
 		}
 		
-		Order order = CheckOrder_Controller.getInstance().searchOrder(co_orderId);
+		Order order = CheckOrder_Controller.getInstance().searchOrder(id);
+		co_orderId = order.getId();
 		co_date = order.getDate();
-		co_price = Price.toText(order.getPrice());
+		co_price = order.getPrice();
 		co_email = order.getEmail();
 		co_shippingCode = order.getShippingCode();
 		co_shippingCompany = order.getShippingCompany();

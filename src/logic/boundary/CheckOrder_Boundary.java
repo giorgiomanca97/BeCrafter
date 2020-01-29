@@ -11,9 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import logic.bean.CheckOrder_Bean;
 import logic.designclasses.PageLoader;
+import logic.entity.Price;
 
 public class CheckOrder_Boundary {
-
 	@FXML private TextField tf_order;
 	@FXML private Label lbl_order;
 	@FXML private Label lbl_date;
@@ -26,8 +26,8 @@ public class CheckOrder_Boundary {
 	
 	private CheckOrder_Bean checkOrderBean;
 	
+	
 	public void initialize() {
-		
 		checkOrderBean = new CheckOrder_Bean();
 		
 		lbl_order.setText("");
@@ -52,13 +52,13 @@ public class CheckOrder_Boundary {
 	@FXML
 	public void onSearchPressed() {
 		lbl_warning.setText("");
-		checkOrderBean.setOrderId(tf_order.getText());
+
 		try {
-			checkOrderBean.searchOrder();
+			checkOrderBean.searchOrder(tf_order.getText());
 			
 			lbl_order.setText(checkOrderBean.getOrderId());
 			lbl_date.setText(checkOrderBean.getDate());
-			lbl_price.setText(checkOrderBean.getPrice());
+			lbl_price.setText(Price.toText(checkOrderBean.getPrice()) + " €");
 			lbl_email.setText(checkOrderBean.getEmail());
 			lbl_shippingCode.setText(checkOrderBean.getShippingCode());
 			lbl_shippingCompany.setText(checkOrderBean.getShippingCompany());

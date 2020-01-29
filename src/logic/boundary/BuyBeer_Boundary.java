@@ -48,11 +48,11 @@ public class BuyBeer_Boundary {
 		stringBuilder.append("  -  ");
 		stringBuilder.append(buyBeerBean.getBeerFiltering().toString());
 		stringBuilder.append("  -  ");
-		stringBuilder.append(Volume.toText(buyBeerBean.getContainerVolume()));
+		stringBuilder.append(Volume.toText(buyBeerBean.getContainerVolume()) + " €");
 		tb_beer_cc.setText(stringBuilder.toString());
 		
 		tb_beer_desc.setText(buyBeerBean.getBeerDescription());
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
 		img_beer_container.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
 	}
 	

@@ -54,8 +54,6 @@ public class CheckoutSummaryElement_Boundary {
 		lbl_beerFiltering.setText(checkoutSummaryBean.getBeerFiltering().toString());
 		lbl_containerVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume()));
 		tf_quantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
-		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
-		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()));
 	}
 
 
@@ -97,7 +95,7 @@ public class CheckoutSummaryElement_Boundary {
 	
 	private void updateQuantity() {
 		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
-		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()));
+		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()) + " €");
 		checkoutSummaryBean.updateProductInsideCart();
 		csBoundary.updateOverallPrice(this.index, checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity());
 	}

@@ -19,7 +19,6 @@ public class Home_Controller {
 	
 	private Home_Controller() {
 		storehouse = Storehouse_dao.getStorehouse();
-		displayedProducts = new ArrayList<Product>();
 		displayProducts(null, null, null, null, null);
 	}
 	
@@ -38,10 +37,18 @@ public class Home_Controller {
 	
 	
 	public int countProductsDisplayed() {
-		return displayedProducts.size();
+		if(displayedProducts != null) {
+			return displayedProducts.size();
+		} else {
+			return 0;
+		}
 	}
 	
 	public Product getDisplayedProductsAt(int index) {
-		return displayedProducts.get(index);
+		if(displayedProducts != null && index < displayedProducts.size()) {
+			return displayedProducts.get(index);
+		} else {
+			return null;
+		}
 	}
 }

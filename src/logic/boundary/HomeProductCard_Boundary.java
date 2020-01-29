@@ -41,7 +41,7 @@ public class HomeProductCard_Boundary {
 		tb_alcohol.setText(String.valueOf(homeBean.getBeerAlcohol()) + "%");
 		tb_filtering.setText(homeBean.getBeerFiltering().toString());
 		tb_volume.setText(Volume.toText(homeBean.getContainerVolume()));
-		tb_price.setText(Price.toText(homeBean.getPrice()));
+		tb_price.setText(Price.toText(homeBean.getPrice()) + " €");
 		iv_beer_icon.setImage(BeerImageLoader.loadImage(homeBean.getContainerType()));
 	}
 	

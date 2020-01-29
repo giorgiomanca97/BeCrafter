@@ -33,7 +33,7 @@ public class CheckoutSummary_Boundary {
 	public void displayCart() {
 		prices = new ArrayList<Float>();
 		
-		tb_overallCost.setText(Price.toText(0f));
+		tb_overallCost.setText(Price.toText(0f) + " €");
 		vbox_products.getChildren().clear();
 		int cartSize = buyBeerBean.cartSize();
 		
@@ -63,7 +63,7 @@ public class CheckoutSummary_Boundary {
 			overallPrice += f;
 		}
 		
-		tb_overallCost.setText(Price.toText(overallPrice));
+		tb_overallCost.setText(Price.toText(overallPrice) + " €");
 	}
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {

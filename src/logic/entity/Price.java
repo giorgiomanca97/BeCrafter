@@ -25,7 +25,7 @@ public class Price {
 	
 	@Override
 	public String toString() {
-		return formatter.format(this.price) + " €";
+		return formatter.format(this.price);
 	}
 	
 	
