@@ -24,11 +24,11 @@ public class CheckOrder_Boundary {
 	@FXML private Label lbl_warning;
 	@FXML private VBox vb_products;
 	
-	private CheckOrder_Bean checkOrder_Bean;
+	private CheckOrder_Bean checkOrderBean;
 	
 	public void initialize() {
 		
-		checkOrder_Bean = new CheckOrder_Bean();
+		checkOrderBean = new CheckOrder_Bean();
 		
 		lbl_order.setText("");
 		lbl_date.setText("");
@@ -52,16 +52,16 @@ public class CheckOrder_Boundary {
 	@FXML
 	public void onSearchPressed() {
 		lbl_warning.setText("");
-		checkOrder_Bean.setOrderId(tf_order.getText());
+		checkOrderBean.setOrderId(tf_order.getText());
 		try {
-			checkOrder_Bean.searchOrder();
+			checkOrderBean.searchOrder();
 			
-			lbl_order.setText(checkOrder_Bean.getOrderId());
-			lbl_date.setText(checkOrder_Bean.getDate());
-			lbl_price.setText(checkOrder_Bean.getPrice());
-			lbl_email.setText(checkOrder_Bean.getEmail());
-			lbl_shippingCode.setText(checkOrder_Bean.getShippingCode());
-			lbl_shippingCompany.setText(checkOrder_Bean.getShippingCompany());
+			lbl_order.setText(checkOrderBean.getOrderId());
+			lbl_date.setText(checkOrderBean.getDate());
+			lbl_price.setText(checkOrderBean.getPrice());
+			lbl_email.setText(checkOrderBean.getEmail());
+			lbl_shippingCode.setText(checkOrderBean.getShippingCode());
+			lbl_shippingCompany.setText(checkOrderBean.getShippingCompany());
 		} catch (OrderNotFoundException onfe) {
 			lbl_warning.setText("no order found with this order code");
 			lbl_order.setText("");

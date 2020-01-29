@@ -113,8 +113,8 @@ public class Home_Boundary {
 		tp_products.getChildren().clear();
 		try {
 			for (Product_Bean product : homeBean.showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName)) {
-				PageLoader pageLoader = new PageLoader(PageLoader.Page.PRODUCTCARD);
-				ProductCard_Boundary product_view = (ProductCard_Boundary) pageLoader.getController();
+				PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME_PRODUCTCARD);
+				HomeProductCard_Boundary product_view = (HomeProductCard_Boundary) pageLoader.getController();
 				product_view.loadProduct(product);
 				tp_products.getChildren().add(pageLoader.getRootView());
 			}

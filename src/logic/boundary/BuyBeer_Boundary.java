@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import logic.bean.Product_Bean;
+import logic.bean.BuyBeer_Bean;
 import logic.designclasses.BeerImageLoader;
 import logic.designclasses.PageLoader;
 import logic.entity.Price;
@@ -28,11 +28,11 @@ public class BuyBeer_Boundary {
 	@FXML private Button btn_add_to_cart;
 	@FXML private TextField tf_quantity;
 	
-	private Product_Bean buyBeerBean;
+	private BuyBeer_Bean buyBeerBean;
 	
 	
 	public void initialize() {
-		buyBeerBean = new Product_Bean();	
+		buyBeerBean = new BuyBeer_Bean();	
 		buyBeerBean.loadSelectedProduct();
 		buyBeerBean.setQuantity(1);
 		

@@ -14,7 +14,7 @@ import error.login.WrongPasswordException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import logic.bean.Customer_Bean;
+import logic.bean.CheckoutPayment_Bean;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 
@@ -36,11 +36,11 @@ public class CheckoutPayment_Boundary {
 	@FXML private Button btn_login;
 	
 	private Checkout_Boundary checkoutBoundary = null;
-	private Customer_Bean checkoutPaymentBean = null;
+	private CheckoutPayment_Bean checkoutPaymentBean = null;
 	
 	
 	public void initialize() {
-		checkoutPaymentBean = new Customer_Bean();
+		checkoutPaymentBean = new CheckoutPayment_Bean();
 		
 		try {
 			checkoutPaymentBean.loadLoggedCustomer();

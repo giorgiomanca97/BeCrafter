@@ -14,7 +14,7 @@ import logic.designclasses.PageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
 
-public class ProductCard_Boundary {
+public class HomeProductCard_Boundary {
 	@FXML private ImageView iv_beer_icon;
 	@FXML private Label tb_beer_name;
 	@FXML private Label tb_type;

@@ -84,8 +84,8 @@ public class PageLoader {
 		CHECKOUT_SUMMARY("/res/fxml/CheckoutSummary_View.fxml", "Checkout Summary"),
 		CHECKOUT_SUMMARY_ELEMENT("/res/fxml/CheckoutSummaryElement_View.fxml", "Checkout Summary Element"),
 		HOME("/res/fxml/Home_View.fxml", "Home"),
+		HOME_PRODUCTCARD("/res/fxml/HomeProductCard_View.fxml", "Product"),
 		LOGIN("/res/fxml/Login_View.fxml", "Login"),
-		PRODUCTCARD("/res/fxml/ProductCard_View.fxml", "Product"),
 		REGISTER("/res/fxml/Register_View.fxml", "Register"),
 		REGISTER_CONFIRMATION("/res/fxml/RegisterConfirmation_View.fxml", "Register Confirmation"),
 		CHECKORDER("/res/fxml/CheckOrder_View.fxml", "Check Order");

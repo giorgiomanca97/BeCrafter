@@ -12,7 +12,7 @@ import error.login.InvalidPasswordException;
 import error.login.UsedEmailException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import logic.bean.Customer_Bean;
+import logic.bean.Register_Bean;
 import logic.designclasses.PageLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -34,32 +34,32 @@ public class Register_Boundary {
 	@FXML private CheckBox cb_agreement;
 	@FXML private Label lbl_error;
 	
-	Customer_Bean customerBean = null;
+	Register_Bean registerBean = null;
 	
 	
 	public void initialize() {
-		customerBean = new Customer_Bean();
+		registerBean = new Register_Bean();
 		lbl_error.setText("");
 	}
 
 	@FXML 
 	public void onRegisterClicked() {
 		lbl_error.setText("");
-		customerBean.setEmail(tf_email.getText());
-		customerBean.setPassword(psw_password.getText());
-		customerBean.setFirstName(tf_r_firstname.getText());
-		customerBean.setLastName(tf_r_lastname.getText());
-		customerBean.setAddress(tf_r_address.getText());
-		customerBean.setCity(tf_r_city.getText());
-		customerBean.setCountry(tf_r_country.getText());
-		customerBean.setPostalCode(tf_r_postalcode.getText());
-		customerBean.setPhoneNumber(tf_r_phoneNumber.getText());
-		customerBean.setCreditCard(tf_r_creditCardNumber.getText());
+		registerBean.setEmail(tf_email.getText());
+		registerBean.setPassword(psw_password.getText());
+		registerBean.setFirstName(tf_r_firstname.getText());
+		registerBean.setLastName(tf_r_lastname.getText());
+		registerBean.setAddress(tf_r_address.getText());
+		registerBean.setCity(tf_r_city.getText());
+		registerBean.setCountry(tf_r_country.getText());
+		registerBean.setPostalCode(tf_r_postalcode.getText());
+		registerBean.setPhoneNumber(tf_r_phoneNumber.getText());
+		registerBean.setCreditCard(tf_r_creditCardNumber.getText());
 		
 		if(cb_agreement.isSelected()) {
 			if(psw_password.getText().equals(psw_passwordConfirm.getText())) {
 				try {
-					customerBean.register();
+					registerBean.register();
 					PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
 					pageLoader.showOnPrimaryStage();
 				} catch (InvalidEmailException iee) {

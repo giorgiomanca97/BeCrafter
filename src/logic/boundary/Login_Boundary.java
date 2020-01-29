@@ -10,7 +10,7 @@ import error.IllegalCharacterException;
 import error.login.LoginException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import logic.bean.Customer_Bean;
+import logic.bean.Login_Bean;
 import logic.designclasses.PageLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -20,22 +20,22 @@ public class Login_Boundary {
 	@FXML private PasswordField psw_password;
 	@FXML private Label lbl_error;
 
-	Customer_Bean customerBean = null;
+	Login_Bean loginBean = null;
 	
 	
 	public void initialize() {
-		customerBean = new Customer_Bean();
+		loginBean = new Login_Bean();
 		lbl_error.setText("");
 	}
 
 	@FXML 
 	public void onLoginClicked() {
-		customerBean.setEmail(tf_email.getText());
-		customerBean.setPassword(psw_password.getText());
+		loginBean.setEmail(tf_email.getText());
+		loginBean.setPassword(psw_password.getText());
 		
 		lbl_error.setText("");
 		try {
-			customerBean.login();
+			loginBean.login();
 			onBackPressed();
 		} catch (LoginException le) {
 			lbl_error.setText("Email and Password do not match");
