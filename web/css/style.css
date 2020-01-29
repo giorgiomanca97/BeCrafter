@@ -1,18 +1,69 @@
 @charset "ISO-8859-1";
 
-<!-- Memo
-type: 
-tag {
-	attribure: value;
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0px;
+	margin: 0px;
+	height: auto;
 }
 
-id: 
-#id {
-	attribure: value;
+h1{
+	margin-bottom: 12px;
+	font-size: 64px;
 }
 
-class: 
-.class {
-	attribure: value;
+h2{
+	margin-bottom: 10px;
+	font-size: 48px;
 }
--->
+
+h3{
+	margin-bottom: 8px;
+	font-size: 36px;
+}
+
+h4{
+	margin-bottom: 6px;
+	font-size: 30px;
+}
+
+h5{
+	margin-bottom: 4px;
+	font-size: 24px;
+}
+
+h6{
+	margin-bottom: 2px;
+	font-size: 18px;
+}
+
+input{
+	border-radius: 5px;
+}
+
+
+.grid {
+	vertical-align: top;
+}
+
+table.product {
+	border-collapse: collapse;
+}
+
+tr.product {
+	border-bottom: 1px solid #ddd;
+}
+
+th.product{
+	
+}
+
+td.product{
+	padding: 2px 20px;
+	text-align: center;
+}
+
+
+#homeForm{
+	margin-right: 20px;
+}
