@@ -15,7 +15,6 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import logic.Login_Controller;
 import logic.bean.Home_Bean;
-import logic.bean.Product_Bean;
 import logic.designclasses.PageLoader;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
@@ -109,13 +108,14 @@ public class Home_Boundary {
 		if(cb_unfiltered.isSelected()) {
 			beerFilterings.add(BeerFiltering.UNFILTERED);
 		}
-				
+		
+		homeBean.displayProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 		tp_products.getChildren().clear();
 		try {
-			for (Product_Bean product : homeBean.showProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName)) {
+			for (int i = 0; i < homeBean.countDisplayedProducts(); i++) {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME_PRODUCTCARD);
 				HomeProductCard_Boundary product_view = (HomeProductCard_Boundary) pageLoader.getController();
-				product_view.loadProduct(product);
+				product_view.loadProduct(i);
 				tp_products.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {

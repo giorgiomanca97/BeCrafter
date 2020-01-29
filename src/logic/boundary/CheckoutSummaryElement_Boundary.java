@@ -1,9 +1,10 @@
 package logic.boundary;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import logic.bean.Product_Bean;
+import logic.bean.CheckoutSummary_Bean;
 import logic.designclasses.BeerImageLoader;
 import logic.entity.Price;
 import logic.entity.Volume;
@@ -24,16 +25,16 @@ public class CheckoutSummaryElement_Boundary {
 	
 	private CheckoutSummary_Boundary csBoundary;
 	private int index;
-	private Product_Bean buyBeerBean;
+	private CheckoutSummary_Bean checkoutSummaryBean;
 	
 	
 	public boolean setElement(CheckoutSummary_Boundary csBoundary, int index) {
-		this.buyBeerBean = new Product_Bean();
-		if(this.buyBeerBean.selectProductInCart(index)) {
+		this.checkoutSummaryBean = new CheckoutSummary_Bean();
+		if(this.checkoutSummaryBean.selectProductInCart(index)) {
 			this.csBoundary = csBoundary;
 			this.index = index;	
 			
-			this.buyBeerBean.loadSelectedProduct();
+			this.checkoutSummaryBean.loadSelectedProduct();
 			
 			loadProduct();
 			updateQuantity();
@@ -45,26 +46,26 @@ public class CheckoutSummaryElement_Boundary {
 	
 	private void loadProduct() {
 		lbl_number.setText(String.valueOf(this.index + 1));
-		img_containerType.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
-		lbl_beerName.setText(buyBeerBean.getBeerName());
-		lbl_beerType.setText(buyBeerBean.getBeerType().toString());
-		lbl_beerColor.setText(buyBeerBean.getBeerColor().toString());
-		lbl_beerAlcohol.setText(String.valueOf(buyBeerBean.getBeerAlcohol()) + "%");
-		lbl_beerFiltering.setText(buyBeerBean.getBeerFiltering().toString());
-		lbl_containerVolume.setText(Volume.toText(buyBeerBean.getContainerVolume()));
-		tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
-		lbl_totalVolume.setText(Volume.toText(buyBeerBean.getContainerVolume() * buyBeerBean.getQuantity()));
-		lbl_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
+		img_containerType.setImage(BeerImageLoader.loadImage(checkoutSummaryBean.getContainerType()));
+		lbl_beerName.setText(checkoutSummaryBean.getBeerName());
+		lbl_beerType.setText(checkoutSummaryBean.getBeerType().toString());
+		lbl_beerColor.setText(checkoutSummaryBean.getBeerColor().toString());
+		lbl_beerAlcohol.setText(String.valueOf(checkoutSummaryBean.getBeerAlcohol()) + "%");
+		lbl_beerFiltering.setText(checkoutSummaryBean.getBeerFiltering().toString());
+		lbl_containerVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume()));
+		tf_quantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
+		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
+		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()));
 	}
 
 
 	@FXML 
 	public void onSubPressed() {
-		int q = buyBeerBean.getQuantity() - 1;
+		int q = checkoutSummaryBean.getQuantity() - 1;
 		if(q < 1) {
 			q = 1;
 		}
-		buyBeerBean.setQuantity(q);
+		checkoutSummaryBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
 		
 		updateQuantity();
@@ -75,9 +76,9 @@ public class CheckoutSummaryElement_Boundary {
 	public void onQuantityChange() {
 		try {
 			int q = Integer.parseUnsignedInt(tf_quantity.getText());
-			buyBeerBean.setQuantity(q);
+			checkoutSummaryBean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
+			tf_quantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
 		}
 		
 		updateQuantity();
@@ -86,8 +87,8 @@ public class CheckoutSummaryElement_Boundary {
 
 	@FXML 
 	public void onAddPressed() {
-		int q = buyBeerBean.getQuantity() + 1;
-		buyBeerBean.setQuantity(q);
+		int q = checkoutSummaryBean.getQuantity() + 1;
+		checkoutSummaryBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
 		
 		updateQuantity();
@@ -95,16 +96,16 @@ public class CheckoutSummaryElement_Boundary {
 	
 	
 	private void updateQuantity() {
-		lbl_totalVolume.setText(Volume.toText(buyBeerBean.getContainerVolume() * buyBeerBean.getQuantity()));
-		lbl_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
-		buyBeerBean.updateProductInsideCart();
-		csBoundary.updateOverallPrice(this.index, buyBeerBean.getPrice() * buyBeerBean.getQuantity());
+		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
+		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()));
+		checkoutSummaryBean.updateProductInsideCart();
+		csBoundary.updateOverallPrice(this.index, checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity());
 	}
 	
 
 	@FXML 
 	public void onDelPressed() {
-		buyBeerBean.removeProductFromCart();
+		checkoutSummaryBean.removeProductFromCart();
 		csBoundary.displayCart();
 	}
 }

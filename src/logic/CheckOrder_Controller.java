@@ -1,8 +1,8 @@
 package logic;
 
 import error.OrderNotFoundException;
+import logic.dao.Order_dao;
 import logic.entity.Order;
-import logic.entity.dao.Order_dao;
 
 public class CheckOrder_Controller {
 	

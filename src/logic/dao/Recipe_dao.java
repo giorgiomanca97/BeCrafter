@@ -1,4 +1,4 @@
-package logic.entity.dao;
+package logic.dao;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -10,6 +10,9 @@ import error.PaymentRefusedException;
 import error.StorableIllegalQuantityException;
 import error.id.IdException;
 import error.login.UsedEmailException;
+import logic.dao.Beer_dao;
+import logic.dao.Order_dao;
+import logic.dao.Registered_dao;
 import logic.designclasses.CloneStorableList;
 import logic.designclasses.IdConverter;
 import logic.entity.Beer;
@@ -19,9 +22,6 @@ import logic.entity.ContainerType;
 import logic.entity.Order;
 import logic.entity.Product;
 import logic.entity.Volume;
-import logic.entity.dao.Beer_dao;
-import logic.entity.dao.Order_dao;
-import logic.entity.dao.Registered_dao;
 import logic.entity.interfaces.Storable;
 
 public class BuyBeer_Controller {

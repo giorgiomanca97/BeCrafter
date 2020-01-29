@@ -6,9 +6,9 @@ import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
 import error.login.UsedEmailException;
 import error.login.WrongPasswordException;
+import logic.dao.Registered_dao;
 import logic.entity.BillingInfo;
 import logic.entity.Registered;
-import logic.entity.dao.Registered_dao;
 
 public class Login_Controller {
 	private static Login_Controller instance = null;

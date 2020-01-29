@@ -195,6 +195,32 @@ public class Storehouse {
     }
 
     
+    public int countRawMaterials() {
+    	return rawMaterials.size();
+    }
+    
+    public int countContainers() {
+    	return containers.size();
+    }
+    
+    public int countProducts() {
+    	return products.size();
+    }
+    
+    
+    public RawMaterial getRawMaterialsAt(int index) {
+    	return (RawMaterial) rawMaterials.getAt(index);
+    }
+    
+    public Container getContainersAt(int index) {
+    	return (Container) containers.getAt(index);
+    }
+    
+    public Product getProductsAt(int index) {
+    	return (Product) products.getAt(index);
+    }	
+    
+    
     @Override
     public String toString() {
     	StringBuilder stringBuilder = new StringBuilder();
