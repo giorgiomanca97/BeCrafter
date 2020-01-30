@@ -25,7 +25,16 @@ public class CheckoutSummary_Bean{
 	
 	
 	public CheckoutSummary_Bean() {
-		
+		cs_beerId = "";
+		cs_beerName = "";
+		cs_beerType = null;
+		cs_beerColor = null;
+		cs_beerAlcohol = 0f;
+		cs_beerFiltering = null;
+		cs_containerType = null;
+		cs_containerVolume = 0;
+		cs_price = 0f;
+		cs_quantity = 0;
 	}
 
 

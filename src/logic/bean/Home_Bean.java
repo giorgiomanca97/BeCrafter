@@ -28,7 +28,17 @@ public class Home_Bean {
 	
 	
 	public Home_Bean() {
-		
+		h_beerId = "";
+		h_beerName = "";
+		h_beerType = null;
+		h_beerColor = null;
+		h_beerAlcohol = 0f;
+		h_beerFiltering = null;
+		h_beerDescription = "";
+		h_containerType = null;
+		h_containerVolume = 0;
+		h_price = 0f;
+		h_quantity = 0;
 	}
 	
 	

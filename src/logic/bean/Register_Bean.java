@@ -25,7 +25,17 @@ public class Register_Bean {
 	
 	
 	public Register_Bean() {
-		
+		r_email = "";
+		r_password = "";
+		r_firstName = "";
+		r_lastName = "";
+		r_address = "";
+		r_city = "";
+		r_country = "";
+		r_postalCode = "";
+		r_phoneNumber = "";
+		r_phoneNumber = "";
+		r_creditCard = "";
 	}
 
 

@@ -12,7 +12,6 @@
     
 <jsp:useBean id="homeBean" scope="request" class="logic.bean.Home_Bean"/>
 
-
 <%
 String searchName = (request.getParameter("searchName") != null) ? request.getParameter("searchName") : "";
 boolean cbTypeAle = (request.getParameter("TypeAle") != null);

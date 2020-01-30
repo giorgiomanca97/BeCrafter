@@ -13,7 +13,8 @@ public class Login_Bean {
 	
 	
 	public Login_Bean() {
-		
+		l_email = "";
+		l_password = "";
 	}
 
 

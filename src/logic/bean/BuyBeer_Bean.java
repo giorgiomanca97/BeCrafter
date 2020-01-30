@@ -26,7 +26,17 @@ public class BuyBeer_Bean {
 	
 	
 	public BuyBeer_Bean() {
-		
+		bb_beerId = "";
+		bb_beerName = "";
+		bb_beerType = null;
+		bb_beerColor = null;
+		bb_beerAlcohol = 0f;
+		bb_beerFiltering = null;
+		bb_beerDescription = "";
+		bb_containerType = null;
+		bb_containerVolume = 0;
+		bb_price = 0f;
+		bb_quantity = 0;
 	}
 
 

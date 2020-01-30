@@ -32,7 +32,16 @@ public class CheckoutPayment_Bean{
 	
 	
 	public CheckoutPayment_Bean() {
-		
+		cp_email = "";
+		cp_password = "";
+		cp_firstName = "";
+		cp_lastName = "";
+		cp_address = "";
+		cp_city = "";
+		cp_country = "";
+		cp_postalCode = "";
+		cp_phoneNumber = "";
+		cp_creditCard = "";
 	}
 
 

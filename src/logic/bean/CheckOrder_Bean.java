@@ -15,7 +15,12 @@ public class CheckOrder_Bean {
 	
 	
 	public CheckOrder_Bean() {
-		
+		co_orderId = "";
+		co_date = "";
+		co_price = 0f;
+		co_email = "";
+		co_shippingCode = "";
+		co_shippingCompany = "";
 	}
 	
 	

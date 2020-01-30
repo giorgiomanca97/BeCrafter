@@ -6,6 +6,10 @@
 <%@page import="error.WrongFieldException"%>
 <%@page import="error.PaymentRefusedException"%>
 <%@page import="error.id.IdException"%>
+<%@page import="error.login.InexistentEmailException"%>
+<%@page import="error.login.WrongPasswordException"%>
+<%@page import="error.login.LoginException"%>
+
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -13,6 +17,27 @@
 <jsp:setProperty name="checkoutPaymentBean" property="*" />
 
 <%
+
+boolean loginAction = (request.getParameter("loginAction") != null && request.getParameter("loginAction").equals("1"));
+boolean logged = false;
+String loginError = null;
+if(loginAction){
+	try {
+		checkoutPaymentBean.login();
+		logged = true;
+	} catch (InexistentEmailException | WrongPasswordException | IllegalCharacterException e) {
+		loginError = "Email and Password do not match";
+	} catch (EmptyFieldException efe) {
+		loginError = "Please fill all the fields";
+	} catch (LoginException le) {
+		loginError = "Something unexpected happen. Please retry";
+	}
+}
+
+if(logged){
+	checkoutPaymentBean.loadLoggedCustomer();
+}
+
 String email = (checkoutPaymentBean.getEmail() != null) ? checkoutPaymentBean.getEmail() : "";
 String firstName = (checkoutPaymentBean.getFirstName() != null) ? checkoutPaymentBean.getFirstName() : "";
 String lastName = (checkoutPaymentBean.getLastName() != null) ? checkoutPaymentBean.getLastName() : "";
@@ -23,8 +48,13 @@ String postalCode = (checkoutPaymentBean.getPostalCode() != null) ? checkoutPaym
 String phoneNumber = (checkoutPaymentBean.getPhoneNumber() != null) ? checkoutPaymentBean.getPhoneNumber() : "";
 String creditCard = (checkoutPaymentBean.getCreditCard() != null) ? checkoutPaymentBean.getCreditCard() : "";
 
+String loginEmail = email;
+if(loginAction && !logged){
+	email = "";
+}
+
 boolean confirmPurchase = (request.getParameter("confirmAction") != null && request.getParameter("confirmAction").equals("1"));
-String error = null;
+String purchaseError = null;
 String orderId = null;
 if(confirmPurchase){
 	try {
@@ -34,21 +64,21 @@ if(confirmPurchase){
 		</jsp:forward>
 		<% 
 	} catch(InvalidEmailException iee) {
-		error = "Wrong email format";
+		purchaseError = "Wrong email format";
 	} catch(UsedEmailException uee) {
-		error = "This email is already registered";
+		purchaseError = "This email is already registered";
 	} catch(EmptyFieldException uee) {
-		error = "Please fill all the empty fields";
+		purchaseError = "Please fill all the empty fields";
 	} catch (IllegalCharacterException ice) {
-		error = "Please remove the ' character from the fields";
+		purchaseError = "Please remove the ' character from the fields";
 	} catch (WrongFieldException wfe) {
-		error = "Some fields are not correct";
+		purchaseError = "Some fields are not correct";
 	} catch (PaymentRefusedException pre) {
-		error ="Payment refused. Please retry";
+		purchaseError ="Payment refused. Please retry";
 	} catch (EmptyCartException ece) {
-		error = "The cart is empty. Please choose a product first";
+		purchaseError = "The cart is empty. Please choose a product first";
 	} catch (IdException ie) {
-		error = "Unexpected Error. Please retry";
+		purchaseError = "Unexpected Error. Please retry";
 	}
 }
 %>
@@ -62,53 +92,70 @@ if(confirmPurchase){
 	</head>
 	<body>
 		<h2>Checkout Summary</h2>
-		<form action="checkoutPayment.jsp" method="POST">
-			<table>
-				<tr>
-					<td>email</td>
-					<td><input type="text" id="email" name="email" value="<%=email %>"></td>
-				</tr>
-				<tr>
-					<td>first name</td>
-					<td><input type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
-				</tr>
-				<tr>
-					<td>last name</td>
-					<td><input type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
-				</tr>
-				<tr>
-					<td>address</td>
-					<td><input type="text" id="address" name="address" value="<%=address %>"></td>
-				</tr>
-				<tr>
-					<td>city</td>
-					<td><input type="text" id="city" name="city" value="<%=city %>"></td>
-				</tr>
-				<tr>
-					<td>country</td>
-					<td><input type="text" id="country" name="country" value="<%=country %>"></td>
-				</tr>
-				<tr>
-					<td>postal code</td>
-					<td><input type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
-				</tr>
-				<tr>
-					<td>phone number</td>
-					<td><input type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
-				</tr>
-				<tr>
-					<td>credit card number</td>
-					<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
-				</tr>
-			</table>
-			<input type="submit" value="Confirm Purchase">
-			<input type="hidden" name="confirmAction" value="1"> 
-		</form>
-		<form action="checkoutSummary.jsp">
-			<input type="submit" value="Go back to Summary">
-		</form>
-		<% if(error != null){ %>
-		<p class="error"><%=error %></p>
-		<% } %>
+		<table>
+			<tr>
+				<td class="grid">
+					<form action="checkoutPayment.jsp" method="POST">
+					<table>
+						<tr>
+							<td>email</td>
+							<td><input type="text" id="email" name="email" value="<%=email %>" <%if(logged) {%>disabled<%}%>></td>
+						</tr>
+						<tr>
+							<td>first name</td>
+							<td><input type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
+						</tr>
+						<tr>
+							<td>last name</td>
+							<td><input type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
+						</tr>
+						<tr>
+							<td>address</td>
+							<td><input type="text" id="address" name="address" value="<%=address %>"></td>
+						</tr>
+						<tr>
+							<td>city</td>
+							<td><input type="text" id="city" name="city" value="<%=city %>"></td>
+						</tr>
+						<tr>
+							<td>country</td>
+							<td><input type="text" id="country" name="country" value="<%=country %>"></td>
+						</tr>
+						<tr>
+							<td>postal code</td>
+							<td><input type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
+						</tr>
+						<tr>
+							<td>phone number</td>
+							<td><input type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
+						</tr>
+						<tr>
+							<td>credit card number</td>
+							<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
+						</tr>
+					</table>
+					<input type="submit" value="Confirm Purchase">
+					<input type="hidden" name="confirmAction" value="1"> 
+					</form>
+					<form action="checkoutSummary.jsp">
+						<input type="submit" value="Go back to Summary">
+					</form>
+					<% if(purchaseError != null){ %>
+					<p class="error"><%=purchaseError %></p>
+					<% } %>
+				</td>
+				<td class="grid">
+					<form action="checkoutPayment.jsp" method="POST">
+						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged) {%>disabled<%}%>><br><br>
+						<input type="password" id="password" name="password" <%if(logged) {%>disabled<%}%>><br><br>
+						<input type="hidden" name="loginAction" value="1">
+						<input type="submit" value="Login">
+					</form>
+					<% if(loginError != null){ %>
+					<p class="error"><%=loginError %></p>
+					<% } %>
+				</td>
+			</tr>
+		</table>
 	</body>
 </html>
