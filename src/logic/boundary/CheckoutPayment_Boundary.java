@@ -107,7 +107,7 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Some fields are not correct");
 		} catch (PaymentRefusedException pre) {
 			lbl_error.setText("Payment refused. Please retry");
-		} catch (IdException e) {
+		} catch (IdException ie) {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}
 	}

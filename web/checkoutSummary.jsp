@@ -46,10 +46,13 @@ if(toRemove != null){
 			</tr>
 		<%
 		int count = checkoutSummaryBean.cartSize();
+		float totalPrice = 0;
 		
 		for(int i = 0; i < count; i++){
 			checkoutSummaryBean.selectProductInCart(i);
 			checkoutSummaryBean.loadSelectedProduct();
+			
+			totalPrice += checkoutSummaryBean.getPrice();
 			String name = checkoutSummaryBean.getBeerName();
 			String type = checkoutSummaryBean.getBeerType().toString();
 			String color = checkoutSummaryBean.getBeerColor().toString();
@@ -83,5 +86,16 @@ if(toRemove != null){
 		}
 		%>
 		</table>
+		<br>
+		<div>
+			<p>Overall cost</p>
+			<p><%=totalPrice %>  &euro;</p>
+		</div>
+		<form action="checkoutPayment.jsp">
+			<input type="submit" value="Confirm Products">
+		</form>
+		<form action="home.jsp">
+			<input type="submit" value="Go back to Shopping">
+		</form>
 	</body>
 </html>
