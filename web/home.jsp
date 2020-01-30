@@ -5,6 +5,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="logic.entity.Volume"%>
 <%@page import="logic.entity.Price"%>
+<%@page import="error.ProductNotFoundException"%>
+<%@page import="error.StorableIllegalQuantityException"%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
@@ -26,6 +28,7 @@ boolean cbContBarrel = (request.getParameter("ContainerBarrel") != null);
 boolean cbFilteringYes = (request.getParameter("FilteringYes") != null);
 boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,7 +37,18 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 		<title>Home</title>
 	</head>
 	<body>
-		<h1>BeCrafter</h1>
+		<table>
+			<tr>
+				<td>
+					<h1>BeCrafter</h1>
+				</td>
+				<td>
+					<form action="checkoutSummary.jsp">
+						<input type="submit" value="Checkout">
+					</form>
+				</td>		
+			</tr>
+		</table>
 		<table>
 			<tr>
 				<td class="grid">
@@ -125,7 +139,7 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 							<td class="product"><%=price %> &euro;</td>
 							<td class="product">
 								<form action="buyBeer.jsp">
-									<input type="submit" value="buy">
+									<input type="submit" value="Buy">
 									<input type="hidden" name="beerId" value=<%=homeBean.getBeerId() %>>
 									<input type="hidden" name="containerType" value=<%=homeBean.getContainerType().name() %>>
 									<input type="hidden" name="volume" value=<%=homeBean.getContainerVolume() %>>

@@ -1,7 +1,7 @@
 package logic.bean;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import error.ProductNotFoundException;
 import logic.BuyBeer_Controller;
@@ -133,7 +133,7 @@ public class Home_Bean {
 	// ==============================
 	
 	
-	public void displayProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
+	public void displayProducts(List<BeerType> beerTypes, List<BeerColor> beerColors, List<ContainerType> containerTypes, List<BeerFiltering> beerFilterings, String searchName){
 		Home_Controller.getInstance().displayProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 	}
 	

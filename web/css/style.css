@@ -50,6 +50,12 @@ input{
 	vertical-align: top;
 }
 
+.error {
+	color: #FF0000;
+	font-style: bold;
+}
+
+
 table.product {
 	border-collapse: collapse;
 }

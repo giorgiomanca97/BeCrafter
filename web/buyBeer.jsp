@@ -5,22 +5,45 @@
 <%@page import="logic.entity.BeerType"%>
 <%@page import="logic.entity.Volume"%>
 <%@page import="logic.entity.Price"%>
+<%@page import="error.ProductNotFoundException"%>
+<%@page import="error.StorableIllegalQuantityException"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:useBean id="buyBeerBean" scope="request" class="logic.bean.BuyBeer_Bean"/>
 
 <%
+int quantity = 1;
+boolean fault = false;
+boolean buy = (request.getParameter("buyAction") != null && request.getParameter("buyAction").equals("1"));
+if(buy){
+	String q = request.getParameter("quantity");
+	if(q != null) {
+		try{
+			quantity = Integer.parseUnsignedInt(q);
+			buyBeerBean.setQuantity(quantity);
+		} catch (NumberFormatException nfe){
+			quantity = 1;
+			fault = true;
+		}
+	}
+}
+
 buyBeerBean.setBeerId(request.getParameter("beerId"));
 buyBeerBean.setContainerType(ContainerType.valueOf(request.getParameter("containerType")));
 buyBeerBean.setContainerVolume(Integer.parseInt(request.getParameter("volume")));
-try {
-	buyBeerBean.selectForSaleProduct();
-} catch (ProductNotFoundException pnfe) {
-	%><jsp:forward page="home.jsp"><%
+
+if(buy && !fault){
+	buyBeerBean.addProductToCart();
+	%> <jsp:forward page="home.jsp"/> <%
+} else {
+	try {
+		buyBeerBean.selectForSaleProduct();
+	} catch (ProductNotFoundException pnfe) {
+		%><jsp:forward page="home.jsp"/><%
+	}
+	buyBeerBean.loadSelectedProduct();
 }
-buyBeerBean.loadSelectedProduct();
 %>
 
 <!DOCTYPE html>
@@ -70,9 +93,18 @@ buyBeerBean.loadSelectedProduct();
 			</tr>
 		</table>
 		<br>
-		<form action="home.jsp">
-			<input type="number" name="quantity"/>
-			<input type="submit" value="Buy Product"/>
+		<form action="buyBeer.jsp">
+			<input type="number" name="quantity" value=<%=quantity %>>
+			<input type="submit" value="Buy Product">
+			<input type="hidden" name="buyAction" value="1">
+			<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
+			<input type="hidden" name="containerType" value=<%=buyBeerBean.getContainerType().name() %>>
+			<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
 		</form>
+		<%
+		if(fault) { 
+			%><p class="error"><b>Please insert a valid quantity</b></p> <% 
+		}
+		%>
 	</body>
 </html>
