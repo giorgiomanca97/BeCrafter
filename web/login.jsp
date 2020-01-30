@@ -54,7 +54,7 @@ if(loginPressed) {
 		}%>
 		<br>
 		<input type="submit" value="Login">
-		<input type="hidden" name="login" value="1">
+		<input type="hidden" name="loginPressed" value="1">
 		</form>
 		<p>not registered ? <a href="register.jsp">click here</a></p>
 	</body>
