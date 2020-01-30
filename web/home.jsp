@@ -47,6 +47,11 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 						<input type="submit" value="Checkout">
 					</form>
 				</td>		
+				<td>
+					<form action="checkOrder.jsp">
+						<input type="submit" value="Check Order">
+					</form>
+				</td>
 			</tr>
 		</table>
 		<table>
