@@ -13,12 +13,14 @@ public class IdConverter {
 	
 	
 	public static Type getTypeOf(String id) throws UnsupportedIdException {
-		String identifier = id.substring(0,1);
-		
-		for (Type t : IdConverter.Type.values()) {
-			if(identifier.equals(t.getIdentifier())) {
-				return t;
-			}
+		if(id.length() == 0) {
+			String identifier = id.substring(0,1);
+			
+			for (Type t : IdConverter.Type.values()) {
+				if(identifier.equals(t.getIdentifier())) {
+					return t;
+				}
+			}	
 		}
 		
 		throw new UnsupportedIdException();
