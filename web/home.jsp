@@ -128,7 +128,9 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 							<td class="product">
 								<form action="buyBeer.jsp">
 									<input type="submit" value="buy">
-									<input type="hidden" name="selected" value=<%=i %>>
+									<input type="hidden" name="beerId" value=<%=homeBean.getBeerId() %>>
+									<input type="hidden" name="containerType" value=<%=homeBean.getContainerType().name() %>>
+									<input type="hidden" name="volume" value=<%=homeBean.getContainerVolume() %>>
 								</form>
 							</td>
 						</tr>

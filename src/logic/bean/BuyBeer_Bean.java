@@ -130,8 +130,8 @@ public class BuyBeer_Bean {
 	
 	
 	public void selectForSaleProduct() {
-		Volume volume = new Volume(this.bb_containerVolume);
-		BuyBeer_Controller.getInstance().selectForSaleProduct(this.bb_beerId, this.bb_containerType, volume);
+		Volume volume = new Volume(bb_containerVolume);
+		BuyBeer_Controller.getInstance().selectForSaleProduct(bb_beerId, bb_containerType, volume);
 	}
 	
 	public void loadSelectedProduct() {
