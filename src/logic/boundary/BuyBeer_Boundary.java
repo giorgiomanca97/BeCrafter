@@ -34,7 +34,7 @@ public class BuyBeer_Boundary {
 	
 	
 	public void initialize() {
-		buyBeerBean = new BuyBeer_Bean();	
+		buyBeerBean = new BuyBeer_Bean();
 		buyBeerBean.loadSelectedProduct();
 		buyBeerBean.setQuantity(1);
 		

@@ -136,8 +136,13 @@ public class BuyBeer_Bean {
 		BuyBeer_Controller.getInstance().selectProductForSale(bb_beerId, bb_containerType, volume);
 	}
 	
-	public void loadSelectedProduct() {
+	public boolean loadSelectedProduct() {
 		Product product = BuyBeer_Controller.getInstance().getSelectedProduct();
+		
+		if(product == null) {
+			return false;
+		}
+		
 		bb_beerId = product.getBeer().getId();
 		bb_beerName = product.getBeer().getName();
 		bb_beerType = product.getBeer().getType();
@@ -149,6 +154,8 @@ public class BuyBeer_Bean {
 		bb_containerVolume = product.getContainer().getVolume();
 		bb_price = product.getPrice();
 		bb_quantity = product.getQuantity();
+		
+		return true;
 	}
 	
 	public void addProductToCart() throws ProductNotFoundException, StorableIllegalQuantityException {
