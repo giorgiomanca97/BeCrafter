@@ -25,7 +25,7 @@ import logic.entity.Order;
 import logic.entity.Product;
 
 public class Order_dao {
-	private static String ORDERS_FOLDER_PATH = "persistence/orders"; 
+	private static String ORDERS_FOLDER_PATH = "C:\\Users\\wronek\\eclipse-workspace\\BeCrafter\\trunk\\persistence\\orders"; 
 	
 	// Informazioni tabella ordini
 	private static String TABLE_ORDERS = "orders";
@@ -97,7 +97,7 @@ public class Order_dao {
             		order.setShippingCode(rs.getString(TABLE_ORDERS_COL_SHIPCODE));
             		order.setShippingCompany(rs.getString(TABLE_ORDERS_COL_SHIPCOMP));
             		
-            		File file = new File(ORDERS_FOLDER_PATH + "/" + orderId);
+            		File file = new File(ORDERS_FOLDER_PATH + "\\" + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
             		          		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
@@ -185,7 +185,7 @@ public class Order_dao {
 	
 	
 	private static void saveOrderData(Order order) {
-		File file = new File(ORDERS_FOLDER_PATH + "/" + order.getId());
+		File file = new File(ORDERS_FOLDER_PATH + "\\" + order.getId());
 		
 		FileWriter fileWriter = null;
 		BufferedWriter bufferedWriter = null;
