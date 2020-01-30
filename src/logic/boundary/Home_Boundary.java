@@ -3,6 +3,7 @@ package logic.boundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,7 +56,7 @@ public class Home_Boundary {
 	private Home_Bean homeBean;
 	
 	
-	public void initialize() {		
+	public void initialize() {
 		homeBean = new Home_Bean();
 		closeMenu();
 		setLoggedCustomer();
@@ -63,10 +64,10 @@ public class Home_Boundary {
 	}
 	
 	public void updateProducts() {
-		ArrayList<BeerType> beerTypes = new ArrayList<BeerType>();
-		ArrayList<BeerColor> beerColors = new ArrayList<BeerColor>();
-		ArrayList<ContainerType> containerTypes = new ArrayList<ContainerType>();
-		ArrayList<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
+		List<BeerType> beerTypes = new ArrayList<BeerType>();
+		List<BeerColor> beerColors = new ArrayList<BeerColor>();
+		List<ContainerType> containerTypes = new ArrayList<ContainerType>();
+		List<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
 		String searchName = tf_search.getText();
 		
 		if(cb_ale.isSelected()) {
