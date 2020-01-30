@@ -5,10 +5,11 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <jsp:useBean id="loginBean" scope="request" class="logic.bean.Login_Bean"/>
+<jsp:setProperty name="loginBean" property="*" />
 
 <%
-String email = (loginBean.getEmail() != null) ? loginBean.getEmail() : "";
-String password = (loginBean.getPassword() != null) ? loginBean.getPassword() : "";
+String email = loginBean.getEmail();
+String password = loginBean.getPassword();
 String errorMsg = null;
 
 boolean loginPressed = request.getParameter("loginPressed") != null && request.getParameter("loginPressed").equals("1");
