@@ -15,7 +15,8 @@ import logic.entity.RawMaterial;
 import logic.entity.Recipe;
 
 public class Recipe_dao {
-	private static String RECIPES_FOLDER_PATH = "persistence/recipes"; 
+	private static String RECIPES_FOLDER_PATH = "C:\\Becrafter\\persistence\\recipes"; 
+	private static String FOLDER_SEP = "\\";
 	
 	
 	private Recipe_dao() {
@@ -70,7 +71,7 @@ public class Recipe_dao {
 	}
 	
 	public static Recipe getRecipeById(String id) {
-		File file = new File(RECIPES_FOLDER_PATH + "/" + id);
+		File file = new File(RECIPES_FOLDER_PATH + FOLDER_SEP + id);
 		
 		if(file.exists()) {
 			return getRecipe(file);
