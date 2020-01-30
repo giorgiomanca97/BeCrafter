@@ -4,6 +4,7 @@ package logic;
 import java.util.Calendar;
 import java.util.Random;
 
+import error.EmptyCartException;
 import error.PaymentRefusedException;
 import error.ProductNotFoundException;
 import error.StorableIllegalQuantityException;
@@ -123,7 +124,11 @@ public class BuyBeer_Controller {
 		
 	}
 	
-	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, PaymentRefusedException, IdException {
+	public String confirmPurchase(String email, BillingInfo billingInfo) throws EmptyCartException, UsedEmailException, PaymentRefusedException, IdException {
+		if(cart.size() == 0) {
+			throw new EmptyCartException();
+		}
+		
 		if(Registered_dao.getRegisteredByEmail(email) != null && !Login_Controller.getInstance().isLogged(email)) {
 			throw new UsedEmailException("Email already used. Please login!");
 		}

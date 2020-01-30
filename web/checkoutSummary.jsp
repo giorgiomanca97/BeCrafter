@@ -52,7 +52,7 @@ if(toRemove != null){
 			checkoutSummaryBean.selectProductInCart(i);
 			checkoutSummaryBean.loadSelectedProduct();
 			
-			totalPrice += checkoutSummaryBean.getPrice();
+			totalPrice += checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity();
 			String name = checkoutSummaryBean.getBeerName();
 			String type = checkoutSummaryBean.getBeerType().toString();
 			String color = checkoutSummaryBean.getBeerColor().toString();
@@ -78,7 +78,7 @@ if(toRemove != null){
 				<td class="product">
 					<form action="checkoutSummary.jsp">
 						<input type="submit" value="Remove">
-						<input type="hidden" name="remove" value=<%=i %>>
+						<input type="hidden" name="remove" value="<%=i %>">
 					</form>
 				</td>
 			</tr>
@@ -89,7 +89,7 @@ if(toRemove != null){
 		<br>
 		<div>
 			<p>Overall cost</p>
-			<p><%=totalPrice %>  &euro;</p>
+			<p><%=Price.toText(totalPrice) %> &euro;</p>
 		</div>
 		<form action="checkoutPayment.jsp">
 			<input type="submit" value="Confirm Products">

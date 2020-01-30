@@ -1,6 +1,7 @@
 package logic.bean;
 
 
+import error.EmptyCartException;
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
 import error.PaymentRefusedException;
@@ -145,7 +146,7 @@ public class CheckoutPayment_Bean{
 		}
 	}
 	
-	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
+	public String confirmPurchase() throws EmptyCartException, InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
 		if(cp_email.length() == 0) {
 			throw new EmptyFieldException();
 		}

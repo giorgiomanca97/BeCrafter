@@ -63,7 +63,7 @@ String shippingCompany = (checkOrderBean.getShippingCompany() != null) ? checkOr
 				</tr>
 				<tr>
 					<td>Overall Price: </td>
-					<td> <%=overallPrice %> </td>
+					<td> <%=overallPrice %>  &euro;</td>
 				</tr>
 				<tr>
 					<td>Email: </td>

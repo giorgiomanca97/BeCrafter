@@ -65,7 +65,8 @@ tr.product {
 }
 
 th.product{
-	
+	padding: 2px 20px;
+	text-align: center;
 }
 
 td.product{

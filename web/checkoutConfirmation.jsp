@@ -14,6 +14,7 @@ String orderId = request.getParameter("orderId") != null ? request.getParameter(
 	<body>
 		<h2>Checkout Confirmation</h2>
 		<p>orderId</p>
+		<p><%=orderId %></p>
 		<form action="home.jsp">
 			<input type="submit" value="Ok">
 		</form>

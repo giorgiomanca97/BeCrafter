@@ -1,6 +1,7 @@
 package logic.boundary;
 
 
+import error.EmptyCartException;
 import error.EmptyFieldException;
 import error.IllegalCharacterException;
 import error.PaymentRefusedException;
@@ -107,7 +108,7 @@ public class CheckoutPayment_Boundary {
 			lbl_error.setText("Some fields are not correct");
 		} catch (PaymentRefusedException pre) {
 			lbl_error.setText("Payment refused. Please retry");
-		} catch (IdException ie) {
+		} catch (IdException | EmptyCartException e) {
 			lbl_error.setText("Unexpected Error. Please retry");
 		}
 	}
