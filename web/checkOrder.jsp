@@ -10,7 +10,7 @@
 <%
 boolean orderIdNotFound = false;
 
-String orderId = (checkOrderBean.getOrderId() != null) ? checkOrderBean.getOrderId() : "";
+String orderId = checkOrderBean.getOrderId();
 
 boolean search = request.getParameter("search") != null && request.getParameter("search").equals("1");
 if(search && !orderId.equals("")) {
@@ -21,11 +21,11 @@ if(search && !orderId.equals("")) {
 		orderIdNotFound = true;
 	}
 }
-String purchaseDate = (checkOrderBean.getDate() != null) ? checkOrderBean.getDate() : "";
-String overallPrice = (checkOrderBean.getPrice() != 0) ? Price.toText(checkOrderBean.getPrice()) : "";
-String email = (checkOrderBean.getEmail() != null) ? checkOrderBean.getEmail() : "";
-String shippingCode = (checkOrderBean.getShippingCode() != null) ? checkOrderBean.getShippingCode() : "";
-String shippingCompany = (checkOrderBean.getShippingCompany() != null) ? checkOrderBean.getShippingCompany() : "";
+String purchaseDate = checkOrderBean.getDate();
+String overallPrice = Price.toText(checkOrderBean.getPrice());
+String email = checkOrderBean.getEmail();
+String shippingCode = checkOrderBean.getShippingCode();
+String shippingCompany = checkOrderBean.getShippingCompany();
 
 %>
 

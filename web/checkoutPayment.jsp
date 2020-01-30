@@ -38,20 +38,15 @@ if(logged){
 	checkoutPaymentBean.loadLoggedCustomer();
 }
 
-String email = (checkoutPaymentBean.getEmail() != null) ? checkoutPaymentBean.getEmail() : "";
-String firstName = (checkoutPaymentBean.getFirstName() != null) ? checkoutPaymentBean.getFirstName() : "";
-String lastName = (checkoutPaymentBean.getLastName() != null) ? checkoutPaymentBean.getLastName() : "";
-String address = (checkoutPaymentBean.getAddress() != null) ? checkoutPaymentBean.getAddress() : "";
-String city = (checkoutPaymentBean.getCity() != null) ? checkoutPaymentBean.getCity() : "";
-String country = (checkoutPaymentBean.getCountry() != null) ? checkoutPaymentBean.getCountry() : "";
-String postalCode = (checkoutPaymentBean.getPostalCode() != null) ? checkoutPaymentBean.getPostalCode() : "";
-String phoneNumber = (checkoutPaymentBean.getPhoneNumber() != null) ? checkoutPaymentBean.getPhoneNumber() : "";
-String creditCard = (checkoutPaymentBean.getCreditCard() != null) ? checkoutPaymentBean.getCreditCard() : "";
-
-String loginEmail = email;
-if(loginAction && !logged){
-	email = "";
-}
+String email = checkoutPaymentBean.getEmail();
+String firstName = checkoutPaymentBean.getFirstName();
+String lastName = checkoutPaymentBean.getLastName();
+String address = checkoutPaymentBean.getAddress();
+String city = checkoutPaymentBean.getCity();
+String country = checkoutPaymentBean.getCountry();
+String postalCode = checkoutPaymentBean.getPostalCode();
+String phoneNumber = checkoutPaymentBean.getPhoneNumber();
+String creditCard = checkoutPaymentBean.getCreditCard();
 
 boolean confirmPurchase = (request.getParameter("confirmAction") != null && request.getParameter("confirmAction").equals("1"));
 String purchaseError = null;
@@ -81,6 +76,11 @@ if(confirmPurchase){
 		purchaseError = "Unexpected Error. Please retry";
 	}
 }
+
+String loginEmail = email;
+if(loginAction && !logged && !confirmPurchase){
+	email = "";
+}
 %>
 
 <!DOCTYPE html>
@@ -99,7 +99,7 @@ if(confirmPurchase){
 					<table>
 						<tr>
 							<td>email</td>
-							<td><input type="text" id="email" name="email" value="<%=email %>" <%if(logged) {%>disabled<%}%>></td>
+							<td><input type="text" id="email" name="email" value="<%=email %>" <%if(logged) {%>readonly<%}%>></td>
 						</tr>
 						<tr>
 							<td>first name</td>
@@ -149,7 +149,7 @@ if(confirmPurchase){
 						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged) {%>disabled<%}%>><br><br>
 						<input type="password" id="password" name="password" <%if(logged) {%>disabled<%}%>><br><br>
 						<input type="hidden" name="loginAction" value="1">
-						<input type="submit" value="Login">
+						<input type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
 					</form>
 					<% if(loginError != null){ %>
 					<p class="error"><%=loginError %></p>
