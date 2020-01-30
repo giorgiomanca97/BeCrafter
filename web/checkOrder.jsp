@@ -47,7 +47,7 @@ String shippingCompany = (checkOrderBean.getShippingCompany() != null) ? checkOr
 			<%
 				if(orderIdNotFound) {//C'è errore, scrivo la error label
 					orderId = "";
-					%> <p>no order found with this order code</p> <%
+					%> <p class="error">no order found with this order code</p> <%
 				} else {
 					%> <br> <%
 				}
