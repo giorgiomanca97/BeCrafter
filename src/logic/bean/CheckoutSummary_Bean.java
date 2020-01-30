@@ -1,6 +1,8 @@
 package logic.bean;
 
 
+import error.ProductNotFoundException;
+import error.StorableIllegalQuantityException;
 import logic.BuyBeer_Controller;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
@@ -141,12 +143,12 @@ public class CheckoutSummary_Bean{
 		return BuyBeer_Controller.getInstance().getCartSize();
 	}
 	
-	public void updateProductInsideCart() {
+	public void updateProductInsideCart() throws ProductNotFoundException, StorableIllegalQuantityException {
 		Volume volume = new Volume(cs_containerVolume);
 		BuyBeer_Controller.getInstance().updateProductInsideCart(cs_beerId, cs_containerType, volume, cs_quantity);
 	}
 	
-	public void removeProductFromCart() {
+	public void removeProductFromCart() throws ProductNotFoundException {
 		Volume volume = new Volume(cs_containerVolume);
 		BuyBeer_Controller.getInstance().removeProductFromCart(cs_beerId, cs_containerType, volume);
 	}

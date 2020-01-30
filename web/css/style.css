@@ -1,6 +1,10 @@
 @charset "ISO-8859-1";
 
 
+body {
+	background-color: #E0E0E0;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	padding: 0px;
 	margin: 0px;
@@ -51,7 +55,7 @@ table.product {
 }
 
 tr.product {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #D0D0D0;
 }
 
 th.product{

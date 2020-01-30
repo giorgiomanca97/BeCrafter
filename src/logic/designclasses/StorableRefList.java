@@ -4,26 +4,24 @@ import java.util.ArrayList;
 
 import logic.entity.interfaces.Storable;
 
-public class CloneStorableList extends StorableList{
+public class StorableRefList extends StorableList{
 
 	@Override
 	public void add(Storable storable) {
-		Storable copy = storable.copy();
-		
 		for (Storable s : storables) {
-			if(s.areSame(copy)) {
-				s.pull(copy);
+			if(s.areSame(storable)) {
+				s.pull(storable);
 				return;
 			}
 		}
-		storables.add(copy);
+		storables.add(storable);
 	}
 	
 	@Override
 	public Storable get(Storable storable) {
 		for (Storable s : storables) {
 			if(s.areSame(storable)) {
-				return s.copy();
+				return s;
 			}
 		}
 		return null;
@@ -31,13 +29,7 @@ public class CloneStorableList extends StorableList{
 
 	@Override
 	public ArrayList<Storable> getAll() {
-		ArrayList<Storable> result = new ArrayList<Storable>();
-		
-		for (Storable s : storables) {
-			result.add(s.copy());
-		}
-		
-		return result;
+		return storables;
 	}
 
 	@Override
@@ -47,7 +39,7 @@ public class CloneStorableList extends StorableList{
 		for(int i = 0; i < storables.size(); i++) {
 			s = storables.get(i);
 			if(s.areSame(storable)) {
-				s.copyQuantity(storable);
+				storables.set(i, storable);
 				return true;
 			}
 		}
@@ -56,13 +48,13 @@ public class CloneStorableList extends StorableList{
 	
 	@Override
 	public Storable remove(Storable storable) {
-		Storable c;
+		Storable s;
     	
     	for (int i = 0; i < storables.size(); i++) {
-    		c = storables.get(i).copy();
-			if(c.areSame(storable)) {
+    		s = storables.get(i);
+			if(s.areSame(storable)) {
 				storables.remove(i);
-				return c;
+				return s;
 			}
 		}
     	
@@ -71,12 +63,7 @@ public class CloneStorableList extends StorableList{
 	
 	@Override
 	public ArrayList<Storable> removeAll(){
-		ArrayList<Storable> result = new ArrayList<Storable>();
-		
-		for (Storable storable : storables) {
-			result.add(storable.copy());
-		}
-		
+		ArrayList<Storable> result = storables;
 		this.storables = new ArrayList<Storable>();
 		
 		return result;

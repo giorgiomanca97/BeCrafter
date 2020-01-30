@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import error.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -51,6 +52,8 @@ public class HomeProductCard_Boundary {
 				homeBean.selectForSaleProduct();
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.BUYBEER);
 				pageLoader.showOnPrimaryStage();
+			} catch (ProductNotFoundException e) {
+				Logger.getGlobal().log(Level.SEVERE, "Product not found");
 			} catch (IOException ioe) {
 				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 			}			

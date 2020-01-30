@@ -35,7 +35,6 @@ public class Home_Controller {
 		displayedProducts = storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 	}
 	
-	
 	public int countProductsDisplayed() {
 		if(displayedProducts != null) {
 			return displayedProducts.size();

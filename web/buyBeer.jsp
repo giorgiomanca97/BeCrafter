@@ -22,6 +22,7 @@ buyBeerBean.loadSelectedProduct();
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<title>Buy Beer</title>
 	</head>
 	<body>
@@ -63,5 +64,10 @@ buyBeerBean.loadSelectedProduct();
 				<td><%=buyBeerBean.getBeerDescription()%></td>
 			</tr>
 		</table>
+		<br>
+		<form action="home.jsp">
+			<input type="number" name="quantity"/>
+			<input type="submit" value="Buy Product"/>
+		</form>
 	</body>
 </html>

@@ -69,7 +69,6 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 				<td class="grid">
 					<table class="product">
 						<tr class="product">
-							<th class="product">#</th>
 							<th class="product">Name</th>
 							<th class="product">Type</th>
 							<th class="product">Color</th>
@@ -116,7 +115,6 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 						String size = Volume.toText(homeBean.getContainerVolume());
 						String price = Price.toText(homeBean.getPrice());%>
 						<tr class="product">
-							<td class="product"><%=i %></td>
 							<td class="product"><%=name %></td>
 							<td class="product"><%=type %></td>
 							<td class="product"><%=color %></td>

@@ -2,16 +2,16 @@ package logic.entity;
 
 import java.util.ArrayList;
 
-import logic.designclasses.CloneStorableList;
+import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
 
 public class Recipe {
     private String id;
-    private CloneStorableList rawMaterials;
+    private StorableCloneList rawMaterials;
 
     public Recipe(String id) {
     	this.id = id;
-    	this.rawMaterials = new CloneStorableList();
+    	this.rawMaterials = new StorableCloneList();
     }
 
     public String getId() {

@@ -3,19 +3,19 @@ package logic.entity;
 
 import java.util.ArrayList;
 
-import logic.designclasses.CloneStorableList;
+import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
 
 public class Storehouse {	
-	private CloneStorableList rawMaterials;
-    private CloneStorableList containers;
-    private CloneStorableList products;
+	private StorableCloneList rawMaterials;
+    private StorableCloneList containers;
+    private StorableCloneList products;
 
     
     public Storehouse() {
-    	this.rawMaterials = new CloneStorableList();
-    	this.containers = new CloneStorableList();
-    	this.products = new CloneStorableList();
+    	this.rawMaterials = new StorableCloneList();
+    	this.containers = new StorableCloneList();
+    	this.products = new StorableCloneList();
     }
     
     
@@ -137,7 +137,7 @@ public class Storehouse {
     	return (Container) containers.get(container);
     }
 
-    public Product get(String beerId, ContainerType containerType, int containerVolume) {
+    public Product get(String beerId, ContainerType containerType, Volume containerVolume) {
     	Beer beer = new Beer(beerId);
     	Container container = new Container(containerType, containerVolume);
     	Product product = new Product(beer, container);

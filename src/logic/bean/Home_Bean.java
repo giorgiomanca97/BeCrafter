@@ -3,6 +3,7 @@ package logic.bean;
 
 import java.util.ArrayList;
 
+import error.ProductNotFoundException;
 import logic.BuyBeer_Controller;
 import logic.Home_Controller;
 import logic.entity.BeerColor;
@@ -155,8 +156,8 @@ public class Home_Bean {
 		h_quantity = product.getQuantity();
 	}
 	
-	public void selectForSaleProduct() {
+	public void selectForSaleProduct() throws ProductNotFoundException {
 		Volume volume = new Volume(h_containerVolume);
-		BuyBeer_Controller.getInstance().selectForSaleProduct(h_beerId, h_containerType, volume);
+		BuyBeer_Controller.getInstance().selectProductForSale(h_beerId, h_containerType, volume);
 	}
 }

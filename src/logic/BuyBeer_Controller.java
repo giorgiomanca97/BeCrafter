@@ -3,17 +3,18 @@ package logic;
 
 import java.util.Calendar;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import error.PaymentRefusedException;
+import error.ProductNotFoundException;
 import error.StorableIllegalQuantityException;
 import error.id.IdException;
 import error.login.UsedEmailException;
 import logic.dao.Beer_dao;
 import logic.dao.Order_dao;
 import logic.dao.Registered_dao;
-import logic.designclasses.CloneStorableList;
+import logic.dao.Storehouse_dao;
+import logic.designclasses.StorableCloneList;
+import logic.designclasses.BeanHelper;
 import logic.designclasses.IdConverter;
 import logic.entity.Beer;
 import logic.entity.BillingInfo;
@@ -21,17 +22,20 @@ import logic.entity.Container;
 import logic.entity.ContainerType;
 import logic.entity.Order;
 import logic.entity.Product;
+import logic.entity.Storehouse;
 import logic.entity.Volume;
 import logic.entity.interfaces.Storable;
 
 public class BuyBeer_Controller {
 	private static BuyBeer_Controller instance = null;
 	
+	private Storehouse storehouse;
 	private Product selectedProduct;
-	private CloneStorableList cart;
+	private StorableCloneList cart;
 	private Random random = null; 		// Attributo per metodo dummy
 	
 	private BuyBeer_Controller() {
+		storehouse = Storehouse_dao.getStorehouse();
 		initCart();
 	}
 	
@@ -45,12 +49,17 @@ public class BuyBeer_Controller {
 	
 	
 	public void initCart() {
-		cart = new CloneStorableList();
+		cart = new StorableCloneList();
 	}
 	
 	
-	public void selectForSaleProduct(String beerId, ContainerType containerType, Volume containerVolume) {
-		Product product = getProduct(beerId, containerType, containerVolume);
+	public void selectProductForSale(String beerId, ContainerType containerType, Volume containerVolume) throws ProductNotFoundException {
+		Product product = storehouse.get(beerId, containerType, containerVolume);
+		
+		if(product == null) {
+			throw new ProductNotFoundException();
+		}
+		
 		this.selectedProduct = product;
 	}
 	
@@ -68,34 +77,50 @@ public class BuyBeer_Controller {
 		return selectedProduct;
 	}
 	
+	
 	public int getCartSize() {
 		return cart.size();
 	}
 	
-	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
-		Product product = getProduct(beerId, containerType, containerVolume);
+	public void addProductToCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) throws ProductNotFoundException, StorableIllegalQuantityException {
+		Product product = storehouse.get(beerId, containerType, containerVolume);
 		
+		if(product == null) {
+			throw new ProductNotFoundException();
+		}
+		
+		product.setQuantity(quantity);
+		
+		cart.add(product);
+	}
+	
+	public void updateProductInsideCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) throws ProductNotFoundException, StorableIllegalQuantityException {
 		try {
-			product.setQuantity(quantity);
-			cart.add(product);
-		} catch (StorableIllegalQuantityException siqe) {
-			Logger.getGlobal().log(Level.SEVERE, "Illegat quantity for product");
+			Product cartProduct = (Product) cart.get(getProduct(beerId, containerType, containerVolume));
+			
+			if(cartProduct == null) {
+				throw new ProductNotFoundException();
+			}
+			
+			cartProduct.setQuantity(quantity);
+			
+			cart.update(cartProduct);
+		} catch (NullPointerException npe) {
+			throw new ProductNotFoundException(npe);
 		}
 	}
 	
-	public void updateProductInsideCart(String beerId, ContainerType containerType, Volume containerVolume, int quantity) {
-		Product product = (Product) cart.get(getProduct(beerId, containerType, containerVolume));
-		
+	public void removeProductFromCart(String beerId, ContainerType containerType, Volume containerVolume) throws ProductNotFoundException {
 		try {
-			product.setQuantity(quantity);
-			cart.update(product);
-		} catch (StorableIllegalQuantityException siqe) {
-			Logger.getGlobal().log(Level.SEVERE, "Illegat quantity for product");
+			Product cartProduct = (Product) cart.remove(getProduct(beerId, containerType, containerVolume));
+			
+			if(cartProduct == null) {
+				throw new ProductNotFoundException();
+			}
+		} catch (NullPointerException npe) {
+			throw new ProductNotFoundException(npe);
 		}
-	}
-	
-	public void removeProductFromCart(String beerId, ContainerType containerType, Volume containerVolume) {
-		cart.remove(getProduct(beerId, containerType, containerVolume));
+		
 	}
 	
 	public String confirmPurchase(String email, BillingInfo billingInfo) throws UsedEmailException, PaymentRefusedException, IdException {
@@ -153,10 +178,31 @@ public class BuyBeer_Controller {
 		return order.getId();
 	}
 	
+	
+	private Product getProduct(String beerId, ContainerType containerType, Volume containerVolume) {
+		Beer beer = Beer_dao.getBeerById(beerId);
+		if(beer == null) {
+			return null;
+		}
+		
+		Container container = new Container(containerType, containerVolume);
+		Product product = new Product(beer, container);
+
+		return product;
+	}
+	
 	private boolean checkPayment(float price, String creditCard) {
 		// Metodo dummy
 		if(random == null) {
 			random = new Random();
+		}
+		
+		if(price < 0) {
+			return false;
+		}
+		
+		if(!BeanHelper.isValidCreditCard(creditCard)) {
+			return false;
 		}
 
 		int value = random.nextInt(100);
@@ -167,14 +213,4 @@ public class BuyBeer_Controller {
 			return false;
 		}
 	}
-
-	
-	private Product getProduct(String beerId, ContainerType containerType, Volume containerVolume) {
-		Beer beer = Beer_dao.getBeerById(beerId);
-		Container container = new Container(containerType, containerVolume);
-		Product product = new Product(beer, container);
-		
-		return product;
-	}
-	
 }

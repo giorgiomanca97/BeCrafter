@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import error.ProductNotFoundException;
+import error.StorableIllegalQuantityException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -101,7 +103,14 @@ public class BuyBeer_Boundary {
 	
 	@FXML 
 	public void onAddToCartPressed() {
-		buyBeerBean.addProductToCart();
+		try {
+			buyBeerBean.addProductToCart();
+		} catch (ProductNotFoundException pnfe) {
+			Logger.getGlobal().log(Level.SEVERE, "Product not found");
+		} catch (StorableIllegalQuantityException sile) {
+			Logger.getGlobal().log(Level.SEVERE, "Storable illegal quantity");
+		}
+		
 		onBackPressed();
 	}
 	

@@ -3,7 +3,7 @@ package logic.entity;
 
 import java.util.ArrayList;
 
-import logic.designclasses.CloneStorableList;
+import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
 
 public class Order {
@@ -14,7 +14,7 @@ public class Order {
     private String shippingCode;
     private String shippingCompany;
     private BillingInfo billingInfo;
-    private CloneStorableList products;
+    private StorableCloneList products;
 
     
     public Order(String id) {
@@ -23,7 +23,7 @@ public class Order {
     	this.email = "";
     	this.price = 0;
     	this.billingInfo = null;
-    	this.products = new CloneStorableList();
+    	this.products = new StorableCloneList();
     }
 
     

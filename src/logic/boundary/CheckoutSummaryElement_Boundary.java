@@ -1,6 +1,11 @@
 package logic.boundary;
 
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import error.ProductNotFoundException;
+import error.StorableIllegalQuantityException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -96,14 +101,27 @@ public class CheckoutSummaryElement_Boundary {
 	private void updateQuantity() {
 		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
 		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()) + " €");
-		checkoutSummaryBean.updateProductInsideCart();
+		
+		try {
+			checkoutSummaryBean.updateProductInsideCart();
+		} catch (ProductNotFoundException e) {
+			Logger.getGlobal().log(Level.SEVERE, "Product not found");
+		} catch (StorableIllegalQuantityException e) {
+			Logger.getGlobal().log(Level.SEVERE, "Storable illegal quantity");
+		}
+		
 		csBoundary.updateOverallPrice(this.index, checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity());
 	}
 	
 
 	@FXML 
 	public void onDelPressed() {
-		checkoutSummaryBean.removeProductFromCart();
+		try {
+			checkoutSummaryBean.removeProductFromCart();
+		} catch (ProductNotFoundException e) {
+			Logger.getGlobal().log(Level.SEVERE, "Product not found");
+		}
+		
 		csBoundary.displayCart();
 	}
 }

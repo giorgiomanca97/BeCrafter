@@ -4,24 +4,26 @@ import java.util.ArrayList;
 
 import logic.entity.interfaces.Storable;
 
-public class RefStorableList extends StorableList{
+public class StorableCloneList extends StorableList{
 
 	@Override
 	public void add(Storable storable) {
+		Storable copy = storable.copy();
+		
 		for (Storable s : storables) {
-			if(s.areSame(storable)) {
-				s.pull(storable);
+			if(s.areSame(copy)) {
+				s.pull(copy);
 				return;
 			}
 		}
-		storables.add(storable);
+		storables.add(copy);
 	}
 	
 	@Override
 	public Storable get(Storable storable) {
 		for (Storable s : storables) {
 			if(s.areSame(storable)) {
-				return s;
+				return s.copy();
 			}
 		}
 		return null;
@@ -29,7 +31,13 @@ public class RefStorableList extends StorableList{
 
 	@Override
 	public ArrayList<Storable> getAll() {
-		return storables;
+		ArrayList<Storable> result = new ArrayList<Storable>();
+		
+		for (Storable s : storables) {
+			result.add(s.copy());
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -39,7 +47,7 @@ public class RefStorableList extends StorableList{
 		for(int i = 0; i < storables.size(); i++) {
 			s = storables.get(i);
 			if(s.areSame(storable)) {
-				storables.set(i, storable);
+				s.copyQuantity(storable);
 				return true;
 			}
 		}
@@ -48,13 +56,13 @@ public class RefStorableList extends StorableList{
 	
 	@Override
 	public Storable remove(Storable storable) {
-		Storable s;
+		Storable c;
     	
     	for (int i = 0; i < storables.size(); i++) {
-    		s = storables.get(i);
-			if(s.areSame(storable)) {
+    		c = storables.get(i).copy();
+			if(c.areSame(storable)) {
 				storables.remove(i);
-				return s;
+				return c;
 			}
 		}
     	
@@ -63,7 +71,12 @@ public class RefStorableList extends StorableList{
 	
 	@Override
 	public ArrayList<Storable> removeAll(){
-		ArrayList<Storable> result = storables;
+		ArrayList<Storable> result = new ArrayList<Storable>();
+		
+		for (Storable storable : storables) {
+			result.add(storable.copy());
+		}
+		
 		this.storables = new ArrayList<Storable>();
 		
 		return result;
