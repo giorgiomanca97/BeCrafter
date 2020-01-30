@@ -20,7 +20,7 @@ import javafx.scene.control.PasswordField;
 
 
 public class Register_Boundary {
-	@FXML private TextField tf_email;
+	@FXML private TextField tf_r_email;
 	@FXML private PasswordField psw_password;
 	@FXML private PasswordField psw_passwordConfirm;
 	@FXML private TextField tf_r_firstname;
@@ -33,19 +33,24 @@ public class Register_Boundary {
 	@FXML private TextField tf_r_creditCardNumber;
 	@FXML private CheckBox cb_agreement;
 	@FXML private Label lbl_error;
+	@FXML private Label lbl_r_infoPassword;
+	@FXML private Label lbl_r_infoCredit;
 	
 	Register_Bean registerBean = null;
 	
 	
 	public void initialize() {
 		registerBean = new Register_Bean();
+		
+		lbl_r_infoPassword.setOpacity(0f);
+		lbl_r_infoCredit.setOpacity(0f);
 		lbl_error.setText("");
 	}
 
 	@FXML 
 	public void onRegisterClicked() {
 		lbl_error.setText("");
-		registerBean.setEmail(tf_email.getText());
+		registerBean.setEmail(tf_r_email.getText());
 		registerBean.setPassword(psw_password.getText());
 		registerBean.setFirstName(tf_r_firstname.getText());
 		registerBean.setLastName(tf_r_lastname.getText());
@@ -94,5 +99,25 @@ public class Register_Boundary {
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 		}
-	}	
+	}
+
+	@FXML
+	public void onInfoPasswordEntered() {
+		lbl_r_infoPassword.setOpacity(1f);
+	}
+
+	@FXML 
+	public void onInfoPasswordExited() {
+		lbl_r_infoPassword.setOpacity(0f);
+	}
+
+	@FXML 
+	public void onInfoCreditEntered() {
+		lbl_r_infoCredit.setOpacity(1f);
+	}
+	
+	@FXML 
+	public void onInfoCreditExited() {
+		lbl_r_infoCredit.setOpacity(0f);
+	}
 }

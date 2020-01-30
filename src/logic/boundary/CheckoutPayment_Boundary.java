@@ -19,7 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 
 public class CheckoutPayment_Boundary {	
-	@FXML private TextField tf_email;
+	@FXML private TextField tf_cp_email;
 	@FXML private TextField tf_cp_firstname;
 	@FXML private TextField tf_cp_lastname;
 	@FXML private TextField tf_cp_address;
@@ -28,12 +28,14 @@ public class CheckoutPayment_Boundary {
 	@FXML private TextField tf_cp_postalcode;
 	@FXML private TextField tf_cp_phoneNumber;
 	@FXML private TextField tf_cp_creditcardNumber;
-	@FXML private Label lbl_error;
-	@FXML private Label lbl_login;
 	@FXML private TextField tf_loginEmail;
 	@FXML private PasswordField psw_password;
-	@FXML private Label lbl_error2;
 	@FXML private Button btn_login;
+	
+	@FXML private Label lbl_login;
+	@FXML private Label lbl_error;
+	@FXML private Label lbl_error2;
+	@FXML private Label lbl_cp_infoCredit;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	private CheckoutPayment_Bean checkoutPaymentBean = null;
@@ -46,13 +48,14 @@ public class CheckoutPayment_Boundary {
 			checkoutPaymentBean.loadLoggedCustomer();
 			tf_loginEmail.setText(checkoutPaymentBean.getEmail());
 			tf_loginEmail.setDisable(true);
-			tf_email.setText(checkoutPaymentBean.getEmail());
-			tf_email.setDisable(true);
+			tf_cp_email.setText(checkoutPaymentBean.getEmail());
+			tf_cp_email.setDisable(true);
 			lbl_login.setText("Please insert the password to procede");
 		} catch (LoginException e) {
 			
 		}
 		
+		lbl_cp_infoCredit.setOpacity(0f);
 		lbl_error.setText("");
 		lbl_error2.setText("");
 	}
@@ -75,7 +78,7 @@ public class CheckoutPayment_Boundary {
 	
 	public void confirmPurchase() {
 		lbl_error.setText("");
-		checkoutPaymentBean.setEmail(tf_email.getText());
+		checkoutPaymentBean.setEmail(tf_cp_email.getText());
 		checkoutPaymentBean.setFirstName(tf_cp_firstname.getText());
 		checkoutPaymentBean.setLastName(tf_cp_lastname.getText());
 		checkoutPaymentBean.setAddress(tf_cp_address.getText());
@@ -126,7 +129,7 @@ public class CheckoutPayment_Boundary {
 			
 			autoFill();
 			
-			tf_email.setDisable(true);
+			tf_cp_email.setDisable(true);
 			lbl_login.setText("Logged as " + checkoutPaymentBean.getEmail());
 			
 		} catch (InexistentEmailException | WrongPasswordException | IllegalCharacterException e) {
@@ -140,7 +143,7 @@ public class CheckoutPayment_Boundary {
 	
 	private void autoFill() {
 		if(checkoutPaymentBean != null) {
-			tf_email.setText(checkoutPaymentBean.getEmail());
+			tf_cp_email.setText(checkoutPaymentBean.getEmail());
 			tf_cp_firstname.setText(checkoutPaymentBean.getFirstName());
 			tf_cp_lastname.setText(checkoutPaymentBean.getLastName());
 			tf_cp_address.setText(checkoutPaymentBean.getAddress());
@@ -150,5 +153,15 @@ public class CheckoutPayment_Boundary {
 			tf_cp_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
 			tf_cp_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
 		}
+	}
+
+	@FXML 
+	public void onInfoCreditEntered() {
+		lbl_cp_infoCredit.setOpacity(1f);
+	}
+
+	@FXML 
+	public void onInfoCreditExited() {
+		lbl_cp_infoCredit.setOpacity(0f);
 	}
 }
