@@ -13,7 +13,7 @@ boolean orderIdNotFound = false;
 String orderId = (checkOrderBean.getOrderId() != null) ? checkOrderBean.getOrderId() : "";
 
 boolean search = request.getParameter("search") != null && request.getParameter("search").equals("1");
-if(search) {
+if(search && !orderId.equals("")) {
 	try{
 		checkOrderBean.searchOrder(orderId);
 		orderIdNotFound = false;
