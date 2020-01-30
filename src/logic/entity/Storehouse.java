@@ -2,6 +2,7 @@ package logic.entity;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
@@ -19,8 +20,8 @@ public class Storehouse {
     }
     
     
-    public ArrayList<RawMaterial> getAllRawMaterials(){
-    	ArrayList<RawMaterial> result = new ArrayList<>();
+    public List<RawMaterial> getAllRawMaterials(){
+    	List<RawMaterial> result = new ArrayList<>();
     	
     	for (Storable storable : rawMaterials.getAll()) {
     		result.add((RawMaterial) storable);
@@ -29,8 +30,8 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Container> getAllContainers(){
-    	ArrayList<Container> result = new ArrayList<>();
+    public List<Container> getAllContainers(){
+    	List<Container> result = new ArrayList<>();
     	
     	for (Storable storable : containers.getAll()) {
     		result.add((Container) storable);
@@ -39,8 +40,8 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProducts(){
-    	ArrayList<Product> result = new ArrayList<>();
+    public List<Product> getAllProducts(){
+    	List<Product> result = new ArrayList<>();
     	
     	for (Storable storable : products.getAll()) {
     		result.add((Product) storable);
@@ -49,14 +50,14 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings){
-    	ArrayList<Product> result = new ArrayList<>();
-    	ArrayList<Product> all = getAllProducts();
+    public List<Product> getAllProducts(List<BeerType> beerTypes, List<BeerColor> beerColors, List<ContainerType> containerTypes, List<BeerFiltering> beerFilterings){
+    	List<Product> result = new ArrayList<>();
+    	List<Product> all = getAllProducts();
     	
-    	ArrayList<BeerType> btChoice;
-    	ArrayList<BeerColor> bcChoice;
-    	ArrayList<ContainerType> ctChoice;
-    	ArrayList<BeerFiltering> bfChoice;
+    	List<BeerType> btChoice;
+    	List<BeerColor> bcChoice;
+    	List<ContainerType> ctChoice;
+    	List<BeerFiltering> bfChoice;
     	
     	if(beerTypes == null || beerTypes.size()==0) {
     		btChoice = new ArrayList<>();
@@ -108,13 +109,13 @@ public class Storehouse {
     	return result;
     }
     
-    public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
-    	ArrayList<Product> result = new ArrayList<>();
+    public List<Product> getAllProducts(List<BeerType> beerTypes, List<BeerColor> beerColors, List<ContainerType> containerTypes, List<BeerFiltering> beerFilterings, String searchName){
+    	List<Product> result = new ArrayList<>();
     	
     	if(searchName == null || searchName.length() == 0) {
     		result = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
     	} else {
-    		ArrayList<Product> all = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
+    		List<Product> all = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);
         	
         	for (Product product : all) {
         		if( product.getBeer().getName().toLowerCase().contains(searchName.toLowerCase()) ) {

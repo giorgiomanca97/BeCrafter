@@ -1,6 +1,7 @@
 package logic.designclasses;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.entity.interfaces.Storable;
 
@@ -30,8 +31,8 @@ public class StorableCloneList extends StorableList{
 	}
 
 	@Override
-	public ArrayList<Storable> getAll() {
-		ArrayList<Storable> result = new ArrayList<>();
+	public List<Storable> getAll() {
+		List<Storable> result = new ArrayList<>();
 		
 		for (Storable s : storables) {
 			result.add(s.copy());
@@ -70,8 +71,8 @@ public class StorableCloneList extends StorableList{
 	}
 	
 	@Override
-	public ArrayList<Storable> removeAll(){
-		ArrayList<Storable> result = new ArrayList<>();
+	public List<Storable> removeAll(){
+		List<Storable> result = new ArrayList<>();
 		
 		for (Storable storable : storables) {
 			result.add(storable.copy());

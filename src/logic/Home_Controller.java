@@ -1,7 +1,7 @@
 package logic;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import logic.dao.Storehouse_dao;
 import logic.entity.BeerColor;
@@ -14,7 +14,7 @@ import logic.entity.Storehouse;
 public class Home_Controller {
 	private static Home_Controller instance = null;
 	private Storehouse storehouse = null;
-	private ArrayList<Product> displayedProducts = null;
+	private List<Product> displayedProducts = null;
 	
 	
 	private Home_Controller() {
@@ -31,7 +31,7 @@ public class Home_Controller {
 	}
 	
 	
-	public void displayProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
+	public void displayProducts(List<BeerType> beerTypes, List<BeerColor> beerColors, List<ContainerType> containerTypes, List<BeerFiltering> beerFilterings, String searchName){
 		displayedProducts = storehouse.getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
 	}
 	

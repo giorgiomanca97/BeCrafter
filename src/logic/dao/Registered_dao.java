@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,8 +35,8 @@ public class Registered_dao {
 	}
 	
 	
-	private static ArrayList<Registered> getRegistered(String query){
-		ArrayList<Registered> result = new ArrayList<>();
+	private static List<Registered> getRegistered(String query){
+		List<Registered> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;
@@ -63,7 +64,7 @@ public class Registered_dao {
             		
             		Registered registered = new Registered(email, password, billingInfo);
             		
-            		ArrayList<Order> orders = Order_dao.getOrdersByEmail(email);
+            		List<Order> orders = Order_dao.getOrdersByEmail(email);
             		for (Order order : orders) {
             			registered.addOrder(order);
 					}
@@ -84,14 +85,14 @@ public class Registered_dao {
 		return result;
 	}
 	
-	public static ArrayList<Registered> getAllRegistered(){
-		ArrayList<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + ";");;
+	public static List<Registered> getAllRegistered(){
+		List<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + ";");;
 		
 		return result;
 	}
 	
 	public static Registered getRegisteredByEmail(String email) {
-		ArrayList<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + " WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + email +"';");	
+		List<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + " WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + email +"';");	
 		
 		if(result.size() == 0) {
 			return null;

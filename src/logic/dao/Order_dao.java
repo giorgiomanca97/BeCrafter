@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,8 +75,8 @@ public class Order_dao {
 		return result;
 	}
 	
-	private static ArrayList<Order> getOrders(String query){
-		ArrayList<Order> result = new ArrayList<>();
+	private static List<Order> getOrders(String query){
+		List<Order> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;
@@ -126,8 +127,8 @@ public class Order_dao {
 		return result;
 	}
 	
-	public static ArrayList<Order> getOrdersByEmail(String email) {
-		ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_EMAIL + " = '" + email +"';");;
+	public static List<Order> getOrdersByEmail(String email) {
+		List<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_EMAIL + " = '" + email +"';");;
 		
 		return result;
 	}
@@ -135,7 +136,7 @@ public class Order_dao {
 	public static Order getOrderById(String id) {
 		try {
 			int dbId = IdConverter.idToInt(id);
-			ArrayList<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_ID + " = " +  dbId + ";");	
+			List<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_ID + " = " +  dbId + ";");	
 			
 			if(result.size() == 0) {
 				return null;
@@ -269,7 +270,7 @@ public class Order_dao {
 	
 	static class OrderDataFetch {
 		private BillingInfo billingInfo;
-		private ArrayList<Product> products;
+		private List<Product> products;
 
 		
 		private OrderDataFetch(BillingInfo billingInfo) {
@@ -286,7 +287,7 @@ public class Order_dao {
 			products.add(product);
 		}
 		
-		private ArrayList<Product> getProducts() {
+		private List<Product> getProducts() {
 			return this.products;
 		}
 	}

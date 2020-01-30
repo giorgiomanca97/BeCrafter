@@ -1,6 +1,7 @@
 package logic.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
@@ -18,10 +19,10 @@ public class Recipe {
         return this.id;
     }
 
-    public ArrayList<RawMaterial> getIngredients() {
-    	ArrayList<RawMaterial> result = new ArrayList<>();
+    public List<RawMaterial> getIngredients() {
+    	List<RawMaterial> result = new ArrayList<>();
     	
-    	ArrayList<Storable> storables = rawMaterials.getAll();
+    	List<Storable> storables = rawMaterials.getAll();
     	for (Storable storable : storables) {
 			result.add((RawMaterial) storable);
 		}

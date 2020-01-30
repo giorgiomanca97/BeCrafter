@@ -2,6 +2,7 @@ package logic.entity;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.designclasses.StorableCloneList;
 import logic.entity.interfaces.Storable;
@@ -80,10 +81,10 @@ public class Order {
     }
     
     
-    public ArrayList<Product> getProducts(){
-    	ArrayList<Product> result = new ArrayList<Product>();
+    public List<Product> getProducts(){
+    	List<Product> result = new ArrayList<Product>();
     	
-    	ArrayList<Storable> storables = products.getAll();
+    	List<Storable> storables = products.getAll();
     	for (Storable storable : storables) {
 			result.add((Product) storable);
 		}

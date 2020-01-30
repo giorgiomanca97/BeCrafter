@@ -1,6 +1,7 @@
 package logic.designclasses;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.entity.interfaces.Storable;
 
@@ -28,7 +29,7 @@ public class StorableRefList extends StorableList{
 	}
 
 	@Override
-	public ArrayList<Storable> getAll() {
+	public List<Storable> getAll() {
 		return storables;
 	}
 
@@ -62,8 +63,8 @@ public class StorableRefList extends StorableList{
 	}
 	
 	@Override
-	public ArrayList<Storable> removeAll(){
-		ArrayList<Storable> result = storables;
+	public List<Storable> removeAll(){
+		List<Storable> result = storables;
 		this.storables = new ArrayList<>();
 		
 		return result;

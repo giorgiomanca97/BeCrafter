@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,8 +54,8 @@ public class Recipe_dao {
 		return result;
 	}
 	
-	public static ArrayList<Recipe> getAllRecipes(){
-		ArrayList<Recipe> result = new ArrayList<>();
+	public static List<Recipe> getAllRecipes(){
+		List<Recipe> result = new ArrayList<>();
 		
 		File directory = new File(RECIPES_FOLDER_PATH);
 		File[] files = directory.listFiles();
@@ -86,7 +87,7 @@ public class Recipe_dao {
 	
 	public static String recipeToText(Recipe recipe) {
 		StringBuilder stringBuilder = new StringBuilder();
-		ArrayList<RawMaterial> ingredients = recipe.getIngredients();
+		List<RawMaterial> ingredients = recipe.getIngredients();
 		
 		stringBuilder.append(recipe.getId() + "\n");
 		

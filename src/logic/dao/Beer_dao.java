@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,8 +34,8 @@ public class Beer_dao {
 		
 	}
 	
-	private static ArrayList<Beer> getBeers(String query){
-		ArrayList<Beer> result = new ArrayList<>();
+	private static List<Beer> getBeers(String query){
+		List<Beer> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;
@@ -73,14 +74,14 @@ public class Beer_dao {
 		return result;
 	}
 	
-	public static ArrayList<Beer> getAllBeers(){
-		ArrayList<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + ";");
+	public static List<Beer> getAllBeers(){
+		List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + ";");
 		
 		return result;
 	}
 	
 	public static Beer getBeerById(String id) {
-		ArrayList<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + " WHERE " + TABLE_BEERS_COL_ID + " = '" + id +"';");	
+		List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + " WHERE " + TABLE_BEERS_COL_ID + " = '" + id +"';");	
 		
 		if(result.size() == 0) {
 			return null;

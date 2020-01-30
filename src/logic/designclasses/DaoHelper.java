@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,7 +58,7 @@ public class DaoHelper {
 		}
 	}
 	
-	public static void close(Connection conn, Statement stmt, ArrayList<ResultSet> rsList) {
+	public static void close(Connection conn, Statement stmt, List<ResultSet> rsList) {
 		if(rsList != null) {
 			for (ResultSet rs : rsList) {
 				if(rs != null) {
@@ -86,7 +87,7 @@ public class DaoHelper {
 	}
 	
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
-		ArrayList<ResultSet> rsList = new ArrayList<ResultSet>();
+		List<ResultSet> rsList = new ArrayList<ResultSet>();
 		
 		if(rs != null) {
 			rsList.add(rs);

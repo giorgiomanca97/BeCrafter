@@ -2,11 +2,12 @@ package logic.designclasses;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.entity.interfaces.Storable;
 
 public abstract class StorableList {
-	protected ArrayList<Storable> storables = new ArrayList<>();
+	protected List<Storable> storables = new ArrayList<>();
 	
 	
 	public StorableList() {
@@ -16,7 +17,7 @@ public abstract class StorableList {
 	
 	public abstract void add(Storable storable);
 	
-	public void addAll(ArrayList<Storable> otherStorables) {
+	public void addAll(List<Storable> otherStorables) {
 		for (Storable s : otherStorables) {
 			add(s);
 		}
@@ -24,8 +25,8 @@ public abstract class StorableList {
 	
 	public abstract Storable get(Storable storable);
 	
-	public ArrayList<Storable> getAll() {
-		ArrayList<Storable> result = new ArrayList<>();
+	public List<Storable> getAll() {
+		List<Storable> result = new ArrayList<>();
 		
 		for (Storable s : storables) {
 			result.add(get(s));
@@ -36,7 +37,7 @@ public abstract class StorableList {
 	
 	public abstract boolean update(Storable storable);
 	
-	public boolean updateAll(ArrayList<Storable> otherStorables) {
+	public boolean updateAll(List<Storable> otherStorables) {
 		boolean result = true;
 		boolean r;
 		
@@ -53,8 +54,8 @@ public abstract class StorableList {
 	
 	public abstract Storable remove(Storable storable);
 	
-	public ArrayList<Storable> removeAll() {
-		ArrayList<Storable> result = new ArrayList<>();
+	public List<Storable> removeAll() {
+		List<Storable> result = new ArrayList<>();
 		
 		for (Storable storable : storables) {
 			result.add(remove(storable));

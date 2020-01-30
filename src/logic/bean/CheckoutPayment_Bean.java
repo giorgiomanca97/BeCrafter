@@ -146,7 +146,7 @@ public class CheckoutPayment_Bean{
 	}
 	
 	public String confirmPurchase() throws InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
-		if(cp_email.length() == 0 || cp_password.length() == 0) {
+		if(cp_email.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
