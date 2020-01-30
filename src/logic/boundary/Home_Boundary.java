@@ -13,14 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import logic.Login_Controller;
 import logic.bean.Home_Bean;
 import logic.designclasses.PageLoader;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
-import logic.entity.Registered;
 
 public class Home_Boundary {	
 	@FXML private Label tb_ale_quantity;
@@ -57,7 +55,6 @@ public class Home_Boundary {
 	private Home_Bean homeBean;
 	
 	
-		
 	public void initialize() {		
 		homeBean = new Home_Bean();
 		closeMenu();
@@ -125,16 +122,16 @@ public class Home_Boundary {
 	
 	
 	public void setLoggedCustomer() {
-		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
+		String email = homeBean.loggedCustomer();
 		
-		if(registered != null) {
-			lbl_login.setText(registered.getEmail());
+		if(email != null) {
+			lbl_login.setText(email);
 		}
 	}
 		
 	@FXML
 	public void openMenu() {
-		if(Login_Controller.getInstance().getLoggedCustomer() != null) {
+		if(homeBean.loggedCustomer() != null) {
 			vb_menu.setDisable(false);
 			vb_menu.setOpacity(1);
 		}	
@@ -158,7 +155,7 @@ public class Home_Boundary {
 
 	@FXML 
 	public void onLoginPressed() {
-		if(Login_Controller.getInstance().getLoggedCustomer() == null) {
+		if(homeBean.loggedCustomer() == null) {
 			try {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 				pageLoader.showOnPrimaryStage();
@@ -170,10 +167,10 @@ public class Home_Boundary {
 
 	@FXML 
 	public void onLogoutPressed() {
-		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
+		String email = homeBean.loggedCustomer();
 		
-		if(registered != null) {
-			Login_Controller.getInstance().logout(registered.getEmail());
+		if(email != null) {
+			homeBean.logoutCustomer(email);
 			lbl_login.setText("Login");
 		}
 	}

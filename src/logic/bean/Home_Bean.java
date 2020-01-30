@@ -6,11 +6,13 @@ import java.util.List;
 import error.ProductNotFoundException;
 import logic.BuyBeer_Controller;
 import logic.Home_Controller;
+import logic.Login_Controller;
 import logic.entity.BeerColor;
 import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
 import logic.entity.Product;
+import logic.entity.Registered;
 import logic.entity.Volume;
 
 public class Home_Bean {
@@ -169,5 +171,19 @@ public class Home_Bean {
 	public void selectForSaleProduct() throws ProductNotFoundException {
 		Volume volume = new Volume(h_containerVolume);
 		BuyBeer_Controller.getInstance().selectProductForSale(h_beerId, h_containerType, volume);
+	}
+	
+	public String loggedCustomer() {
+		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
+		
+		if(registered == null) {
+			return null;
+		} else {
+			return registered.getEmail();
+		}
+	}
+	
+	public void logoutCustomer(String email) {
+		Login_Controller.getInstance().logout(email);;
 	}
 }
