@@ -21,19 +21,7 @@ import logic.entity.BeerFiltering;
 import logic.entity.BeerType;
 import logic.entity.ContainerType;
 
-public class Home_Boundary {	
-	@FXML private Label tb_ale_quantity;
-	@FXML private Label tb_lambic_quantity;
-	@FXML private Label tb_lager_quantity;
-	@FXML private Label tb_light_quantity;
-	@FXML private Label tb_amber_quantity;
-	@FXML private Label tb_ruby_quantity;
-	@FXML private Label tb_dark_quantity;
-	@FXML private Label tb_bottle_quantity;
-	@FXML private Label tb_can_quantity;
-	@FXML private Label tb_barrel_quantity;
-	@FXML private Label tb_filtered_quantity;
-	@FXML private Label tb_unfiltered_quantity;
+public class Home_Boundary {
 	@FXML private TextField tf_search;
 	@FXML private Button btn_search;
 	@FXML private CheckBox cb_ale;
