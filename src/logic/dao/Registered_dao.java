@@ -35,7 +35,7 @@ public class Registered_dao {
 	
 	
 	private static ArrayList<Registered> getRegistered(String query){
-		ArrayList<Registered> result = new ArrayList<Registered>();
+		ArrayList<Registered> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;

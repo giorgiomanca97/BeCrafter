@@ -34,7 +34,7 @@ public class Beer_dao {
 	}
 	
 	private static ArrayList<Beer> getBeers(String query){
-		ArrayList<Beer> result = new ArrayList<Beer>();
+		ArrayList<Beer> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;

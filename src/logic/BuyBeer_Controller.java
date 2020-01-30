@@ -14,7 +14,7 @@ import logic.dao.Order_dao;
 import logic.dao.Registered_dao;
 import logic.dao.Storehouse_dao;
 import logic.designclasses.StorableCloneList;
-import logic.designclasses.BeanHelper;
+import logic.designclasses.CheckHelper;
 import logic.designclasses.IdConverter;
 import logic.entity.Beer;
 import logic.entity.BillingInfo;
@@ -201,7 +201,7 @@ public class BuyBeer_Controller {
 			return false;
 		}
 		
-		if(!BeanHelper.isValidCreditCard(creditCard)) {
+		if(!CheckHelper.isValidCreditCard(creditCard)) {
 			return false;
 		}
 

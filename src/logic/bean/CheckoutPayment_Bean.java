@@ -13,7 +13,7 @@ import error.login.UsedEmailException;
 import error.login.WrongPasswordException;
 import logic.BuyBeer_Controller;
 import logic.Login_Controller;
-import logic.designclasses.BeanHelper;
+import logic.designclasses.CheckHelper;
 import logic.entity.BillingInfo;
 import logic.entity.Registered;
 
@@ -186,14 +186,14 @@ public class CheckoutPayment_Bean{
 			throw new IllegalCharacterException();
 		}
 		
-		if(!BeanHelper.isOnlyLetters(cp_firstName) ||
-		   !BeanHelper.isOnlyLetters(cp_lastName) || 
-		   !BeanHelper.isValidString(cp_address) ||
-		   !BeanHelper.isOnlyLetters(cp_city) ||
-		   !BeanHelper.isOnlyLetters(cp_country) ||
-		   !BeanHelper.isOnlyDigits(cp_postalCode) ||
-		   !BeanHelper.isValidPhoneNumber(cp_phoneNumber) ||
-		   !BeanHelper.isValidCreditCard(cp_creditCard)) {
+		if(!CheckHelper.isOnlyLetters(cp_firstName) ||
+		   !CheckHelper.isOnlyLetters(cp_lastName) || 
+		   !CheckHelper.isValidString(cp_address) ||
+		   !CheckHelper.isOnlyLetters(cp_city) ||
+		   !CheckHelper.isOnlyLetters(cp_country) ||
+		   !CheckHelper.isOnlyDigits(cp_postalCode) ||
+		   !CheckHelper.isValidPhoneNumber(cp_phoneNumber) ||
+		   !CheckHelper.isValidCreditCard(cp_creditCard)) {
 			throw new WrongFieldException();
 		}
 		

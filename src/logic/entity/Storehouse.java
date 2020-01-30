@@ -20,7 +20,7 @@ public class Storehouse {
     
     
     public ArrayList<RawMaterial> getAllRawMaterials(){
-    	ArrayList<RawMaterial> result = new ArrayList<RawMaterial>();
+    	ArrayList<RawMaterial> result = new ArrayList<>();
     	
     	for (Storable storable : rawMaterials.getAll()) {
     		result.add((RawMaterial) storable);
@@ -30,7 +30,7 @@ public class Storehouse {
     }
     
     public ArrayList<Container> getAllContainers(){
-    	ArrayList<Container> result = new ArrayList<Container>();
+    	ArrayList<Container> result = new ArrayList<>();
     	
     	for (Storable storable : containers.getAll()) {
     		result.add((Container) storable);
@@ -40,7 +40,7 @@ public class Storehouse {
     }
     
     public ArrayList<Product> getAllProducts(){
-    	ArrayList<Product> result = new ArrayList<Product>();
+    	ArrayList<Product> result = new ArrayList<>();
     	
     	for (Storable storable : products.getAll()) {
     		result.add((Product) storable);
@@ -50,7 +50,7 @@ public class Storehouse {
     }
     
     public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings){
-    	ArrayList<Product> result = new ArrayList<Product>();
+    	ArrayList<Product> result = new ArrayList<>();
     	ArrayList<Product> all = getAllProducts();
     	
     	ArrayList<BeerType> btChoice;
@@ -59,7 +59,7 @@ public class Storehouse {
     	ArrayList<BeerFiltering> bfChoice;
     	
     	if(beerTypes == null || beerTypes.size()==0) {
-    		btChoice = new ArrayList<BeerType>();
+    		btChoice = new ArrayList<>();
     		for(BeerType beerType: BeerType.values()) {
     			btChoice.add(beerType);
     		}
@@ -68,7 +68,7 @@ public class Storehouse {
     	}
     	
     	if(beerColors == null || beerColors.size()==0) {
-    		bcChoice = new ArrayList<BeerColor>();
+    		bcChoice = new ArrayList<>();
     		for(BeerColor beerColor: BeerColor.values()) {
     			bcChoice.add(beerColor);
     		}
@@ -77,7 +77,7 @@ public class Storehouse {
     	}
     	
     	if(containerTypes == null || containerTypes.size()==0) {
-    		ctChoice = new ArrayList<ContainerType>();
+    		ctChoice = new ArrayList<>();
     		for(ContainerType containerType: ContainerType.values()) {
     			ctChoice.add(containerType);
     		}
@@ -86,7 +86,7 @@ public class Storehouse {
     	}
     	
     	if(beerFilterings == null || beerFilterings.size()==0) {
-    		bfChoice = new ArrayList<BeerFiltering>();
+    		bfChoice = new ArrayList<>();
     		for(BeerFiltering beerFiltering: BeerFiltering.values()) {
     			bfChoice.add(beerFiltering);
     		}
@@ -109,7 +109,7 @@ public class Storehouse {
     }
     
     public ArrayList<Product> getAllProducts(ArrayList<BeerType> beerTypes, ArrayList<BeerColor> beerColors, ArrayList<ContainerType> containerTypes, ArrayList<BeerFiltering> beerFilterings, String searchName){
-    	ArrayList<Product> result = new ArrayList<Product>();
+    	ArrayList<Product> result = new ArrayList<>();
     	
     	if(searchName == null || searchName.length() == 0) {
     		result = getAllProducts(beerTypes, beerColors, containerTypes, beerFilterings);

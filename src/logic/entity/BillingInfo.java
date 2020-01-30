@@ -88,4 +88,8 @@ public class BillingInfo {
         this.card = card;
     }
 
+    @Override
+    public String toString() {	
+    	return "BillingInfo: " + firstName  + " " + lastName + " " + address + " " + city + " " + country + " " + postalCode + " " + phone + " " + card;
+    }
 }

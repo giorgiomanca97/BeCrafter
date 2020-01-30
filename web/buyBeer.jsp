@@ -1,3 +1,4 @@
+<%@page import="error.ProductNotFoundException"%>
 <%@page import="logic.entity.BeerFiltering"%>
 <%@page import="logic.entity.ContainerType"%>
 <%@page import="logic.entity.BeerColor"%>
@@ -14,7 +15,11 @@
 buyBeerBean.setBeerId(request.getParameter("beerId"));
 buyBeerBean.setContainerType(ContainerType.valueOf(request.getParameter("containerType")));
 buyBeerBean.setContainerVolume(Integer.parseInt(request.getParameter("volume")));
-buyBeerBean.selectForSaleProduct();
+try {
+	buyBeerBean.selectForSaleProduct();
+} catch (ProductNotFoundException pnfe) {
+	%><jsp:forward page="home.jsp"><%
+}
 buyBeerBean.loadSelectedProduct();
 %>
 

@@ -63,7 +63,7 @@ public class Storehouse_dao {
 	            
 	            query = "SELECT * FROM " + TABLE_STORE_RAWM + ";";
 	            rs_rawMaterials = stmt.executeQuery(query);
-	            ArrayList<RawMaterial> rawMaterials = new ArrayList<RawMaterial>();
+	            ArrayList<RawMaterial> rawMaterials = new ArrayList<>();
 	            if(rs_rawMaterials.first()) {
 	            	do {
 	            		RawMaterialType type = RawMaterialType.valueOf(rs_rawMaterials.getString(TABLE_STORE_RAWM_COL_TYPE));
@@ -78,7 +78,7 @@ public class Storehouse_dao {
 	            
 	            query = "SELECT * FROM " + TABLE_STORE_CONT + ";";
 	            rs_containers = stmt.executeQuery(query);
-	            ArrayList<Container> containers = new ArrayList<Container>();
+	            ArrayList<Container> containers = new ArrayList<>();
 	            if(rs_containers.first()) {
 	            	do {
 	            		ContainerType type = ContainerType.valueOf(rs_containers.getString(TABLE_STORE_CONT_COL_TYPE));
@@ -94,7 +94,7 @@ public class Storehouse_dao {
 	            
 	            query = "SELECT * FROM " + TABLE_STORE_PROD + ";";
 	            rs_products = stmt.executeQuery(query);
-	            ArrayList<Product> products = new ArrayList<Product>();
+	            ArrayList<Product> products = new ArrayList<>();
 	            if(rs_products.first()) {
 	            	do {
 	            		String beerId = rs_products.getString(TABLE_STORE_PROD_BEERID);
@@ -131,7 +131,7 @@ public class Storehouse_dao {
 				Logger.getGlobal().log(Level.SEVERE, "Database Storable wrong quantity");
 			} 
 	        finally {
-	        	ArrayList<ResultSet> rsList = new ArrayList<ResultSet>();
+	        	ArrayList<ResultSet> rsList = new ArrayList<>();
 	        	rsList.add(rs_rawMaterials);
 	        	rsList.add(rs_containers);
 	        	rsList.add(rs_products);

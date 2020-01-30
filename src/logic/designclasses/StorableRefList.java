@@ -64,7 +64,7 @@ public class StorableRefList extends StorableList{
 	@Override
 	public ArrayList<Storable> removeAll(){
 		ArrayList<Storable> result = storables;
-		this.storables = new ArrayList<Storable>();
+		this.storables = new ArrayList<>();
 		
 		return result;
 	}

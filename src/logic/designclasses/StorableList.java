@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import logic.entity.interfaces.Storable;
 
 public abstract class StorableList {
-	protected ArrayList<Storable> storables = new ArrayList<Storable>();
+	protected ArrayList<Storable> storables = new ArrayList<>();
 	
 	
 	public StorableList() {
-		this.storables = new ArrayList<Storable>();
+		this.storables = new ArrayList<>();
 	}
 	
 	
@@ -25,7 +25,7 @@ public abstract class StorableList {
 	public abstract Storable get(Storable storable);
 	
 	public ArrayList<Storable> getAll() {
-		ArrayList<Storable> result = new ArrayList<Storable>();
+		ArrayList<Storable> result = new ArrayList<>();
 		
 		for (Storable s : storables) {
 			result.add(get(s));
@@ -54,7 +54,7 @@ public abstract class StorableList {
 	public abstract Storable remove(Storable storable);
 	
 	public ArrayList<Storable> removeAll() {
-		ArrayList<Storable> result = new ArrayList<Storable>();
+		ArrayList<Storable> result = new ArrayList<>();
 		
 		for (Storable storable : storables) {
 			result.add(remove(storable));

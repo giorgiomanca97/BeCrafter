@@ -101,4 +101,16 @@ public class Order {
     public Product removeProduct(Beer beer, Container container) {
 		return removeProduct(new Product(beer, container));
     }
+    
+    @Override
+    public String toString() {
+    	StringBuilder stringBuilder = new StringBuilder();
+    	stringBuilder.append("Order: " + id + " " + email + " " + date + " " + Price.toText(price) + "€ " + shippingCode + " " + shippingCompany + "\n");
+    	stringBuilder.append(billingInfo.toString() + "\n");
+    	for (Storable storable : products.getAll()) {
+    		stringBuilder.append(storable.toString() + "\n");
+		}
+    	
+    	return stringBuilder.toString();
+    }
 }

@@ -31,7 +31,7 @@ public class StorableCloneList extends StorableList{
 
 	@Override
 	public ArrayList<Storable> getAll() {
-		ArrayList<Storable> result = new ArrayList<Storable>();
+		ArrayList<Storable> result = new ArrayList<>();
 		
 		for (Storable s : storables) {
 			result.add(s.copy());
@@ -71,13 +71,13 @@ public class StorableCloneList extends StorableList{
 	
 	@Override
 	public ArrayList<Storable> removeAll(){
-		ArrayList<Storable> result = new ArrayList<Storable>();
+		ArrayList<Storable> result = new ArrayList<>();
 		
 		for (Storable storable : storables) {
 			result.add(storable.copy());
 		}
 		
-		this.storables = new ArrayList<Storable>();
+		this.storables = new ArrayList<>();
 		
 		return result;
 	}

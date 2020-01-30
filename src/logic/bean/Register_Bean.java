@@ -8,7 +8,7 @@ import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
 import error.login.UsedEmailException;
 import logic.Login_Controller;
-import logic.designclasses.BeanHelper;
+import logic.designclasses.CheckHelper;
 import logic.entity.BillingInfo;
 
 public class Register_Bean {
@@ -150,14 +150,14 @@ public class Register_Bean {
 			throw new IllegalCharacterException();
 		}
 		
-		if(!BeanHelper.isOnlyLetters(r_firstName) ||
-		   !BeanHelper.isOnlyLetters(r_lastName) || 
-		   !BeanHelper.isValidString(r_address) ||
-		   !BeanHelper.isOnlyLetters(r_city) ||
-		   !BeanHelper.isOnlyLetters(r_country) ||
-		   !BeanHelper.isOnlyDigits(r_postalCode) ||
-		   !BeanHelper.isValidPhoneNumber(r_phoneNumber) ||
-		   !BeanHelper.isValidCreditCard(r_creditCard)) {
+		if(!CheckHelper.isOnlyLetters(r_firstName) ||
+		   !CheckHelper.isOnlyLetters(r_lastName) || 
+		   !CheckHelper.isValidString(r_address) ||
+		   !CheckHelper.isOnlyLetters(r_city) ||
+		   !CheckHelper.isOnlyLetters(r_country) ||
+		   !CheckHelper.isOnlyDigits(r_postalCode) ||
+		   !CheckHelper.isValidPhoneNumber(r_phoneNumber) ||
+		   !CheckHelper.isValidCreditCard(r_creditCard)) {
 			throw new WrongFieldException();
 		}
 		

@@ -14,7 +14,7 @@ public class Registered {
     	this.email = email;
     	this.password = password;
     	this.billingInfo = billingInfo;
-    	this.orders = new ArrayList<Order>();
+    	this.orders = new ArrayList<>();
     }
 
     
@@ -73,7 +73,7 @@ public class Registered {
     }
 
     public void removeAllOrders() {
-    	orders = new ArrayList<Order>();
+    	orders = new ArrayList<>();
     }
 
 }

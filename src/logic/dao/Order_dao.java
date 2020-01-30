@@ -75,7 +75,7 @@ public class Order_dao {
 	}
 	
 	private static ArrayList<Order> getOrders(String query){
-		ArrayList<Order> result = new ArrayList<Order>();
+		ArrayList<Order> result = new ArrayList<>();
 		
 		Statement stmt = null;
         Connection conn = null;
@@ -274,7 +274,7 @@ public class Order_dao {
 		
 		private OrderDataFetch(BillingInfo billingInfo) {
 			this.billingInfo = billingInfo;
-			this.products = new ArrayList<Product>();
+			this.products = new ArrayList<>();
 		}
 		
 		

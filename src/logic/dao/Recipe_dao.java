@@ -54,7 +54,7 @@ public class Recipe_dao {
 	}
 	
 	public static ArrayList<Recipe> getAllRecipes(){
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		ArrayList<Recipe> result = new ArrayList<>();
 		
 		File directory = new File(RECIPES_FOLDER_PATH);
 		File[] files = directory.listFiles();

@@ -19,7 +19,7 @@ public class Recipe {
     }
 
     public ArrayList<RawMaterial> getIngredients() {
-    	ArrayList<RawMaterial> result = new ArrayList<RawMaterial>();
+    	ArrayList<RawMaterial> result = new ArrayList<>();
     	
     	ArrayList<Storable> storables = rawMaterials.getAll();
     	for (Storable storable : storables) {

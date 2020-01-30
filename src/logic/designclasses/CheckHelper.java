@@ -1,7 +1,7 @@
 package logic.designclasses;
 
-public class BeanHelper {
-	private BeanHelper() {
+public class CheckHelper {
+	private CheckHelper() {
 		
 	}
 	
