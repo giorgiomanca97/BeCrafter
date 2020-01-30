@@ -13,6 +13,8 @@
 <jsp:useBean id="homeBean" scope="request" class="logic.bean.Home_Bean"/>
 
 <%
+boolean logoutPressed = request.getParameter("logoutPressed") != null && request.getParameter("logoutPressed").equals("1");
+
 String searchName = (request.getParameter("searchName") != null) ? request.getParameter("searchName") : "";
 boolean cbTypeAle = (request.getParameter("TypeAle") != null);
 boolean cbTypeLambic = (request.getParameter("TypeLambic") != null);
@@ -26,6 +28,13 @@ boolean cbContCan = (request.getParameter("ContainerCan") != null);
 boolean cbContBarrel = (request.getParameter("ContainerBarrel") != null);
 boolean cbFilteringYes = (request.getParameter("FilteringYes") != null);
 boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
+String logged = homeBean.loggedCustomer();
+
+if(logoutPressed && logged != null) {
+	homeBean.logoutCustomer(logged);
+	logged = null;
+}
+
 %>
 
 <!DOCTYPE html>
@@ -51,11 +60,21 @@ boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
 						<input type="submit" value="Check Order">
 					</form>
 				</td>
-				<td>
-					<form action="login.jsp">
-						<input type="submit" value="Login">
-					</form>
-				</td>
+				<%if(logged == null) {
+					%><td>
+						<form action="login.jsp">
+							<input type="submit" value="Login">
+						</form>
+					</td><%
+				} else {
+					%><td>
+						<p> <%=logged %></p>
+						<form action="home.jsp">
+							<input type="submit" value="Logout">
+							<input type="hidden" name="logoutPressed" value="1">
+						</form>
+					</td><%
+				}%>
 			</tr>
 		</table>
 		<table>
