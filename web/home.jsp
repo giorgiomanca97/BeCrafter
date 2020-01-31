@@ -16,18 +16,18 @@
 boolean logoutPressed = request.getParameter("logoutPressed") != null && request.getParameter("logoutPressed").equals("1");
 
 String searchName = (request.getParameter("searchName") != null) ? request.getParameter("searchName") : "";
-boolean cbTypeAle = (request.getParameter("TypeAle") != null);
-boolean cbTypeLambic = (request.getParameter("TypeLambic") != null);
-boolean cbTypeLager = (request.getParameter("TypeLager") != null);
-boolean cbColorLight = (request.getParameter("ColorLight") != null);
-boolean cbColorAmber = (request.getParameter("ColorAmber") != null);
-boolean cbColorRuby = (request.getParameter("ColorRuby") != null);
-boolean cbColorDark = (request.getParameter("ColorDark") != null);
-boolean cbContBottle = (request.getParameter("ContainerBottle") != null);
-boolean cbContCan = (request.getParameter("ContainerCan") != null);
-boolean cbContBarrel = (request.getParameter("ContainerBarrel") != null);
-boolean cbFilteringYes = (request.getParameter("FilteringYes") != null);
-boolean cbFilteringNo = (request.getParameter("FilteringNo") != null);
+boolean cbTypeAle = (request.getParameter("TypeAle") != null && request.getParameter("TypeAle").equals("on"));
+boolean cbTypeLambic = (request.getParameter("TypeLambic") != null && request.getParameter("TypeLambic").equals("on"));
+boolean cbTypeLager = (request.getParameter("TypeLager") != null && request.getParameter("TypeLager").equals("on"));
+boolean cbColorLight = (request.getParameter("ColorLight") != null && request.getParameter("ColorLight").equals("on"));
+boolean cbColorAmber = (request.getParameter("ColorAmber") != null && request.getParameter("ColorAmber").equals("on"));
+boolean cbColorRuby = (request.getParameter("ColorRuby") != null && request.getParameter("ColorRuby").equals("on"));
+boolean cbColorDark = (request.getParameter("ColorDark") != null && request.getParameter("ColorDark").equals("on"));
+boolean cbContBottle = (request.getParameter("ContainerBottle") != null && request.getParameter("ContainerBottle").equals("on"));
+boolean cbContCan = (request.getParameter("ContainerCan") != null && request.getParameter("ContainerCan").equals("on"));
+boolean cbContBarrel = (request.getParameter("ContainerBarrel") != null && request.getParameter("ContainerBarrel").equals("on"));
+boolean cbFilteringYes = (request.getParameter("FilteringYes") != null && request.getParameter("FilteringYes").equals("on"));
+boolean cbFilteringNo = (request.getParameter("FilteringNo") != null && request.getParameter("FilteringNo").equals("on"));
 String logged = homeBean.loggedCustomer();
 
 if(logoutPressed && logged != null) {
