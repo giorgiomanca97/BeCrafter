@@ -64,6 +64,10 @@ tr.product {
 	border-bottom: 1px solid #D0D0D0;
 }
 
+tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
 th.product{
 	padding: 2px 20px;
 	text-align: center;
