@@ -26,9 +26,6 @@ if(loginPressed) {
 		errorMsg = "Email and Password do not match";
 	}
 }
-
-
-
 %>
 
 <!DOCTYPE html>
@@ -36,27 +33,41 @@ if(loginPressed) {
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
 		<title>Login</title>
 	</head>
-	<h5>Login</h5>
-	<br>
-	<h2>Be Crafter</h2>
 	<body>
-		<form action="login.jsp" method="POST">
-		<p> email </p>
-		<input type="text" id="email" name="email">
-		<p> password </p>
-		<input type="password" id="password" name="password">
-		<br><%
-		if(errorMsg != null) {
-			%> <p class="error"><%=errorMsg %></p> <%
-		} else {%>
-			<br><%
-		}%>
+		<h3 align="center">Login</h3>
 		<br>
-		<input type="submit" value="Login">
-		<input type="hidden" name="loginPressed" value="1">
-		</form>
-		<p>not registered ? <a href="register.jsp">click here</a></p>
+		<div align="center">
+			<form action="login.jsp" method="POST">
+				<table>
+					<tr>
+						<td><p> email </p></td>
+						<td><input class="text L" type="text" id="email" name="email"></td>
+					</tr>
+					<tr>
+						<td><p> password </p></td>
+						<td><input class="text L" type="password" id="password" name="password"></td>
+					</tr>
+				</table>
+				<% if(errorMsg != null) { %> 
+				<p class="error"><%=errorMsg %></p> 
+				<% } else { %>
+				<br>
+				<% } %>
+				<input class="button L" type="submit" value="Login">
+				<input type="hidden" name="loginPressed" value="1">
+			</form>
+		</div>
+		<p align="center">not registered ? <a class="link" href="register.jsp">click here</a></p>
+		<br>
+		<br>
+		<br>
+		<div align="center">
+			<form action="home.jsp">
+				<input class="button M" type="submit" value="Go Back">
+			</form>
+		</div>
 	</body>
 </html>

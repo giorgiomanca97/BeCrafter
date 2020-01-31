@@ -34,49 +34,57 @@ String shippingCompany = checkOrderBean.getShippingCompany();
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/checkOrder.css">
 		<title>Check Order</title>
 	</head>
 	<body>
-		<h5>Check Order</h5>
-		<p>Insert here the order code you are looking for:</p>
-		<form action="checkOrder.jsp" method="POST">
-			<input type="text" id="orderId" name="orderId">
-			<input type="submit" value="search Order">
-			<input type="hidden" name="search" value="1">
-		</form> 
-			<%
-				if(orderIdNotFound) {
-					orderId = "";
-					%> <p class="error">no order found with this order code</p> <%
-				} else {
-					%> <br> <%
-				}
-			%>
+		<h3 id="title">Check Order</h3>
+		<br>
+		<div align="center">
 			<table>
 				<tr>
-					<td>Order Code: </td>
-					<td> <%=orderId %> </td>
+					<td>
+						<p>Insert here the order code you are looking for:</p>
+					</td>
+					<td>
+						<form action="checkOrder.jsp" method="POST">
+							<input class="text S" type="text" id="orderId" name="orderId">
+							<input class="button S" type="submit" value="search order">
+							<input type="hidden" name="search" value="1">
+						</form> 
+					</td>
 				</tr>
-				<tr>
-					<td>Purchase Date: </td>
-					<td> <%=purchaseDate %> </td>
-				</tr>
-				<tr>
-					<td>Overall Price: </td>
-					<td> <%=overallPrice %> <%if(overallPrice.length() != 0) {%> &euro; <%} %></td>
-				</tr>
-				<tr>
-					<td>Email: </td>
-					<td> <%=email %> </td>
-				</tr>
-				<tr>
-					<td>Shipping Code: </td>
-					<td> <%=shippingCode %> </td>
-				</tr>
-				<tr>
-					<td>Shipping Company: </td>
-					<td> <%=shippingCompany %> </td>
-				</tr>
-			</table>
+			</table>		
+			<% if(orderIdNotFound) { orderId = ""; %> 
+			<p class="error">no order found with this order code</p> 
+			<% } else { %> 
+			<br> 
+			<% } %>
+		</div>
+		<div class="grid">			
+			<div class="left">
+				<p>Order Code: </p>
+				<p>Purchase Date: </p>
+				<p>Overall Price: </p>
+				<p>Email: </p>
+				<p>Shipping Code: </p>
+				<p>Shipping Company: </p>
+			</div>
+			<div class="right">
+				<p> <%=orderId %> </p>
+				<p> <%=purchaseDate %> </p>
+				<p> <%=overallPrice %> <%if(overallPrice.length() != 0) {%> &euro; <%} %></p>
+				<p> <%=email %> </p>
+				<p> <%=shippingCode %> </p>
+				<p> <%=shippingCompany %> </p>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div align="center">
+			<form action="home.jsp">
+				<input class="button M" type="submit" value="Go Back">
+			</form>
+		</div>
 	</body>
 </html>

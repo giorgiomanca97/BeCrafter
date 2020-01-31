@@ -58,66 +58,86 @@ String creditCard = registerBean.getCreditCard();
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/register.css">
 		<title>Home</title>	
 	</head>
 	<body>
-		<form action="register.jsp" method="POST">
-			<table>
-				<tr>
-					<td>email</td>
-					<td><input type="text" id="email" name="email" value="<%=email %>"></td>
-				</tr>
-				<tr>
-					<td>password *</td>
-					<td><input type="password" id="password" name="password"></td>
-				</tr>
-				<tr>
-					<td>confirm password</td>
-					<td><input type="password" id="confirmPassword" name="confirmPassword"></td>
-				</tr>
-				<tr>
-					<td>first name</td>
-					<td><input type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
-				</tr>
-				<tr>
-					<td>last name</td>
-					<td><input type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
-				</tr>
-				<tr>
-					<td>address</td>
-					<td><input type="text" id="address" name="address" value="<%=address %>"></td>
-				</tr>
-				<tr>
-					<td>city</td>
-					<td><input type="text" id="city" name="city" value="<%=city %>"></td>
-				</tr>
-				<tr>
-					<td>country</td>
-					<td><input type="text" id="country" name="country" value="<%=country %>"></td>
-				</tr>
-				<tr>
-					<td>postal code</td>
-					<td><input type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
-				</tr>
-				<tr>
-					<td>phone number</td>
-					<td><input type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
-				</tr>
-				<tr>
-					<td>credit card number *</td>
-					<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
-				</tr>
-			</table>
-			<input type="checkbox" name="agreement">I agree with conditions and terms<br>
-			<input type="submit" value="Register">
-			<input type="hidden" name="registerAction" value="1"> 
-		</form>
-		<% if(error != null){ %>
-		<p class="error"><%=error %></p>
-		<% } else { %>
+		<h3 align="center">Register</h3>
 		<br>
-		<% } %>
-		<p>* The password must be at least eight characters long and must have at least one uppercase letter, one lowercase letter, and one number</p>
-		<p>** The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
+		<form action="register.jsp" method="POST">
+			<div align="center">
+				<table>
+					<tr>
+						<td><p>email</p></td>
+						<td><input class="text L" type="text" id="email" name="email" value="<%=email %>"></td>
+					</tr>
+					<tr>
+						<td><p>password *</p></td>
+						<td><input class="text L" type="password" id="password" name="password"></td>
+					</tr>
+					<tr>
+						<td><p>confirm password</p></td>
+						<td><input class="text L" type="password" id="confirmPassword" name="confirmPassword"></td>
+					</tr>
+					<tr>
+						<td><p>first name</p></td>
+						<td><input class="text L" type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
+					</tr>
+					<tr>
+						<td><p>last name</p></td>
+						<td><input class="text L" type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
+					</tr>
+					<tr>
+						<td><p>address</p></td>
+						<td><input class="text L" type="text" id="address" name="address" value="<%=address %>"></td>
+					</tr>
+					<tr>
+						<td><p>city</p></td>
+						<td><input class="text L" type="text" id="city" name="city" value="<%=city %>"></td>
+					</tr>
+					<tr>
+						<td><p>country</p></td>
+						<td><input class="text L" type="text" id="country" name="country" value="<%=country %>"></td>
+					</tr>
+					<tr>
+						<td><p>postal code</p></td>
+						<td><input class="text L" type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
+					</tr>
+					<tr>
+						<td><p>phone number</p></td>
+						<td><input class="text L" type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
+					</tr>
+					<tr>
+						<td><p>credit card number **</p></td>
+						<td><input class="text L" type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
+					</tr>
+				</table>
+				<div id="terms">
+					<input class="checkbox" type="checkbox" name="agreement"> &nbsp; I agree with conditions and terms
+				</div>
+				<br>
+				<% if(error != null){ %>
+				<p class="error"><%=error %></p>
+				<% } else { %>
+				<br>
+				<% } %>
+				<input class="button L" type="submit" value="Register">
+				<input type="hidden" name="registerAction" value="1">
+			</div>
+		</form>
+		<br>
+		<div align="center">
+			<br>
+			<br>
+			<div align="center">
+				<form action="login.jsp">
+					<input class="button M" type="submit" value="Go Back">
+				</form>
+			</div>
+			<br>
+			<br>
+			<p>* The password must be at least eight characters long and must have at least one uppercase letter, one lowercase letter, and one number</p>
+			<p>** The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
+		</div>
 	</body>
 </html>

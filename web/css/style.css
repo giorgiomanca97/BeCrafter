@@ -1,11 +1,15 @@
 @charset "ISO-8859-1";
 
+*{
+	font-size: 16px;
+}
 
 body {
 	background-color: #E0E0E0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+
+h1, h2, h3, h4, h5, h6, p {
 	padding: 0px;
 	margin: 0px;
 	height: auto;
@@ -41,14 +45,57 @@ h6{
 	font-size: 18px;
 }
 
+p {
+	font-size: 16px;
+}
+
 input{
-	border-radius: 5px;
+	border-style: solid;
+	border-radius: 2px;
+	border-width: 2px;
+	border-color: #C0C0C0;	
 }
 
-
-.grid {
-	vertical-align: top;
+.button{
+	background-color: #D9D9D9;
 }
+
+.button.XS{
+	width: 60px;
+	height: 25px;
+	margin: 2px 0px;
+}
+
+.button.S{
+	width: 120px;
+	height: 27px;
+}
+
+.button.M{
+	width: 200px;
+	height: 27px;
+}
+
+.button.L{
+	width: 250px;
+	height: 30px;
+}
+
+.text.S {
+	width: 96px;
+	height: 21px;
+}
+
+.text.M {
+	width: 196px;
+	height: 21px;
+}
+
+.text.L {
+	width: 296px;
+	height: 25px;
+}
+
 
 .error {
 	color: #FF0000;
@@ -60,25 +107,29 @@ table.product {
 	border-collapse: collapse;
 }
 
+th.product{
+	padding: 10px 20px;
+	text-align: center;
+	background-color: #D0D0D0;
+}
+
 tr.product {
 	border-bottom: 1px solid #D0D0D0;
 }
 
-tr:nth-child(even) {
-		background-color: #f2f2f2;
-	}
-
-th.product{
-	padding: 2px 20px;
-	text-align: center;
+tr.product:nth-child(even) {
+	background-color: #F0F0F0;
 }
+tr.product:nth-child(odd) {
+	background-color: #E0E0E0;
+}
+
 
 td.product{
 	padding: 2px 20px;
 	text-align: center;
 }
 
-
-#homeForm{
-	margin-right: 20px;
+#title{
+	text-align: center;
 }

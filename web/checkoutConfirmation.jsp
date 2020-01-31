@@ -17,7 +17,7 @@ String orderId = request.getParameter("orderId") != null ? request.getParameter(
 		<p>We are sending to you an email with a summary of your purchase and order information</p>
 		<p>Remember to periodically check your inbox for future updates relative to your order</p>
 		<form action="home.jsp">
-			<input type="submit" value="Ok">
+			<input class="button" type="submit" value="Ok">
 		</form>
 	</body>
 </html>

@@ -36,7 +36,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" prefWidth="1125.0" text="We’re sending to you an email with a summary of your purchase and order information.">
+                  <Label alignment="CENTER" prefWidth="1125.0" text="We are sending to you an email with a summary of your purchase and order information.">
                      <font>
                         <Font size="14.0" />
                      </font>

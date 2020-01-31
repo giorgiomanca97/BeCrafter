@@ -77,7 +77,7 @@ if(toRemove != null){
 				<td class="product"><%=price %> &euro;</td>
 				<td class="product">
 					<form action="checkoutSummary.jsp">
-						<input type="submit" value="Remove">
+						<input class="button" type="submit" value="Remove">
 						<input type="hidden" name="remove" value="<%=i %>">
 					</form>
 				</td>
@@ -92,10 +92,10 @@ if(toRemove != null){
 			<p><%=Price.toText(totalPrice) %> &euro;</p>
 		</div>
 		<form action="checkoutPayment.jsp">
-			<input type="submit" value="Confirm Products">
+			<input class="button" type="submit" value="Confirm Products">
 		</form>
 		<form action="home.jsp">
-			<input type="submit" value="Go back to Shopping">
+			<input class="button" type="submit" value="Go back to Shopping">
 		</form>
 	</body>
 </html>

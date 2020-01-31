@@ -141,11 +141,11 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 							<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
 						</tr>
 					</table>
-					<input type="submit" value="Confirm Purchase">
+					<input class="button" type="submit" value="Confirm Purchase">
 					<input type="hidden" name="confirmAction" value="1"> 
 					</form>
 					<form action="checkoutSummary.jsp">
-						<input type="submit" value="Go back to Summary">
+						<input class="button" type="submit" value="Go back to Summary">
 					</form>
 					<% if(purchaseError != null){ %>
 					<p class="error"><%=purchaseError %></p>
@@ -159,7 +159,7 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged || preLogged) {%>readonly<%}%>><br><br>
 						<input type="password" id="password" name="password" <%if(logged) {%>disabled<%}%>><br><br>
 						<input type="hidden" name="loginAction" value="1">
-						<input type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
+						<input class="button" type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
 					</form>
 					<% if(loginError != null){ %>
 					<p class="error"><%=loginError %></p>
