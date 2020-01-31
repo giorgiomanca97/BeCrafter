@@ -85,7 +85,7 @@ if(preLogged){
 }
 
 String loginEmail = email;
-if(loginAction && !logged && !confirmPurchase){
+if(loginAction && !preLogged && !logged && !confirmPurchase){
 	email = "";
 }
 %>
@@ -153,7 +153,7 @@ if(loginAction && !logged && !confirmPurchase){
 				</td>
 				<td class="grid">
 					<form action="checkoutPayment.jsp" method="POST">
-						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged || preLogged) {%>disabled<%}%>><br><br>
+						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged || preLogged) {%>readonly<%}%>><br><br>
 						<input type="password" id="password" name="password" <%if(logged) {%>disabled<%}%>><br><br>
 						<input type="hidden" name="loginAction" value="1">
 						<input type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
