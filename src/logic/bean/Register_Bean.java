@@ -6,6 +6,7 @@ import error.IllegalCharacterException;
 import error.WrongFieldException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
+import error.login.PasswordMatchingException;
 import error.login.UsedEmailException;
 import logic.Login_Controller;
 import logic.designclasses.CheckHelper;
@@ -14,6 +15,7 @@ import logic.entity.BillingInfo;
 public class Register_Bean {
 	private String r_email;
 	private String r_password;
+	private String r_confirmPassword;
 	private String r_firstName;
 	private String r_lastName;
 	private String r_address;
@@ -27,6 +29,7 @@ public class Register_Bean {
 	public Register_Bean() {
 		r_email = "";
 		r_password = "";
+		r_confirmPassword = "";
 		r_firstName = "";
 		r_lastName = "";
 		r_address = "";
@@ -57,6 +60,15 @@ public class Register_Bean {
 		this.r_password = password;
 	}
 
+	
+	public String getConfirmPassword() {
+		return r_confirmPassword;
+	}
+
+	public void setConfirmPassword(String password) {
+		this.r_confirmPassword = password;
+	}
+	
 
 	public String getFirstName() {
 		return r_firstName;
@@ -131,12 +143,17 @@ public class Register_Bean {
 	// ==============================
 	
 	
-	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException, WrongFieldException {
-		if(r_email.length() == 0 || r_password.length() == 0) {
+	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException, WrongFieldException, PasswordMatchingException {
+		if(r_email.length() == 0 || r_password.length() == 0 || r_confirmPassword.length() == 0) {
 			throw new EmptyFieldException();
 		}
-		if(r_email.contains("'") || r_password.contains("'")) {
+		
+		if(r_email.contains("'") || r_password.contains("'") || r_confirmPassword.contains("'")) {
 			throw new IllegalCharacterException();
+		}
+		
+		if(!r_password.equals(r_confirmPassword)) {
+			throw new PasswordMatchingException();
 		}
 		
 		BillingInfo billingInfo = getBillingInfo();

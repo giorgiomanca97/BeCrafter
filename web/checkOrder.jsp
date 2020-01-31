@@ -22,7 +22,7 @@ if(search && !orderId.equals("")) {
 	}
 }
 String purchaseDate = checkOrderBean.getDate();
-String overallPrice = Price.toText(checkOrderBean.getPrice());
+String overallPrice = checkOrderBean.getPrice() == 0f ? "" : Price.toText(checkOrderBean.getPrice());
 String email = checkOrderBean.getEmail();
 String shippingCode = checkOrderBean.getShippingCode();
 String shippingCompany = checkOrderBean.getShippingCompany();
@@ -45,7 +45,7 @@ String shippingCompany = checkOrderBean.getShippingCompany();
 			<input type="hidden" name="search" value="1">
 		</form> 
 			<%
-				if(orderIdNotFound) {//C'è errore, scrivo la error label
+				if(orderIdNotFound) {
 					orderId = "";
 					%> <p class="error">no order found with this order code</p> <%
 				} else {
@@ -63,7 +63,7 @@ String shippingCompany = checkOrderBean.getShippingCompany();
 				</tr>
 				<tr>
 					<td>Overall Price: </td>
-					<td> <%=overallPrice %>  &euro;</td>
+					<td> <%=overallPrice %> <%if(overallPrice.length() != 0) {%> &euro; <%} %></td>
 				</tr>
 				<tr>
 					<td>Email: </td>

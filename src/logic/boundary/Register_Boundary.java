@@ -9,6 +9,7 @@ import error.IllegalCharacterException;
 import error.WrongFieldException;
 import error.login.InvalidEmailException;
 import error.login.InvalidPasswordException;
+import error.login.PasswordMatchingException;
 import error.login.UsedEmailException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -52,6 +53,7 @@ public class Register_Boundary {
 		lbl_error.setText("");
 		registerBean.setEmail(tf_r_email.getText());
 		registerBean.setPassword(psw_password.getText());
+		registerBean.setConfirmPassword(psw_passwordConfirm.getText());
 		registerBean.setFirstName(tf_r_firstname.getText());
 		registerBean.setLastName(tf_r_lastname.getText());
 		registerBean.setAddress(tf_r_address.getText());
@@ -62,28 +64,26 @@ public class Register_Boundary {
 		registerBean.setCreditCard(tf_r_creditCardNumber.getText());
 		
 		if(cb_agreement.isSelected()) {
-			if(psw_password.getText().equals(psw_passwordConfirm.getText())) {
-				try {
-					registerBean.register();
-					PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
-					pageLoader.showOnPrimaryStage();
-				} catch (InvalidEmailException iee) {
-					lbl_error.setText("The email is not a valid mail");
-				} catch (UsedEmailException uee) {
-					lbl_error.setText("The email is already registered");
-				} catch (InvalidPasswordException ipe) {
-					lbl_error.setText("The password do not match the specifics");
-				} catch (EmptyFieldException efe) {
-					lbl_error.setText("Please fill all the fields");
-				} catch (IllegalCharacterException ice) {
-					lbl_error.setText("Please remove the ' character from the fields");
-				} catch (WrongFieldException wfe) {
-					lbl_error.setText("Some fields are not correct");
-				} catch (IOException ioe) {
-					Logger.getGlobal().log(Level.SEVERE, "Page loading error");
-				}
-			} else {
+			try {
+				registerBean.register();
+				PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
+				pageLoader.showOnPrimaryStage();
+			} catch (InvalidEmailException iee) {
+				lbl_error.setText("The email is not a valid mail");
+			} catch (UsedEmailException uee) {
+				lbl_error.setText("The email is already registered");
+			} catch (InvalidPasswordException ipe) {
+				lbl_error.setText("The password do not match the specifics");
+			} catch (EmptyFieldException efe) {
+				lbl_error.setText("Please fill all the fields");
+			} catch (IllegalCharacterException ice) {
+				lbl_error.setText("Please remove the ' character from the fields");
+			} catch (WrongFieldException wfe) {
+				lbl_error.setText("Some fields are not correct");
+			} catch (PasswordMatchingException psm) {
 				lbl_error.setText("The password fields do not match");
+			} catch (IOException ioe) {
+				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 			}
 		} else {
 			lbl_error.setText("Please accept the agreement to register");
