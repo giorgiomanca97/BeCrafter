@@ -137,6 +137,16 @@ public class CheckoutPayment_Bean{
 	// ==============================
 	
 	
+	public String loggedCustomer() {
+		Registered customer = Login_Controller.getInstance().getLoggedCustomer();
+		
+		if(customer == null) {
+			return null;
+		} else {
+			return customer.getEmail();
+		}
+	}
+	
 	public void loadLoggedCustomer() throws LoginException {	
 		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
 		

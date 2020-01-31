@@ -45,15 +45,13 @@ public class CheckoutPayment_Boundary {
 	public void initialize() {
 		checkoutPaymentBean = new CheckoutPayment_Bean();
 		
-		try {
-			checkoutPaymentBean.loadLoggedCustomer();
+		String email = checkoutPaymentBean.loggedCustomer();
+		if(email != null) {
 			tf_loginEmail.setText(checkoutPaymentBean.getEmail());
 			tf_loginEmail.setDisable(true);
 			tf_cp_email.setText(checkoutPaymentBean.getEmail());
 			tf_cp_email.setDisable(true);
-			lbl_login.setText("Please insert the password to procede");
-		} catch (LoginException e) {
-			
+			lbl_login.setText("Please insert the password to continue");
 		}
 		
 		lbl_cp_infoCredit.setOpacity(0f);

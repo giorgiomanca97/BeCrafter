@@ -18,6 +18,9 @@
 
 <%
 
+String preEmail = checkoutPaymentBean.loggedCustomer();
+boolean preLogged = preEmail != null;
+
 boolean loginAction = (request.getParameter("loginAction") != null && request.getParameter("loginAction").equals("1"));
 boolean logged = false;
 String loginError = null;
@@ -77,6 +80,10 @@ if(confirmPurchase){
 	}
 }
 
+if(preLogged){
+	email = preEmail;
+}
+
 String loginEmail = email;
 if(loginAction && !logged && !confirmPurchase){
 	email = "";
@@ -99,7 +106,7 @@ if(loginAction && !logged && !confirmPurchase){
 					<table>
 						<tr>
 							<td>email</td>
-							<td><input type="text" id="email" name="email" value="<%=email %>" <%if(logged) {%>readonly<%}%>></td>
+							<td><input type="text" id="email" name="email" value="<%=email %>" <%if(logged || preLogged) {%>readonly<%}%>></td>
 						</tr>
 						<tr>
 							<td>first name</td>
@@ -146,7 +153,7 @@ if(loginAction && !logged && !confirmPurchase){
 				</td>
 				<td class="grid">
 					<form action="checkoutPayment.jsp" method="POST">
-						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged) {%>disabled<%}%>><br><br>
+						<input type="text" id="email" name="email" value="<%=loginEmail%>" <%if(logged || preLogged) {%>disabled<%}%>><br><br>
 						<input type="password" id="password" name="password" <%if(logged) {%>disabled<%}%>><br><br>
 						<input type="hidden" name="loginAction" value="1">
 						<input type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
