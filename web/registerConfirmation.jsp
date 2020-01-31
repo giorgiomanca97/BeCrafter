@@ -9,6 +9,8 @@
 	</head>
 	<body>
 		<h2>Register Confirmation</h2>
+		<p>The registration has been successfully completed</p>
+		<p>You will receive an email containing the registration details</p>
 		<form action="home.jsp">
 			<input type="submit" value="Ok">
 		</form>

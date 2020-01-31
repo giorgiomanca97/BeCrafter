@@ -68,7 +68,7 @@ String creditCard = registerBean.getCreditCard();
 					<td><input type="text" id="email" name="email" value="<%=email %>"></td>
 				</tr>
 				<tr>
-					<td>password</td>
+					<td>password *</td>
 					<td><input type="password" id="password" name="password"></td>
 				</tr>
 				<tr>
@@ -104,7 +104,7 @@ String creditCard = registerBean.getCreditCard();
 					<td><input type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
 				</tr>
 				<tr>
-					<td>credit card number</td>
+					<td>credit card number *</td>
 					<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
 				</tr>
 			</table>
@@ -114,6 +114,10 @@ String creditCard = registerBean.getCreditCard();
 		</form>
 		<% if(error != null){ %>
 		<p class="error"><%=error %></p>
+		<% } else { %>
+		<br>
 		<% } %>
+		<p>* The password must be at least eight characters long and must have at least one uppercase letter, one lowercase letter, and one number</p>
+		<p>** The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 	</body>
 </html>

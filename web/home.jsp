@@ -34,7 +34,6 @@ if(logoutPressed && logged != null) {
 	homeBean.logoutCustomer(logged);
 	logged = null;
 }
-
 %>
 
 <!DOCTYPE html>

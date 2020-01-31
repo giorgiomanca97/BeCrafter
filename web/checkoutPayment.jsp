@@ -137,7 +137,7 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 							<td><input type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
 						</tr>
 						<tr>
-							<td>credit card number</td>
+							<td>credit card number *</td>
 							<td><input type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
 						</tr>
 					</table>
@@ -160,7 +160,10 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 					</form>
 					<% if(loginError != null){ %>
 					<p class="error"><%=loginError %></p>
+					<% } else {%>
+					<br>
 					<% } %>
+					<p>* The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 				</td>
 			</tr>
 		</table>
