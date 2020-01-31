@@ -13,37 +13,33 @@
 <jsp:useBean id="buyBeerBean" scope="request" class="logic.bean.BuyBeer_Bean"/>
 
 <%
-int quantity = 1;
-boolean fault = false;
-boolean buy = (request.getParameter("buyAction") != null && request.getParameter("buyAction").equals("1"));
-if(buy){
-	String q = request.getParameter("quantity");
-	if(q != null) {
-		try{
-			quantity = Integer.parseUnsignedInt(q);
-			buyBeerBean.setQuantity(quantity);
-		} catch (NumberFormatException nfe){
-			quantity = 1;
-			fault = true;
-		}
-	}
+boolean wrongQuantity = false;
+buyBeerBean.setQuantity(1);
+
+try{
+	buyBeerBean.setBeerId(request.getParameter("beerId"));
+	buyBeerBean.setContainerType(ContainerType.valueOf(request.getParameter("containerType")));
+	buyBeerBean.setContainerVolume(Integer.parseInt(request.getParameter("volume")));
+} catch (Exception e) {
+	%><jsp:forward page="home.jsp"/><%
 }
 
-buyBeerBean.setBeerId(request.getParameter("beerId"));
-buyBeerBean.setContainerType(ContainerType.valueOf(request.getParameter("containerType")));
-buyBeerBean.setContainerVolume(Integer.parseInt(request.getParameter("volume")));
-
-if(buy && !fault){
-	buyBeerBean.addProductToCart();
-	%> <jsp:forward page="home.jsp"/> <%
-} else {
-	try {
-		buyBeerBean.selectForSaleProduct();
-	} catch (ProductNotFoundException pnfe) {
-		%><jsp:forward page="home.jsp"/><%
-	}
+try{
+	buyBeerBean.selectForSaleProduct();
 	buyBeerBean.loadSelectedProduct();
-}
+	
+	boolean buy = (request.getParameter("buyAction") != null && request.getParameter("buyAction").equals("1"));
+	if(buy) {
+		int quantity = Integer.parseUnsignedInt(request.getParameter("quantity"));
+		buyBeerBean.setQuantity(quantity);
+		buyBeerBean.addProductToCart();
+		%> <jsp:forward page="home.jsp"/> <%
+	}
+} catch (ProductNotFoundException | NullPointerException e){
+	%><jsp:forward page="home.jsp"/><%
+} catch (NumberFormatException | StorableIllegalQuantityException e){
+	wrongQuantity = true;
+} 
 %>
 
 <!DOCTYPE html>
@@ -94,7 +90,7 @@ if(buy && !fault){
 		<p><%=buyBeerBean.getBeerDescription()%></p>
 		<br>
 			<form action="buyBeer.jsp">
-				<input class="text S" type="number" name="quantity" value=<%=quantity %>>
+				<input class="text S" type="number" name="quantity" value=<%=buyBeerBean.getQuantity() %>>
 				<input class="Button M" type="submit" value="Buy Product">
 				<input type="hidden" name="buyAction" value="1">
 				<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
@@ -102,11 +98,9 @@ if(buy && !fault){
 				<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
 			</form>
 		<br>
-		<%
-		if(fault) { 
-			%><p class="error"><b>Please insert a valid quantity</b></p> <% 
-		}
-		%>
+		<% if(wrongQuantity) { %>
+		<p class="error"><b>Please insert a valid quantity</b></p> 
+		<% } %>
 	</div>
 	</body>
 </html>
