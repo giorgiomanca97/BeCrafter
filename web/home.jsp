@@ -51,13 +51,13 @@ if(logoutPressed && logged != null) {
 					<h1>BeCrafter</h1>
 				</td>
 				<td>
-					<form action="checkoutSummary.jsp">
-						<input type="submit" value="Checkout">
+					<form action="checkOrder.jsp">
+						<input type="submit" value="Check Order">
 					</form>
 				</td>
 				<td>
-					<form action="checkOrder.jsp">
-						<input type="submit" value="Check Order">
+					<form action="checkoutSummary.jsp">
+						<input type="submit" value="Checkout">
 					</form>
 				</td>
 				<%if(logged == null) {
