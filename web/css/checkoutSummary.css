@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+.grid-products{
+	display: grid;
+	grid-template-columns: 220px auto 220px;
+}
+
+.grid-summary{
+	display: grid;
+	grid-template-columns: auto auto;
+}

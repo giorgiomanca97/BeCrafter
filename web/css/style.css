@@ -105,6 +105,8 @@ input{
 
 table.product {
 	border-collapse: collapse;
+	table-layout: auto;
+	width: 100%;
 }
 
 th.product{

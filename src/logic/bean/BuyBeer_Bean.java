@@ -169,6 +169,10 @@ public class BuyBeer_Bean {
 	}
 	
 	public void addProductToCart() throws ProductNotFoundException, StorableIllegalQuantityException {
+		if(bb_quantity <= 0) {
+			throw new StorableIllegalQuantityException();
+		}
+		
 		Volume volume = new Volume(bb_containerVolume);
 		BuyBeer_Controller.getInstance().addProductToCart(bb_beerId, bb_containerType, volume, bb_quantity);
 	}
