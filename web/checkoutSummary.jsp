@@ -104,7 +104,7 @@ if(toRemove != null){
 			<div></div>
 			<div align="center">
 				<form action="checkoutPayment.jsp">
-					<input class="button L" type="submit" value="Confirm Products">
+					<input class="button L" type="submit" value="Confirm Products" <%if(count == 0){%>disabled<%}%>>
 				</form>
 			</div>
 			<div></div>

@@ -90,7 +90,7 @@ try{
 					<td><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</td>
 			</table>
 			<br>
-			<p><%=buyBeerBean.getBeerDescription()%></p>
+			<p id="description"><%=buyBeerBean.getBeerDescription()%></p>
 			<br>
 				<form action="buyBeer.jsp">
 					<input class="text S" type="number" name="quantity" value=<%=buyBeerBean.getQuantity() %>>
