@@ -51,9 +51,12 @@ if(buy && !fault){
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/buyBeer.css">
 		<title>Buy Beer</title>
 	</head>
 	<body>
+	<div align="center">
+		<br><br><br><br><br>
 		<table>
 			<tr>
 				<td>Name</td>
@@ -86,25 +89,24 @@ if(buy && !fault){
 			<tr>
 				<td>Price</td>
 				<td><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><%=buyBeerBean.getBeerDescription()%></td>
-			</tr>
 		</table>
 		<br>
-		<form action="buyBeer.jsp">
-			<input type="number" name="quantity" value=<%=quantity %>>
-			<input type="submit" value="Buy Product">
-			<input type="hidden" name="buyAction" value="1">
-			<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
-			<input type="hidden" name="containerType" value=<%=buyBeerBean.getContainerType().name() %>>
-			<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
-		</form>
+		<p><%=buyBeerBean.getBeerDescription()%></p>
+		<br>
+			<form action="buyBeer.jsp">
+				<input class="text S" type="number" name="quantity" value=<%=quantity %>>
+				<input class="Button M" type="submit" value="Buy Product">
+				<input type="hidden" name="buyAction" value="1">
+				<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
+				<input type="hidden" name="containerType" value=<%=buyBeerBean.getContainerType().name() %>>
+				<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
+			</form>
+		<br>
 		<%
 		if(fault) { 
 			%><p class="error"><b>Please insert a valid quantity</b></p> <% 
 		}
 		%>
+	</div>
 	</body>
 </html>
