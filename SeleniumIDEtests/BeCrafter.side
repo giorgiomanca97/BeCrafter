@@ -1,0 +1,197 @@
+{
+  "id": "1a4caae8-a500-4707-a343-629419fde59b",
+  "version": "2.0",
+  "name": "BeCrafter",
+  "url": "http://localhost:8080/index/",
+  "tests": [{
+    "id": "0733134c-a79a-4012-893d-b3c529da063a",
+    "name": "Login",
+    "commands": [{
+      "id": "eddf7c63-b237-433e-aed0-084197736bc0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/BeCrafter/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "faf163c3-099d-4fdb-ae3d-cdda0bfe406b",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(4) input",
+      "targets": [
+        ["css=td:nth-child(4) input", "css:finder"],
+        ["xpath=//input[@value='Login']", "xpath:attributes"],
+        ["xpath=//td[4]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f679c4c-f878-4f91-aa02-94de321b28cd",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "bianchidavide97@gmail.com"
+    }, {
+      "id": "9c6a727e-0489-454e-9cf4-f1f2613fe506",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "becrafter1"
+    }, {
+      "id": "8ad43278-8e4e-4d92-b875-be2b97715c8b",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(8)",
+      "targets": [
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@value='Login']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bab8964e-33b0-4283-9a3e-50d7a9044a6e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p",
+      "targets": [
+        ["css=p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
+      ],
+      "value": "bianchidavide97@gmail.com"
+    }]
+  }, {
+    "id": "9b69bdeb-e824-4f7f-864e-c367464ad798",
+    "name": "Check Order",
+    "commands": [{
+      "id": "7f0fcf22-492d-46ba-8d8e-63f447f0cfe3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/BeCrafter",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e765fde7-eada-4a74-b197-52ffd183512d",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2) > form > input",
+      "targets": [
+        ["css=td:nth-child(2) > form > input", "css:finder"],
+        ["xpath=//input[@value='Check Order']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9260f7c5-c3f9-4323-a649-c811a17008c8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=orderId",
+      "targets": [
+        ["id=orderId", "id"],
+        ["name=orderId", "name"],
+        ["css=#orderId", "css:finder"],
+        ["xpath=//input[@id='orderId']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "X000002"
+    }, {
+      "id": "fe624745-d3ee-4de0-90a0-f3e50de2b8d3",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(2)",
+      "targets": [
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='search Order']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "093888cb-d03a-4c7b-973f-65b1df8c11f7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(1) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(1) > td:nth-child(2)", "css:finder"],
+        ["xpath=//td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'X000002')]", "xpath:innerText"]
+      ],
+      "value": "X000002"
+    }, {
+      "id": "ee900a67-5db6-45ce-a2f1-f19e93826b64",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'2020/01/31')]", "xpath:innerText"]
+      ],
+      "value": "2020/01/31"
+    }, {
+      "id": "de19f700-818a-4900-87b1-ef4df441d036",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(3) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(3) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[3]/td[2]", "xpath:position"]
+      ],
+      "value": "95,00 €"
+    }, {
+      "id": "ffdba970-3f4c-4f9b-81bc-d0667b30de1b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(4) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(4) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[4]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
+      ],
+      "value": "bianchidavide97@gmail.com"
+    }, {
+      "id": "38e1bf02-270e-46c7-8b56-e6675711f743",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(5) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(5) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[5]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'not yet available')]", "xpath:innerText"]
+      ],
+      "value": "not yet available"
+    }, {
+      "id": "0278d190-2ba1-4828-9e9d-8bf1fa627217",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(6) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(6) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[6]/td[2]", "xpath:position"]
+      ],
+      "value": "not yet available"
+    }]
+  }],
+  "suites": [{
+    "id": "df9b0962-d86d-4a77-a161-e669650292cb",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0733134c-a79a-4012-893d-b3c529da063a"]
+  }],
+  "urls": ["http://localhost:8080/index/"],
+  "plugins": []
+}
