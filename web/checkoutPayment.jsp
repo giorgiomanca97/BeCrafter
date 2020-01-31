@@ -149,7 +149,10 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 					</form>
 					<% if(purchaseError != null){ %>
 					<p class="error"><%=purchaseError %></p>
+					<% } else {%>
+					<br>
 					<% } %>
+					<p>* The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 				</td>
 				<td class="grid">
 					<form action="checkoutPayment.jsp" method="POST">
@@ -163,7 +166,6 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 					<% } else {%>
 					<br>
 					<% } %>
-					<p>* The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 				</td>
 			</tr>
 		</table>
