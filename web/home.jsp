@@ -68,11 +68,13 @@ if(logoutPressed && logged != null) {
 					</td><%
 				} else {
 					%><td>
-						<p> <%=logged %></p>
 						<form action="home.jsp">
 							<input type="submit" value="Logout">
 							<input type="hidden" name="logoutPressed" value="1">
 						</form>
+					</td>
+					<td>
+						<p><%=logged %></p>
 					</td><%
 				}%>
 			</tr>
