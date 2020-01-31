@@ -60,6 +60,7 @@ public class BuyBeer_Controller {
 		if(product == null) {
 			throw new ProductNotFoundException();
 		}
+		product.resetQuantity();
 		
 		this.selectedProduct = product;
 	}

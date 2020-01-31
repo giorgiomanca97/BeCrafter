@@ -3,16 +3,11 @@
 p{
 	margin: 5px 0px;
 	font-size: 18px;
-	width: 400px
 }
 
-table p, input{
+table td, input{
 	margin-top: 10px;
 	margin-bottom: 3px;
-}
-
-table input{
-	font-size: 16px;
 }
 
 table p {
@@ -26,4 +21,5 @@ td{
 
 .text.S{
 	text-align: center;
+	font-size: 16px;
 }

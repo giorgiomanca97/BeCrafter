@@ -49,31 +49,27 @@ if(logoutPressed && logged != null) {
 		<div class="grid-products">
 			<div id="search">
 				<form action="home.jsp">
-					<div>
-						<h5>Search Beer</h5>
-						<input class="text M" type="text" name="searchName" value="<%=searchName %>"><br>
-						<input class="button M" type="submit" value="Search"><br>
-					</div>
+					<h5>Search Beer</h5>
+					<input class="text M" type="text" name="searchName" value="<%=searchName %>"><br>
+					<input class="button M" type="submit" value="Search"><br>
 					<br>
-					<div>
-						<h5>Filter Beers</h5>
-						<h6>Type</h6>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeAle"  <%if(cbTypeAle){%>checked<%}%>>Ale<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeLambic" <%if(cbTypeLambic){%>checked<%}%>>Lambic<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeLager" <%if(cbTypeLager){%>checked<%}%>>Lager<br>
-						<h6>Color</h6>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorLight" <%if(cbColorLight){%>checked<%}%>>Light<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorAmber" <%if(cbColorAmber){%>checked<%}%>>Amber<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorRuby" <%if(cbColorRuby){%>checked<%}%>>Ruby<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorDark" <%if(cbColorDark){%>checked<%}%>>Dark<br>
-						<h6>Container</h6>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerBottle" <%if(cbContBottle){%>checked<%}%>>Bottle<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerCan" <%if(cbContCan){%>checked<%}%>>Can<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerBarrel" <%if(cbContBarrel){%>checked<%}%>>Barrel<br>
-						<h6>Filtering</h6>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="FilteringYes" <%if(cbFilteringYes){%>checked<%}%>>Filtered<br>
-						<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="FilteringNo" <%if(cbFilteringNo){%>checked<%}%>>Unfiltered<br>
-					</div>
+					<h5>Filter Beers</h5>
+					<h6>Type</h6>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeAle"  <%if(cbTypeAle){%>checked<%}%>>Ale<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeLambic" <%if(cbTypeLambic){%>checked<%}%>>Lambic<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="TypeLager" <%if(cbTypeLager){%>checked<%}%>>Lager<br>
+					<h6>Color</h6>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorLight" <%if(cbColorLight){%>checked<%}%>>Light<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorAmber" <%if(cbColorAmber){%>checked<%}%>>Amber<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorRuby" <%if(cbColorRuby){%>checked<%}%>>Ruby<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ColorDark" <%if(cbColorDark){%>checked<%}%>>Dark<br>
+					<h6>Container</h6>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerBottle" <%if(cbContBottle){%>checked<%}%>>Bottle<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerCan" <%if(cbContCan){%>checked<%}%>>Can<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="ContainerBarrel" <%if(cbContBarrel){%>checked<%}%>>Barrel<br>
+					<h6>Filtering</h6>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="FilteringYes" <%if(cbFilteringYes){%>checked<%}%>>Filtered<br>
+					<input class="checkbox" type="checkbox" onchange="document.getElementById('homeForm').submit()" name="FilteringNo" <%if(cbFilteringNo){%>checked<%}%>>Unfiltered<br>
 				</form>
 			</div>
 			<div id="products">

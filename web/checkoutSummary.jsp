@@ -25,14 +25,14 @@ if(toRemove != null){
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="checkoutSummary.css">
+		<link rel="stylesheet" type="text/css" href="css/checkoutSummary.css">
 		<title>Checkout Summary</title>
 	</head>
 	<body>
 		<h3 align="center">Checkout Summary</h3>
 		<br>
 		<div class="grid-products">
-			<div><p>Colonna 1</p></div>
+			<div></div>
 			<div align="center">
 				<table class="product">
 					<tr class="product">
@@ -66,7 +66,7 @@ if(toRemove != null){
 					String container = checkoutSummaryBean.getContainerType().toString();
 					String size = Volume.toText(checkoutSummaryBean.getContainerVolume());
 					String quantity = String.valueOf(checkoutSummaryBean.getQuantity());
-					String totalVolume = String.valueOf(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity());
+					String totalVolume = Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity());
 					String price = Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity());%>
 					<tr class="product">
 						<td class="product"><%=i+1 %></td>
@@ -92,25 +92,32 @@ if(toRemove != null){
 				%>
 				</table>
 			</div>
-			<div><p>Colonna 2</p></div>
-			<div><p>Colonna 1</p></div>
-			<div>
-				<div class="grid-summary">
-					<div>
-						<p>Overall cost</p>
-						<p><%=Price.toText(totalPrice) %> &euro;</p>
-					</div>
-					<div>
-						<form action="checkoutPayment.jsp">
-							<input class="button" type="submit" value="Confirm Products">
-						</form>
-						<form action="home.jsp">
-							<input class="button" type="submit" value="Go back to Shopping">
-						</form>
-					</div>
-				</div>
+			<div></div>
+			
+			<div></div>
+			<div align="center">
+				<br>
+				<p id="overall">Overall cost: <%=Price.toText(totalPrice) %> &euro;</p>
 			</div>
-			<div><p>Colonna 2</p></div>
+			<div></div>
+			
+			<div></div>
+			<div align="center">
+				<form action="checkoutPayment.jsp">
+					<input class="button L" type="submit" value="Confirm Products">
+				</form>
+			</div>
+			<div></div>
+			
+			<div></div>
+			<div align="center">
+				<br><br><br>
+				<form action="home.jsp">
+					<input class="button M" type="submit" value="Go back to Shopping">
+				</form>
+			</div>
+			<div></div>
+
 		</div>		
 	</body>
 </html>

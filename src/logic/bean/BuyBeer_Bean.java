@@ -141,7 +141,7 @@ public class BuyBeer_Bean {
 	// ==============================
 	
 	
-	public void selectForSaleProduct() throws ProductNotFoundException {
+	public void selectProductForSale() throws ProductNotFoundException {
 		Volume volume = new Volume(bb_containerVolume);
 		BuyBeer_Controller.getInstance().selectProductForSale(bb_beerId, bb_containerType, volume);
 	}

@@ -16,30 +16,32 @@
 boolean wrongQuantity = false;
 buyBeerBean.setQuantity(1);
 
-try{
+try {
 	buyBeerBean.setBeerId(request.getParameter("beerId"));
 	buyBeerBean.setContainerType(ContainerType.valueOf(request.getParameter("containerType")));
 	buyBeerBean.setContainerVolume(Integer.parseInt(request.getParameter("volume")));
 } catch (Exception e) {
 	%><jsp:forward page="home.jsp"/><%
-}
+	}
 
 try{
-	buyBeerBean.selectForSaleProduct();
+	buyBeerBean.selectProductForSale();
 	buyBeerBean.loadSelectedProduct();
+	buyBeerBean.setQuantity(1);
 	
 	boolean buy = (request.getParameter("buyAction") != null && request.getParameter("buyAction").equals("1"));
 	if(buy) {
 		int quantity = Integer.parseUnsignedInt(request.getParameter("quantity"));
 		buyBeerBean.setQuantity(quantity);
 		buyBeerBean.addProductToCart();
-		%> <jsp:forward page="home.jsp"/> <%
+%> <jsp:forward page="home.jsp"/> <%
 	}
 } catch (ProductNotFoundException | NullPointerException e){
 	%><jsp:forward page="home.jsp"/><%
 } catch (NumberFormatException | StorableIllegalQuantityException e){
 	wrongQuantity = true;
-} 
+	buyBeerBean.setQuantity(1);
+}
 %>
 
 <!DOCTYPE html>
@@ -51,56 +53,62 @@ try{
 		<title>Buy Beer</title>
 	</head>
 	<body>
-	<div align="center">
-		<br><br><br><br><br>
-		<table>
-			<tr>
-				<td>Name</td>
-				<td><%=buyBeerBean.getBeerName() %></td>
-			</tr>
-			<tr>
-				<td>Type</td>
-				<td><%=buyBeerBean.getBeerType().toString() %></td>
-			</tr>
-			<tr>
-				<td>Color</td>
-				<td><%=buyBeerBean.getBeerColor().toString() %></td>
-			</tr>
-			<tr>
-				<td>Alcohol content</td>
-				<td><%=String.valueOf(buyBeerBean.getBeerAlcohol()) + "%" %></td>
-			</tr>
-			<tr>
-				<td>Filtering</td>
-				<td><%=buyBeerBean.getBeerFiltering().toString() %></td>
-			</tr>
-			<tr>
-				<td>Container</td>
-				<td><%=buyBeerBean.getContainerType().toString() %></td>
-			</tr>
-			<tr>
-				<td>Size</td>
-				<td><%=Volume.toText(buyBeerBean.getContainerVolume()) %></td>
-			</tr>
-			<tr>
-				<td>Price</td>
-				<td><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</td>
-		</table>
-		<br>
-		<p><%=buyBeerBean.getBeerDescription()%></p>
-		<br>
-			<form action="buyBeer.jsp">
-				<input class="text S" type="number" name="quantity" value=<%=buyBeerBean.getQuantity() %>>
-				<input class="Button M" type="submit" value="Buy Product">
-				<input type="hidden" name="buyAction" value="1">
-				<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
-				<input type="hidden" name="containerType" value=<%=buyBeerBean.getContainerType().name() %>>
-				<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
+		<div align="center">
+			<h3>Buy Beer</h3>
+			<br>
+			<table>
+				<tr>
+					<td><p>Name</p></td>
+					<td><%=buyBeerBean.getBeerName() %></td>
+				</tr>
+				<tr>
+					<td><p>Type</p></td>
+					<td><%=buyBeerBean.getBeerType().toString() %></td>
+				</tr>
+				<tr>
+					<td><p>Color</p></td>
+					<td><%=buyBeerBean.getBeerColor().toString() %></td>
+				</tr>
+				<tr>
+					<td><p>Alcohol content</p></td>
+					<td><%=String.valueOf(buyBeerBean.getBeerAlcohol()) + "%" %></td>
+				</tr>
+				<tr>
+					<td><p>Filtering</p></td>
+					<td><%=buyBeerBean.getBeerFiltering().toString() %></td>
+				</tr>
+				<tr>
+					<td><p>Container</p></td>
+					<td><%=buyBeerBean.getContainerType().toString() %></td>
+				</tr>
+				<tr>
+					<td><p>Size</p></td>
+					<td><%=Volume.toText(buyBeerBean.getContainerVolume()) %></td>
+				</tr>
+				<tr>
+					<td><p>Price</p></td>
+					<td><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</td>
+			</table>
+			<br>
+			<p><%=buyBeerBean.getBeerDescription()%></p>
+			<br>
+				<form action="buyBeer.jsp">
+					<input class="text S" type="number" name="quantity" value=<%=buyBeerBean.getQuantity() %>>
+					<input class="button S" type="submit" value="Buy Product">
+					<input type="hidden" name="buyAction" value="1">
+					<input type="hidden" name="beerId" value=<%=buyBeerBean.getBeerId() %>>
+					<input type="hidden" name="containerType" value=<%=buyBeerBean.getContainerType().name() %>>
+					<input type="hidden" name="volume" value=<%=buyBeerBean.getContainerVolume() %>>
+				</form>
+			<br>
+			<% if(wrongQuantity) { %>
+			<p class="error"><b>Please insert a valid quantity</b></p> 
+			<% } %>
+		</div>
+		<div align="center">
+			<form action="home.jsp">
+				<input class="button M" type="submit" value="Go Back">
 			</form>
-		<br>
-		<% if(wrongQuantity) { %>
-		<p class="error"><b>Please insert a valid quantity</b></p> 
-		<% } %>
-	</div>
+		</div>
 	</body>
 </html>
