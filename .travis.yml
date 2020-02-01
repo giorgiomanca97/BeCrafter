@@ -8,4 +8,5 @@ addons:
       secure: "ea1fcbd97e5281eb346ec143389d9489951f7d83"
 script: 
   - ant build
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=myorg_myrepo
   - sonar-scanner
