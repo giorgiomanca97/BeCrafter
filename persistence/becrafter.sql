@@ -18,7 +18,7 @@ USE `becrafter`;
 
 -- Dump della struttura di tabella becrafter.beers
 CREATE TABLE IF NOT EXISTS `beers` (
-  `id` int(11) NOT NULL DEFAULT 0,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `type` enum('ALE','LAMBIC','LAGER') NOT NULL,
   `color` enum('LIGHT','AMBER','RUBY','DARK') NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `beers` (
   `description` text NOT NULL,
   `recipeId` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Dump dei dati della tabella becrafter.beers: ~3 rows (circa)
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;

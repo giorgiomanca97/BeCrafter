@@ -35,7 +35,7 @@ public class TestCheckOrder_Controller {
 			message = "Order Not Found";
 		}
 		
-		Object[] expecteds = {Id, "2020/02/01", 92.25f, "test@provider.org", "not yet available", "not yet available"};
+		Object[] expecteds = {Id, "2020/02/01", 92.25f, "test@provider.org", "", ""};
 		Object[] actuals = {orderId, orderPurchaseDate, orderOverallPrice, orderEmail, orderShippingCode, orderShippingEmail};
 		
 		assertArrayEquals(message, expecteds, actuals);
