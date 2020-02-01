@@ -43,7 +43,7 @@ if(loginPressed) {
 				<table class="field">
 					<tr class="field">
 						<td class="field"><p> email </p></td>
-						<td class="field"><input class="text L" type="text" id="email" name="email"></td>
+						<td class="field"><input class="text L" type="text" id="email" name="email" value="<%=email %>"></td>
 					</tr>
 					<tr>
 						<td class="field"><p> password </p></td>
