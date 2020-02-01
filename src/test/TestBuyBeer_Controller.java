@@ -12,6 +12,7 @@ import logic.entity.ContainerType;
 
 public class TestBuyBeer_Controller {
 
+	// Giorgio Manca 0239067
 	@Test
 	public void testAddProductToCart() {
 		String message = "";

@@ -22,6 +22,7 @@ public class TestLogin_Controller {
 		loginController = Login_Controller.getInstance();
 	}
 
+	// Giorgio Manca 0239067
 	@Test
 	public void testLogin() {
 		String message = "";
@@ -47,6 +48,7 @@ public class TestLogin_Controller {
 		assertEquals(message, true, loginController.isLogged(email));
 	}
 	
+	// Giorgio Manca 0239067
 	@After
 	@Test
 	public void testLogout() {

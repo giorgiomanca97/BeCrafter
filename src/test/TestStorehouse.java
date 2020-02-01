@@ -10,6 +10,7 @@ import logic.entity.Storehouse;
 
 public class TestStorehouse {
 
+	// Davide Bianchi 0228110
 	@Test
 	public void testAddSameProduct() {
 		Storehouse storehouse = new Storehouse();
@@ -23,6 +24,7 @@ public class TestStorehouse {
 		assertEquals(30, storehouse.get(RawMaterialType.WHEAT).getQuantity());
 	}
 	
+	// Davide Bianchi 0228110
 	@Test
 	public void testAddDifferentProduct() {
 		Storehouse storehouse = new Storehouse();

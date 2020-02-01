@@ -10,6 +10,7 @@ import logic.bean.CheckOrder_Bean;
 
 public class TestCheckOrder_Controller {
 
+	// Davide Bianchi 0228110
 	@Test
 	public void testSearchOrder() {
 		String message = "";

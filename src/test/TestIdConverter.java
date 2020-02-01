@@ -11,6 +11,7 @@ import logic.designclasses.IdConverter;
 
 public class TestIdConverter {
 
+	// Giorgio Manca 0239067
 	@Test
 	public void testIntToId() {
 		String message = "";
@@ -29,6 +30,7 @@ public class TestIdConverter {
 		assertEquals(message, expected_Id, actual_Id);
 	}
 	
+	// Davide Bianchi 0228110
 	@Test
 	public void testIdToInt() {
 		String message = "";
