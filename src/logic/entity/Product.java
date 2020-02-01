@@ -109,4 +109,10 @@ public class Product implements Storable {
 	public String toString() {
 		return "Product:  " + beer.toString() + "  -  " + container.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Product product = (Product) obj;
+		return this.areSame(product) && this.getQuantity() == product.getQuantity();
+	}
 }

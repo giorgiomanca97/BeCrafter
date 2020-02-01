@@ -22,7 +22,7 @@ public class Volume {
 	
 	@Override
 	public String toString() {
-		if(volume < 100) {
+		if(Math.abs(volume) < 100) {
 			return String.valueOf(volume) + " cl";
 		} else {
 			return String.valueOf(((float) volume)/100f) + " l";

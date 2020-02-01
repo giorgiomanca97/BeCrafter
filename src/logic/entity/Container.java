@@ -132,4 +132,10 @@ public class Container implements Storable {
 	public String toString() {
 		return "Container: " + type.toString() + " " + volume.toString() + " " + quantity;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Container container = (Container) obj;
+		return this.areSame(container) && this.quantity == container.quantity;
+	}
 }

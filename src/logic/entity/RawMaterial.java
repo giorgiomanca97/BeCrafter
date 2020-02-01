@@ -115,4 +115,10 @@ public class RawMaterial implements Storable {
 	public String toString() {
 		return "RawMaterial: " + type.toString() + " " + mass;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		RawMaterial rawMaterial = (RawMaterial) obj;
+		return this.areSame(rawMaterial) && this.mass == rawMaterial.mass;
+	}
 }
