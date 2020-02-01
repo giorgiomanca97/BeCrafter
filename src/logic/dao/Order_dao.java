@@ -117,7 +117,7 @@ public class Order_dao {
 		} catch (TextParseException tpe) {
 			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
 		} catch (NullPointerException npe) {
-			Logger.getGlobal().log(Level.SEVERE, "File reading error");
+			Logger.getGlobal().log(Level.SEVERE, "File opening error");
 		} catch (IdException ie) {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
@@ -148,7 +148,6 @@ public class Order_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 			return null;
 		}
-		
 	}
 	
 	
@@ -199,7 +198,7 @@ public class Order_dao {
 				bufferedWriter.write(printOrderData(order));
 			}
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "File reading error");
+			Logger.getGlobal().log(Level.SEVERE, "File writing error");
 		} finally {
 			DaoHelper.close(bufferedWriter);
 			DaoHelper.close(fileWriter);

@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import error.id.IdException;
 import logic.designclasses.DaoHelper;
+import logic.designclasses.IdConverter;
 import logic.designclasses.DaoHelper.StatementMode;
 import logic.entity.Beer;
 import logic.entity.BeerColor;
@@ -48,7 +50,7 @@ public class Beer_dao {
             
             if(rs.first()) {
             	do {
-            		Beer beer = new Beer(rs.getString(TABLE_BEERS_COL_ID));
+            		Beer beer = new Beer(IdConverter.intToId(rs.getInt(TABLE_BEERS_COL_ID), IdConverter.Type.BEER));
                 	beer.setName(rs.getString(TABLE_BEERS_COL_NAME));
                 	beer.setType(BeerType.valueOf(rs.getString(TABLE_BEERS_COL_TYPE)));
                 	beer.setColor(BeerColor.valueOf(rs.getString(TABLE_BEERS_COL_COLOR)));
@@ -66,6 +68,8 @@ public class Beer_dao {
 			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
 		} catch (SQLException se) {
 			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
+		} catch (IdException ie) {
+			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 		}
         finally {
         	DaoHelper.close(conn, stmt, rs);
@@ -81,12 +85,18 @@ public class Beer_dao {
 	}
 	
 	public static Beer getBeerById(String id) {
-		List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + " WHERE " + TABLE_BEERS_COL_ID + " = '" + id +"';");	
-		
-		if(result.size() == 0) {
+		try {
+			int dbId = IdConverter.idToInt(id);
+			List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + " WHERE " + TABLE_BEERS_COL_ID + " = '" + dbId +"';");	
+			
+			if(result.size() == 0) {
+				return null;
+			} else {
+				return result.get(0);
+			}
+		} catch (IdException ie) {
+			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
 			return null;
-		} else {
-			return result.get(0);
 		}
 	}
 	
