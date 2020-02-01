@@ -36,7 +36,7 @@
         ["xpath=//input[@id='email']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "bianchidavide97@gmail.com"
+      "value": "test@provider.org"
     }, {
       "id": "9c6a727e-0489-454e-9cf4-f1f2613fe506",
       "comment": "",
@@ -49,7 +49,7 @@
         ["xpath=//input[@id='password']", "xpath:attributes"],
         ["xpath=//input[2]", "xpath:position"]
       ],
-      "value": "becrafter1"
+      "value": "TestPass1"
     }, {
       "id": "8ad43278-8e4e-4d92-b875-be2b97715c8b",
       "comment": "",
@@ -71,7 +71,7 @@
         ["xpath=//p", "xpath:position"],
         ["xpath=//p[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
       ],
-      "value": "bianchidavide97@gmail.com"
+      "value": "test@provider.org"
     }]
   }, {
     "id": "9b69bdeb-e824-4f7f-864e-c367464ad798",
@@ -106,7 +106,7 @@
         ["xpath=//input[@id='orderId']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "X000002"
+      "value": "X000001"
     }, {
       "id": "fe624745-d3ee-4de0-90a0-f3e50de2b8d3",
       "comment": "",
@@ -128,7 +128,7 @@
         ["xpath=//td[2]", "xpath:position"],
         ["xpath=//td[contains(.,'X000002')]", "xpath:innerText"]
       ],
-      "value": "X000002"
+      "value": "X000001"
     }, {
       "id": "ee900a67-5db6-45ce-a2f1-f19e93826b64",
       "comment": "",
@@ -139,7 +139,7 @@
         ["xpath=//tr[2]/td[2]", "xpath:position"],
         ["xpath=//td[contains(.,'2020/01/31')]", "xpath:innerText"]
       ],
-      "value": "2020/01/31"
+      "value": "2020/02/01"
     }, {
       "id": "de19f700-818a-4900-87b1-ef4df441d036",
       "comment": "",
@@ -149,7 +149,7 @@
         ["css=tr:nth-child(3) > td:nth-child(2)", "css:finder"],
         ["xpath=//tr[3]/td[2]", "xpath:position"]
       ],
-      "value": "95,00 €"
+      "value": "92,25 €"
     }, {
       "id": "ffdba970-3f4c-4f9b-81bc-d0667b30de1b",
       "comment": "",
@@ -160,7 +160,7 @@
         ["xpath=//tr[4]/td[2]", "xpath:position"],
         ["xpath=//td[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
       ],
-      "value": "bianchidavide97@gmail.com"
+      "value": "test@provider.org"
     }, {
       "id": "38e1bf02-270e-46c7-8b56-e6675711f743",
       "comment": "",
