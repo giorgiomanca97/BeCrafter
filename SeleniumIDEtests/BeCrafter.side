@@ -2,7 +2,7 @@
   "id": "1a4caae8-a500-4707-a343-629419fde59b",
   "version": "2.0",
   "name": "BeCrafter",
-  "url": "http://localhost:8080/index/",
+  "url": "http://localhost:8080/BeCrafter/index.jsp",
   "tests": [{
     "id": "0733134c-a79a-4012-893d-b3c529da063a",
     "name": "Login",
@@ -17,11 +17,12 @@
       "id": "faf163c3-099d-4fdb-ae3d-cdda0bfe406b",
       "comment": "",
       "command": "click",
-      "target": "css=td:nth-child(4) input",
+      "target": "css=form:nth-child(3) > .button",
       "targets": [
-        ["css=td:nth-child(4) input", "css:finder"],
+        ["css=form:nth-child(3) > .button", "css:finder"],
         ["xpath=//input[@value='Login']", "xpath:attributes"],
-        ["xpath=//td[4]/form/input", "xpath:position"]
+        ["xpath=//div[@id='action']/form/input", "xpath:idRelative"],
+        ["xpath=//div[3]/form/input", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -47,31 +48,44 @@
         ["name=password", "name"],
         ["css=#password", "css:finder"],
         ["xpath=//input[@id='password']", "xpath:attributes"],
-        ["xpath=//input[2]", "xpath:position"]
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
       ],
       "value": "TestPass1"
     }, {
       "id": "8ad43278-8e4e-4d92-b875-be2b97715c8b",
       "comment": "",
       "command": "click",
-      "target": "css=input:nth-child(8)",
+      "target": "css=.button:nth-child(3)",
       "targets": [
-        ["css=input:nth-child(8)", "css:finder"],
+        ["css=.button:nth-child(3)", "css:finder"],
         ["xpath=//input[@value='Login']", "xpath:attributes"],
-        ["xpath=//input[3]", "xpath:position"]
+        ["xpath=//form/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "bab8964e-33b0-4283-9a3e-50d7a9044a6e",
       "comment": "",
       "command": "verifyText",
-      "target": "css=p",
+      "target": "css=b",
       "targets": [
-        ["css=p", "css:finder"],
-        ["xpath=//p", "xpath:position"],
-        ["xpath=//p[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
+        ["css=b", "css:finder"],
+        ["xpath=//div[@id='action']/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'test@provider.org')]", "xpath:innerText"]
       ],
       "value": "test@provider.org"
+    }, {
+      "id": "12126ddf-ff85-4413-a59f-48b6b7949256",
+      "comment": "",
+      "command": "click",
+      "target": "css=form:nth-child(4) > .button",
+      "targets": [
+        ["css=form:nth-child(4) > .button", "css:finder"],
+        ["xpath=//input[@value='Logout']", "xpath:attributes"],
+        ["xpath=//div[@id='action']/form/input", "xpath:idRelative"],
+        ["xpath=//div[3]/form/input", "xpath:position"]
+      ],
+      "value": ""
     }]
   }, {
     "id": "9b69bdeb-e824-4f7f-864e-c367464ad798",
@@ -193,6 +207,6 @@
     "timeout": 300,
     "tests": ["0733134c-a79a-4012-893d-b3c529da063a"]
   }],
-  "urls": ["http://localhost:8080/index/"],
+  "urls": ["http://localhost:8080/index/", "http://localhost:8080/BeCrafter/index.jsp"],
   "plugins": []
 }
