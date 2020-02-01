@@ -47,9 +47,9 @@ public class CheckoutPayment_Boundary {
 		
 		String email = checkoutPaymentBean.loggedCustomer();
 		if(email != null) {
-			tf_loginEmail.setText(checkoutPaymentBean.getEmail());
+			tf_loginEmail.setText(email);
 			tf_loginEmail.setDisable(true);
-			tf_cp_email.setText(checkoutPaymentBean.getEmail());
+			tf_cp_email.setText(email);
 			tf_cp_email.setDisable(true);
 			lbl_login.setText("Please insert the password to autofill");
 		}
