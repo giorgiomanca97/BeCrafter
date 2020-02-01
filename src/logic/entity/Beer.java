@@ -8,7 +8,7 @@ public class Beer {
     private BeerColor color;
     private BeerFiltering filtering;
     private float alcoholContent;
-    private float pricePerLiter;
+    private Price pricePerLiter;
     private String description;
     private Recipe recipe;
 
@@ -20,7 +20,7 @@ public class Beer {
     	this.color = null;
     	this.filtering = null;
     	this.alcoholContent = 0;
-    	this.pricePerLiter = 0;
+    	this.pricePerLiter = new Price();
     	this.description = "";
     	this.recipe = null;
     }
@@ -71,11 +71,11 @@ public class Beer {
     }
 
     public float getPricePerLiter() {
-        return this.pricePerLiter;
+        return pricePerLiter.getPrice();
     }
 
     public void setPricePerLiter(float price) {
-        this.pricePerLiter = price;
+    	pricePerLiter.setPrice(price);
     }
 
     public String getDescription() {

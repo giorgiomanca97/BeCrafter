@@ -31,10 +31,6 @@ public class Container implements Storable {
         return volume.getVolume();
     }
     
-    public String printVolume() {
-    	return volume.toString();
-    }
-
     
 	@Override
 	public int getQuantity() {

@@ -7,11 +7,11 @@ public enum ContainerType {
     BARREL("Barrel", 30f);
 	
 	private String text;
-	private float price;
+	private Price price;
 	
 	private ContainerType(String text, float price) {
 		this.text = text;
-		this.price = price;
+		this.price = new Price(price);
 	}
 	
 	@Override
@@ -20,6 +20,6 @@ public enum ContainerType {
 	}
 	
 	public float getPrice() {
-		return price;
+		return price.getPrice();
 	}
 }

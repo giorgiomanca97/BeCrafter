@@ -1,19 +1,19 @@
 package test;
 
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import error.OrderNotFoundException;
-import logic.CheckOrder_Controller;
-import logic.entity.Order;
+import logic.bean.CheckOrder_Bean;
 
 public class TestCheckOrder_Controller {
 
 	@Test
 	public void testSearchOrder() {
 		String message = "";
-		String Id = "X000001";
+		String id = "X000001";
 		
 		String orderId = "";
 		String orderPurchaseDate = "";
@@ -22,20 +22,22 @@ public class TestCheckOrder_Controller {
 		String orderShippingCode = "";
 		String orderShippingEmail = "";
 		
+		CheckOrder_Bean co_Bean = new CheckOrder_Bean();
+		
 		try {
-			Order order = CheckOrder_Controller.getInstance().searchOrder(Id);
-			orderId = order.getId();
-			orderPurchaseDate = order.getDate();
-			orderOverallPrice = order.getPrice();
-			orderEmail = order.getEmail();
-			orderShippingCode = order.getShippingCode();
-			orderShippingEmail = order.getShippingCompany();
+			co_Bean.searchOrder(id);
+			orderId = co_Bean.getOrderId();
+			orderPurchaseDate = co_Bean.getDate();
+			orderOverallPrice = co_Bean.getPrice();
+			orderEmail = co_Bean.getEmail();
+			orderShippingCode = co_Bean.getShippingCode();
+			orderShippingEmail = co_Bean.getShippingCompany();
 			
 		} catch (OrderNotFoundException e) {
 			message = "Order Not Found";
 		}
 		
-		Object[] expecteds = {Id, "2020/02/01", 92.25f, "test@provider.org", "", ""};
+		Object[] expecteds = {id, "2020/02/01", 92.25f, "test@provider.org", "not yet available", "not yet available"};
 		Object[] actuals = {orderId, orderPurchaseDate, orderOverallPrice, orderEmail, orderShippingCode, orderShippingEmail};
 		
 		assertArrayEquals(message, expecteds, actuals);
