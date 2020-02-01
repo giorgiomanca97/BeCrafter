@@ -56,41 +56,41 @@ try{
 		<div align="center">
 			<h3>Buy Beer</h3>
 			<br>
-			<table>
-				<tr>
-					<td><p>Name</p></td>
-					<td><%=buyBeerBean.getBeerName() %></td>
+			<table class="field">
+				<tr class="field">
+					<td class="field"><p>Name</p></td>
+					<td class="field"><p><%=buyBeerBean.getBeerName() %></p></td>
 				</tr>
-				<tr>
-					<td><p>Type</p></td>
-					<td><%=buyBeerBean.getBeerType().toString() %></td>
+				<tr class="field">
+					<td class="field"><p>Type</p></td>
+					<td class="field"><p><%=buyBeerBean.getBeerType().toString() %></p></td>
 				</tr>
-				<tr>
-					<td><p>Color</p></td>
-					<td><%=buyBeerBean.getBeerColor().toString() %></td>
+				<tr class="field">
+					<td class="field"><p>Color</p></td>
+					<td class="field"><p><%=buyBeerBean.getBeerColor().toString() %></p></td>
 				</tr>
-				<tr>
-					<td><p>Alcohol content</p></td>
-					<td><%=String.valueOf(buyBeerBean.getBeerAlcohol()) + "%" %></td>
+				<tr class="field">
+					<td class="field"><p>Alcohol content</p></td>
+					<td class="field"><p><%=String.valueOf(buyBeerBean.getBeerAlcohol()) + "%" %></p></td>
 				</tr>
-				<tr>
-					<td><p>Filtering</p></td>
-					<td><%=buyBeerBean.getBeerFiltering().toString() %></td>
+				<tr class="field">
+					<td class="field"><p>Filtering</p></td>
+					<td class="field"><p><%=buyBeerBean.getBeerFiltering().toString() %></p></td>
 				</tr>
-				<tr>
-					<td><p>Container</p></td>
-					<td><%=buyBeerBean.getContainerType().toString() %></td>
+				<tr class="field">
+					<td class="field"><p>Container</p></td>
+					<td class="field"><p><%=buyBeerBean.getContainerType().toString() %></p></td>
 				</tr>
-				<tr>
-					<td><p>Size</p></td>
-					<td><%=Volume.toText(buyBeerBean.getContainerVolume()) %></td>
+				<tr class="field">
+					<td class="field"><p>Size</p></td>
+					<td class="field"><p><%=Volume.toText(buyBeerBean.getContainerVolume()) %></p></td>
 				</tr>
-				<tr>
-					<td><p>Price</p></td>
-					<td><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</td>
+				<tr class="field">
+					<td class="field"><p>Price</p></td>
+					<td class="field"><p><%=Price.toText(buyBeerBean.getPrice()) %> &euro;</p></td>
 			</table>
 			<br>
-			<p id="description"><%=buyBeerBean.getBeerDescription()%></p>
+			<p class="description"><%=buyBeerBean.getBeerDescription()%></p>
 			<br>
 				<form action="buyBeer.jsp">
 					<input class="text S" type="number" name="quantity" value=<%=buyBeerBean.getQuantity() %>>

@@ -9,15 +9,14 @@ String orderId = request.getParameter("orderId") != null ? request.getParameter(
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/register.css">
 		<title>Checkout Confirmation</title>
 	</head>
 	<body>
 		<h3 align="center">Checkout Confirmation</h3>
 		<br><br><br>
-		<p id="r" align="center">Thank you for your purchase! The order code is: <%=orderId %></p>
-		<p id="r" align="center">We are sending to you an email with a summary of your purchase and order information</p>
-		<p id="r" align="center">Remember to periodically check your inbox for future updates relative to your order</p>
+		<p class="confirmation" align="center">Thank you for your purchase! The order code is: <%=orderId %></p>
+		<p class="confirmation" align="center">We are sending to you an email with a summary of your purchase and order information</p>
+		<p class="confirmation" align="center">Remember to periodically check your inbox for future updates relative to your order</p>
 		<div align="center">
 			<br><br>
 			<form action="home.jsp">

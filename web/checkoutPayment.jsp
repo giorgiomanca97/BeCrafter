@@ -107,42 +107,42 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 				<div>
 					<div align="center">
 						<form action="checkoutPayment.jsp" method="POST">
-							<table>
-								<tr>
-									<td><p>email</p></td>
-									<td><input class="text L" type="text" id="email" name="email" value="<%=email %>" <%if(logged || preLogged) {%>readonly<%}%>></td>
+							<table class="field">
+								<tr class="field">
+									<td class="field"><p>email</p></td>
+									<td class="field"><input class="text L" type="text" id="email" name="email" value="<%=email %>" <%if(logged || preLogged) {%>readonly<%}%>></td>
 								</tr>
-								<tr>
-									<td><p>first name</p></td>
-									<td><input class="text L" type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
+								<tr class="field">
+									<td class="field"><p>first name</p></td>
+									<td class="field"><input class="text L" type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
 								</tr>
-								<tr>
-									<td><p>last name</p></td>
-									<td><input class="text L" type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
+								<tr class="field">
+									<td class="field"><p>last name</p></td>
+									<td class="field"><input class="text L" type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
 								</tr>
-								<tr>
-									<td><p>address</p></td>
-									<td><input class="text L" type="text" id="address" name="address" value="<%=address %>"></td>
+								<tr class="field">
+									<td class="field"><p>address</p></td>
+									<td class="field"><input class="text L" type="text" id="address" name="address" value="<%=address %>"></td>
 								</tr>
-								<tr>
-									<td><p>city</p></td>
-									<td><input class="text L" type="text" id="city" name="city" value="<%=city %>"></td>
+								<tr class="field">
+									<td class="field"><p>city</p></td>
+									<td class="field"><input class="text L" type="text" id="city" name="city" value="<%=city %>"></td>
 								</tr>
-								<tr>
-									<td><p>country</p></td>
-									<td><input class="text L" type="text" id="country" name="country" value="<%=country %>"></td>
+								<tr class="field">
+									<td class="field"><p>country</p></td>
+									<td class="field"><input class="text L" type="text" id="country" name="country" value="<%=country %>"></td>
 								</tr>
-								<tr>
-									<td><p>postal code</p></td>
-									<td><input class="text L" type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
+								<tr class="field">
+									<td class="field"><p>postal code</p></td>
+									<td class="field"><input class="text L" type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
 								</tr>
-								<tr>
-									<td><p>phone number</p></td>
-									<td><input class="text L" type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
+								<tr class="field">
+									<td class="field"><p>phone number</p></td>
+									<td class="field"><input class="text L" type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
 								</tr>
-								<tr>
-									<td><p>credit card number *</p></td>
-									<td><input class="text L" type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
+								<tr class="field">
+									<td class="field"><p>credit card number *</p></td>
+									<td class="field"><input class="text L" type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
 								</tr>
 							</table>
 							<br>
@@ -154,7 +154,7 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 						<% } else {%>
 						<br>
 						<% } %>
-						<p id="info">* The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
+						<p class="note">* The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 					</div>
 				</div>
 				<div>
@@ -168,11 +168,11 @@ if(loginAction && !preLogged && !logged && !confirmPurchase){
 						<input class="button M" type="submit" value="Login" <%if(logged) {%>disabled<%}%>>
 					</form>
 					<% if (logged) { %>
-					<p>Logged as <%=checkoutPaymentBean.getEmail() %></p>
+					<p class="note">Logged as <%=checkoutPaymentBean.getEmail() %></p>
 					<% } else if(preLogged) { %>
-					<p>Please insert the password to continue</p>
+					<p class="note">Please insert the password to autofill</p>
 					<% } else { %>
-					<p>Please login to auto-fill your billing details</p>
+					<p class="note">Please login to auto-fill your billing details</p>
 					<% } %>
 					<% if(loginError != null){ %>
 					<p class="error"><%=loginError %></p>

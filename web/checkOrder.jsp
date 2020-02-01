@@ -38,7 +38,7 @@ String shippingCompany = checkOrderBean.getShippingCompany();
 		<title>Check Order</title>
 	</head>
 	<body>
-		<h3 id="title">Check Order</h3>
+		<h3 align="center">Check Order</h3>
 		<br>
 		<div align="center">
 			<table>
@@ -63,20 +63,20 @@ String shippingCompany = checkOrderBean.getShippingCompany();
 		</div>
 		<div class="grid">			
 			<div class="left">
-				<p>Order Code: </p>
-				<p>Purchase Date: </p>
-				<p>Overall Price: </p>
-				<p>Email: </p>
-				<p>Shipping Code: </p>
-				<p>Shipping Company: </p>
+				<p class="field">Order Code: </p>
+				<p class="field">Purchase Date: </p>
+				<p class="field">Overall Price: </p>
+				<p class="field">Email: </p>
+				<p class="field">Shipping Code: </p>
+				<p class="field">Shipping Company: </p>
 			</div>
 			<div class="right">
-				<p> <%=orderId %> </p>
-				<p> <%=purchaseDate %> </p>
-				<p> <%=overallPrice %> <%if(overallPrice.length() != 0) {%> &euro; <%} %></p>
-				<p> <%=email %> </p>
-				<p> <%=shippingCode %> </p>
-				<p> <%=shippingCompany %> </p>
+				<p class="field"> <%=orderId %> </p>
+				<p class="field"> <%=purchaseDate %> </p>
+				<p class="field"> <%=overallPrice %> <%if(overallPrice.length() != 0) {%> &euro; <%} %></p>
+				<p class="field"> <%=email %> </p>
+				<p class="field"> <%=shippingCode %> </p>
+				<p class="field"> <%=shippingCompany %> </p>
 			</div>
 		</div>
 		<br>

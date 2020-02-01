@@ -66,50 +66,50 @@ String creditCard = registerBean.getCreditCard();
 		<br>
 		<form action="register.jsp" method="POST">
 			<div align="center">
-				<table>
-					<tr>
-						<td><p>email</p></td>
-						<td><input class="text L" type="text" id="email" name="email" value="<%=email %>"></td>
+				<table class="field">
+					<tr class="field">
+						<td class="field"><p class="field">email</p></td>
+						<td class="field"><input class="text L" type="text" id="email" name="email" value="<%=email %>"></td>
 					</tr>
-					<tr>
-						<td><p>password *</p></td>
-						<td><input class="text L" type="password" id="password" name="password"></td>
+					<tr class="field">
+						<td class="field"><p class="field">password *</p></td>
+						<td class="field"><input class="text L" type="password" id="password" name="password"></td>
 					</tr>
-					<tr>
-						<td><p>confirm password</p></td>
-						<td><input class="text L" type="password" id="confirmPassword" name="confirmPassword"></td>
+					<tr class="field">
+						<td class="field"><p class="field">confirm password</p></td>
+						<td class="field"><input class="text L" type="password" id="confirmPassword" name="confirmPassword"></td>
 					</tr>
-					<tr>
-						<td><p>first name</p></td>
-						<td><input class="text L" type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
+					<tr class="field">
+						<td class="field"><p>first name</p></td>
+						<td class="field"><input class="text L" type="text" id="firstName" name="firstName" value="<%=firstName %>"></td>
 					</tr>
-					<tr>
-						<td><p>last name</p></td>
-						<td><input class="text L" type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
+					<tr class="field">
+						<td class="field"><p>last name</p></td>
+						<td class="field"><input class="text L" type="text" id="lastName" name="lastName" value="<%=lastName %>"></td>
 					</tr>
-					<tr>
-						<td><p>address</p></td>
-						<td><input class="text L" type="text" id="address" name="address" value="<%=address %>"></td>
+					<tr class="field">
+						<td class="field"><p>address</p></td>
+						<td class="field"><input class="text L" type="text" id="address" name="address" value="<%=address %>"></td>
 					</tr>
-					<tr>
-						<td><p>city</p></td>
-						<td><input class="text L" type="text" id="city" name="city" value="<%=city %>"></td>
+					<tr class="field">
+						<td class="field"><p>city</p></td>
+						<td class="field"><input class="text L" type="text" id="city" name="city" value="<%=city %>"></td>
 					</tr>
-					<tr>
-						<td><p>country</p></td>
-						<td><input class="text L" type="text" id="country" name="country" value="<%=country %>"></td>
+					<tr class="field">
+						<td class="field"><p>country</p></td>
+						<td class="field"><input class="text L" type="text" id="country" name="country" value="<%=country %>"></td>
 					</tr>
-					<tr>
-						<td><p>postal code</p></td>
-						<td><input class="text L" type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
+					<tr class="field">
+						<td class="field"><p>postal code</p></td>
+						<td class="field"><input class="text L" type="text" id="postalCode" name="postalCode" value="<%=postalCode %>"></td>
 					</tr>
-					<tr>
-						<td><p>phone number</p></td>
-						<td><input class="text L" type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
+					<tr class="field">
+						<td class="field"><p>phone number</p></td>
+						<td class="field"><input class="text L" type="text" id="phoneNumber" name="phoneNumber" value="<%=phoneNumber %>"></td>
 					</tr>
-					<tr>
-						<td><p>credit card number **</p></td>
-						<td><input class="text L" type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
+					<tr class="field">
+						<td class="field"><p>credit card number **</p></td>
+						<td class="field"><input class="text L" type="text" id="creditCard" name="creditCard" value="<%=creditCard %>"></td>
 					</tr>
 				</table>
 				<div id="terms">
@@ -136,8 +136,8 @@ String creditCard = registerBean.getCreditCard();
 			</div>
 			<br>
 			<br>
-			<p>* The password must be at least eight characters long and must have at least one uppercase letter, one lowercase letter, and one number</p>
-			<p>** The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
+			<p class="note">* The password must be at least eight characters long and must have at least one uppercase letter, one lowercase letter, and one number</p>
+			<p class="note">** The credit card must be expressed as XXXX-XXXX-XXXX-XXXX</p>
 		</div>
 	</body>
 </html>

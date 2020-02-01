@@ -33,7 +33,6 @@ if(loginPressed) {
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/login.css">
 		<title>Login</title>
 	</head>
 	<body>
@@ -41,14 +40,14 @@ if(loginPressed) {
 		<br>
 		<div align="center">
 			<form action="login.jsp" method="POST">
-				<table>
-					<tr>
-						<td><p> email </p></td>
-						<td><input class="text L" type="text" id="email" name="email"></td>
+				<table class="field">
+					<tr class="field">
+						<td class="field"><p> email </p></td>
+						<td class="field"><input class="text L" type="text" id="email" name="email"></td>
 					</tr>
 					<tr>
-						<td><p> password </p></td>
-						<td><input class="text L" type="password" id="password" name="password"></td>
+						<td class="field"><p> password </p></td>
+						<td class="field"><input class="text L" type="password" id="password" name="password"></td>
 					</tr>
 				</table>
 				<% if(errorMsg != null) { %> 

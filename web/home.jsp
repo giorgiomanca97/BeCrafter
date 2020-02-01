@@ -45,7 +45,7 @@ if(logoutPressed && logged != null) {
 		<title>Home</title>
 	</head>
 	<body>
-		<h1 id="title">BeCrafter</h1>
+		<h1 align="center">BeCrafter</h1>
 		<div class="grid-products">
 			<div id="search">
 				<form id="homeForm" action="home.jsp">

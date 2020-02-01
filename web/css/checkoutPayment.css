@@ -1,5 +1,9 @@
 @charset "ISO-8859-1";
 
+p{
+	margin-right: 10px;
+}
+
 .grid{
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -8,28 +12,4 @@
 .grid-data{
 	display: grid;
 	grid-template-columns: auto auto;
-}
-
-p{
-	margin: 5px 0px;
-	font-size: 20px;
-}
-
-table p, input{
-	margin-top: 10px;
-	margin-bottom: 3px;
-}
-
-table input{
-	font-size: 16px;
-}
-
-table p {
-	margin-right: 10px;
-	font-size: 20px;
-}
-
-#info{
-	margin: 5px 0px;
-	font-size: 16px;
 }
