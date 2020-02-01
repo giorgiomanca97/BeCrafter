@@ -87,11 +87,12 @@
       "id": "e765fde7-eada-4a74-b197-52ffd183512d",
       "comment": "",
       "command": "click",
-      "target": "css=td:nth-child(2) > form > input",
+      "target": "css=form:nth-child(5) > .button",
       "targets": [
-        ["css=td:nth-child(2) > form > input", "css:finder"],
+        ["css=form:nth-child(5) > .button", "css:finder"],
         ["xpath=//input[@value='Check Order']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
+        ["xpath=//div[@id='action']/form[2]/input", "xpath:idRelative"],
+        ["xpath=//form[2]/input", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -111,10 +112,10 @@
       "id": "fe624745-d3ee-4de0-90a0-f3e50de2b8d3",
       "comment": "",
       "command": "click",
-      "target": "css=input:nth-child(2)",
+      "target": "css=.button:nth-child(2)",
       "targets": [
-        ["css=input:nth-child(2)", "css:finder"],
-        ["xpath=//input[@value='search Order']", "xpath:attributes"],
+        ["css=.button:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='search order']", "xpath:attributes"],
         ["xpath=//input[2]", "xpath:position"]
       ],
       "value": ""
@@ -122,64 +123,64 @@
       "id": "093888cb-d03a-4c7b-973f-65b1df8c11f7",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(1) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(1)",
       "targets": [
-        ["css=tr:nth-child(1) > td:nth-child(2)", "css:finder"],
-        ["xpath=//td[2]", "xpath:position"],
-        ["xpath=//td[contains(.,'X000002')]", "xpath:innerText"]
+        ["css=.right > .field:nth-child(1)", "css:finder"],
+        ["xpath=//div[2]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'X000001')]", "xpath:innerText"]
       ],
       "value": "X000001"
     }, {
       "id": "ee900a67-5db6-45ce-a2f1-f19e93826b64",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(2) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(2)",
       "targets": [
-        ["css=tr:nth-child(2) > td:nth-child(2)", "css:finder"],
-        ["xpath=//tr[2]/td[2]", "xpath:position"],
-        ["xpath=//td[contains(.,'2020/01/31')]", "xpath:innerText"]
+        ["css=.right > .field:nth-child(2)", "css:finder"],
+        ["xpath=//div[2]/p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'2020/02/01')]", "xpath:innerText"]
       ],
       "value": "2020/02/01"
     }, {
       "id": "de19f700-818a-4900-87b1-ef4df441d036",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(3) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(3)",
       "targets": [
-        ["css=tr:nth-child(3) > td:nth-child(2)", "css:finder"],
-        ["xpath=//tr[3]/td[2]", "xpath:position"]
+        ["css=.right > .field:nth-child(3)", "css:finder"],
+        ["xpath=//div[2]/p[3]", "xpath:position"]
       ],
       "value": "92,25 €"
     }, {
       "id": "ffdba970-3f4c-4f9b-81bc-d0667b30de1b",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(4) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(4)",
       "targets": [
-        ["css=tr:nth-child(4) > td:nth-child(2)", "css:finder"],
-        ["xpath=//tr[4]/td[2]", "xpath:position"],
-        ["xpath=//td[contains(.,'bianchidavide97@gmail.com')]", "xpath:innerText"]
+        ["css=.right > .field:nth-child(4)", "css:finder"],
+        ["xpath=//div[2]/p[4]", "xpath:position"],
+        ["xpath=//p[contains(.,'test@provider.org')]", "xpath:innerText"]
       ],
       "value": "test@provider.org"
     }, {
       "id": "38e1bf02-270e-46c7-8b56-e6675711f743",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(5) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(5)",
       "targets": [
-        ["css=tr:nth-child(5) > td:nth-child(2)", "css:finder"],
-        ["xpath=//tr[5]/td[2]", "xpath:position"],
-        ["xpath=//td[contains(.,'not yet available')]", "xpath:innerText"]
+        ["css=.right > .field:nth-child(5)", "css:finder"],
+        ["xpath=//div[2]/p[5]", "xpath:position"],
+        ["xpath=//p[contains(.,'not yet available')]", "xpath:innerText"]
       ],
       "value": "not yet available"
     }, {
       "id": "0278d190-2ba1-4828-9e9d-8bf1fa627217",
       "comment": "",
       "command": "verifyText",
-      "target": "css=tr:nth-child(6) > td:nth-child(2)",
+      "target": "css=.right > .field:nth-child(6)",
       "targets": [
-        ["css=tr:nth-child(6) > td:nth-child(2)", "css:finder"],
-        ["xpath=//tr[6]/td[2]", "xpath:position"]
+        ["css=.right > .field:nth-child(6)", "css:finder"],
+        ["xpath=//div[2]/p[6]", "xpath:position"]
       ],
       "value": "not yet available"
     }]
