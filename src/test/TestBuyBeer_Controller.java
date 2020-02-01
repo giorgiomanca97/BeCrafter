@@ -53,4 +53,6 @@ public class TestBuyBeer_Controller {
 		
 		assertArrayEquals(message, expecteds, actuals);
 	}
+	
+	
 }
