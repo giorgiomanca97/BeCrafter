@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import error.id.OutOfRangeIdException;
-import logic.designclasses.IdConverter;
 import logic.entity.Volume;
 
 public class TestVolume {

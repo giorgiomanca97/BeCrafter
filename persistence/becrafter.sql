@@ -18,7 +18,7 @@ USE `becrafter`;
 
 -- Dump della struttura di tabella becrafter.beers
 CREATE TABLE IF NOT EXISTS `beers` (
-  `id` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL,
   `type` enum('ALE','LAMBIC','LAGER') NOT NULL,
   `color` enum('LIGHT','AMBER','RUBY','DARK') NOT NULL,
@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `beers` (
 -- Dump dei dati della tabella becrafter.beers: ~3 rows (circa)
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;
 INSERT INTO `beers` (`id`, `name`, `type`, `color`, `filtering`, `alcohol`, `price`, `description`, `recipeId`) VALUES
-	('B001', 'The Wrecking', 'LAGER', 'LIGHT', 'FILTERED', 4.1, 6, 'The simplest light beer', 'R001'),
-	('B002', 'The Sober', 'ALE', 'DARK', 'FILTERED', 9.3, 9.5, 'An Ale beer brewed using warm fermentation method, resulting in a sweet, full-bodied and fruity taste.', 'R002'),
-	('B003', 'The Matryoshka', 'LAMBIC', 'AMBER', 'FILTERED', 5.9, 7.5, 'A marriage between beer and wine', 'R003');
+	(1, 'The Wrecking', 'LAGER', 'LIGHT', 'FILTERED', 4.1, 6, 'The simplest light beer', 'R001'),
+	(2, 'The Sober', 'ALE', 'DARK', 'FILTERED', 9.3, 9.5, 'An Ale beer brewed using warm fermentation method, resulting in a sweet, full-bodied and fruity taste.', 'R002'),
+	(3, 'The Matryoshka', 'LAMBIC', 'AMBER', 'FILTERED', 5.9, 7.5, 'A marriage between beer and wine', 'R003');
 /*!40000 ALTER TABLE `beers` ENABLE KEYS */;
 
 -- Dump della struttura di tabella becrafter.orders
@@ -47,10 +47,12 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `shippingCode` varchar(50) DEFAULT NULL,
   `shippingCompany` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dump dei dati della tabella becrafter.orders: ~0 rows (circa)
+-- Dump dei dati della tabella becrafter.orders: ~1 rows (circa)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`id`, `email`, `date`, `price`, `shippingCode`, `shippingCompany`) VALUES
+	(1, 'test@provider.org', '2020/02/01', 92.25, '', '');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Dump della struttura di tabella becrafter.registered
@@ -68,11 +70,10 @@ CREATE TABLE IF NOT EXISTS `registered` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dump dei dati della tabella becrafter.registered: ~2 rows (circa)
+-- Dump dei dati della tabella becrafter.registered: ~0 rows (circa)
 /*!40000 ALTER TABLE `registered` DISABLE KEYS */;
 INSERT INTO `registered` (`email`, `password`, `firstname`, `lastname`, `address`, `city`, `country`, `postalCode`, `phone`, `card`) VALUES
-	('bianchidavide97@gmail.com', 'BeCrafter1', 'Davide', 'Bianchi', 'via cerreto, 32', 'Frosinone', 'Italy', '03100', '3403788794', '1234-5678-9012-3456'),
-	('giorgio.manca.97@gmail.com', 'BeCrafter2', 'Giorgio', 'Manca', 'via lago di como, 2', 'Frosinone', 'Italy', '03100', '3348566902', '0123-4567-8901-2345');
+	('test@provider.org', 'TestPass1', 'Firstname', 'Lastname', 'Address, 00', 'City', 'Country', '00000', '+00 000 000 0000', '1234-1234-1234-1234');
 /*!40000 ALTER TABLE `registered` ENABLE KEYS */;
 
 -- Dump della struttura di tabella becrafter.storehouse_containers
