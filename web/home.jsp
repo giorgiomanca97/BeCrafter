@@ -48,7 +48,7 @@ if(logoutPressed && logged != null) {
 		<h1 id="title">BeCrafter</h1>
 		<div class="grid-products">
 			<div id="search">
-				<form action="home.jsp">
+				<form id="homeForm" action="home.jsp">
 					<h5>Search Beer</h5>
 					<input class="text M" type="text" name="searchName" value="<%=searchName %>"><br>
 					<input class="button M" type="submit" value="Search"><br>
