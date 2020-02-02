@@ -23,7 +23,7 @@ public abstract class StorableList {
 		}
 	}
 	
-	public abstract Storable get(Storable storable);
+	public abstract Storable get(Storable identifier);
 	
 	public List<Storable> getAll() {
 		List<Storable> result = new ArrayList<>();
@@ -52,7 +52,7 @@ public abstract class StorableList {
 		return result;
 	}
 	
-	public abstract Storable remove(Storable storable);
+	public abstract Storable remove(Storable identifier);
 	
 	public List<Storable> removeAll() {
 		List<Storable> result = new ArrayList<>();
@@ -64,9 +64,7 @@ public abstract class StorableList {
 	}
 	
 	
-	public Storable getAt(int index) {
-		return this.get(storables.get(index));
-	}
+	public abstract Storable getAt(int index);
 	
 	public int size() {
 		return storables.size();

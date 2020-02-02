@@ -21,9 +21,9 @@ public class StorableCloneList extends StorableList{
 	}
 	
 	@Override
-	public Storable get(Storable storable) {
+	public Storable get(Storable identifier) {
 		for (Storable s : storables) {
-			if(s.areSame(storable)) {
+			if(s.areSame(identifier)) {
 				return s.copy();
 			}
 		}
@@ -56,12 +56,12 @@ public class StorableCloneList extends StorableList{
 	}
 	
 	@Override
-	public Storable remove(Storable storable) {
+	public Storable remove(Storable identifier) {
 		Storable c;
     	
     	for (int i = 0; i < storables.size(); i++) {
     		c = storables.get(i).copy();
-			if(c.areSame(storable)) {
+			if(c.areSame(identifier)) {
 				storables.remove(i);
 				return c;
 			}
@@ -81,5 +81,10 @@ public class StorableCloneList extends StorableList{
 		this.storables = new ArrayList<>();
 		
 		return result;
+	}
+	
+	@Override
+	public Storable getAt(int index) {
+		return this.get(storables.get(index));
 	}
 }

@@ -14,14 +14,13 @@ public class Product implements Storable {
     }
 
     
-    public Container getContainer() {
-        return this.container;
-    }
-
     public Beer getBeer() {
         return this.beer;
     }
-
+    
+    public Container getContainer() {
+        return (Container) this.container.copy();
+    }
     
     public float getPrice() {
     	return beer.getPricePerLiter() * container.getVolume() / 100f + container.getType().getPrice();

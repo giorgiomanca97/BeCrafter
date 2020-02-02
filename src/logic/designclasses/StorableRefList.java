@@ -19,9 +19,9 @@ public class StorableRefList extends StorableList{
 	}
 	
 	@Override
-	public Storable get(Storable storable) {
+	public Storable get(Storable identifier) {
 		for (Storable s : storables) {
-			if(s.areSame(storable)) {
+			if(s.areSame(identifier)) {
 				return s;
 			}
 		}
@@ -48,12 +48,12 @@ public class StorableRefList extends StorableList{
 	}
 	
 	@Override
-	public Storable remove(Storable storable) {
+	public Storable remove(Storable identifier) {
 		Storable s;
     	
     	for (int i = 0; i < storables.size(); i++) {
     		s = storables.get(i);
-			if(s.areSame(storable)) {
+			if(s.areSame(identifier)) {
 				storables.remove(i);
 				return s;
 			}
@@ -68,5 +68,10 @@ public class StorableRefList extends StorableList{
 		this.storables = new ArrayList<>();
 		
 		return result;
+	}
+	
+	@Override
+	public Storable getAt(int index) {
+		return this.get(storables.get(index).copy());
 	}
 }
