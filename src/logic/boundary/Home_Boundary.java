@@ -160,6 +160,7 @@ public class Home_Boundary {
 		
 		if(email != null) {
 			homeBean.logoutCustomer(email);
+			closeMenu();
 			lbl_login.setText("Login");
 		}
 	}
