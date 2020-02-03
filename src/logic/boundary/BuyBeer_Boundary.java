@@ -77,7 +77,7 @@ public class BuyBeer_Boundary {
 		}
 		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
+		setTotalPrice();
 	}
 
 
@@ -89,7 +89,7 @@ public class BuyBeer_Boundary {
 		} catch (NumberFormatException nfe) {
 			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
 		}
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
+		setTotalPrice();
 	}
 
 
@@ -98,7 +98,11 @@ public class BuyBeer_Boundary {
 		int q = buyBeerBean.getQuantity() + 1;
 		buyBeerBean.setQuantity(q);
 		tf_quantity.setText(String.valueOf(q));
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()));
+		setTotalPrice();
+	}
+	
+	private void setTotalPrice() {
+		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
 	}
 	
 	@FXML 
