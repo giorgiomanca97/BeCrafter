@@ -159,21 +159,25 @@ public class Order_dao {
 		return result;
 	}
 	
-	
-	private static void saveOrderData(Order order) {
+		
+	private static void saveOrderData(Order order) throws IOException {		
 		File file = new File(ordersFolderPath + folderSep + order.getId());
 		
+		if(!file.createNewFile()) {
+			file.delete();
+			file.createNewFile();
+		}
+
 		try (
 			FileWriter fileWriter = new FileWriter(file);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)
 		) {
-			if(file.createNewFile()) {
-				bufferedWriter.write(printOrderData(order));
-			}
+			bufferedWriter.write(printOrderData(order));
 		} catch (IOException e) {
 			Logger.getGlobal().log(Level.SEVERE, e.toString());
 		}
 	}
+	
 	
 	public static void insertOrder(Order order) {
 		Connection conn = null;
@@ -189,7 +193,7 @@ public class Order_dao {
             stmt.executeUpdate(query);
             
             saveOrderData(order);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | IOException e) {
 			Logger.getGlobal().log(Level.SEVERE, e.toString());
 		} finally {
         	DaoHelper.close(conn, stmt);
