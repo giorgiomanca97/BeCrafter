@@ -57,8 +57,8 @@ public class Order_dao {
 			}
 			
 			result = fetchOrderData(orderTextBuilder.toString());
-		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "File reading error");
+		} catch (IOException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
 		}
 		
 		if(result == null) {
@@ -102,18 +102,9 @@ public class Order_dao {
 				} while (rs.next());
             }
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		} catch (TextParseException tpe) {
-			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
-		} catch (NullPointerException npe) {
-			Logger.getGlobal().log(Level.SEVERE, "File opening error");
-		} catch (IdException ie) {
-			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException | TextParseException | NullPointerException | IdException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt, rs);
         }
 		
@@ -135,7 +126,7 @@ public class Order_dao {
 				return result.get(0);
 			}
 		} catch (IdException e) {
-			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
 			return null;
 		}
 	}
@@ -159,14 +150,9 @@ public class Order_dao {
             if(rs.first()) {
             	result = IdConverter.intToId(rs.getInt(1), IdConverter.Type.ORDER);
             }
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		} catch (IdException ie) {
-			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
-		}
-		finally {
+		} catch (ClassNotFoundException | SQLException | IdException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
 			DaoHelper.close(conn, stmt, rs);
 		}
 		
@@ -184,8 +170,8 @@ public class Order_dao {
 			if(file.createNewFile()) {
 				bufferedWriter.write(printOrderData(order));
 			}
-		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "File writing error");
+		} catch (IOException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
 		}
 	}
 	
@@ -203,12 +189,9 @@ public class Order_dao {
             stmt.executeUpdate(query);
             
             saveOrderData(order);
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt);
         }
 	}

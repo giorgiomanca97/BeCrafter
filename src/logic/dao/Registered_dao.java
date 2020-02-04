@@ -73,12 +73,9 @@ public class Registered_dao {
 				} while (rs.next());
             }
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt, rs);
         }
 		
@@ -115,12 +112,9 @@ public class Registered_dao {
             
             stmt.executeUpdate(query);
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt);
         }
 	}
@@ -141,12 +135,9 @@ public class Registered_dao {
             
             stmt.executeUpdate(query);
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt);
         }
 	}

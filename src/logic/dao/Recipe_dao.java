@@ -37,11 +37,9 @@ public class Recipe_dao {
 			}
 			
 			result = textToRecipe(recipeTextBuilder.toString());
-		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "File reading error");
-		} catch (TextParseException tpe) {
-			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
-		}
+		} catch (IOException | TextParseException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} 
 		
 		return result;
 	}

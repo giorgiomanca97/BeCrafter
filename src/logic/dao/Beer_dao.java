@@ -64,14 +64,9 @@ public class Beer_dao {
 				} while (rs.next());
             }
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		} catch (IdException ie) {
-			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException | IdException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt, rs);
         }
 		
@@ -92,8 +87,8 @@ public class Beer_dao {
 			} else {
 				return result.get(0);
 			}
-		} catch (IdException ie) {
-			Logger.getGlobal().log(Level.SEVERE, "Id logic error");
+		} catch (IdException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
 			return null;
 		}
 	}

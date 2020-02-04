@@ -32,15 +32,20 @@ public class CheckHelper {
 			return false;
 		}
 		
-		// Controllo lunghezza parte del nome
-		String user = string.split("@")[0];
-		if(user.length() == 0) {
-			return false;
-		}
+		String[] pieces = string.split("@");
+		if(pieces.length == 2) {
+			// Controllo lunghezza parte del nome
+			String user = string.split("@")[0];
+			if(user.length() == 0) {
+				return false;
+			}
 
-		// Controllo dominio
-		String domain = string.split("@")[1];
-		if(!domain.contains(".") || domain.charAt(domain.length()-1) == '.') {
+			// Controllo dominio
+			String domain = string.split("@")[1];
+			if(domain.length() == 0 || !domain.contains(".") || domain.charAt(domain.length()-1) == '.') {
+				return false;
+			}
+		} else {
 			return false;
 		}
 		
@@ -70,11 +75,8 @@ public class CheckHelper {
 				upperChar++;
 			}
 		}
-		if(digitChat == 0 || lowerChar == 0 || upperChar == 0) {
-			return false;
-		}
 		
-		return true;
+		return (digitChat > 0 && lowerChar > 0 && upperChar > 0);
 	}
 	
 	public static boolean isValidString(String string) {

@@ -124,14 +124,9 @@ public class Storehouse_dao {
 	            	storehouseInstance.add(p);
 				}
 	            
-	        } catch (ClassNotFoundException ce) {
-				Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-			} catch (SQLException se) {
-				Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-			} catch (StorableIllegalQuantityException siqe) {
-				Logger.getGlobal().log(Level.SEVERE, "Database Storable wrong quantity");
-			} 
-	        finally {
+	        } catch (ClassNotFoundException | SQLException | StorableIllegalQuantityException e) {
+				Logger.getGlobal().log(Level.SEVERE, e.toString());
+			} finally {
 	        	List<ResultSet> rsList = new ArrayList<>();
 	        	rsList.add(rsRawMaterials);
 	        	rsList.add(rsContainers);
@@ -177,12 +172,9 @@ public class Storehouse_dao {
             	stmt.executeUpdate(query);
             }
             
-		} catch (ClassNotFoundException ce) {
-			Logger.getGlobal().log(Level.SEVERE, "Database driver not found");
-		} catch (SQLException se) {
-			Logger.getGlobal().log(Level.SEVERE, "Database query <" + query + "> failed");
-		}
-        finally {
+		} catch (ClassNotFoundException | SQLException e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+		} finally {
         	DaoHelper.close(conn, stmt);
         }
 	}
