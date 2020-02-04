@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,9 +25,6 @@ import logic.entity.Order;
 import logic.entity.Product;
 
 public class Order_dao {
-	private static String ordersFolderPath = "C:\\Becrafter\\persistence\\orders"; 
-	private static String folderSep = "\\";
-	
 	// Informazioni tabella ordini
 	private static String tableOrders = "orders";
 	private static String tableOrdersColId = "id";
@@ -91,7 +87,7 @@ public class Order_dao {
             		order.setShippingCode(rs.getString(tableOrdersColShipCode));
             		order.setShippingCompany(rs.getString(tableOrdersColShipComp));
             		
-            		File file = new File(ordersFolderPath + folderSep + orderId);
+            		File file = new File(DaoHelper.getOrdersFolderPath() + DaoHelper.getFolderSeparator() + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
             		          		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
@@ -162,7 +158,7 @@ public class Order_dao {
 	
 		
 	private static void saveOrderData(Order order) throws IOException {		
-		File file = new File(ordersFolderPath + folderSep + order.getId());
+		File file = new File(DaoHelper.getOrdersFolderPath() + DaoHelper.getFolderSeparator() + order.getId());
 		
 		if(file.createNewFile()) {
 			try (
