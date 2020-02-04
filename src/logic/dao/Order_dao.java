@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -163,19 +164,18 @@ public class Order_dao {
 	private static void saveOrderData(Order order) throws IOException {		
 		File file = new File(ordersFolderPath + folderSep + order.getId());
 		
-		if(!file.createNewFile()) {
-			file.delete();
-			file.createNewFile();
-		}
-
-		try (
-			FileWriter fileWriter = new FileWriter(file);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)
-		) {
-			bufferedWriter.write(printOrderData(order));
-		} catch (IOException e) {
-			Logger.getGlobal().log(Level.SEVERE, e.toString());
-		}
+		if(file.createNewFile()) {
+			try (
+				FileWriter fileWriter = new FileWriter(file);
+				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)
+			) {
+				bufferedWriter.write(printOrderData(order));
+			} catch (IOException e) {
+				Logger.getGlobal().log(Level.SEVERE, e.toString());
+			}
+		} else {
+			throw new IOException();
+		}		
 	}
 	
 	
