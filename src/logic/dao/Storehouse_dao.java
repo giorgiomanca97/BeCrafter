@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import error.StorableIllegalQuantityException;
 import logic.designclasses.DaoHelper;
-import logic.designclasses.DaoHelper.QueryWord;
 import logic.designclasses.DaoHelper.StatementMode;
 import logic.entity.Beer;
 import logic.entity.Container;
@@ -58,61 +57,23 @@ public class Storehouse_dao {
             ResultSet rsContainers = null;
             ResultSet rsProducts = null;
             String query = "";
+            String select = "SELECT * FROM ";
 	        
 	        try {
 	            conn = DaoHelper.getConnection();
 	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
 	            
-	            query = QueryWord.SELECT + " * " + QueryWord.FROM + " " + tableStoreRawm + ";";
+	            query = select + tableStoreRawm + ";";
 	            rsRawMaterials = stmt.executeQuery(query);
-	            List<RawMaterial> rawMaterials = new ArrayList<>();
-	            if(rsRawMaterials.first()) {
-	            	do {
-	            		RawMaterialType type = RawMaterialType.valueOf(rsRawMaterials.getString(tableStoreRawmColType));
-	     	            int quantity = rsRawMaterials.getInt(tableStoreQuantity);
-	     	            
-	     	            RawMaterial rawMaterial = new RawMaterial(type);
-	     	            rawMaterial.setQuantity(quantity);
-	     	            
-	     	            rawMaterials.add(rawMaterial);
-	            	} while (rsRawMaterials.next());
-	            }
+	            List<RawMaterial> rawMaterials = fetchRawMaterials(rsRawMaterials);
 	            
-	            query = QueryWord.SELECT + " * " + QueryWord.FROM + " " + tableStoreCont + ";";
+	            query = select + tableStoreCont + ";";
 	            rsContainers = stmt.executeQuery(query);
-	            List<Container> containers = new ArrayList<>();
-	            if(rsContainers.first()) {
-	            	do {
-	            		ContainerType type = ContainerType.valueOf(rsContainers.getString(tableStoreContColType));
-	            		int volume = rsContainers.getInt(tableStoreContColVolume);
-	            		int quantity = rsContainers.getInt(tableStoreQuantity);
-	            		
-	            		Container container = new Container(type, volume);
-	            		container.setQuantity(quantity);
-	            		
-	            		containers.add(container);
-	            	} while (rsContainers.next());
-	            }
+	            List<Container> containers = fetchContainers(rsContainers);
 	            
-	            query = QueryWord.SELECT + " * " + QueryWord.FROM + " " + tableStoreProd + ";";
+	            query = select + tableStoreProd + ";";
 	            rsProducts = stmt.executeQuery(query);
-	            List<Product> products = new ArrayList<>();
-	            if(rsProducts.first()) {
-	            	do {
-	            		String beerId = rsProducts.getString(tableStoreProdBeerId);
-	            		ContainerType contType = ContainerType.valueOf(rsProducts.getString(tableStoreProdContType));
-	            		int contVolume = rsProducts.getInt(tableStoreProdContVolume);
-	            		int quantity = rsProducts.getInt(tableStoreQuantity);
-
-	            		Beer beer = Beer_dao.getBeerById(beerId);
-	            		Container container = new Container(contType, contVolume);
-	            		container.setQuantity(quantity);
-	            		
-	            		Product product = new Product(beer, container);
-	            		
-	            		products.add(product);
-	            	} while (rsProducts.next());
-	            }
+	            List<Product> products = fetchProducts(rsProducts);
 	             
 	            storehouseInstance = new Storehouse();
 	            for (RawMaterial r : rawMaterials) {
@@ -140,36 +101,99 @@ public class Storehouse_dao {
 		return storehouseInstance;
 	}
 	
+	private static List<RawMaterial> fetchRawMaterials(ResultSet rsRawMaterials) throws SQLException, StorableIllegalQuantityException{
+		List<RawMaterial> rawMaterials = new ArrayList<>();
+        
+		if(rsRawMaterials.first()) {
+        	do {
+        		RawMaterialType type = RawMaterialType.valueOf(rsRawMaterials.getString(tableStoreRawmColType));
+ 	            int quantity = rsRawMaterials.getInt(tableStoreQuantity);
+ 	            
+ 	            RawMaterial rawMaterial = new RawMaterial(type);
+ 	            rawMaterial.setQuantity(quantity);
+ 	            
+ 	            rawMaterials.add(rawMaterial);
+        	} while (rsRawMaterials.next());
+        }
+        
+        return rawMaterials;
+	}
+	
+	private static List<Container> fetchContainers(ResultSet rsContainers) throws SQLException, StorableIllegalQuantityException{
+		List<Container> containers = new ArrayList<>();
+		
+        if(rsContainers.first()) {
+        	do {
+        		ContainerType type = ContainerType.valueOf(rsContainers.getString(tableStoreContColType));
+        		int volume = rsContainers.getInt(tableStoreContColVolume);
+        		int quantity = rsContainers.getInt(tableStoreQuantity);
+        		
+        		Container container = new Container(type, volume);
+        		container.setQuantity(quantity);
+        		
+        		containers.add(container);
+        	} while (rsContainers.next());
+        }
+        
+        return containers;
+	}
+	
+	private static List<Product> fetchProducts(ResultSet rsProducts) throws SQLException, StorableIllegalQuantityException{
+		List<Product> products = new ArrayList<>();
+        
+		if(rsProducts.first()) {
+        	do {
+        		String beerId = rsProducts.getString(tableStoreProdBeerId);
+        		ContainerType contType = ContainerType.valueOf(rsProducts.getString(tableStoreProdContType));
+        		int contVolume = rsProducts.getInt(tableStoreProdContVolume);
+        		int quantity = rsProducts.getInt(tableStoreQuantity);
+
+        		Beer beer = Beer_dao.getBeerById(beerId);
+        		Container container = new Container(contType, contVolume);
+        		container.setQuantity(quantity);
+        		
+        		Product product = new Product(beer, container);
+        		
+        		products.add(product);
+        	} while (rsProducts.next());
+        }
+        
+        return products;
+	}
+	
 	
 	public static void updateStorehouse(Storehouse storehouse) {
 		Connection conn = null;
 		Statement stmt = null;
         String query = "";
+        String delete = "DELETE FROM ";
+        String insert = "INSERT INTO ";
+        String values = "VALUES ";
 
         try {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            query = QueryWord.DELETE + " " + tableStoreRawm + ";";
+            query = delete + tableStoreRawm + ";";
             stmt.executeUpdate(query);
             for (RawMaterial rawMaterial : storehouse.getAllRawMaterials()) {
-            	query = QueryWord.INSERT + " " + tableStoreRawm + QueryWord.VALUES + " ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");";
+            	query = insert + tableStoreRawm + values + "('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");";
             	stmt.executeUpdate(query);
 			}
             
-            query = QueryWord.DELETE + " " + tableStoreCont + ";";
+            query = delete + tableStoreCont + ";";
             stmt.executeUpdate(query);
             for (Container container : storehouse.getAllContainers()) {
-            	query = QueryWord.INSERT + " " + tableStoreCont + QueryWord.VALUES + " ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+            	query = insert + tableStoreCont + values + "('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
 				stmt.executeUpdate(query);
 			}
             
-            query = QueryWord.DELETE + " " + tableStoreProd + ";";
+            query = delete + tableStoreProd + ";";
             stmt.executeUpdate(query);
             for (Product product : storehouse.getAllProducts()) {
             	Beer beer = product.getBeer();
             	Container container = product.getContainer();
-            	query = QueryWord.INSERT + " " + tableStoreProd + QueryWord.VALUES + " ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+            	query = insert + tableStoreProd + values + "('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
             	stmt.executeUpdate(query);
             }
             
