@@ -33,7 +33,7 @@ public class RawMaterial_dao {
 		
 		try {
 			RawMaterialType type = RawMaterialType.valueOf(pieces[0]);
-			int quantity = Integer.valueOf(pieces[1]);
+			int quantity = Integer.parseUnsignedInt(pieces[1]);
 			
 			RawMaterial rawMaterial = new RawMaterial(type);
 			rawMaterial.setQuantity(quantity);

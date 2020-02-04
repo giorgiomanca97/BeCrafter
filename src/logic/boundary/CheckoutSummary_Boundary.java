@@ -3,6 +3,7 @@ package logic.boundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ public class CheckoutSummary_Boundary {
 	@FXML private Button btnConfirmProducts;
 	
 	private Checkout_Boundary checkoutBoundary = null;
-	private ArrayList<Float> prices;
+	private List<Float> prices;
 	
 	CheckoutSummary_Bean buyBeerBean = null;
 	
@@ -31,7 +32,7 @@ public class CheckoutSummary_Boundary {
 	}
 	
 	public void displayCart() {
-		prices = new ArrayList<Float>();
+		prices = new ArrayList<>();
 		
 		tbOverallCost.setText(Price.toText(0f) + " €");
 		vboxProducts.getChildren().clear();

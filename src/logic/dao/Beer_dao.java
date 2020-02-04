@@ -78,10 +78,8 @@ public class Beer_dao {
 		return result;
 	}
 	
-	public static List<Beer> getAllBeers(){
-		List<Beer> result = getBeers("SELECT * FROM " + tableBeers + ";");
-		
-		return result;
+	public static List<Beer> getAllBeers(){		
+		return getBeers("SELECT * FROM " + tableBeers + ";");
 	}
 	
 	public static Beer getBeerById(String id) {

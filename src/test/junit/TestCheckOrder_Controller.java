@@ -23,16 +23,16 @@ public class TestCheckOrder_Controller {
 		String orderShippingCode = "";
 		String orderShippingEmail = "";
 		
-		CheckOrder_Bean co_Bean = new CheckOrder_Bean();
+		CheckOrder_Bean coBean = new CheckOrder_Bean();
 		
 		try {
-			co_Bean.searchOrder(id);
-			orderId = co_Bean.getOrderId();
-			orderPurchaseDate = co_Bean.getDate();
-			orderOverallPrice = co_Bean.getPrice();
-			orderEmail = co_Bean.getEmail();
-			orderShippingCode = co_Bean.getShippingCode();
-			orderShippingEmail = co_Bean.getShippingCompany();
+			coBean.searchOrder(id);
+			orderId = coBean.getOrderId();
+			orderPurchaseDate = coBean.getDate();
+			orderOverallPrice = coBean.getPrice();
+			orderEmail = coBean.getEmail();
+			orderShippingCode = coBean.getShippingCode();
+			orderShippingEmail = coBean.getShippingCompany();
 			
 		} catch (OrderNotFoundException e) {
 			message = "Order Not Found";

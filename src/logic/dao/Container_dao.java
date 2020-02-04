@@ -34,8 +34,8 @@ public class Container_dao {
 		
 		try {
 			ContainerType type = ContainerType.valueOf(pieces[0]);
-			int volume = Integer.valueOf(pieces[1]);
-			int quantity = Integer.valueOf(pieces[2]);
+			int volume = Integer.parseUnsignedInt(pieces[1]);
+			int quantity = Integer.parseUnsignedInt(pieces[2]);
 			
 			Container container = new Container(type, volume);
 			container.setQuantity(quantity);

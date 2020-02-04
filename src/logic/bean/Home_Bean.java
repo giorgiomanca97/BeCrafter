@@ -184,6 +184,6 @@ public class Home_Bean {
 	}
 	
 	public void logoutCustomer(String email) {
-		Login_Controller.getInstance().logout(email);;
+		Login_Controller.getInstance().logout(email);
 	}
 }

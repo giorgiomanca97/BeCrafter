@@ -22,7 +22,7 @@ public class Home_Controller {
 		displayProducts(null, null, null, null, null);
 	}
 	
-	synchronized public static Home_Controller getInstance() {
+	public static synchronized Home_Controller getInstance() {
 		if(instance == null) {
 			instance = new Home_Controller();
 		}

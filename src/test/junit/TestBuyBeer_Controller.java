@@ -16,41 +16,41 @@ public class TestBuyBeer_Controller {
 	@Test
 	public void testAddProductToCart() {
 		String message = "";
-		String expected_beerId = "B001";
-		ContainerType expected_containerType = ContainerType.BOTTLE;
-		int expected_volume = 50;
+		String expectedBeerId = "B001";
+		ContainerType expectedContainerType = ContainerType.BOTTLE;
+		int expectedVolume = 50;
 		
-		String actual_beerId = "";
-		ContainerType actual_containerType = null;
-		int actual_volume = 0;
+		String actualBeerId = "";
+		ContainerType actualContainerType = null;
+		int actualVolume = 0;
 		
-		BuyBeer_Bean bb_Bean = new BuyBeer_Bean();
-		CheckoutSummary_Bean cs_Bean = new CheckoutSummary_Bean();
+		BuyBeer_Bean bbBean = new BuyBeer_Bean();
+		CheckoutSummary_Bean csBean = new CheckoutSummary_Bean();
 		
-		bb_Bean.setBeerId(expected_beerId);
-		bb_Bean.setContainerType(expected_containerType);
-		bb_Bean.setContainerVolume(expected_volume);
+		bbBean.setBeerId(expectedBeerId);
+		bbBean.setContainerType(expectedContainerType);
+		bbBean.setContainerVolume(expectedVolume);
 		
 		try {
-			bb_Bean.selectProductForSale();
-			bb_Bean.loadSelectedProduct();
-			bb_Bean.setQuantity(10);
-			bb_Bean.addProductToCart();
+			bbBean.selectProductForSale();
+			bbBean.loadSelectedProduct();
+			bbBean.setQuantity(10);
+			bbBean.addProductToCart();
 			
-			cs_Bean.selectProductInCart(0);
-			cs_Bean.loadSelectedProduct();
+			csBean.selectProductInCart(0);
+			csBean.loadSelectedProduct();
 		} catch (ProductNotFoundException e) {
 			message = "Product Not Found";
 		} catch (StorableIllegalQuantityException e) {
 			message = "Storable Illegal Quantity";
 		}
 			
-		actual_beerId = cs_Bean.getBeerId();
-		actual_containerType = cs_Bean.getContainerType();
-		actual_volume = cs_Bean.getContainerVolume();
+		actualBeerId = csBean.getBeerId();
+		actualContainerType = csBean.getContainerType();
+		actualVolume = csBean.getContainerVolume();
 		
-		Object[] expecteds = {expected_beerId, expected_containerType, expected_volume};
-		Object[] actuals = {actual_beerId, actual_containerType, actual_volume};
+		Object[] expecteds = {expectedBeerId, expectedContainerType, expectedVolume};
+		Object[] actuals = {actualBeerId, actualContainerType, actualVolume};
 		
 		assertArrayEquals(message, expecteds, actuals);
 	}

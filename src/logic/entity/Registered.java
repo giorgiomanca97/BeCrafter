@@ -2,6 +2,7 @@ package logic.entity;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Registered {
     private String email;
@@ -42,7 +43,7 @@ public class Registered {
         this.billingInfo = billingInfo;
     }
 
-    public ArrayList<Order> getOrders() {
+    public List<Order> getOrders() {
         return this.orders;
     }
 

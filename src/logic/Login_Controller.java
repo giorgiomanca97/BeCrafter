@@ -21,7 +21,7 @@ public class Login_Controller {
 		
 	}
 	
-	synchronized public static Login_Controller getInstance() {
+	public static synchronized Login_Controller getInstance() {
 		if(instance == null) {
 			instance = new Login_Controller();
 		}
@@ -30,11 +30,7 @@ public class Login_Controller {
 	}
 	
 	public boolean isLogged(String email) {
-		if(loggedCustomer != null && loggedCustomer.getEmail().equals(email)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (loggedCustomer != null && loggedCustomer.getEmail().equals(email));
 	}
 	
 	public Registered getLoggedCustomer() {

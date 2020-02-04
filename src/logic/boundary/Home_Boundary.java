@@ -52,10 +52,10 @@ public class Home_Boundary {
 	}
 	
 	public void updateProducts() {
-		List<BeerType> beerTypes = new ArrayList<BeerType>();
-		List<BeerColor> beerColors = new ArrayList<BeerColor>();
-		List<ContainerType> containerTypes = new ArrayList<ContainerType>();
-		List<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
+		List<BeerType> beerTypes = new ArrayList<>();
+		List<BeerColor> beerColors = new ArrayList<>();
+		List<ContainerType> containerTypes = new ArrayList<>();
+		List<BeerFiltering> beerFilterings = new ArrayList<>();
 		String searchName = tfSearch.getText();
 		
 		if(cbAle.isSelected()) {
@@ -100,8 +100,8 @@ public class Home_Boundary {
 		try {
 			for (int i = 0; i < homeBean.countDisplayedProducts(); i++) {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME_PRODUCTCARD);
-				HomeProductCard_Boundary product_view = (HomeProductCard_Boundary) pageLoader.getController();
-				product_view.loadProduct(i);
+				HomeProductCard_Boundary productView = (HomeProductCard_Boundary) pageLoader.getController();
+				productView.loadProduct(i);
 				tpProducts.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {

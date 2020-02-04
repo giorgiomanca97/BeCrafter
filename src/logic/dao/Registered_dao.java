@@ -86,9 +86,7 @@ public class Registered_dao {
 	}
 	
 	public static List<Registered> getAllRegistered(){
-		List<Registered> result = getRegistered("SELECT * FROM " + tableRegistered + ";");;
-		
-		return result;
+		return getRegistered("SELECT * FROM " + tableRegistered + ";");
 	}
 	
 	public static Registered getRegisteredByEmail(String email) {

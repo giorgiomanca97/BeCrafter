@@ -37,13 +37,11 @@ public class Login_Boundary {
 		try {
 			loginBean.login();
 			onBackPressed();
-		} catch (LoginException le) {
+		} catch (LoginException | IllegalCharacterException e) {
 			lblError.setText("Email and Password do not match");
 		} catch (EmptyFieldException efe) {
 			lblError.setText("Please fill all the fields");
-		} catch (IllegalCharacterException ice) {
-			lblError.setText("Email and Password do not match");
-		} 
+		}
 	}
 
 	@FXML 

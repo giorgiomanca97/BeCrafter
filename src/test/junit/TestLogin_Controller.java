@@ -29,12 +29,12 @@ public class TestLogin_Controller {
 		String email = "test@provider.org";
 		String password = "TestPass1";
 		
-		Login_Bean login_Bean = new Login_Bean();
-		login_Bean.setEmail(email);
-		login_Bean.setPassword(password);
+		Login_Bean loginBean = new Login_Bean();
+		loginBean.setEmail(email);
+		loginBean.setPassword(password);
 		
 		try {
-			login_Bean.login();
+			loginBean.login();
 		} catch (InexistentEmailException e) {
 			message = "Inexistent Email";
 		} catch (WrongPasswordException e) {
@@ -55,8 +55,8 @@ public class TestLogin_Controller {
 		String message = "";
 		String email = "test@provider.org";
 		
-		Home_Bean h_Bean = new Home_Bean();
-		h_Bean.logoutCustomer(email);
+		Home_Bean hBean = new Home_Bean();
+		hBean.logoutCustomer(email);
 		
 		assertEquals(message, false, loginController.isLogged(email));
 	}

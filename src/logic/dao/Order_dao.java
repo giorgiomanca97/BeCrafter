@@ -129,9 +129,7 @@ public class Order_dao {
 	}
 	
 	public static List<Order> getOrdersByEmail(String email) {
-		List<Order> result = getOrders("SELECT * FROM " + tableOrders + " WHERE " + tableOrdersColEmail + " = '" + email +"';");;
-		
-		return result;
+		return getOrders("SELECT * FROM " + tableOrders + " WHERE " + tableOrdersColEmail + " = '" + email +"';");
 	}
 	
 	public static Order getOrderById(String id) {

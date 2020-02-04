@@ -17,17 +17,17 @@ public class TestIdConverter {
 		String message = "";
 		IdConverter.Type selectedType = IdConverter.Type.ORDER;
 		
-		String expected_Id = "X000010";
-		String actual_Id = "";
+		String expectedId = "X000010";
+		String actualId = "";
 
 		
 		try {
-			actual_Id = IdConverter.intToId(10, selectedType);
+			actualId = IdConverter.intToId(10, selectedType);
 		} catch (OutOfRangeIdException e) {
 			message = "Out Of Range Id";
 		}
 		
-		assertEquals(message, expected_Id, actual_Id);
+		assertEquals(message, expectedId, actualId);
 	}
 	
 	// Davide Bianchi 0228110
@@ -36,12 +36,12 @@ public class TestIdConverter {
 		String message = "";
 		String selectedId = "X000010";
 		
-		int expected_Int = 10;
-		int actual_Int = 0;
+		int expectedInt = 10;
+		int actualInt = 0;
 
 		
 		try {
-			actual_Int = IdConverter.idToInt(selectedId);
+			actualInt = IdConverter.idToInt(selectedId);
 		} catch (UnsupportedIdException e) {
 			message = "Unsupported Id";
 		} catch (OutOfRangeIdException e) {
@@ -50,7 +50,7 @@ public class TestIdConverter {
 			message = "Id error";
 		}
 		
-		assertEquals(message, expected_Int, actual_Int);
+		assertEquals(message, expectedInt, actualInt);
 	}
 
 }

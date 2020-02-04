@@ -51,7 +51,7 @@ public class IdConverter {
 				throw new UnsupportedIdException();
 			}
 			
-			int value = Integer.valueOf(id.substring(1, id.length()));
+			int value = Integer.parseUnsignedInt(id.substring(1, id.length()));
 			
 			if(value > type.maxValue()) {
 				throw new OutOfRangeIdException();

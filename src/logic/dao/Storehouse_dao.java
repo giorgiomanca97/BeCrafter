@@ -49,13 +49,13 @@ public class Storehouse_dao {
 	}
 	
 	
-	synchronized public static Storehouse getStorehouse() {
+	public static synchronized Storehouse getStorehouse() {
 		if(storehouseInstance == null) {
 	        Statement stmt = null;
 	        Connection conn = null;
-	        ResultSet rs_rawMaterials = null;
-            ResultSet rs_containers = null;
-            ResultSet rs_products = null;
+	        ResultSet rsRawMaterials = null;
+            ResultSet rsContainers = null;
+            ResultSet rsProducts = null;
             String query = "";
 	        
 	        try {
@@ -63,45 +63,45 @@ public class Storehouse_dao {
 	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
 	            
 	            query = "SELECT * FROM " + tableStoreRawm + ";";
-	            rs_rawMaterials = stmt.executeQuery(query);
+	            rsRawMaterials = stmt.executeQuery(query);
 	            List<RawMaterial> rawMaterials = new ArrayList<>();
-	            if(rs_rawMaterials.first()) {
+	            if(rsRawMaterials.first()) {
 	            	do {
-	            		RawMaterialType type = RawMaterialType.valueOf(rs_rawMaterials.getString(tableStoreRawmColType));
-	     	            int quantity = rs_rawMaterials.getInt(tableStoreRawmColQuantity);
+	            		RawMaterialType type = RawMaterialType.valueOf(rsRawMaterials.getString(tableStoreRawmColType));
+	     	            int quantity = rsRawMaterials.getInt(tableStoreRawmColQuantity);
 	     	            
 	     	            RawMaterial rawMaterial = new RawMaterial(type);
 	     	            rawMaterial.setQuantity(quantity);
 	     	            
 	     	            rawMaterials.add(rawMaterial);
-	            	} while (rs_rawMaterials.next());
+	            	} while (rsRawMaterials.next());
 	            }
 	            
 	            query = "SELECT * FROM " + tableStoreCont + ";";
-	            rs_containers = stmt.executeQuery(query);
+	            rsContainers = stmt.executeQuery(query);
 	            List<Container> containers = new ArrayList<>();
-	            if(rs_containers.first()) {
+	            if(rsContainers.first()) {
 	            	do {
-	            		ContainerType type = ContainerType.valueOf(rs_containers.getString(tableStoreContColType));
-	            		int volume = rs_containers.getInt(tableStoreContColVolume);
-	            		int quantity = rs_containers.getInt(tableStoreContColQuantity);
+	            		ContainerType type = ContainerType.valueOf(rsContainers.getString(tableStoreContColType));
+	            		int volume = rsContainers.getInt(tableStoreContColVolume);
+	            		int quantity = rsContainers.getInt(tableStoreContColQuantity);
 	            		
 	            		Container container = new Container(type, volume);
 	            		container.setQuantity(quantity);
 	            		
 	            		containers.add(container);
-	            	} while (rs_containers.next());
+	            	} while (rsContainers.next());
 	            }
 	            
 	            query = "SELECT * FROM " + tableStoreProd + ";";
-	            rs_products = stmt.executeQuery(query);
+	            rsProducts = stmt.executeQuery(query);
 	            List<Product> products = new ArrayList<>();
-	            if(rs_products.first()) {
+	            if(rsProducts.first()) {
 	            	do {
-	            		String beerId = rs_products.getString(tableStoreProdBeerId);
-	            		ContainerType contType = ContainerType.valueOf(rs_products.getString(tableStoreProdContType));
-	            		int contVolume = rs_products.getInt(tableStoreProdContVolume);
-	            		int quantity = rs_products.getInt(tableStoreProdQuantity);
+	            		String beerId = rsProducts.getString(tableStoreProdBeerId);
+	            		ContainerType contType = ContainerType.valueOf(rsProducts.getString(tableStoreProdContType));
+	            		int contVolume = rsProducts.getInt(tableStoreProdContVolume);
+	            		int quantity = rsProducts.getInt(tableStoreProdQuantity);
 
 	            		Beer beer = Beer_dao.getBeerById(beerId);
 	            		Container container = new Container(contType, contVolume);
@@ -110,7 +110,7 @@ public class Storehouse_dao {
 	            		Product product = new Product(beer, container);
 	            		
 	            		products.add(product);
-	            	} while (rs_products.next());
+	            	} while (rsProducts.next());
 	            }
 	             
 	            storehouseInstance = new Storehouse();
@@ -133,9 +133,9 @@ public class Storehouse_dao {
 			} 
 	        finally {
 	        	List<ResultSet> rsList = new ArrayList<>();
-	        	rsList.add(rs_rawMaterials);
-	        	rsList.add(rs_containers);
-	        	rsList.add(rs_products);
+	        	rsList.add(rsRawMaterials);
+	        	rsList.add(rsContainers);
+	        	rsList.add(rsProducts);
 	        	
 	        	DaoHelper.close(conn, stmt, rsList);
 	        }

@@ -40,7 +40,7 @@ public class BuyBeer_Controller {
 		initCart();
 	}
 	
-	synchronized public static BuyBeer_Controller getInstance() {
+	public static synchronized BuyBeer_Controller getInstance() {
 		if(instance == null) {
 			instance = new BuyBeer_Controller();
 		}
@@ -192,9 +192,7 @@ public class BuyBeer_Controller {
 		}
 		
 		Container container = new Container(containerType, containerVolume);
-		Product product = new Product(beer, container);
-
-		return product;
+		return new Product(beer, container);
 	}
 	
 	private boolean checkPayment(float price, String creditCard) {

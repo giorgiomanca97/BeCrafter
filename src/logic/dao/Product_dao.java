@@ -36,10 +36,8 @@ public class Product_dao {
 		try {
 			Beer beer = Beer_dao.getBeerById(pieces[0]);
 			Container container = Container_dao.textToContainer(pieces[1]);
-			
-			Product product = new Product(beer, container);
-			
-			return product;
+						
+			return new Product(beer, container);
 		} catch (Exception e){
 			throw new TextParseException(e);
 		}

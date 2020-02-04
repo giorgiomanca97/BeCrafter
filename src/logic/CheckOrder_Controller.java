@@ -8,7 +8,7 @@ public class CheckOrder_Controller {
 	
 	private static CheckOrder_Controller instance = null;
 	
-	synchronized public static CheckOrder_Controller getInstance() {
+	public static synchronized CheckOrder_Controller getInstance() {
 		if(instance == null) {
 			instance = new CheckOrder_Controller();
 		}

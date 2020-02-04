@@ -82,7 +82,7 @@ public class Order {
     
     
     public List<Product> getProducts(){
-    	List<Product> result = new ArrayList<Product>();
+    	List<Product> result = new ArrayList<>();
     	
     	List<Storable> storables = products.getAll();
     	for (Storable storable : storables) {

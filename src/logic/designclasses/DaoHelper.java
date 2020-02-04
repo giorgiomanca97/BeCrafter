@@ -87,7 +87,7 @@ public class DaoHelper {
 	}
 	
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
-		List<ResultSet> rsList = new ArrayList<ResultSet>();
+		List<ResultSet> rsList = new ArrayList<>();
 		
 		if(rs != null) {
 			rsList.add(rs);

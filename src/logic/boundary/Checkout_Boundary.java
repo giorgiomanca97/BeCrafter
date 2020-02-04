@@ -3,6 +3,7 @@ package logic.boundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,8 +27,8 @@ public class Checkout_Boundary {
 	
 	public void openTab(Tab tab) {
 		PageLoader pageLoader = null;
-		ArrayList<Label> greenLabels = new ArrayList<Label>();
-		ArrayList<Label> blackLabels = new ArrayList<Label>();
+		List<Label> greenLabels = new ArrayList<>();
+		List<Label> blackLabels = new ArrayList<>();
 		
 		try {
 			switch (tab) {
