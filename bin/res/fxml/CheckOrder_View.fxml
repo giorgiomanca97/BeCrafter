@@ -27,7 +27,7 @@
             <Image url="@../icons/back.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_warning" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text="warning message" textFill="RED" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="125.0">
+      <Label fx:id="lblWarning" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text="warning message" textFill="RED" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="125.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -42,7 +42,7 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <TextField fx:id="tf_order" prefHeight="40.0" prefWidth="120.0">
+            <TextField fx:id="tfOrder" prefHeight="40.0" prefWidth="120.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -167,7 +167,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label fx:id="lbl_order" prefWidth="320.0" text="O000001">
+                  <Label fx:id="lblOrder" prefWidth="320.0" text="O000001">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_date" prefWidth="320.0" text="01/01/1919">
+                  <Label fx:id="lblDate" prefWidth="320.0" text="01/01/1919">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -183,7 +183,7 @@
                         <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_price" prefWidth="320.0" text="0,00 €">
+                  <Label fx:id="lblPrice" prefWidth="320.0" text="0,00 €">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -191,7 +191,7 @@
                         <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_email" prefWidth="320.0" text="example@provider.org">
+                  <Label fx:id="lblEmail" prefWidth="320.0" text="example@provider.org">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -199,7 +199,7 @@
                         <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_shippingCode" prefWidth="320.0" text="Shipping Code">
+                  <Label fx:id="lblShippingCode" prefWidth="320.0" text="Shipping Code">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -207,7 +207,7 @@
                         <Insets bottom="5.0" left="50.0" right="50.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_shippingCompany" prefWidth="320.0" text="Shipping Company">
+                  <Label fx:id="lblShippingCompany" prefWidth="320.0" text="Shipping Company">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -221,7 +221,7 @@
       </HBox>
       <ScrollPane hbarPolicy="NEVER" layoutX="360.0" layoutY="486.0" opacity="0.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="425.0">
          <content>
-            <VBox fx:id="vb_products" fillWidth="false" prefWidth="1170.0" />
+            <VBox fx:id="vbProducts" fillWidth="false" prefWidth="1170.0" />
          </content></ScrollPane>
    </children>
 </AnchorPane>

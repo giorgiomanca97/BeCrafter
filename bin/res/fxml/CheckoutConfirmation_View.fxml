@@ -24,7 +24,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tb_order_code" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="OR002108" textFill="#ff4040">
+                  <Label fx:id="tbOrderCode" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="OR002108" textFill="#ff4040">
                      <font>
                         <Font size="14.0" />
                      </font>

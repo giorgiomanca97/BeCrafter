@@ -20,23 +20,22 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 
 public class CheckoutPayment_Boundary {	
-	@FXML private TextField tf_cp_email;
-	@FXML private TextField tf_cp_firstname;
-	@FXML private TextField tf_cp_lastname;
-	@FXML private TextField tf_cp_address;
-	@FXML private TextField tf_cp_city;
-	@FXML private TextField tf_cp_country;
-	@FXML private TextField tf_cp_postalcode;
-	@FXML private TextField tf_cp_phoneNumber;
-	@FXML private TextField tf_cp_creditcardNumber;
-	@FXML private TextField tf_loginEmail;
-	@FXML private PasswordField psw_password;
-	@FXML private Button btn_login;
-	
-	@FXML private Label lbl_login;
-	@FXML private Label lbl_error;
-	@FXML private Label lbl_error2;
-	@FXML private Label lbl_cp_infoCredit;
+	@FXML private TextField tfcpEmail;
+	@FXML private TextField tfcpFirstname;
+	@FXML private TextField tfcpLastname;
+	@FXML private TextField tfcpAddress;
+	@FXML private TextField tfcpCity;
+	@FXML private TextField tfcpCountry;
+	@FXML private TextField tfcpPostalCode;
+	@FXML private TextField tfcpPhoneNumber;
+	@FXML private TextField tfcpCreditCardNumber;
+	@FXML private TextField tfLoginEmail;
+	@FXML private PasswordField pswPassword;
+	@FXML private Button btnLogin;
+	@FXML private Label lblLogin;
+	@FXML private Label lblError;
+	@FXML private Label lblError2;
+	@FXML private Label lblcpInfoCredit;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	private CheckoutPayment_Bean checkoutPaymentBean = null;
@@ -47,16 +46,16 @@ public class CheckoutPayment_Boundary {
 		
 		String email = checkoutPaymentBean.loggedCustomer();
 		if(email != null) {
-			tf_loginEmail.setText(email);
-			tf_loginEmail.setDisable(true);
-			tf_cp_email.setText(email);
-			tf_cp_email.setDisable(true);
-			lbl_login.setText("Please insert the password to autofill");
+			tfLoginEmail.setText(email);
+			tfLoginEmail.setDisable(true);
+			tfcpEmail.setText(email);
+			tfcpEmail.setDisable(true);
+			lblLogin.setText("Please insert the password to autofill");
 		}
 		
-		lbl_cp_infoCredit.setOpacity(0f);
-		lbl_error.setText("");
-		lbl_error2.setText("");
+		lblcpInfoCredit.setOpacity(0f);
+		lblError.setText("");
+		lblError2.setText("");
 	}
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
@@ -76,16 +75,16 @@ public class CheckoutPayment_Boundary {
 	}
 	
 	public void confirmPurchase() {
-		lbl_error.setText("");
-		checkoutPaymentBean.setEmail(tf_cp_email.getText());
-		checkoutPaymentBean.setFirstName(tf_cp_firstname.getText());
-		checkoutPaymentBean.setLastName(tf_cp_lastname.getText());
-		checkoutPaymentBean.setAddress(tf_cp_address.getText());
-		checkoutPaymentBean.setCity(tf_cp_city.getText());
-		checkoutPaymentBean.setCountry(tf_cp_country.getText());
-		checkoutPaymentBean.setPostalCode(tf_cp_postalcode.getText());
-		checkoutPaymentBean.setPhoneNumber(tf_cp_phoneNumber.getText());
-		checkoutPaymentBean.setCreditCard(tf_cp_creditcardNumber.getText());
+		lblError.setText("");
+		checkoutPaymentBean.setEmail(tfcpEmail.getText());
+		checkoutPaymentBean.setFirstName(tfcpFirstname.getText());
+		checkoutPaymentBean.setLastName(tfcpLastname.getText());
+		checkoutPaymentBean.setAddress(tfcpAddress.getText());
+		checkoutPaymentBean.setCity(tfcpCity.getText());
+		checkoutPaymentBean.setCountry(tfcpCountry.getText());
+		checkoutPaymentBean.setPostalCode(tfcpPostalCode.getText());
+		checkoutPaymentBean.setPhoneNumber(tfcpPhoneNumber.getText());
+		checkoutPaymentBean.setCreditCard(tfcpCreditCardNumber.getText());
 		
 		try {
 			String orderId = checkoutPaymentBean.confirmPurchase();
@@ -95,72 +94,72 @@ public class CheckoutPayment_Boundary {
 				checkoutBoundary.openTab(Checkout_Boundary.Tab.CONFIRMATION);
 			}
 		} catch(InvalidEmailException iee) {
-			lbl_error.setText("Wrong email format");
+			lblError.setText("Wrong email format");
 		} catch(UsedEmailException uee) {
-			lbl_error.setText("This email is already registered");
+			lblError.setText("This email is already registered");
 		} catch(EmptyFieldException uee) {
-			lbl_error.setText("Please fill all the empty fields");
+			lblError.setText("Please fill all the empty fields");
 		} catch (IllegalCharacterException ice) {
-			lbl_error.setText("Please remove the ' character from the fields");
+			lblError.setText("Please remove the ' character from the fields");
 		} catch (WrongFieldException wfe) {
-			lbl_error.setText("Some fields are not correct");
+			lblError.setText("Some fields are not correct");
 		} catch (PaymentRefusedException pre) {
-			lbl_error.setText("Payment refused. Please retry");
+			lblError.setText("Payment refused. Please retry");
 		} catch (IdException | EmptyCartException e) {
-			lbl_error.setText("Unexpected Error. Please retry");
+			lblError.setText("Unexpected Error. Please retry");
 		}
 	}
 	
 	
 	@FXML 
 	public void onLoginPressed() {
-		checkoutPaymentBean.setEmail(tf_loginEmail.getText());
-		checkoutPaymentBean.setPassword(psw_password.getText());
-		lbl_error2.setText("");
+		checkoutPaymentBean.setEmail(tfLoginEmail.getText());
+		checkoutPaymentBean.setPassword(pswPassword.getText());
+		lblError2.setText("");
 		try {
 			checkoutPaymentBean.login();
 			checkoutPaymentBean.loadLoggedCustomer();
 			
-			lbl_error.setText("");
-			tf_loginEmail.setDisable(true);
-			psw_password.setDisable(true);
-			btn_login.setDisable(true);
+			lblError.setText("");
+			tfLoginEmail.setDisable(true);
+			pswPassword.setDisable(true);
+			btnLogin.setDisable(true);
 			
 			autoFill();
 			
-			tf_cp_email.setDisable(true);
-			lbl_login.setText("Logged as " + checkoutPaymentBean.getEmail());
+			tfcpEmail.setDisable(true);
+			lblLogin.setText("Logged as " + checkoutPaymentBean.getEmail());
 			
 		} catch (InexistentEmailException | WrongPasswordException | IllegalCharacterException e) {
-			lbl_error2.setText("Email and Password do not match");
+			lblError2.setText("Email and Password do not match");
 		} catch (EmptyFieldException efe) {
-			lbl_error2.setText("Please fill all the fields");
+			lblError2.setText("Please fill all the fields");
 		} catch (LoginException le) {
-			lbl_error2.setText("Something unexpected happen. Please retry");
+			lblError2.setText("Something unexpected happen. Please retry");
 		}
 	}
 	
 	private void autoFill() {
 		if(checkoutPaymentBean != null) {
-			tf_cp_email.setText(checkoutPaymentBean.getEmail());
-			tf_cp_firstname.setText(checkoutPaymentBean.getFirstName());
-			tf_cp_lastname.setText(checkoutPaymentBean.getLastName());
-			tf_cp_address.setText(checkoutPaymentBean.getAddress());
-			tf_cp_city.setText(checkoutPaymentBean.getCity());
-			tf_cp_country.setText(checkoutPaymentBean.getCountry());
-			tf_cp_postalcode.setText(checkoutPaymentBean.getPostalCode());
-			tf_cp_phoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
-			tf_cp_creditcardNumber.setText(checkoutPaymentBean.getCreditCard());
+			tfcpEmail.setText(checkoutPaymentBean.getEmail());
+			tfcpFirstname.setText(checkoutPaymentBean.getFirstName());
+			tfcpLastname.setText(checkoutPaymentBean.getLastName());
+			tfcpAddress.setText(checkoutPaymentBean.getAddress());
+			tfcpCity.setText(checkoutPaymentBean.getCity());
+			tfcpCountry.setText(checkoutPaymentBean.getCountry());
+			tfcpPostalCode.setText(checkoutPaymentBean.getPostalCode());
+			tfcpPhoneNumber.setText(checkoutPaymentBean.getPhoneNumber());
+			tfcpCreditCardNumber.setText(checkoutPaymentBean.getCreditCard());
 		}
 	}
 
 	@FXML 
 	public void onInfoCreditEntered() {
-		lbl_cp_infoCredit.setOpacity(1f);
+		lblcpInfoCredit.setOpacity(1f);
 	}
 
 	@FXML 
 	public void onInfoCreditExited() {
-		lbl_cp_infoCredit.setOpacity(0f);
+		lblcpInfoCredit.setOpacity(0f);
 	}
 }

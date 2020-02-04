@@ -15,9 +15,9 @@ import logic.entity.Price;
 import javafx.scene.control.Button;
 
 public class CheckoutSummary_Boundary {	
-	@FXML private VBox vbox_products;
-	@FXML private Label tb_overallCost;
-	@FXML private Button btn_ConfirmProducts;
+	@FXML private VBox vboxProducts;
+	@FXML private Label tbOverallCost;
+	@FXML private Button btnConfirmProducts;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	private ArrayList<Float> prices;
@@ -33,21 +33,21 @@ public class CheckoutSummary_Boundary {
 	public void displayCart() {
 		prices = new ArrayList<Float>();
 		
-		tb_overallCost.setText(Price.toText(0f) + " €");
-		vbox_products.getChildren().clear();
+		tbOverallCost.setText(Price.toText(0f) + " €");
+		vboxProducts.getChildren().clear();
 		int cartSize = buyBeerBean.cartSize();
 		
 		if(cartSize == 0) {
-			btn_ConfirmProducts.setDisable(true);
+			btnConfirmProducts.setDisable(true);
 		} else {
-			btn_ConfirmProducts.setDisable(false);
+			btnConfirmProducts.setDisable(false);
 			try {
 				for(int i = 0; i < buyBeerBean.cartSize(); i++) {
 					PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_SUMMARY_ELEMENT);
 					CheckoutSummaryElement_Boundary cseBoundary = (CheckoutSummaryElement_Boundary) pageLoader.getController();
 					prices.add(0f);
 					cseBoundary.setElement(this, i);
-					vbox_products.getChildren().add(pageLoader.getRootView());
+					vboxProducts.getChildren().add(pageLoader.getRootView());
 				}
 			} catch (IOException ioe) {
 				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
@@ -63,7 +63,7 @@ public class CheckoutSummary_Boundary {
 			overallPrice += f;
 		}
 		
-		tb_overallCost.setText(Price.toText(overallPrice) + " €");
+		tbOverallCost.setText(Price.toText(overallPrice) + " €");
 	}
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {

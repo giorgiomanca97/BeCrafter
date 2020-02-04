@@ -14,15 +14,15 @@ import logic.designclasses.PageLoader;
 import logic.entity.Price;
 
 public class CheckOrder_Boundary {
-	@FXML private TextField tf_order;
-	@FXML private Label lbl_order;
-	@FXML private Label lbl_date;
-	@FXML private Label lbl_price;
-	@FXML private Label lbl_email;
-	@FXML private Label lbl_shippingCode;
-	@FXML private Label lbl_shippingCompany;
-	@FXML private Label lbl_warning;
-	@FXML private VBox vb_products;
+	@FXML private TextField tfOrder;
+	@FXML private Label lblOrder;
+	@FXML private Label lblDate;
+	@FXML private Label lblPrice;
+	@FXML private Label lblEmail;
+	@FXML private Label lblShippingCode;
+	@FXML private Label lblShippingCompany;
+	@FXML private Label lblWarning;
+	@FXML private VBox vbProducts;
 	
 	private CheckOrder_Bean checkOrderBean;
 	
@@ -30,13 +30,13 @@ public class CheckOrder_Boundary {
 	public void initialize() {
 		checkOrderBean = new CheckOrder_Bean();
 		
-		lbl_order.setText("");
-		lbl_date.setText("");
-		lbl_price.setText("");
-		lbl_email.setText("");
-		lbl_shippingCode.setText("");
-		lbl_shippingCompany.setText("");
-		lbl_warning.setText("");
+		lblOrder.setText("");
+		lblDate.setText("");
+		lblPrice.setText("");
+		lblEmail.setText("");
+		lblShippingCode.setText("");
+		lblShippingCompany.setText("");
+		lblWarning.setText("");
 	}
 	
 	@FXML
@@ -51,25 +51,25 @@ public class CheckOrder_Boundary {
 	
 	@FXML
 	public void onSearchPressed() {
-		lbl_warning.setText("");
+		lblWarning.setText("");
 
 		try {
-			checkOrderBean.searchOrder(tf_order.getText());
+			checkOrderBean.searchOrder(tfOrder.getText());
 			
-			lbl_order.setText(checkOrderBean.getOrderId());
-			lbl_date.setText(checkOrderBean.getDate());
-			lbl_price.setText(Price.toText(checkOrderBean.getPrice()) + " €");
-			lbl_email.setText(checkOrderBean.getEmail());
-			lbl_shippingCode.setText(checkOrderBean.getShippingCode());
-			lbl_shippingCompany.setText(checkOrderBean.getShippingCompany());
+			lblOrder.setText(checkOrderBean.getOrderId());
+			lblDate.setText(checkOrderBean.getDate());
+			lblPrice.setText(Price.toText(checkOrderBean.getPrice()) + " €");
+			lblEmail.setText(checkOrderBean.getEmail());
+			lblShippingCode.setText(checkOrderBean.getShippingCode());
+			lblShippingCompany.setText(checkOrderBean.getShippingCompany());
 		} catch (OrderNotFoundException onfe) {
-			lbl_warning.setText("no order found with this order code");
-			lbl_order.setText("");
-			lbl_date.setText("");
-			lbl_price.setText("");
-			lbl_email.setText("");
-			lbl_shippingCode.setText("");
-			lbl_shippingCompany.setText("");
+			lblWarning.setText("no order found with this order code");
+			lblOrder.setText("");
+			lblDate.setText("");
+			lblPrice.setText("");
+			lblEmail.setText("");
+			lblShippingCode.setText("");
+			lblShippingCompany.setText("");
 		}
 	}
 	

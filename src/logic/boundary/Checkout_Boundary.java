@@ -12,10 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import logic.designclasses.PageLoader;
 
 public class Checkout_Boundary {	
-	@FXML private Label tb_summary;
-	@FXML private Label tb_payment;
-	@FXML private Label tb_confirmation;
-	@FXML private AnchorPane ap_checkout;
+	@FXML private Label tbSummary;
+	@FXML private Label tbPayment;
+	@FXML private Label tbConfirmation;
+	@FXML private AnchorPane apCheckout;
 	
 	private String orderId;
 	
@@ -35,25 +35,25 @@ public class Checkout_Boundary {
 				pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_SUMMARY);
 				CheckoutSummary_Boundary csBoundary = (CheckoutSummary_Boundary) pageLoader.getController();
 				csBoundary.setCheckoutBoundary(this);
-				greenLabels.add(tb_summary);
-				blackLabels.add(tb_payment);
-				blackLabels.add(tb_confirmation);
+				greenLabels.add(tbSummary);
+				blackLabels.add(tbPayment);
+				blackLabels.add(tbConfirmation);
 				break;
 			case PAYMENT:
 				pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_PAYMENT);
 				CheckoutPayment_Boundary cpBoundary = (CheckoutPayment_Boundary) pageLoader.getController();
 				cpBoundary.setCheckoutBoundary(this);
-				blackLabels.add(tb_summary);
-				greenLabels.add(tb_payment);
-				blackLabels.add(tb_confirmation);
+				blackLabels.add(tbSummary);
+				greenLabels.add(tbPayment);
+				blackLabels.add(tbConfirmation);
 				break;
 			case CONFIRMATION:
 				pageLoader = new PageLoader(PageLoader.Page.CHECKOUT_CONFIRMATION);
 				CheckoutConfirmation_Boundary ccBoundary = (CheckoutConfirmation_Boundary) pageLoader.getController();
 				ccBoundary.setCheckoutBoundary(this);
-				blackLabels.add(tb_summary);
-				blackLabels.add(tb_payment);
-				greenLabels.add(tb_confirmation);
+				blackLabels.add(tbSummary);
+				blackLabels.add(tbPayment);
+				greenLabels.add(tbConfirmation);
 				break;
 			}
 			
@@ -65,8 +65,8 @@ public class Checkout_Boundary {
 			}
 			
 			if(pageLoader != null) {
-				ap_checkout.getChildren().clear();
-				ap_checkout.getChildren().add(pageLoader.getRootView());
+				apCheckout.getChildren().clear();
+				apCheckout.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "Page loading error");

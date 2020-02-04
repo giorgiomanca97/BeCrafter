@@ -25,7 +25,7 @@
             <HBox style="-fx-border-color: #707070;">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="tb_summary" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Summary">
+                  <Label fx:id="tbSummary" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Summary">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -38,7 +38,7 @@
             <HBox layoutX="1180.0" layoutY="10.0" style="-fx-border-color: #707070;">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="tb_payment" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Payment">
+                  <Label fx:id="tbPayment" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Payment">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -51,7 +51,7 @@
             <HBox layoutX="1180.0" layoutY="10.0" style="-fx-border-color: #707070;">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="tb_confirmation" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Confirmation">
+                  <Label fx:id="tbConfirmation" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" text="Confirmation">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -63,6 +63,6 @@
             </HBox>
          </children>
       </HBox>
-      <AnchorPane fx:id="ap_checkout" layoutX="599.0" layoutY="125.0" prefHeight="540.0" prefWidth="626.0" style="-fx-border-color: #707070;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="125.0" />
+      <AnchorPane fx:id="apCheckout" layoutX="599.0" layoutY="125.0" prefHeight="540.0" prefWidth="626.0" style="-fx-border-color: #707070;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="125.0" />
    </children>
 </AnchorPane>

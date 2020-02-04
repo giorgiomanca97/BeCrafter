@@ -19,16 +19,16 @@ import logic.entity.Price;
 import logic.entity.Volume;
 
 public class BuyBeer_Boundary {		
-	@FXML private Label tb_beer_name;
-	@FXML private Label tb_beer_cc;
-	@FXML private Label tb_beer_desc;
-	@FXML private Label tb_total_price;
-	@FXML private ImageView img_back;
-	@FXML private ImageView img_beer_container;
-	@FXML private ImageView img_sub;
-	@FXML private ImageView img_add;
-	@FXML private Button btn_add_to_cart;
-	@FXML private TextField tf_quantity;
+	@FXML private Label tbBeerName;
+	@FXML private Label tbBeerVolume;
+	@FXML private Label tbBeerDesc;
+	@FXML private Label tbTotalPrice;
+	@FXML private ImageView imgBack;
+	@FXML private ImageView imgBeerContainer;
+	@FXML private ImageView imgSub;
+	@FXML private ImageView imgAdd;
+	@FXML private Button btnAddToCart;
+	@FXML private TextField tfQuantity;
 	
 	private BuyBeer_Bean buyBeerBean;
 	
@@ -38,8 +38,8 @@ public class BuyBeer_Boundary {
 		buyBeerBean.loadSelectedProduct();
 		buyBeerBean.setQuantity(1);
 		
-		tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
-		tb_beer_name.setText(buyBeerBean.getBeerName());
+		tfQuantity.setText(String.valueOf(buyBeerBean.getQuantity()));
+		tbBeerName.setText(buyBeerBean.getBeerName());
 		
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(buyBeerBean.getContainerType().toString());
@@ -51,11 +51,11 @@ public class BuyBeer_Boundary {
 		stringBuilder.append(buyBeerBean.getBeerFiltering().toString());
 		stringBuilder.append("  -  ");
 		stringBuilder.append(Volume.toText(buyBeerBean.getContainerVolume()) + " €");
-		tb_beer_cc.setText(stringBuilder.toString());
+		tbBeerVolume.setText(stringBuilder.toString());
 		
-		tb_beer_desc.setText(buyBeerBean.getBeerDescription());
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
-		img_beer_container.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
+		tbBeerDesc.setText(buyBeerBean.getBeerDescription());
+		tbTotalPrice.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
+		imgBeerContainer.setImage(BeerImageLoader.loadImage(buyBeerBean.getContainerType()));
 	}
 	
 		
@@ -76,7 +76,7 @@ public class BuyBeer_Boundary {
 			q = 1;
 		}
 		buyBeerBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
+		tfQuantity.setText(String.valueOf(q));
 		setTotalPrice();
 	}
 
@@ -84,10 +84,10 @@ public class BuyBeer_Boundary {
 	@FXML 
 	public void onQuantityChange() {
 		try {
-			int q = Integer.parseUnsignedInt(tf_quantity.getText());
+			int q = Integer.parseUnsignedInt(tfQuantity.getText());
 			buyBeerBean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(buyBeerBean.getQuantity()));
+			tfQuantity.setText(String.valueOf(buyBeerBean.getQuantity()));
 		}
 		setTotalPrice();
 	}
@@ -97,12 +97,12 @@ public class BuyBeer_Boundary {
 	public void onAddPressed() {
 		int q = buyBeerBean.getQuantity() + 1;
 		buyBeerBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
+		tfQuantity.setText(String.valueOf(q));
 		setTotalPrice();
 	}
 	
 	private void setTotalPrice() {
-		tb_total_price.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
+		tbTotalPrice.setText(Price.toText(buyBeerBean.getPrice() * buyBeerBean.getQuantity()) + " €");
 	}
 	
 	@FXML 

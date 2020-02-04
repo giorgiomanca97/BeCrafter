@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class CheckoutConfirmation_Boundary {
-	@FXML private Label tb_order_code;
+	@FXML private Label tbOrderCode;
 	
 	private Checkout_Boundary checkoutBoundary = null;
 	
@@ -16,7 +16,7 @@ public class CheckoutConfirmation_Boundary {
 	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
 		this.checkoutBoundary = checkoutBoundary;
-		tb_order_code.setText(checkoutBoundary.getOrderId());
+		tbOrderCode.setText(checkoutBoundary.getOrderId());
 	}
 
 	@FXML 
