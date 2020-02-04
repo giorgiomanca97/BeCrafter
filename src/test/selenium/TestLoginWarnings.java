@@ -25,30 +25,30 @@ public class TestLoginWarnings {
 		
 		String testEmail = "test@provider.org";
 		String testPass = "TestPass1";
-		
-		String xpathEmail = "//*[@id=\"email\"]";
-		String xpathPass = "//*[@id=\"password\"]";
-		String xpathLoginButton = "/html/body/div[1]/form/input[1]";
-		String xpathErrorField = "/html/body/div[1]/form/p";
+				
+		By byEmail = By.xpath("//*[@id=\"email\"]");
+		By byPassword = By.xpath("//*[@id=\"password\"]");
+		By byLoginButton = By.xpath("/html/body/div[1]/form/input[1]");
+		By byErrorField = By.xpath("/html/body/div[1]/form/p");
 		
 		try {
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 			webDriver = new ChromeDriver();
 			webDriver.get("http://localhost:8080/BeCrafter/login.jsp");
 			
-			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passField = webDriver.findElement(By.xpath(xpathPass));
-			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
+			emailField = webDriver.findElement(byEmail);
+			passField = webDriver.findElement(byPassword);
+			loginButton = webDriver.findElement(byLoginButton);
 			
 			emailField.clear();
 			loginButton.click();
 			
 			Thread.sleep(1000);
 			
-			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passField = webDriver.findElement(By.xpath(xpathPass));
-			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
-			errorField = webDriver.findElement(By.xpath(xpathErrorField));
+			emailField = webDriver.findElement(byEmail);
+			passField = webDriver.findElement(byPassword);
+			loginButton = webDriver.findElement(byLoginButton);
+			errorField = webDriver.findElement(byErrorField);
 			
 			emailField.clear();
 			actualFirst = errorField.getText();
@@ -58,10 +58,10 @@ public class TestLoginWarnings {
 			
 			Thread.sleep(1000);
 			
-			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passField = webDriver.findElement(By.xpath(xpathPass));
-			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
-			errorField = webDriver.findElement(By.xpath(xpathErrorField));
+			emailField = webDriver.findElement(byEmail);
+			passField = webDriver.findElement(byPassword);
+			loginButton = webDriver.findElement(byLoginButton);
+			errorField = webDriver.findElement(byErrorField);
 			
 			emailField.clear();
 			actualSecond = errorField.getText();

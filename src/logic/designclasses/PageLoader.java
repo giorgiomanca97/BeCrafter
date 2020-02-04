@@ -14,6 +14,7 @@ public class PageLoader {
 	private Object rootViev;
 	private String title;
 	private Stage stage;
+	private static String errorMessage = "Page loading error";
 	
 	
 	public PageLoader(String resource, String title) throws IOException {
@@ -77,7 +78,7 @@ public class PageLoader {
 	
 	
 	public static String getErrorMessage() {
-		return "Page loading error";
+		return errorMessage;
 	}
 	
 	
