@@ -54,54 +54,16 @@ public class Storehouse {
     	List<Product> result = new ArrayList<>();
     	List<Product> all = getAllProducts();
     	
-    	List<BeerType> btChoice;
-    	List<BeerColor> bcChoice;
-    	List<ContainerType> ctChoice;
-    	List<BeerFiltering> bfChoice;
-    	
-    	if(beerTypes == null || beerTypes.size()==0) {
-    		btChoice = new ArrayList<>();
-    		for(BeerType beerType: BeerType.values()) {
-    			btChoice.add(beerType);
-    		}
-    	} else {
-    		btChoice = beerTypes;
-    	}
-    	
-    	if(beerColors == null || beerColors.size()==0) {
-    		bcChoice = new ArrayList<>();
-    		for(BeerColor beerColor: BeerColor.values()) {
-    			bcChoice.add(beerColor);
-    		}
-    	} else {
-    		bcChoice = beerColors;
-    	}
-    	
-    	if(containerTypes == null || containerTypes.size()==0) {
-    		ctChoice = new ArrayList<>();
-    		for(ContainerType containerType: ContainerType.values()) {
-    			ctChoice.add(containerType);
-    		}
-    	} else {
-    		ctChoice = containerTypes;
-    	}
-    	
-    	if(beerFilterings == null || beerFilterings.size()==0) {
-    		bfChoice = new ArrayList<>();
-    		for(BeerFiltering beerFiltering: BeerFiltering.values()) {
-    			bfChoice.add(beerFiltering);
-    		}
-    	} else {
-    		bfChoice = beerFilterings;
-    	}
-    	
     	for (Product product : all) {
     		BeerType beerType = product.getBeer().getType();
     		BeerColor beerColor = product.getBeer().getColor();
     		ContainerType containerType = product.getContainer().getType();
     		BeerFiltering beerFiltering = product.getBeer().getFiltering();
     		
-    		if(btChoice.contains(beerType) && bcChoice.contains(beerColor) && ctChoice.contains(containerType) && bfChoice.contains(beerFiltering)) {
+    		if(getBeerTypeSelection(beerTypes).contains(beerType) && 
+    		   getBeerColorSelection(beerColors).contains(beerColor) && 
+    		   getContainerTypeSelection(containerTypes).contains(containerType) && 
+    		   getBeerFilteringSelection(beerFilterings).contains(beerFiltering)) {
     			result.add(product);
     		}
 		}
@@ -125,6 +87,66 @@ public class Storehouse {
     	}
     	
     	return result;
+    }
+    
+    private List<BeerType> getBeerTypeSelection(List<BeerType> beerTypes){
+    	List<BeerType> btChoice;
+    	
+    	if(beerTypes == null || beerTypes.size()==0) {
+    		btChoice = new ArrayList<>();
+    		for(BeerType beerType: BeerType.values()) {
+    			btChoice.add(beerType);
+    		}
+    	} else {
+    		btChoice = beerTypes;
+    	}
+    	
+    	return btChoice;
+    }
+    
+    private List<BeerColor> getBeerColorSelection(List<BeerColor> beerColors) {
+    	List<BeerColor> bcChoice;
+    	
+    	if(beerColors == null || beerColors.size()==0) {
+    		bcChoice = new ArrayList<>();
+    		for(BeerColor beerColor: BeerColor.values()) {
+    			bcChoice.add(beerColor);
+    		}
+    	} else {
+    		bcChoice = beerColors;
+    	}
+    	
+    	return bcChoice;
+    }
+    
+    private List<ContainerType> getContainerTypeSelection(List<ContainerType> containerTypes){
+    	List<ContainerType> ctChoice;
+    	
+    	if(containerTypes == null || containerTypes.size()==0) {
+    		ctChoice = new ArrayList<>();
+    		for(ContainerType containerType: ContainerType.values()) {
+    			ctChoice.add(containerType);
+    		}
+    	} else {
+    		ctChoice = containerTypes;
+    	}
+    	
+    	return ctChoice;
+    }
+    
+    private List<BeerFiltering> getBeerFilteringSelection(List<BeerFiltering> beerFilterings){
+    	List<BeerFiltering> bfChoice;
+    	
+    	if(beerFilterings == null || beerFilterings.size()==0) {
+    		bfChoice = new ArrayList<>();
+    		for(BeerFiltering beerFiltering: BeerFiltering.values()) {
+    			bfChoice.add(beerFiltering);
+    		}
+    	} else {
+    		bfChoice = beerFilterings;
+    	}
+    	
+    	return bfChoice;
     }
     
     
@@ -225,29 +247,31 @@ public class Storehouse {
     @Override
     public String toString() {
     	StringBuilder stringBuilder = new StringBuilder();
+    	String newLine = "\n";
+    	String end = "): \n";
     	int i;
     	
     	i = 1;
-    	stringBuilder.append("\nRaw Materials (" + rawMaterials.size() + "): \n");
+    	stringBuilder.append("\nRaw Materials (" + rawMaterials.size() + end);
     	for (Storable s : rawMaterials.getAll()) {
-    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + newLine);
     		i++;
 		}
     	
     	i = 1;
-    	stringBuilder.append("\nContainers (" + containers.size() + "): \n");
+    	stringBuilder.append("\nContainers (" + containers.size() + end);
     	for (Storable s : containers.getAll()) {
-    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + newLine);
     		i++;
 		}
     	
     	i = 1;
-    	stringBuilder.append("\nProducts (" + products.size() + "): \n");
+    	stringBuilder.append("\nProducts (" + products.size() + end);
     	for (Storable s : products.getAll()) {
-    		stringBuilder.append(i + ": " + s.toString() + "\n");
+    		stringBuilder.append(i + ": " + s.toString() + newLine);
     		i++;
 		}
-    	stringBuilder.append("\n");
+    	stringBuilder.append(newLine);
     	
     	return stringBuilder.toString();
     }
