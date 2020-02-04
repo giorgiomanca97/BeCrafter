@@ -8,44 +8,44 @@ import error.login.WrongPasswordException;
 import logic.Login_Controller;
 
 public class Login_Bean {
-	private String l_email;
-	private String l_password;	
+	private String lEmail;
+	private String lPassword;	
 	
 	
 	public Login_Bean() {
-		l_email = "";
-		l_password = "";
+		lEmail = "";
+		lPassword = "";
 	}
 
 
 	// Getters and Setters
 	public String getEmail() {
-		return l_email;
+		return lEmail;
 	}
 
 	public void setEmail(String email) {
-		this.l_email = email;
+		this.lEmail = email;
 	}
 
 
 	public String getPassword() {
-		return l_password;
+		return lPassword;
 	}
 	
 	public void setPassword(String password) {
-		this.l_password = password;
+		this.lPassword = password;
 	}
 	// ==============================
 	
 	
 	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException, IllegalCharacterException {
-		if(l_email.length() == 0 || l_password.length() == 0) {
+		if(lEmail.length() == 0 || lPassword.length() == 0) {
 			throw new EmptyFieldException();
 		}
-		if(l_email.contains("'") || l_password.contains("'")) {
+		if(lEmail.contains("'") || lPassword.contains("'")) {
 			throw new IllegalCharacterException();
 		}
 		
-		Login_Controller.getInstance().login(l_email, l_password);
+		Login_Controller.getInstance().login(lEmail, lPassword);
 	}
 }

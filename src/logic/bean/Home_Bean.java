@@ -16,131 +16,131 @@ import logic.entity.Registered;
 import logic.entity.Volume;
 
 public class Home_Bean {
-	private String h_beerId;
-	private String h_beerName;
-	private BeerType h_beerType;
-	private BeerColor h_beerColor;
-	private float h_beerAlcohol;
-	private BeerFiltering h_beerFiltering;
-	private String h_beerDescription;
-	private ContainerType h_containerType;
-	private int h_containerVolume;
-	private float h_price;
-	private int h_quantity;
+	private String hBeerId;
+	private String hBeerName;
+	private BeerType hBeerType;
+	private BeerColor hBeerColor;
+	private float hBeerAlcohol;
+	private BeerFiltering hBeerFiltering;
+	private String hBeerDescription;
+	private ContainerType hContainerType;
+	private int hContainerVolume;
+	private float hPrice;
+	private int hQuantity;
 	
 	
 	public Home_Bean() {
-		h_beerId = "";
-		h_beerName = "";
-		h_beerType = null;
-		h_beerColor = null;
-		h_beerAlcohol = 0f;
-		h_beerFiltering = null;
-		h_beerDescription = "";
-		h_containerType = null;
-		h_containerVolume = 0;
-		h_price = 0f;
-		h_quantity = 0;
+		hBeerId = "";
+		hBeerName = "";
+		hBeerType = null;
+		hBeerColor = null;
+		hBeerAlcohol = 0f;
+		hBeerFiltering = null;
+		hBeerDescription = "";
+		hContainerType = null;
+		hContainerVolume = 0;
+		hPrice = 0f;
+		hQuantity = 0;
 	}
 	
 	
 	// Getters and Setters
 	public String getBeerId() {
-		return h_beerId;
+		return hBeerId;
 	}
 
 	public void setBeerId(String beerId) {
-		this.h_beerId = beerId;
+		this.hBeerId = beerId;
 	}
 
 	
 	public String getBeerName() {
-		return h_beerName;
+		return hBeerName;
 	}
 
 	public void setBeerName(String beerName) {
-		this.h_beerName = beerName;
+		this.hBeerName = beerName;
 	}
 
 	
 	public BeerType getBeerType() {
-		return h_beerType;
+		return hBeerType;
 	}
 
 	public void setBeerType(BeerType beerType) {
-		this.h_beerType = beerType;
+		this.hBeerType = beerType;
 	}
 
 
 	public BeerColor getBeerColor() {
-		return h_beerColor;
+		return hBeerColor;
 	}
 
 	public void setBeerColor(BeerColor beerColor) {
-		this.h_beerColor = beerColor;
+		this.hBeerColor = beerColor;
 	}
 
 
 	public float getBeerAlcohol() {
-		return h_beerAlcohol;
+		return hBeerAlcohol;
 	}
 
 	public void setBeerAlcohol(float beerAlcohol) {
-		this.h_beerAlcohol = beerAlcohol;
+		this.hBeerAlcohol = beerAlcohol;
 	}
 
 
 	public BeerFiltering getBeerFiltering() {
-		return h_beerFiltering;
+		return hBeerFiltering;
 	}
 
 	public void setBeerFiltering(BeerFiltering beerFiltering) {
-		this.h_beerFiltering = beerFiltering;
+		this.hBeerFiltering = beerFiltering;
 	}
 
 	
 	public String getBeerDescription() {
-		return h_beerDescription;
+		return hBeerDescription;
 	}
 
 	public void setBeerDescription(String beerDescription) {
-		this.h_beerDescription = beerDescription;
+		this.hBeerDescription = beerDescription;
 	}
 	
 
 	public ContainerType getContainerType() {
-		return h_containerType;
+		return hContainerType;
 	}
 
 	public void setContainerType(ContainerType containerType) {
-		this.h_containerType = containerType;
+		this.hContainerType = containerType;
 	}
 
 
 	public int getContainerVolume() {
-		return h_containerVolume;
+		return hContainerVolume;
 	}
 
 	public void setContainerVolume(int containerVolume) {
-		this.h_containerVolume = containerVolume;
+		this.hContainerVolume = containerVolume;
 	}
 
 
 	public float getPrice() {
-		return h_price;
+		return hPrice;
 	}
 
 	public void setPrice(float price) {
-		this.h_price = price;
+		this.hPrice = price;
 	}
 	
 	
 	public int getQuantity() {
-		return h_quantity;
+		return hQuantity;
 	}
 
 	public void setQuantity(int quantity) {
-		this.h_quantity = quantity;
+		this.hQuantity = quantity;
 	}
 	// ==============================
 	
@@ -155,22 +155,22 @@ public class Home_Bean {
 	
 	public void loadDisplayedProductAt(int index) {
 		Product product = Home_Controller.getInstance().getDisplayedProductsAt(index);
-		h_beerId = product.getBeer().getId();
-		h_beerName = product.getBeer().getName();
-		h_beerType = product.getBeer().getType();
-		h_beerColor = product.getBeer().getColor();
-		h_beerAlcohol = product.getBeer().getAlcoholContent();
-		h_beerFiltering = product.getBeer().getFiltering();
-		h_beerDescription = product.getBeer().getDescription();
-		h_containerType = product.getContainer().getType();
-		h_containerVolume = product.getContainer().getVolume();
-		h_price = product.getPrice();
-		h_quantity = product.getQuantity();
+		hBeerId = product.getBeer().getId();
+		hBeerName = product.getBeer().getName();
+		hBeerType = product.getBeer().getType();
+		hBeerColor = product.getBeer().getColor();
+		hBeerAlcohol = product.getBeer().getAlcoholContent();
+		hBeerFiltering = product.getBeer().getFiltering();
+		hBeerDescription = product.getBeer().getDescription();
+		hContainerType = product.getContainer().getType();
+		hContainerVolume = product.getContainer().getVolume();
+		hPrice = product.getPrice();
+		hQuantity = product.getQuantity();
 	}
 	
 	public void selectForSaleProduct() throws ProductNotFoundException {
-		Volume volume = new Volume(h_containerVolume);
-		BuyBeer_Controller.getInstance().selectProductForSale(h_beerId, h_containerType, volume);
+		Volume volume = new Volume(hContainerVolume);
+		BuyBeer_Controller.getInstance().selectProductForSale(hBeerId, hContainerType, volume);
 	}
 	
 	public String loggedCustomer() {

@@ -6,76 +6,76 @@ import logic.designclasses.IdConverter;
 import logic.entity.Order;
 
 public class CheckOrder_Bean {
-	private String co_orderId;
-	private String co_date;
-	private float co_price;
-	private String co_email;
-	private String co_shippingCode;
-	private String co_shippingCompany;
+	private String coOrderId;
+	private String coDate;
+	private float coPrice;
+	private String coEmail;
+	private String coShippingCode;
+	private String coShippingCompany;
 	
 	
 	public CheckOrder_Bean() {
-		co_orderId = "";
-		co_date = "";
-		co_price = 0f;
-		co_email = "";
-		co_shippingCode = "";
-		co_shippingCompany = "";
+		coOrderId = "";
+		coDate = "";
+		coPrice = 0f;
+		coEmail = "";
+		coShippingCode = "";
+		coShippingCompany = "";
 	}
 	
 	
 	// Getters and Setters
 	public String getOrderId() {
-		return co_orderId;
+		return coOrderId;
 	}
 	
 	public void setOrderId(String orderId) {
-		this.co_orderId = orderId;
+		this.coOrderId = orderId;
 	}
 	
 	
 	public String getDate() {
-		return co_date;
+		return coDate;
 	}
 	
 	public void setDate(String date) {
-		this.co_date = date;
+		this.coDate = date;
 	}
 	
 	
 	public float getPrice() {
-		return co_price;
+		return coPrice;
 	}
 	
 	public void setPrice(float price) {
-		this.co_price = price;
+		this.coPrice = price;
 	}
 	
 	
 	public String getEmail() {
-		return co_email;
+		return coEmail;
 	}
 	
 	public void setEmail(String email) {
-		this.co_email = email;
+		this.coEmail = email;
 	}
 	
 	
 	public String getShippingCode() {
-		return co_shippingCode;
+		return coShippingCode;
 	}
 	
 	public void setShippingCode(String shippingCode) {
-		this.co_shippingCode = shippingCode;
+		this.coShippingCode = shippingCode;
 	}
 	
 	
 	public String getShippingCompany() {
-		return co_shippingCompany;
+		return coShippingCompany;
 	}
 	
 	public void setShippingCompany(String shippingCompany) {
-		this.co_shippingCompany = shippingCompany;
+		this.coShippingCompany = shippingCompany;
 	}
 	// ==============================
 	
@@ -86,19 +86,19 @@ public class CheckOrder_Bean {
 		}
 		
 		Order order = CheckOrder_Controller.getInstance().searchOrder(id);
-		co_orderId = order.getId();
-		co_date = order.getDate();
-		co_price = order.getPrice();
-		co_email = order.getEmail();
-		co_shippingCode = order.getShippingCode();
-		co_shippingCompany = order.getShippingCompany();
+		coOrderId = order.getId();
+		coDate = order.getDate();
+		coPrice = order.getPrice();
+		coEmail = order.getEmail();
+		coShippingCode = order.getShippingCode();
+		coShippingCompany = order.getShippingCompany();
 		
-		if(co_shippingCode.length() == 0) {
-			co_shippingCode = "not yet available";
+		if(coShippingCode.length() == 0) {
+			coShippingCode = "not yet available";
 		}
 		
-		if(co_shippingCompany.length() == 0) {
-			co_shippingCompany = "not yet available";
+		if(coShippingCompany.length() == 0) {
+			coShippingCompany = "not yet available";
 		}
 	}
 	

@@ -19,120 +19,120 @@ import logic.entity.BillingInfo;
 import logic.entity.Registered;
 
 public class CheckoutPayment_Bean{
-	private String cp_email;
-	private String cp_password;
-	private String cp_firstName;
-	private String cp_lastName;
-	private String cp_address;
-	private String cp_city;
-	private String cp_country;
-	private String cp_postalCode;
-	private String cp_phoneNumber;
-	private String cp_creditCard;
+	private String cpEmail;
+	private String cpPassword;
+	private String cpFirstName;
+	private String cpLastName;
+	private String cpAddress;
+	private String cpCity;
+	private String cpCountry;
+	private String cpPostalCode;
+	private String cpPhoneNumber;
+	private String cpCreditCard;
 	
 	
 	public CheckoutPayment_Bean() {
-		cp_email = "";
-		cp_password = "";
-		cp_firstName = "";
-		cp_lastName = "";
-		cp_address = "";
-		cp_city = "";
-		cp_country = "";
-		cp_postalCode = "";
-		cp_phoneNumber = "";
-		cp_creditCard = "";
+		cpEmail = "";
+		cpPassword = "";
+		cpFirstName = "";
+		cpLastName = "";
+		cpAddress = "";
+		cpCity = "";
+		cpCountry = "";
+		cpPostalCode = "";
+		cpPhoneNumber = "";
+		cpCreditCard = "";
 	}
 
 
 	// Getters and Setters
 	public String getEmail() {
-		return cp_email;
+		return cpEmail;
 	}
 
 	public void setEmail(String email) {
-		this.cp_email = email;
+		this.cpEmail = email;
 	}
 
 
 	public String getPassword() {
-		return cp_password;
+		return cpPassword;
 	}
 
 	public void setPassword(String password) {
-		this.cp_password = password;
+		this.cpPassword = password;
 	}
 
 
 	public String getFirstName() {
-		return cp_firstName;
+		return cpFirstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.cp_firstName = firstName;
+		this.cpFirstName = firstName;
 	}
 
 
 	public String getLastName() {
-		return cp_lastName;
+		return cpLastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.cp_lastName = lastName;
+		this.cpLastName = lastName;
 	}
 
 
 	public String getAddress() {
-		return cp_address;
+		return cpAddress;
 	}
 
 	public void setAddress(String address) {
-		this.cp_address = address;
+		this.cpAddress = address;
 	}
 
 
 	public String getCity() {
-		return cp_city;
+		return cpCity;
 	}
 
 	public void setCity(String city) {
-		this.cp_city = city;
+		this.cpCity = city;
 	}
 
 
 	public String getCountry() {
-		return cp_country;
+		return cpCountry;
 	}
 
 	public void setCountry(String country) {
-		this.cp_country = country;
+		this.cpCountry = country;
 	}
 
 
 	public String getPostalCode() {
-		return cp_postalCode;
+		return cpPostalCode;
 	}
 
 	public void setPostalCode(String postalCode) {
-		this.cp_postalCode = postalCode;
+		this.cpPostalCode = postalCode;
 	}
 
 
 	public String getPhoneNumber() {
-		return cp_phoneNumber;
+		return cpPhoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.cp_phoneNumber = phoneNumber;
+		this.cpPhoneNumber = phoneNumber;
 	}
 
 
 	public String getCreditCard() {
-		return cp_creditCard;
+		return cpCreditCard;
 	}
 
 	public void setCreditCard(String creditCard) {
-		this.cp_creditCard = creditCard;
+		this.cpCreditCard = creditCard;
 	}
 	// ==============================
 	
@@ -151,80 +151,80 @@ public class CheckoutPayment_Bean{
 		Registered registered = Login_Controller.getInstance().getLoggedCustomer();
 		
 		if(registered != null) {
-			this.cp_email = registered.getEmail();
-			this.cp_firstName = registered.getBillingInfo().getFirstName();
-			this.cp_lastName = registered.getBillingInfo().getLastName();
-			this.cp_address = registered.getBillingInfo().getAddress();
-			this.cp_city = registered.getBillingInfo().getCity();
-			this.cp_country = registered.getBillingInfo().getCountry();
-			this.cp_postalCode = registered.getBillingInfo().getPostalCode();
-			this.cp_phoneNumber = registered.getBillingInfo().getPhone();
-			this.cp_creditCard = registered.getBillingInfo().getCard();
+			this.cpEmail = registered.getEmail();
+			this.cpFirstName = registered.getBillingInfo().getFirstName();
+			this.cpLastName = registered.getBillingInfo().getLastName();
+			this.cpAddress = registered.getBillingInfo().getAddress();
+			this.cpCity = registered.getBillingInfo().getCity();
+			this.cpCountry = registered.getBillingInfo().getCountry();
+			this.cpPostalCode = registered.getBillingInfo().getPostalCode();
+			this.cpPhoneNumber = registered.getBillingInfo().getPhone();
+			this.cpCreditCard = registered.getBillingInfo().getCard();
 		} else {
 			throw new LoginException();
 		}
 	}
 	
 	public String confirmPurchase() throws EmptyCartException, InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
-		if(cp_email.length() == 0) {
+		if(cpEmail.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
-		if(!cp_email.contains("@")) {
+		if(!cpEmail.contains("@")) {
 			throw new InvalidEmailException();
 		}
 		
 		BillingInfo billingInfo = getBillingInfo();
 		
-		return BuyBeer_Controller.getInstance().confirmPurchase(cp_email, billingInfo);
+		return BuyBeer_Controller.getInstance().confirmPurchase(cpEmail, billingInfo);
 	}
 	
 	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException, IllegalCharacterException {
-		if(cp_email.length() == 0 || cp_password.length() == 0) {
+		if(cpEmail.length() == 0 || cpPassword.length() == 0) {
 			throw new EmptyFieldException();
 		}
-		if(cp_email.contains("'") || cp_password.contains("'")) {
+		if(cpEmail.contains("'") || cpPassword.contains("'")) {
 			throw new IllegalCharacterException();
 		}
 		
-		Login_Controller.getInstance().login(cp_email, cp_password);
+		Login_Controller.getInstance().login(cpEmail, cpPassword);
 	}
 		
 	
 	private BillingInfo getBillingInfo() throws EmptyFieldException, IllegalCharacterException, WrongFieldException {
 		BillingInfo billingInfo = new BillingInfo();
 		
-		if(cp_firstName.length() == 0 || cp_lastName.length() == 0 || cp_address.length() == 0 || 
-				cp_city.length() == 0 || cp_country.length() == 0 || cp_postalCode.length() == 0 || 
-		   		cp_phoneNumber.length() == 0 || cp_creditCard.length() == 0) {
+		if(cpFirstName.length() == 0 || cpLastName.length() == 0 || cpAddress.length() == 0 || 
+				cpCity.length() == 0 || cpCountry.length() == 0 || cpPostalCode.length() == 0 || 
+		   		cpPhoneNumber.length() == 0 || cpCreditCard.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
-		if(cp_firstName.contains("'") || cp_lastName.contains("'") || cp_address.contains("'") || 
-				cp_city.contains("'") || cp_country.contains("'") || cp_postalCode.contains("'") || 
-		   		cp_phoneNumber.contains("'") || cp_creditCard.contains("'")) {
+		if(cpFirstName.contains("'") || cpLastName.contains("'") || cpAddress.contains("'") || 
+				cpCity.contains("'") || cpCountry.contains("'") || cpPostalCode.contains("'") || 
+		   		cpPhoneNumber.contains("'") || cpCreditCard.contains("'")) {
 			throw new IllegalCharacterException();
 		}
 		
-		if(!CheckHelper.isOnlyLetters(cp_firstName) ||
-		   !CheckHelper.isOnlyLetters(cp_lastName) || 
-		   !CheckHelper.isValidString(cp_address) ||
-		   !CheckHelper.isOnlyLetters(cp_city) ||
-		   !CheckHelper.isOnlyLetters(cp_country) ||
-		   !CheckHelper.isOnlyDigits(cp_postalCode) ||
-		   !CheckHelper.isValidPhoneNumber(cp_phoneNumber) ||
-		   !CheckHelper.isValidCreditCard(cp_creditCard)) {
+		if(!CheckHelper.isOnlyLetters(cpFirstName) ||
+		   !CheckHelper.isOnlyLetters(cpLastName) || 
+		   !CheckHelper.isValidString(cpAddress) ||
+		   !CheckHelper.isOnlyLetters(cpCity) ||
+		   !CheckHelper.isOnlyLetters(cpCountry) ||
+		   !CheckHelper.isOnlyDigits(cpPostalCode) ||
+		   !CheckHelper.isValidPhoneNumber(cpPhoneNumber) ||
+		   !CheckHelper.isValidCreditCard(cpCreditCard)) {
 			throw new WrongFieldException();
 		}
 		
-		billingInfo.setFirstName(cp_firstName);
-		billingInfo.setLastName(cp_lastName);
-		billingInfo.setAddress(cp_address);
-		billingInfo.setCity(cp_city);
-		billingInfo.setCountry(cp_country);
-		billingInfo.setPostalCode(cp_postalCode);
-		billingInfo.setPhone(cp_phoneNumber);
-		billingInfo.setCard(cp_creditCard);
+		billingInfo.setFirstName(cpFirstName);
+		billingInfo.setLastName(cpLastName);
+		billingInfo.setAddress(cpAddress);
+		billingInfo.setCity(cpCity);
+		billingInfo.setCountry(cpCountry);
+		billingInfo.setPostalCode(cpPostalCode);
+		billingInfo.setPhone(cpPhoneNumber);
+		billingInfo.setCard(cpCreditCard);
 		
 		return billingInfo;
 	}

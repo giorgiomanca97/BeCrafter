@@ -13,189 +13,189 @@ import logic.designclasses.CheckHelper;
 import logic.entity.BillingInfo;
 
 public class Register_Bean {
-	private String r_email;
-	private String r_password;
-	private String r_confirmPassword;
-	private String r_firstName;
-	private String r_lastName;
-	private String r_address;
-	private String r_city;
-	private String r_country;
-	private String r_postalCode;
-	private String r_phoneNumber;
-	private String r_creditCard;
+	private String rEmail;
+	private String rPassword;
+	private String rConfirmPassword;
+	private String rFirstName;
+	private String rLastName;
+	private String rAddress;
+	private String rCity;
+	private String rCountry;
+	private String rPostalCode;
+	private String rPhoneNumber;
+	private String rCreditCard;
 	
 	
 	public Register_Bean() {
-		r_email = "";
-		r_password = "";
-		r_confirmPassword = "";
-		r_firstName = "";
-		r_lastName = "";
-		r_address = "";
-		r_city = "";
-		r_country = "";
-		r_postalCode = "";
-		r_phoneNumber = "";
-		r_phoneNumber = "";
-		r_creditCard = "";
+		rEmail = "";
+		rPassword = "";
+		rConfirmPassword = "";
+		rFirstName = "";
+		rLastName = "";
+		rAddress = "";
+		rCity = "";
+		rCountry = "";
+		rPostalCode = "";
+		rPhoneNumber = "";
+		rPhoneNumber = "";
+		rCreditCard = "";
 	}
 
 
 	// Getters and Setters
 	public String getEmail() {
-		return r_email;
+		return rEmail;
 	}
 
 	public void setEmail(String email) {
-		this.r_email = email;
+		this.rEmail = email;
 	}
 
 
 	public String getPassword() {
-		return r_password;
+		return rPassword;
 	}
 
 	public void setPassword(String password) {
-		this.r_password = password;
+		this.rPassword = password;
 	}
 
 	
 	public String getConfirmPassword() {
-		return r_confirmPassword;
+		return rConfirmPassword;
 	}
 
 	public void setConfirmPassword(String password) {
-		this.r_confirmPassword = password;
+		this.rConfirmPassword = password;
 	}
 	
 
 	public String getFirstName() {
-		return r_firstName;
+		return rFirstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.r_firstName = firstName;
+		this.rFirstName = firstName;
 	}
 
 
 	public String getLastName() {
-		return r_lastName;
+		return rLastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.r_lastName = lastName;
+		this.rLastName = lastName;
 	}
 
 
 	public String getAddress() {
-		return r_address;
+		return rAddress;
 	}
 
 	public void setAddress(String address) {
-		this.r_address = address;
+		this.rAddress = address;
 	}
 
 
 	public String getCity() {
-		return r_city;
+		return rCity;
 	}
 
 	public void setCity(String city) {
-		this.r_city = city;
+		this.rCity = city;
 	}
 
 
 	public String getCountry() {
-		return r_country;
+		return rCountry;
 	}
 
 	public void setCountry(String country) {
-		this.r_country = country;
+		this.rCountry = country;
 	}
 
 
 	public String getPostalCode() {
-		return r_postalCode;
+		return rPostalCode;
 	}
 
 	public void setPostalCode(String postalCode) {
-		this.r_postalCode = postalCode;
+		this.rPostalCode = postalCode;
 	}
 
 
 	public String getPhoneNumber() {
-		return r_phoneNumber;
+		return rPhoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.r_phoneNumber = phoneNumber;
+		this.rPhoneNumber = phoneNumber;
 	}
 
 
 	public String getCreditCard() {
-		return r_creditCard;
+		return rCreditCard;
 	}
 
 	public void setCreditCard(String creditCard) {
-		this.r_creditCard = creditCard;
+		this.rCreditCard = creditCard;
 	}
 	// ==============================
 	
 	
 	public void register() throws InvalidEmailException, UsedEmailException, InvalidPasswordException, EmptyFieldException, IllegalCharacterException, WrongFieldException, PasswordMatchingException {
-		if(r_email.length() == 0 || r_password.length() == 0 || r_confirmPassword.length() == 0) {
+		if(rEmail.length() == 0 || rPassword.length() == 0 || rConfirmPassword.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
-		if(r_email.contains("'") || r_password.contains("'") || r_confirmPassword.contains("'")) {
+		if(rEmail.contains("'") || rPassword.contains("'") || rConfirmPassword.contains("'")) {
 			throw new IllegalCharacterException();
 		}
 		
-		if(!r_password.equals(r_confirmPassword)) {
+		if(!rPassword.equals(rConfirmPassword)) {
 			throw new PasswordMatchingException();
 		}
 		
 		BillingInfo billingInfo = getBillingInfo();
 		
-		Login_Controller.getInstance().register(r_email, r_password, billingInfo);
+		Login_Controller.getInstance().register(rEmail, rPassword, billingInfo);
 	}
 	
 	
 	private BillingInfo getBillingInfo() throws EmptyFieldException, IllegalCharacterException, WrongFieldException {
 		BillingInfo billingInfo = new BillingInfo();
 		
-		if(r_firstName.length() == 0 || r_lastName.length() == 0 || r_address.length() == 0 || 
-				r_city.length() == 0 || r_country.length() == 0 || r_postalCode.length() == 0 || 
-		   		r_phoneNumber.length() == 0 || r_creditCard.length() == 0) {
+		if(rFirstName.length() == 0 || rLastName.length() == 0 || rAddress.length() == 0 || 
+				rCity.length() == 0 || rCountry.length() == 0 || rPostalCode.length() == 0 || 
+		   		rPhoneNumber.length() == 0 || rCreditCard.length() == 0) {
 			throw new EmptyFieldException();
 		}
 		
-		if(r_firstName.contains("'") || r_lastName.contains("'") || r_address.contains("'") || 
-				r_city.contains("'") || r_country.contains("'") || r_postalCode.contains("'") || 
-		   		r_phoneNumber.contains("'") || r_creditCard.contains("'")) {
+		if(rFirstName.contains("'") || rLastName.contains("'") || rAddress.contains("'") || 
+				rCity.contains("'") || rCountry.contains("'") || rPostalCode.contains("'") || 
+		   		rPhoneNumber.contains("'") || rCreditCard.contains("'")) {
 			throw new IllegalCharacterException();
 		}
 		
-		if(!CheckHelper.isOnlyLetters(r_firstName) ||
-		   !CheckHelper.isOnlyLetters(r_lastName) || 
-		   !CheckHelper.isValidString(r_address) ||
-		   !CheckHelper.isOnlyLetters(r_city) ||
-		   !CheckHelper.isOnlyLetters(r_country) ||
-		   !CheckHelper.isOnlyDigits(r_postalCode) ||
-		   !CheckHelper.isValidPhoneNumber(r_phoneNumber) ||
-		   !CheckHelper.isValidCreditCard(r_creditCard)) {
+		if(!CheckHelper.isOnlyLetters(rFirstName) ||
+		   !CheckHelper.isOnlyLetters(rLastName) || 
+		   !CheckHelper.isValidString(rAddress) ||
+		   !CheckHelper.isOnlyLetters(rCity) ||
+		   !CheckHelper.isOnlyLetters(rCountry) ||
+		   !CheckHelper.isOnlyDigits(rPostalCode) ||
+		   !CheckHelper.isValidPhoneNumber(rPhoneNumber) ||
+		   !CheckHelper.isValidCreditCard(rCreditCard)) {
 			throw new WrongFieldException();
 		}
 		
-		billingInfo.setFirstName(r_firstName);
-		billingInfo.setLastName(r_lastName);
-		billingInfo.setAddress(r_address);
-		billingInfo.setCity(r_city);
-		billingInfo.setCountry(r_country);
-		billingInfo.setPostalCode(r_postalCode);
-		billingInfo.setPhone(r_phoneNumber);
-		billingInfo.setCard(r_creditCard);
+		billingInfo.setFirstName(rFirstName);
+		billingInfo.setLastName(rLastName);
+		billingInfo.setAddress(rAddress);
+		billingInfo.setCity(rCity);
+		billingInfo.setCountry(rCountry);
+		billingInfo.setPostalCode(rPostalCode);
+		billingInfo.setPhone(rPhoneNumber);
+		billingInfo.setCard(rCreditCard);
 		
 		return billingInfo;
 	}

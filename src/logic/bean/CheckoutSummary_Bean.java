@@ -12,136 +12,136 @@ import logic.entity.Product;
 import logic.entity.Volume;
 
 public class CheckoutSummary_Bean{
-	private String cs_beerId;
-	private String cs_beerName;
-	private BeerType cs_beerType;
-	private BeerColor cs_beerColor;
-	private float cs_beerAlcohol;
-	private BeerFiltering cs_beerFiltering;
-	private ContainerType cs_containerType;
-	private int cs_containerVolume;
-	private float cs_price;
-	private int cs_quantity;
+	private String csBeerId;
+	private String csBeerName;
+	private BeerType csBeerType;
+	private BeerColor csBeerColor;
+	private float csBeerAlcohol;
+	private BeerFiltering csBeerFiltering;
+	private ContainerType csContainerType;
+	private int csContainerVolume;
+	private float csPrice;
+	private int csQuantity;
 	
 	
 	public CheckoutSummary_Bean() {
-		cs_beerId = "";
-		cs_beerName = "";
-		cs_beerType = null;
-		cs_beerColor = null;
-		cs_beerAlcohol = 0f;
-		cs_beerFiltering = null;
-		cs_containerType = null;
-		cs_containerVolume = 0;
-		cs_price = 0f;
-		cs_quantity = 0;
+		csBeerId = "";
+		csBeerName = "";
+		csBeerType = null;
+		csBeerColor = null;
+		csBeerAlcohol = 0f;
+		csBeerFiltering = null;
+		csContainerType = null;
+		csContainerVolume = 0;
+		csPrice = 0f;
+		csQuantity = 0;
 	}
 
 
 	// Getters and Setters
 	public String getBeerId() {
-		return cs_beerId;
+		return csBeerId;
 	}
 
 	public void setBeerId(String beerId) {
-		this.cs_beerId = beerId;
+		this.csBeerId = beerId;
 	}
 
 	
 	public String getBeerName() {
-		return cs_beerName;
+		return csBeerName;
 	}
 
 	public void setBeerName(String beerName) {
-		this.cs_beerName = beerName;
+		this.csBeerName = beerName;
 	}
 
 	
 	public BeerType getBeerType() {
-		return cs_beerType;
+		return csBeerType;
 	}
 
 	public void setBeerType(BeerType beerType) {
-		this.cs_beerType = beerType;
+		this.csBeerType = beerType;
 	}
 
 
 	public BeerColor getBeerColor() {
-		return cs_beerColor;
+		return csBeerColor;
 	}
 
 	public void setBeerColor(BeerColor beerColor) {
-		this.cs_beerColor = beerColor;
+		this.csBeerColor = beerColor;
 	}
 
 
 	public float getBeerAlcohol() {
-		return cs_beerAlcohol;
+		return csBeerAlcohol;
 	}
 
 	public void setBeerAlcohol(float beerAlcohol) {
-		this.cs_beerAlcohol = beerAlcohol;
+		this.csBeerAlcohol = beerAlcohol;
 	}
 
 
 	public BeerFiltering getBeerFiltering() {
-		return cs_beerFiltering;
+		return csBeerFiltering;
 	}
 
 	public void setBeerFiltering(BeerFiltering beerFiltering) {
-		this.cs_beerFiltering = beerFiltering;
+		this.csBeerFiltering = beerFiltering;
 	}
 	
 
 	public ContainerType getContainerType() {
-		return cs_containerType;
+		return csContainerType;
 	}
 
 	public void setContainerType(ContainerType containerType) {
-		this.cs_containerType = containerType;
+		this.csContainerType = containerType;
 	}
 
 
 	public int getContainerVolume() {
-		return cs_containerVolume;
+		return csContainerVolume;
 	}
 
 	public void setContainerVolume(int containerVolume) {
-		this.cs_containerVolume = containerVolume;
+		this.csContainerVolume = containerVolume;
 	}
 
 
 	public float getPrice() {
-		return cs_price;
+		return csPrice;
 	}
 
 	public void setPrice(float price) {
-		this.cs_price = price;
+		this.csPrice = price;
 	}
 	
 	
 	public int getQuantity() {
-		return cs_quantity;
+		return csQuantity;
 	}
 
 	public void setQuantity(int quantity) {
-		this.cs_quantity = quantity;
+		this.csQuantity = quantity;
 	}
 	// ==============================
 	
 	
 	public void loadSelectedProduct() {
 		Product product = BuyBeer_Controller.getInstance().getSelectedProduct();
-		cs_beerId = product.getBeer().getId();
-		cs_beerName = product.getBeer().getName();
-		cs_beerType = product.getBeer().getType();
-		cs_beerColor = product.getBeer().getColor();
-		cs_beerAlcohol = product.getBeer().getAlcoholContent();
-		cs_beerFiltering = product.getBeer().getFiltering();
-		cs_containerType = product.getContainer().getType();
-		cs_containerVolume = product.getContainer().getVolume();
-		cs_price = product.getPrice();
-		cs_quantity = product.getQuantity();
+		csBeerId = product.getBeer().getId();
+		csBeerName = product.getBeer().getName();
+		csBeerType = product.getBeer().getType();
+		csBeerColor = product.getBeer().getColor();
+		csBeerAlcohol = product.getBeer().getAlcoholContent();
+		csBeerFiltering = product.getBeer().getFiltering();
+		csContainerType = product.getContainer().getType();
+		csContainerVolume = product.getContainer().getVolume();
+		csPrice = product.getPrice();
+		csQuantity = product.getQuantity();
 	}
 	
 	public boolean selectProductInCart(int index) {		
@@ -153,12 +153,12 @@ public class CheckoutSummary_Bean{
 	}
 	
 	public void updateProductInsideCart() throws ProductNotFoundException, StorableIllegalQuantityException {
-		Volume volume = new Volume(cs_containerVolume);
-		BuyBeer_Controller.getInstance().updateProductInsideCart(cs_beerId, cs_containerType, volume, cs_quantity);
+		Volume volume = new Volume(csContainerVolume);
+		BuyBeer_Controller.getInstance().updateProductInsideCart(csBeerId, csContainerType, volume, csQuantity);
 	}
 	
 	public void removeProductFromCart() throws ProductNotFoundException {
-		Volume volume = new Volume(cs_containerVolume);
-		BuyBeer_Controller.getInstance().removeProductFromCart(cs_beerId, cs_containerType, volume);
+		Volume volume = new Volume(csContainerVolume);
+		BuyBeer_Controller.getInstance().removeProductFromCart(csBeerId, csContainerType, volume);
 	}
 }

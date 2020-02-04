@@ -12,138 +12,138 @@ import logic.entity.Product;
 import logic.entity.Volume;
 
 public class BuyBeer_Bean {
-	private String bb_beerId;
-	private String bb_beerName;
-	private BeerType bb_beerType;
-	private BeerColor bb_beerColor;
-	private float bb_beerAlcohol;
-	private BeerFiltering bb_beerFiltering;
-	private String bb_beerDescription;
-	private ContainerType bb_containerType;
-	private int bb_containerVolume;
-	private float bb_price;
-	private int bb_quantity;
+	private String bbBeerId;
+	private String bbBeerName;
+	private BeerType bbBeerType;
+	private BeerColor bbBeerColor;
+	private float bbBeerAlcohol;
+	private BeerFiltering bbBeerFiltering;
+	private String bbBeerDescription;
+	private ContainerType bbContainerType;
+	private int bbContainerVolume;
+	private float bbPrice;
+	private int bbQuantity;
 	
 	
 	public BuyBeer_Bean() {
-		bb_beerId = "";
-		bb_beerName = "";
-		bb_beerType = null;
-		bb_beerColor = null;
-		bb_beerAlcohol = 0f;
-		bb_beerFiltering = null;
-		bb_beerDescription = "";
-		bb_containerType = null;
-		bb_containerVolume = 0;
-		bb_price = 0f;
-		bb_quantity = 0;
+		bbBeerId = "";
+		bbBeerName = "";
+		bbBeerType = null;
+		bbBeerColor = null;
+		bbBeerAlcohol = 0f;
+		bbBeerFiltering = null;
+		bbBeerDescription = "";
+		bbContainerType = null;
+		bbContainerVolume = 0;
+		bbPrice = 0f;
+		bbQuantity = 0;
 	}
 
 
 	// Getters and Setters
 	public String getBeerId() {
-		return bb_beerId;
+		return bbBeerId;
 	}
 
 	public void setBeerId(String beerId) {
-		this.bb_beerId = beerId;
+		this.bbBeerId = beerId;
 	}
 
 	
 	public String getBeerName() {
-		return bb_beerName;
+		return bbBeerName;
 	}
 
 	public void setBeerName(String beerName) {
-		this.bb_beerName = beerName;
+		this.bbBeerName = beerName;
 	}
 
 	
 	public BeerType getBeerType() {
-		return bb_beerType;
+		return bbBeerType;
 	}
 
 	public void setBeerType(BeerType beerType) {
-		this.bb_beerType = beerType;
+		this.bbBeerType = beerType;
 	}
 
 
 	public BeerColor getBeerColor() {
-		return bb_beerColor;
+		return bbBeerColor;
 	}
 
 	public void setBeerColor(BeerColor beerColor) {
-		this.bb_beerColor = beerColor;
+		this.bbBeerColor = beerColor;
 	}
 
 
 	public float getBeerAlcohol() {
-		return bb_beerAlcohol;
+		return bbBeerAlcohol;
 	}
 
 	public void setBeerAlcohol(float beerAlcohol) {
-		this.bb_beerAlcohol = beerAlcohol;
+		this.bbBeerAlcohol = beerAlcohol;
 	}
 
 
 	public BeerFiltering getBeerFiltering() {
-		return bb_beerFiltering;
+		return bbBeerFiltering;
 	}
 
 	public void setBeerFiltering(BeerFiltering beerFiltering) {
-		this.bb_beerFiltering = beerFiltering;
+		this.bbBeerFiltering = beerFiltering;
 	}
 
 	
 	public String getBeerDescription() {
-		return bb_beerDescription;
+		return bbBeerDescription;
 	}
 
 	public void setBeerDescription(String beerDescription) {
-		this.bb_beerDescription = beerDescription;
+		this.bbBeerDescription = beerDescription;
 	}
 	
 
 	public ContainerType getContainerType() {
-		return bb_containerType;
+		return bbContainerType;
 	}
 
 	public void setContainerType(ContainerType containerType) {
-		this.bb_containerType = containerType;
+		this.bbContainerType = containerType;
 	}
 
 
 	public int getContainerVolume() {
-		return bb_containerVolume;
+		return bbContainerVolume;
 	}
 
 	public void setContainerVolume(int containerVolume) {
-		this.bb_containerVolume = containerVolume;
+		this.bbContainerVolume = containerVolume;
 	}
 
 
 	public float getPrice() {
-		return bb_price;
+		return bbPrice;
 	}
 
 	public void setPrice(float price) {
-		this.bb_price = price;
+		this.bbPrice = price;
 	}
 	
 	
 	public int getQuantity() {
-		return bb_quantity;
+		return bbQuantity;
 	}
 
 	public void setQuantity(int quantity) {
-		this.bb_quantity = quantity;
+		this.bbQuantity = quantity;
 	}
 	// ==============================
 	
 	
 	public void selectProductForSale() throws ProductNotFoundException {
-		Volume volume = new Volume(bb_containerVolume);
-		BuyBeer_Controller.getInstance().selectProductForSale(bb_beerId, bb_containerType, volume);
+		Volume volume = new Volume(bbContainerVolume);
+		BuyBeer_Controller.getInstance().selectProductForSale(bbBeerId, bbContainerType, volume);
 	}
 	
 	public boolean loadSelectedProduct() {
@@ -153,28 +153,28 @@ public class BuyBeer_Bean {
 			return false;
 		}
 		
-		bb_beerId = product.getBeer().getId();
-		bb_beerName = product.getBeer().getName();
-		bb_beerType = product.getBeer().getType();
-		bb_beerColor = product.getBeer().getColor();
-		bb_beerAlcohol = product.getBeer().getAlcoholContent();
-		bb_beerFiltering = product.getBeer().getFiltering();
-		bb_beerDescription = product.getBeer().getDescription();
-		bb_containerType = product.getContainer().getType();
-		bb_containerVolume = product.getContainer().getVolume();
-		bb_price = product.getPrice();
-		bb_quantity = product.getQuantity();
+		bbBeerId = product.getBeer().getId();
+		bbBeerName = product.getBeer().getName();
+		bbBeerType = product.getBeer().getType();
+		bbBeerColor = product.getBeer().getColor();
+		bbBeerAlcohol = product.getBeer().getAlcoholContent();
+		bbBeerFiltering = product.getBeer().getFiltering();
+		bbBeerDescription = product.getBeer().getDescription();
+		bbContainerType = product.getContainer().getType();
+		bbContainerVolume = product.getContainer().getVolume();
+		bbPrice = product.getPrice();
+		bbQuantity = product.getQuantity();
 		
 		return true;
 	}
 	
 	public void addProductToCart() throws ProductNotFoundException, StorableIllegalQuantityException {
-		if(bb_quantity <= 0) {
+		if(bbQuantity <= 0) {
 			throw new StorableIllegalQuantityException();
 		}
 		
-		Volume volume = new Volume(bb_containerVolume);
-		BuyBeer_Controller.getInstance().addProductToCart(bb_beerId, bb_containerType, volume, bb_quantity);
+		Volume volume = new Volume(bbContainerVolume);
+		BuyBeer_Controller.getInstance().addProductToCart(bbBeerId, bbContainerType, volume, bbQuantity);
 	}
 
 }
