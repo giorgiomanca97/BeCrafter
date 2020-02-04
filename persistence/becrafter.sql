@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `shippingCode` varchar(50) DEFAULT NULL,
   `shippingCompany` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dump dei dati della tabella becrafter.orders: ~1 rows (circa)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
