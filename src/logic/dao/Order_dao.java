@@ -87,7 +87,7 @@ public class Order_dao {
             		order.setShippingCode(rs.getString(tableOrdersColShipCode));
             		order.setShippingCompany(rs.getString(tableOrdersColShipComp));
             		
-            		File file = new File("C:\\Becrafter\\persistence\\orders\\" + orderId);
+            		File file = new File(DaoHelper.getRootPath() + "/persistence/orders/" + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
             		          		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
@@ -158,7 +158,7 @@ public class Order_dao {
 	
 		
 	private static void saveOrderData(Order order) throws IOException {		
-		File file = new File("C:\\Becrafter\\persistence\\orders\\" + order.getId());
+		File file = new File(DaoHelper.getRootPath() + "/persistence/orders/" + order.getId());
 		
 		if(file.createNewFile()) {
 			try (

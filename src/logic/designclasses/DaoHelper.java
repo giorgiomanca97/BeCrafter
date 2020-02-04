@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -44,6 +45,15 @@ public class DaoHelper {
 		return driverClassName;
 	}
 		
+	public static String getRootPath() {
+		try {
+			return new URI("C:/BeCrafter").toString();
+		} catch (Exception e) {
+			Logger.getGlobal().log(Level.SEVERE, e.toString());
+			return null;
+		}
+		
+	}
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(driverClassName);
