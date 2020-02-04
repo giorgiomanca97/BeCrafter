@@ -153,10 +153,30 @@ public class DaoHelper {
 	        }
 		}
 	}
-		
+	
+	
 	public enum StatementMode {
 		READ,
 		WRITE;
 	}
 	
+	public enum QueryWord{
+		SELECT("SELECT"),
+		FROM("FROM"),
+		DELETE("DELETE FROM"),
+		VALUES("VALUES"),
+		INSERT("INSERT INTO"),
+		UPDATE("UPDATE");
+		
+		private String word;
+		
+		private QueryWord(String word) {
+			this.word = word;
+		}
+		
+		@Override
+		public String toString() {
+			return this.word;
+		}
+	}
 }
