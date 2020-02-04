@@ -3,29 +3,29 @@ package logic.entity;
 import java.text.DecimalFormat;
 
 public class Price {
-	private float price;
+	private float priceValue;
 	private static DecimalFormat formatter = new DecimalFormat("#0.00");
 	
 	public Price() {
-		this.price = 0;
+		this.priceValue = 0;
 	}
 	
 	public Price(float price) {
-		this.price = price;
+		this.priceValue = price;
 	}
 	
 	
 	public float getPrice() {
-		return price;
+		return priceValue;
 	}
 
 	public void setPrice(float price) {
-		this.price = price;
+		this.priceValue = price;
 	}
 	
 	@Override
 	public String toString() {
-		return formatter.format(this.price);
+		return formatter.format(this.priceValue);
 	}
 	
 	

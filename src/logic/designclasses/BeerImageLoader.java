@@ -9,6 +9,12 @@ public class BeerImageLoader {
 	private static final String IMAGE_CAN_FILEPATH = "/res/icons/beer_can.png";
 	private static final String IMAGE_BARREL_FILEPATH = "/res/icons/beer_barrel.png";
 	
+	
+	private BeerImageLoader() {
+		
+	}
+	
+	
 	public static Image loadImage(ContainerType type) {
 		Image image = null;
 		switch(type) {
