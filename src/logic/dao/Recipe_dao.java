@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import error.TextParseException;
-import logic.designclasses.DaoHelper;
 import logic.entity.RawMaterial;
 import logic.entity.Recipe;
 
@@ -44,7 +43,7 @@ public class Recipe_dao {
 	public static List<Recipe> getAllRecipes(){
 		List<Recipe> result = new ArrayList<>();
 		
-		File directory = new File(DaoHelper.getRecipesFolderPath());
+		File directory = new File("C:\\Becrafter\\persistence\\recipes");
 		File[] files = directory.listFiles();
 		
 		for (File file : files) {
@@ -57,7 +56,7 @@ public class Recipe_dao {
 	}
 	
 	public static Recipe getRecipeById(String id) {
-		File file = new File(DaoHelper.getRecipesFolderPath() + DaoHelper.getFolderSeparator() + id);
+		File file = new File("C:\\Becrafter\\persistence\\recipes\\" + id);
 		
 		if(file.exists()) {
 			return getRecipe(file);

@@ -22,9 +22,6 @@ public class DaoHelper {
 	private static String dbURL = "jdbc:mariadb://localhost:3306/becrafter";
 	private static String driverClassName = "org.mariadb.jdbc.Driver";
 	
-	private static String ordersFolderPath = "C:\\Becrafter\\persistence\\orders";
-	private static String recipesFolderPath = "C:\\Becrafter\\persistence\\recipes";
-	private static String folderSep = "\\";
 	
 	private DaoHelper() {
 		
@@ -46,20 +43,7 @@ public class DaoHelper {
 	public static String getDriver() {
 		return driverClassName;
 	}
-	
-	
-	public static String getOrdersFolderPath() {
-		return ordersFolderPath;
-	}
-	
-	public static String getRecipesFolderPath() {
-		return recipesFolderPath;
-	}
-	
-	public static String getFolderSeparator() {
-		return folderSep;
-	}
-	
+		
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(driverClassName);
