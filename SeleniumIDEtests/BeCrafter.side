@@ -5,7 +5,7 @@
   "url": "http://localhost:8080/BeCrafter/index.jsp",
   "tests": [{
     "id": "0733134c-a79a-4012-893d-b3c529da063a",
-    "name": "Login",
+    "name": "Manca_Login",
     "commands": [{
       "id": "eddf7c63-b237-433e-aed0-084197736bc0",
       "comment": "",
@@ -89,7 +89,7 @@
     }]
   }, {
     "id": "9b69bdeb-e824-4f7f-864e-c367464ad798",
-    "name": "Check Order",
+    "name": "Bianchi_Check Order",
     "commands": [{
       "id": "7f0fcf22-492d-46ba-8d8e-63f447f0cfe3",
       "comment": "",

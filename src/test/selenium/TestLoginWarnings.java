@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestLoginWarnings {
 
+	// Giorgio Manca 0239067
 	public static void main(String[] args) {
 		String expectedWrong = "Email and Password do not match";
 		String expectedEmpty = "Please fill all the fields";
