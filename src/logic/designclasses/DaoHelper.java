@@ -158,4 +158,5 @@ public class DaoHelper {
 		READ,
 		WRITE;
 	}
+	
 }
