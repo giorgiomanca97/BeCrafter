@@ -58,32 +58,15 @@ public class DaoHelper {
 		}
 	}
 	
+	
 	public static void close(Connection conn, Statement stmt, List<ResultSet> rsList) {
 		if(rsList != null) {
 			for (ResultSet rs : rsList) {
-				if(rs != null) {
-					try {
-						rs.close();
-			        } catch (SQLException se) {
-			        	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
-			        }
-				}
+				close(rs);
 			}
 		}
-		if (stmt != null) {
-			try {
-				stmt.close();  
-	        } catch (SQLException se) {
-	        	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
-	        }
-		}
-        if(conn != null) {
-        	try {
-        		conn.close();
-            } catch (SQLException se) {
-            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
-            }
-        }
+		close(stmt);
+        close(conn);
 	}
 	
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
@@ -100,6 +83,36 @@ public class DaoHelper {
 		close(conn, stmt, new ArrayList<ResultSet>());
 	}
 	
+	
+	public static void close(ResultSet rs) {
+		if(rs != null) {
+			try {
+				rs.close();
+	        } catch (SQLException se) {
+	        	Logger.getGlobal().log(Level.WARNING, "ResultSet closure error");
+	        }
+		}
+	}
+	
+	public static void close(Statement stmt) {
+		if (stmt != null) {
+			try {
+				stmt.close();  
+	        } catch (SQLException se) {
+	        	Logger.getGlobal().log(Level.WARNING, "Statement closure error");
+	        }
+		}
+	}
+	
+	public static void close(Connection conn) {
+		if(conn != null) {
+        	try {
+        		conn.close();
+            } catch (SQLException se) {
+            	Logger.getGlobal().log(Level.WARNING, "Connection closure error");
+            }
+        }
+	}
 	
 	public static void close(InputStream inputStream) {
 		if(inputStream != null) {
