@@ -50,7 +50,7 @@ public class Login_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 
@@ -60,7 +60,7 @@ public class Login_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 	

@@ -17,6 +17,7 @@ public class BeerImageLoader {
 	
 	public static Image loadImage(ContainerType type) {
 		Image image = null;
+		
 		switch(type) {
 			case BOTTLE:
 				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BOTTLE_FILEPATH));
@@ -26,6 +27,8 @@ public class BeerImageLoader {
 				break;
 			case BARREL:
 				image = new Image(StandaloneCustomerMain.class.getResourceAsStream(IMAGE_BARREL_FILEPATH));
+				break;
+			default:
 				break;
 		}
 		

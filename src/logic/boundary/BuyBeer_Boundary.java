@@ -41,15 +41,16 @@ public class BuyBeer_Boundary {
 		tfQuantity.setText(String.valueOf(buyBeerBean.getQuantity()));
 		tbBeerName.setText(buyBeerBean.getBeerName());
 		
+		String sep = "  -  ";
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(buyBeerBean.getContainerType().toString());
-		stringBuilder.append("  -  ");
+		stringBuilder.append(sep);
 		stringBuilder.append(buyBeerBean.getBeerColor().toString());
-		stringBuilder.append("  -  ");
+		stringBuilder.append(sep);
 		stringBuilder.append(buyBeerBean.getBeerAlcohol() + "%");
-		stringBuilder.append("  -  ");
+		stringBuilder.append(sep);
 		stringBuilder.append(buyBeerBean.getBeerFiltering().toString());
-		stringBuilder.append("  -  ");
+		stringBuilder.append(sep);
 		stringBuilder.append(Volume.toText(buyBeerBean.getContainerVolume()) + " €");
 		tbBeerVolume.setText(stringBuilder.toString());
 		
@@ -65,7 +66,7 @@ public class BuyBeer_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 

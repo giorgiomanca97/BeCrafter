@@ -8,18 +8,14 @@ import javafx.fxml.FXML;
 import logic.designclasses.PageLoader;
 
 public class RegisterConfirmation_Boundary {
-	
-	public void initialize() {
-
-	}
-	
+		
 	@FXML 
 	public void onBackPressed() {
 		try {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 

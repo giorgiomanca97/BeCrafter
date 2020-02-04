@@ -76,6 +76,11 @@ public class PageLoader {
 	}
 	
 	
+	public static String getErrorMessage() {
+		return "Page loading error";
+	}
+	
+	
 	public enum Page{
 		BUYBEER("/res/fxml/BuyBeer_View.fxml", "Buy Beer"),
 		CHECKOUT("/res/fxml/Checkout_View.fxml", "Checkout"),

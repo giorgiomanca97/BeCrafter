@@ -45,28 +45,20 @@ public class Order_dao {
 	
 	private static OrderDataFetch getOrderData(File file) throws TextParseException {
 		OrderDataFetch result = null;
-		
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try {			
-			if(file.exists()) {
-				fileReader = new FileReader(file);
-				bufferedReader = new BufferedReader(fileReader);
 				
-				StringBuilder orderTextBuilder = new StringBuilder();
-				String line;
-				while ((line = bufferedReader.readLine()) != null){
-					orderTextBuilder.append(line + "\n");
-				}
-				
-				result = fetchOrderData(orderTextBuilder.toString());
+		try (
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+		) {							
+			StringBuilder orderTextBuilder = new StringBuilder();
+			String line;
+			while ((line = bufferedReader.readLine()) != null){
+				orderTextBuilder.append(line + "\n");
 			}
+			
+			result = fetchOrderData(orderTextBuilder.toString());
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
-		} finally {
-			DaoHelper.close(bufferedReader);
-			DaoHelper.close(fileReader);
 		}
 		
 		if(result == null) {
@@ -185,21 +177,15 @@ public class Order_dao {
 	private static void saveOrderData(Order order) {
 		File file = new File(ordersFolderPath + folderSep + order.getId());
 		
-		FileWriter fileWriter = null;
-		BufferedWriter bufferedWriter = null;
-		
-		try {
+		try (
+			FileWriter fileWriter = new FileWriter(file);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		) {
 			if(file.createNewFile()) {
-				fileWriter = new FileWriter(file);
-				bufferedWriter = new BufferedWriter(fileWriter);
-				
 				bufferedWriter.write(printOrderData(order));
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File writing error");
-		} finally {
-			DaoHelper.close(bufferedWriter);
-			DaoHelper.close(fileWriter);
 		}
 	}
 	

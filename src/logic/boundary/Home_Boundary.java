@@ -105,7 +105,7 @@ public class Home_Boundary {
 				tpProducts.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 	
@@ -138,7 +138,7 @@ public class Home_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKOUT);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 
@@ -149,7 +149,7 @@ public class Home_Boundary {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 				pageLoader.showOnPrimaryStage();
 			} catch (IOException ioe) {
-				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+				Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 			}
 		}
 	}
@@ -171,7 +171,7 @@ public class Home_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.CHECKORDER);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 	

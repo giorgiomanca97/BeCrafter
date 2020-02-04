@@ -27,11 +27,11 @@ public class TestLogin_Controller {
 	public void testLogin() {
 		String message = "";
 		String email = "test@provider.org";
-		String password = "TestPass1";
+		String pass = "TestPass1";
 		
 		Login_Bean loginBean = new Login_Bean();
 		loginBean.setEmail(email);
-		loginBean.setPassword(password);
+		loginBean.setPassword(pass);
 		
 		try {
 			loginBean.login();

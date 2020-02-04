@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import error.TextParseException;
-import logic.designclasses.DaoHelper;
 import logic.entity.RawMaterial;
 import logic.entity.Recipe;
 
@@ -27,29 +26,21 @@ public class Recipe_dao {
 	private static Recipe getRecipe(File file) {
 		Recipe result = null;
 		
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try {			
-			if(file.exists()) {
-				fileReader = new FileReader(file);
-				bufferedReader = new BufferedReader(fileReader);
-				
-				StringBuilder recipeTextBuilder = new StringBuilder();
-				String line;
-				while ((line = bufferedReader.readLine()) != null){
-					recipeTextBuilder.append(line + "\n");
-				}
-				
-				result = textToRecipe(recipeTextBuilder.toString());
+		try (
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+		) {			
+			StringBuilder recipeTextBuilder = new StringBuilder();
+			String line;
+			while ((line = bufferedReader.readLine()) != null){
+				recipeTextBuilder.append(line + "\n");
 			}
+			
+			result = textToRecipe(recipeTextBuilder.toString());
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "File reading error");
 		} catch (TextParseException tpe) {
 			Logger.getGlobal().log(Level.SEVERE, "File parsing error");
-		} finally {
-			DaoHelper.close(bufferedReader);
-			DaoHelper.close(fileReader);
 		}
 		
 		return result;

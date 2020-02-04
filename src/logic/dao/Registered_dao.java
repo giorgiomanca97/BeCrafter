@@ -19,7 +19,7 @@ public class Registered_dao {
 	// Informazioni tabella ordini
 	private static String tableRegistered = "registered";
 	private static String tableRegisteredColEmail = "email";
-	private static String tableRegisteredColPassword = "password";
+	private static String tableRegisteredColPass = "password";
 	private static String tableRegisteredColFirstName = "firstName";
 	private static String tableRegisteredColLastName = "lastName";
 	private static String tableRegisteredColAddress = "address";
@@ -50,7 +50,7 @@ public class Registered_dao {
             if(rs.first()) {
             	do {
             		String email = rs.getString(tableRegisteredColEmail);
-            		String password = rs.getString(tableRegisteredColPassword);
+            		String password = rs.getString(tableRegisteredColPass);
             		            		
             		BillingInfo billingInfo = new BillingInfo();
             		billingInfo.setFirstName(rs.getString(tableRegisteredColFirstName));
@@ -135,7 +135,7 @@ public class Registered_dao {
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             BillingInfo bi = registered.getBillingInfo();
-            query = "UPDATE " + tableRegistered + " SET " + tableRegisteredColPassword + " = '" + registered.getPassword() + "', " + tableRegisteredColFirstName + " = '" + bi.getFirstName() + "', " + tableRegisteredColLastName + " = '" + bi.getLastName() + "', " + 
+            query = "UPDATE " + tableRegistered + " SET " + tableRegisteredColPass + " = '" + registered.getPassword() + "', " + tableRegisteredColFirstName + " = '" + bi.getFirstName() + "', " + tableRegisteredColLastName + " = '" + bi.getLastName() + "', " + 
 					tableRegisteredColAddress + " = '" + bi.getAddress() + "', " + tableRegisteredColCity + " = '" + bi.getCity() + "', " + tableRegisteredColCountry + " = '" + bi.getCountry() + "', " + tableRegisteredColPostalCode + " = '" + bi.getPostalCode() + 
 					tableRegisteredColPhoneNumber + " = '" + bi.getPhone() + "', " + tableRegisteredColCardNumber + " = '" + bi.getCard() + "' WHERE " + tableRegisteredColEmail + " = '" + registered.getEmail() + "';";
             

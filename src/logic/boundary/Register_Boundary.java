@@ -83,7 +83,7 @@ public class Register_Boundary {
 			} catch (PasswordMatchingException psm) {
 				lblError.setText("The password fields do not match");
 			} catch (IOException ioe) {
-				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+				Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 			}
 		} else {
 			lblError.setText("Please accept the agreement to register");
@@ -97,7 +97,7 @@ public class Register_Boundary {
 			PageLoader pageLoader = new PageLoader(PageLoader.Page.LOGIN);
 			pageLoader.showOnPrimaryStage();
 		} catch (IOException ioe) {
-			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 		}
 	}
 

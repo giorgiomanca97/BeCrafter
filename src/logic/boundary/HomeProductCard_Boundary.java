@@ -28,10 +28,6 @@ public class HomeProductCard_Boundary {
 	private Home_Bean homeBean;
 	
 	
-	public void initialize() {
-		
-	}
-	
 	public void loadProduct(int index) {
 		homeBean = new Home_Bean();
 		homeBean.loadDisplayedProductAt(index);
@@ -56,7 +52,7 @@ public class HomeProductCard_Boundary {
 			} catch (ProductNotFoundException e) {
 				Logger.getGlobal().log(Level.SEVERE, "Product not found");
 			} catch (IOException ioe) {
-				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+				Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 			}			
 		}
 	}

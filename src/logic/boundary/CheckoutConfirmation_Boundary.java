@@ -10,10 +10,6 @@ public class CheckoutConfirmation_Boundary {
 	private Checkout_Boundary checkoutBoundary = null;
 	
 	
-	public void initialize() {
-		
-	}
-	
 	public void setCheckoutBoundary(Checkout_Boundary checkoutBoundary) {
 		this.checkoutBoundary = checkoutBoundary;
 		tbOrderCode.setText(checkoutBoundary.getOrderId());

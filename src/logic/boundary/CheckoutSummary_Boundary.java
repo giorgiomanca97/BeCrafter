@@ -51,7 +51,7 @@ public class CheckoutSummary_Boundary {
 					vboxProducts.getChildren().add(pageLoader.getRootView());
 				}
 			} catch (IOException ioe) {
-				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
+				Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
 			}
 		}
 	}

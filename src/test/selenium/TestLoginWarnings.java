@@ -19,15 +19,15 @@ public class TestLoginWarnings {
 		String actualThird = "";
 		WebDriver webDriver = null;
 		WebElement emailField;
-		WebElement passwordField;
+		WebElement passField;
 		WebElement errorField;
 		WebElement loginButton;
 		
 		String testEmail = "test@provider.org";
-		String testPassword = "TestPass1";
+		String testPass = "TestPass1";
 		
 		String xpathEmail = "//*[@id=\"email\"]";
-		String xpathPassword = "//*[@id=\"password\"]";
+		String xpathPass = "//*[@id=\"password\"]";
 		String xpathLoginButton = "/html/body/div[1]/form/input[1]";
 		String xpathErrorField = "/html/body/div[1]/form/p";
 		
@@ -37,7 +37,7 @@ public class TestLoginWarnings {
 			webDriver.get("http://localhost:8080/BeCrafter/login.jsp");
 			
 			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			passField = webDriver.findElement(By.xpath(xpathPass));
 			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
 			
 			emailField.clear();
@@ -46,27 +46,27 @@ public class TestLoginWarnings {
 			Thread.sleep(1000);
 			
 			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			passField = webDriver.findElement(By.xpath(xpathPass));
 			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
 			errorField = webDriver.findElement(By.xpath(xpathErrorField));
 			
 			emailField.clear();
 			actualFirst = errorField.getText();
 			emailField.sendKeys("test@provider.org");
-			passwordField.sendKeys("WrongPassword");
+			passField.sendKeys("WrongPassword");
 			loginButton.click();
 			
 			Thread.sleep(1000);
 			
 			emailField = webDriver.findElement(By.xpath(xpathEmail));
-			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			passField = webDriver.findElement(By.xpath(xpathPass));
 			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
 			errorField = webDriver.findElement(By.xpath(xpathErrorField));
 			
 			emailField.clear();
 			actualSecond = errorField.getText();
 			emailField.sendKeys(testEmail);
-			passwordField.sendKeys(testPassword);
+			passField.sendKeys(testPass);
 			loginButton.click();
 			
 			Thread.sleep(1000);
