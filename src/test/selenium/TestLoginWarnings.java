@@ -23,24 +23,32 @@ public class TestLoginWarnings {
 		WebElement errorField;
 		WebElement loginButton;
 		
+		String testEmail = "test@provider.org";
+		String testPassword = "TestPass1";
+		
+		String xpathEmail = "//*[@id=\"email\"]";
+		String xpathPassword = "//*[@id=\"password\"]";
+		String xpathLoginButton = "/html/body/div[1]/form/input[1]";
+		String xpathErrorField = "/html/body/div[1]/form/p";
+		
 		try {
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 			webDriver = new ChromeDriver();
 			webDriver.get("http://localhost:8080/BeCrafter/login.jsp");
 			
-			emailField = webDriver.findElement(By.xpath("//*[@id=\"email\"]"));
-			passwordField = webDriver.findElement(By.xpath("//*[@id=\"password\"]"));
-			loginButton = webDriver.findElement(By.xpath("/html/body/div[1]/form/input[1]"));
+			emailField = webDriver.findElement(By.xpath(xpathEmail));
+			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
 			
 			emailField.clear();
 			loginButton.click();
 			
 			Thread.sleep(1000);
 			
-			emailField = webDriver.findElement(By.xpath("//*[@id=\"email\"]"));
-			passwordField = webDriver.findElement(By.xpath("//*[@id=\"password\"]"));
-			loginButton = webDriver.findElement(By.xpath("/html/body/div[1]/form/input[1]"));
-			errorField = webDriver.findElement(By.xpath("/html/body/div[1]/form/p"));
+			emailField = webDriver.findElement(By.xpath(xpathEmail));
+			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
+			errorField = webDriver.findElement(By.xpath(xpathErrorField));
 			
 			emailField.clear();
 			actualFirst = errorField.getText();
@@ -50,15 +58,15 @@ public class TestLoginWarnings {
 			
 			Thread.sleep(1000);
 			
-			emailField = webDriver.findElement(By.xpath("//*[@id=\"email\"]"));
-			passwordField = webDriver.findElement(By.xpath("//*[@id=\"password\"]"));
-			loginButton = webDriver.findElement(By.xpath("/html/body/div[1]/form/input[1]"));
-			errorField = webDriver.findElement(By.xpath("/html/body/div[1]/form/p"));
+			emailField = webDriver.findElement(By.xpath(xpathEmail));
+			passwordField = webDriver.findElement(By.xpath(xpathPassword));
+			loginButton = webDriver.findElement(By.xpath(xpathLoginButton));
+			errorField = webDriver.findElement(By.xpath(xpathErrorField));
 			
 			emailField.clear();
 			actualSecond = errorField.getText();
-			emailField.sendKeys("test@provider.org");
-			passwordField.sendKeys("TestPass1");
+			emailField.sendKeys(testEmail);
+			passwordField.sendKeys(testPassword);
 			loginButton.click();
 			
 			Thread.sleep(1000);
@@ -74,7 +82,7 @@ public class TestLoginWarnings {
 			}
 		}
 		
-		if( actualFirst.equals(expectedEmpty) && actualSecond.equals(expectedWrong) && actualThird.equals("test@provider.org") ) {
+		if( actualFirst.equals(expectedEmpty) && actualSecond.equals(expectedWrong) && actualThird.equals(testEmail) ) {
 			Logger.getGlobal().log(Level.INFO, "Test Succesful");
 		} else {
 			Logger.getGlobal().log(Level.WARNING, "Test Failed");
