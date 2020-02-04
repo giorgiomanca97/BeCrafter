@@ -44,7 +44,7 @@ public class Recipe_dao {
 	public static List<Recipe> getAllRecipes(){
 		List<Recipe> result = new ArrayList<>();
 		
-		File directory = new File(DaoHelper.getRootPath() + "/persistence/recipes");
+		File directory = new File(DaoHelper.getRecipesPath(false));
 		File[] files = directory.listFiles();
 		
 		for (File file : files) {
@@ -57,7 +57,7 @@ public class Recipe_dao {
 	}
 	
 	public static Recipe getRecipeById(String id) {
-		File file = new File(DaoHelper.getRootPath() + "/persistence/recipes/" + id);
+		File file = new File(DaoHelper.getRecipesPath(true) + id);
 		
 		if(file.exists()) {
 			return getRecipe(file);

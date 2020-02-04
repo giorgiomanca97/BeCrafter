@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,6 +21,10 @@ public class DaoHelper {
 	private static String pass = "becrafter";
 	private static String dbURL = "jdbc:mariadb://localhost:3306/becrafter";
 	private static String driverClassName = "org.mariadb.jdbc.Driver";
+	private static String driverLetter = "C";
+	private static String rootFolder = ":/BeCrafter";
+	private static String ordersFolder = "orders";
+	private static String recipesFolder = "recipes";
 	
 	
 	private DaoHelper() {
@@ -45,14 +48,30 @@ public class DaoHelper {
 		return driverClassName;
 	}
 		
-	public static String getRootPath() {
-		try {
-			return new URI("C:/BeCrafter").toString();
-		} catch (Exception e) {
-			Logger.getGlobal().log(Level.SEVERE, e.toString());
-			return null;
+	public static String getRootPath(boolean useSeparator) {
+		if(useSeparator) {
+			return driverLetter + rootFolder + "/";
+		} else {
+			return driverLetter + rootFolder;
 		}
 		
+	}
+	
+	public static String getOrdersPath(boolean useSeparator) {
+		if(useSeparator) {
+			return getRootPath(true) + ordersFolder + "/";
+		} else {
+			return getRootPath(true) + ordersFolder;
+		}
+		
+	}
+	
+	public static String getRecipesPath(boolean useSeparator) {
+		if(useSeparator) {
+			return getRootPath(true) + recipesFolder + "/";
+		} else {
+			return getRootPath(true) + recipesFolder;
+		}
 	}
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
