@@ -17,17 +17,17 @@ import logic.entity.Registered;
 
 public class Registered_dao {
 	// Informazioni tabella ordini
-	private static String TABLE_REGISTERED = "registered";
-	private static String TABLE_REGISTERED_COL_EMAIL = "email";
-	private static String TABLE_REGISTERED_COL_PASSWORD = "password";
-	private static String TABLE_REGISTERED_COL_FIRSTNAME = "firstName";
-	private static String TABLE_REGISTERED_COL_LASTNAME = "lastName";
-	private static String TABLE_REGISTERED_COL_ADDRESS = "address";
-	private static String TABLE_REGISTERED_COL_CITY = "city";
-	private static String TABLE_REGISTERED_COL_COUNTRY = "country";
-	private static String TABLE_REGISTERED_COL_POSTALCODE = "postalCode";
-	private static String TABLE_REGISTERED_COL_PHONE = "phone";
-	private static String TABLE_REGISTERED_COL_CARD = "card";
+	private static String tableRegistered = "registered";
+	private static String tableRegisteredColEmail = "email";
+	private static String tableRegisteredColPassword = "password";
+	private static String tableRegisteredColFirstName = "firstName";
+	private static String tableRegisteredColLastName = "lastName";
+	private static String tableRegisteredColAddress = "address";
+	private static String tableRegisteredColCity = "city";
+	private static String tableRegisteredColCountry = "country";
+	private static String tableRegisteredColPostalCode = "postalCode";
+	private static String tableRegisteredColPhoneNumber = "phone";
+	private static String tableRegisteredColCardNumber = "card";
 	
 	
 	private Registered_dao() {
@@ -49,18 +49,18 @@ public class Registered_dao {
             
             if(rs.first()) {
             	do {
-            		String email = rs.getString(TABLE_REGISTERED_COL_EMAIL);
-            		String password = rs.getString(TABLE_REGISTERED_COL_PASSWORD);
+            		String email = rs.getString(tableRegisteredColEmail);
+            		String password = rs.getString(tableRegisteredColPassword);
             		            		
             		BillingInfo billingInfo = new BillingInfo();
-            		billingInfo.setFirstName(rs.getString(TABLE_REGISTERED_COL_FIRSTNAME));
-            		billingInfo.setLastName(rs.getString(TABLE_REGISTERED_COL_LASTNAME));
-            		billingInfo.setAddress(rs.getString(TABLE_REGISTERED_COL_ADDRESS));
-            		billingInfo.setCity(rs.getString(TABLE_REGISTERED_COL_CITY));
-            		billingInfo.setCountry(rs.getString(TABLE_REGISTERED_COL_COUNTRY));
-            		billingInfo.setPostalCode(rs.getString(TABLE_REGISTERED_COL_POSTALCODE));
-            		billingInfo.setPhone(rs.getString(TABLE_REGISTERED_COL_PHONE));
-            		billingInfo.setCard(rs.getString(TABLE_REGISTERED_COL_CARD));
+            		billingInfo.setFirstName(rs.getString(tableRegisteredColFirstName));
+            		billingInfo.setLastName(rs.getString(tableRegisteredColLastName));
+            		billingInfo.setAddress(rs.getString(tableRegisteredColAddress));
+            		billingInfo.setCity(rs.getString(tableRegisteredColCity));
+            		billingInfo.setCountry(rs.getString(tableRegisteredColCountry));
+            		billingInfo.setPostalCode(rs.getString(tableRegisteredColPostalCode));
+            		billingInfo.setPhone(rs.getString(tableRegisteredColPhoneNumber));
+            		billingInfo.setCard(rs.getString(tableRegisteredColCardNumber));
             		
             		Registered registered = new Registered(email, password, billingInfo);
             		
@@ -86,13 +86,13 @@ public class Registered_dao {
 	}
 	
 	public static List<Registered> getAllRegistered(){
-		List<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + ";");;
+		List<Registered> result = getRegistered("SELECT * FROM " + tableRegistered + ";");;
 		
 		return result;
 	}
 	
 	public static Registered getRegisteredByEmail(String email) {
-		List<Registered> result = getRegistered("SELECT * FROM " + TABLE_REGISTERED + " WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + email +"';");	
+		List<Registered> result = getRegistered("SELECT * FROM " + tableRegistered + " WHERE " + tableRegisteredColEmail + " = '" + email +"';");	
 		
 		if(result.size() == 0) {
 			return null;
@@ -112,7 +112,7 @@ public class Registered_dao {
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             BillingInfo bi = registered.getBillingInfo();
-            query = "INSERT INTO " + TABLE_REGISTERED + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
+            query = "INSERT INTO " + tableRegistered + " VALUES ('" + registered.getEmail() + "', '" + registered.getPassword() + "', '" + bi.getFirstName() + "', '" + bi.getLastName() + "', '" + 
 					bi.getAddress() + "', '" + bi.getCity() + "', '" + bi.getCountry() + "', '" + bi.getPostalCode() + "', '" + bi.getPhone() + "', '" + bi.getCard() + "');";
             
             stmt.executeUpdate(query);
@@ -137,9 +137,9 @@ public class Registered_dao {
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
             BillingInfo bi = registered.getBillingInfo();
-            query = "UPDATE " + TABLE_REGISTERED + " SET " + TABLE_REGISTERED_COL_PASSWORD + " = '" + registered.getPassword() + "', " + TABLE_REGISTERED_COL_FIRSTNAME + " = '" + bi.getFirstName() + "', " + TABLE_REGISTERED_COL_LASTNAME + " = '" + bi.getLastName() + "', " + 
-					TABLE_REGISTERED_COL_ADDRESS + " = '" + bi.getAddress() + "', " + TABLE_REGISTERED_COL_CITY + " = '" + bi.getCity() + "', " + TABLE_REGISTERED_COL_COUNTRY + " = '" + bi.getCountry() + "', " + TABLE_REGISTERED_COL_POSTALCODE + " = '" + bi.getPostalCode() + 
-					TABLE_REGISTERED_COL_PHONE + " = '" + bi.getPhone() + "', " + TABLE_REGISTERED_COL_CARD + " = '" + bi.getCard() + "' WHERE " + TABLE_REGISTERED_COL_EMAIL + " = '" + registered.getEmail() + "';";
+            query = "UPDATE " + tableRegistered + " SET " + tableRegisteredColPassword + " = '" + registered.getPassword() + "', " + tableRegisteredColFirstName + " = '" + bi.getFirstName() + "', " + tableRegisteredColLastName + " = '" + bi.getLastName() + "', " + 
+					tableRegisteredColAddress + " = '" + bi.getAddress() + "', " + tableRegisteredColCity + " = '" + bi.getCity() + "', " + tableRegisteredColCountry + " = '" + bi.getCountry() + "', " + tableRegisteredColPostalCode + " = '" + bi.getPostalCode() + 
+					tableRegisteredColPhoneNumber + " = '" + bi.getPhone() + "', " + tableRegisteredColCardNumber + " = '" + bi.getCard() + "' WHERE " + tableRegisteredColEmail + " = '" + registered.getEmail() + "';";
             
             stmt.executeUpdate(query);
             

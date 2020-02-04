@@ -20,16 +20,16 @@ import logic.entity.BeerType;
 
 public class Beer_dao {
 	// Informazioni tabella birre
-	private static String TABLE_BEERS = "beers";
-    private static String TABLE_BEERS_COL_ID = "id";
-    private static String TABLE_BEERS_COL_NAME = "name";
-    private static String TABLE_BEERS_COL_TYPE = "type";
-    private static String TABLE_BEERS_COL_COLOR = "color";
-    private static String TABLE_BEERS_COL_FILTERING = "filtering";
-    private static String TABLE_BEERS_COL_ALCOHOL = "alcohol";
-    private static String TABLE_BEERS_COL_PRICE = "price";
-    private static String TABLE_BEERS_COL_DESCRIPTION = "description";
-    private static String TABLE_BEERS_COL_RECIPEID = "recipeId";
+	private static String tableBeers = "beers";
+    private static String tableBeersColId = "id";
+    private static String tableBeersColName = "name";
+    private static String tableBeersColType = "type";
+    private static String tableBeersColColor = "color";
+    private static String tableBeersColFiltering = "filtering";
+    private static String tableBeersColAlcohol = "alcohol";
+    private static String tableBeersColPrice = "price";
+    private static String tableBeersColDescription = "description";
+    private static String tableBeersColRecipeId = "recipeId";
     
     
 	private Beer_dao() {
@@ -50,15 +50,15 @@ public class Beer_dao {
             
             if(rs.first()) {
             	do {
-            		Beer beer = new Beer(IdConverter.intToId(rs.getInt(TABLE_BEERS_COL_ID), IdConverter.Type.BEER));
-                	beer.setName(rs.getString(TABLE_BEERS_COL_NAME));
-                	beer.setType(BeerType.valueOf(rs.getString(TABLE_BEERS_COL_TYPE)));
-                	beer.setColor(BeerColor.valueOf(rs.getString(TABLE_BEERS_COL_COLOR)));
-                	beer.setFiltered(BeerFiltering.valueOf(rs.getString(TABLE_BEERS_COL_FILTERING)));
-                	beer.setAlcoholContent(rs.getFloat(TABLE_BEERS_COL_ALCOHOL));
-                	beer.setPricePerLiter(rs.getFloat(TABLE_BEERS_COL_PRICE));
-                	beer.setDescription(rs.getString(TABLE_BEERS_COL_DESCRIPTION));
-                	beer.setRecipe(Recipe_dao.getRecipeById(rs.getString(TABLE_BEERS_COL_RECIPEID)));
+            		Beer beer = new Beer(IdConverter.intToId(rs.getInt(tableBeersColId), IdConverter.Type.BEER));
+                	beer.setName(rs.getString(tableBeersColName));
+                	beer.setType(BeerType.valueOf(rs.getString(tableBeersColType)));
+                	beer.setColor(BeerColor.valueOf(rs.getString(tableBeersColColor)));
+                	beer.setFiltered(BeerFiltering.valueOf(rs.getString(tableBeersColFiltering)));
+                	beer.setAlcoholContent(rs.getFloat(tableBeersColAlcohol));
+                	beer.setPricePerLiter(rs.getFloat(tableBeersColPrice));
+                	beer.setDescription(rs.getString(tableBeersColDescription));
+                	beer.setRecipe(Recipe_dao.getRecipeById(rs.getString(tableBeersColRecipeId)));
             		
 					result.add(beer);
 				} while (rs.next());
@@ -79,7 +79,7 @@ public class Beer_dao {
 	}
 	
 	public static List<Beer> getAllBeers(){
-		List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + ";");
+		List<Beer> result = getBeers("SELECT * FROM " + tableBeers + ";");
 		
 		return result;
 	}
@@ -87,7 +87,7 @@ public class Beer_dao {
 	public static Beer getBeerById(String id) {
 		try {
 			int dbId = IdConverter.idToInt(id);
-			List<Beer> result = getBeers("SELECT * FROM " + TABLE_BEERS + " WHERE " + TABLE_BEERS_COL_ID + " = '" + dbId +"';");	
+			List<Beer> result = getBeers("SELECT * FROM " + tableBeers + " WHERE " + tableBeersColId + " = '" + dbId +"';");	
 			
 			if(result.size() == 0) {
 				return null;

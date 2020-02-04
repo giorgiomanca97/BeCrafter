@@ -1,8 +1,8 @@
 package logic;
 
 
+import java.security.SecureRandom;
 import java.util.Calendar;
-import java.util.Random;
 
 import error.EmptyCartException;
 import error.PaymentRefusedException;
@@ -33,7 +33,7 @@ public class BuyBeer_Controller {
 	private Storehouse storehouse;
 	private Product selectedProduct;
 	private StorableCloneList cart;
-	private Random random = null; 		// Attributo per metodo dummy
+	private SecureRandom random = null; 		// Attributo per metodo dummy
 	
 	private BuyBeer_Controller() {
 		storehouse = Storehouse_dao.getStorehouse();
@@ -200,7 +200,7 @@ public class BuyBeer_Controller {
 	private boolean checkPayment(float price, String creditCard) {
 		// Metodo dummy
 		if(random == null) {
-			random = new Random();
+			random = new SecureRandom();
 		}
 		
 		if(price < 0) {
@@ -213,10 +213,6 @@ public class BuyBeer_Controller {
 
 		int value = random.nextInt(100);
 		
-		if(value < 75) {
-			return true;
-		} else {
-			return false;
-		}
+		return (value < 75);
 	}
 }

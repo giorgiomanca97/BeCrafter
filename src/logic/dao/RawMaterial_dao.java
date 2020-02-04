@@ -6,7 +6,7 @@ import logic.entity.RawMaterial;
 import logic.entity.RawMaterialType;
 
 public class RawMaterial_dao {
-	private static String SEP = ";";
+	private static String sep = ";";
 	
 	
 	private RawMaterial_dao () {
@@ -18,14 +18,14 @@ public class RawMaterial_dao {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		stringBuilder.append(rawMaterial.getType().name());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(rawMaterial.getQuantity());
 		
 		return stringBuilder.toString();
 	}
 	
 	public static RawMaterial textToRawMaterial(String text) throws TextParseException {
-		String[] pieces = text.split(SEP);
+		String[] pieces = text.split(sep);
 		
 		if(pieces.length != 2) {
 			throw new TextParseException();

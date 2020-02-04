@@ -25,17 +25,17 @@ import logic.entity.Order;
 import logic.entity.Product;
 
 public class Order_dao {
-	private static String ORDERS_FOLDER_PATH = "C:\\Becrafter\\persistence\\orders"; 
-	private static String FOLDER_SEP = "\\";
+	private static String ordersFolderPath = "C:\\Becrafter\\persistence\\orders"; 
+	private static String folderSep = "\\";
 	
 	// Informazioni tabella ordini
-	private static String TABLE_ORDERS = "orders";
-	private static String TABLE_ORDERS_COL_ID = "id";
-	private static String TABLE_ORDERS_COL_EMAIL = "email";
-	private static String TABLE_ORDERS_COL_DATE = "date";
-	private static String TABLE_ORDERS_COL_PRICE = "price";
-	private static String TABLE_ORDERS_COL_SHIPCODE = "shippingCode";
-	private static String TABLE_ORDERS_COL_SHIPCOMP = "shippingCompany";
+	private static String tableOrders = "orders";
+	private static String tableOrdersColId = "id";
+	private static String tableOrdersColEmail = "email";
+	private static String tableOrdersColDate = "date";
+	private static String tableOrdersColPrice = "price";
+	private static String tableOrdersColShipCode = "shippingCode";
+	private static String tableOrdersColShipComp = "shippingCompany";
 	
 	
 	private Order_dao() {
@@ -90,15 +90,15 @@ public class Order_dao {
             
             if(rs.first()) {
             	do {
-            		String orderId = IdConverter.intToId(rs.getInt(TABLE_ORDERS_COL_ID), IdConverter.Type.ORDER);
+            		String orderId = IdConverter.intToId(rs.getInt(tableOrdersColId), IdConverter.Type.ORDER);
             		Order order = new Order(orderId);
-            		order.setEmail(rs.getString(TABLE_ORDERS_COL_EMAIL));
-            		order.setDate(rs.getString(TABLE_ORDERS_COL_DATE));
-            		order.setPrice(rs.getFloat(TABLE_ORDERS_COL_PRICE));
-            		order.setShippingCode(rs.getString(TABLE_ORDERS_COL_SHIPCODE));
-            		order.setShippingCompany(rs.getString(TABLE_ORDERS_COL_SHIPCOMP));
+            		order.setEmail(rs.getString(tableOrdersColEmail));
+            		order.setDate(rs.getString(tableOrdersColDate));
+            		order.setPrice(rs.getFloat(tableOrdersColPrice));
+            		order.setShippingCode(rs.getString(tableOrdersColShipCode));
+            		order.setShippingCompany(rs.getString(tableOrdersColShipComp));
             		
-            		File file = new File(ORDERS_FOLDER_PATH + FOLDER_SEP + orderId);
+            		File file = new File(ordersFolderPath + folderSep + orderId);
             		OrderDataFetch orderDataFetch = getOrderData(file);
             		          		
             		order.setBillingInfo(orderDataFetch.getBillingInfo());
@@ -129,7 +129,7 @@ public class Order_dao {
 	}
 	
 	public static List<Order> getOrdersByEmail(String email) {
-		List<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_EMAIL + " = '" + email +"';");;
+		List<Order> result = getOrders("SELECT * FROM " + tableOrders + " WHERE " + tableOrdersColEmail + " = '" + email +"';");;
 		
 		return result;
 	}
@@ -137,7 +137,7 @@ public class Order_dao {
 	public static Order getOrderById(String id) {
 		try {
 			int dbId = IdConverter.idToInt(id);
-			List<Order> result = getOrders("SELECT * FROM " + TABLE_ORDERS + " WHERE " + TABLE_ORDERS_COL_ID + " = " +  dbId + ";");	
+			List<Order> result = getOrders("SELECT * FROM " + tableOrders + " WHERE " + tableOrdersColId + " = " +  dbId + ";");	
 			
 			if(result.size() == 0) {
 				return null;
@@ -163,7 +163,7 @@ public class Order_dao {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.READ);
             
-            query = "SELECT MAX(" + TABLE_ORDERS_COL_ID + ") FROM " + TABLE_ORDERS + ";";
+            query = "SELECT MAX(" + tableOrdersColId + ") FROM " + tableOrders + ";";
             rs = stmt.executeQuery(query);
             
             if(rs.first()) {
@@ -185,7 +185,7 @@ public class Order_dao {
 	
 	
 	private static void saveOrderData(Order order) {
-		File file = new File(ORDERS_FOLDER_PATH + FOLDER_SEP + order.getId());
+		File file = new File(ordersFolderPath + folderSep + order.getId());
 		
 		FileWriter fileWriter = null;
 		BufferedWriter bufferedWriter = null;
@@ -214,7 +214,7 @@ public class Order_dao {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            query = "INSERT INTO " + TABLE_ORDERS + " (" + TABLE_ORDERS_COL_EMAIL + ", " + TABLE_ORDERS_COL_DATE + ", " + TABLE_ORDERS_COL_PRICE + ", " + TABLE_ORDERS_COL_SHIPCODE + ", " + TABLE_ORDERS_COL_SHIPCOMP + ") " +
+            query = "INSERT INTO " + tableOrders + " (" + tableOrdersColEmail + ", " + tableOrdersColDate + ", " + tableOrdersColPrice + ", " + tableOrdersColShipCode + ", " + tableOrdersColShipComp + ") " +
 					"VALUES ('" + order.getEmail() + "', '" + order.getDate() + "', " + order.getPrice() + ", '" + order.getShippingCode() + "', '" + order.getShippingCompany() + "');";
             stmt.executeUpdate(query);
             

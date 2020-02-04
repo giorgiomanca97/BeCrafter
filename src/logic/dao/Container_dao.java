@@ -5,7 +5,7 @@ import logic.entity.Container;
 import logic.entity.ContainerType;
 
 public class Container_dao {
-	private static String SEP = ";";
+	private static String sep = ";";
 	
 	
 	private Container_dao () {
@@ -17,16 +17,16 @@ public class Container_dao {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		stringBuilder.append(container.getType().name());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(container.getVolume());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(container.getQuantity());
 		
 		return stringBuilder.toString();
 	}
 	
 	public static Container textToContainer(String text) throws TextParseException{		
-		String[] pieces = text.split(SEP);
+		String[] pieces = text.split(sep);
 		
 		if(pieces.length != 3) {
 			throw new TextParseException();

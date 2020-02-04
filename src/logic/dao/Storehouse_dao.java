@@ -23,22 +23,22 @@ import logic.entity.Storehouse;
 
 public class Storehouse_dao {
     // Informazioni della tabella dei raw materials
-    private static String TABLE_STORE_RAWM = "storehouse_rawmaterials";
-    private static String TABLE_STORE_RAWM_COL_TYPE = "type";
-    private static String TABLE_STORE_RAWM_COL_QUANTITY = "quantity";
+    private static String tableStoreRawm = "storehouse_rawmaterials";
+    private static String tableStoreRawmColType = "type";
+    private static String tableStoreRawmColQuantity = "quantity";
     
     // Informazioni della tabella dei containers
-    private static String TABLE_STORE_CONT = "storehouse_containers";
-    private static String TABLE_STORE_CONT_COL_TYPE = "type";
-    private static String TABLE_STORE_CONT_COL_VOLUME = "volume";
-    private static String TABLE_STORE_CONT_COL_QUANTITY = "quantity";
+    private static String tableStoreCont = "storehouse_containers";
+    private static String tableStoreContColType = "type";
+    private static String tableStoreContColVolume = "volume";
+    private static String tableStoreContColQuantity = "quantity";
     
     // Informazioni della tabella dei products
-    private static String TABLE_STORE_PROD = "storehouse_products";
-    private static String TABLE_STORE_PROD_BEERID = "beerId";
-    private static String TABLE_STORE_PROD_COL_CONTTYPE = "containerType";
-    private static String TABLE_STORE_PROD_COL_CONTVOLUME = "containerVolume";
-    private static String TABLE_STORE_PROD_COL_QUANTITY = "quantity";
+    private static String tableStoreProd = "storehouse_products";
+    private static String tableStoreProdBeerId = "beerId";
+    private static String tableStoreProdContType = "containerType";
+    private static String tableStoreProdContVolume = "containerVolume";
+    private static String tableStoreProdQuantity = "quantity";
     
     // Singleton instance per la storehouse che rappresenta il magazzino dell'azienda
 	private static Storehouse storehouseInstance = null;
@@ -62,13 +62,13 @@ public class Storehouse_dao {
 	            conn = DaoHelper.getConnection();
 	            stmt = DaoHelper.getStatement(conn, StatementMode.READ);
 	            
-	            query = "SELECT * FROM " + TABLE_STORE_RAWM + ";";
+	            query = "SELECT * FROM " + tableStoreRawm + ";";
 	            rs_rawMaterials = stmt.executeQuery(query);
 	            List<RawMaterial> rawMaterials = new ArrayList<>();
 	            if(rs_rawMaterials.first()) {
 	            	do {
-	            		RawMaterialType type = RawMaterialType.valueOf(rs_rawMaterials.getString(TABLE_STORE_RAWM_COL_TYPE));
-	     	            int quantity = rs_rawMaterials.getInt(TABLE_STORE_RAWM_COL_QUANTITY);
+	            		RawMaterialType type = RawMaterialType.valueOf(rs_rawMaterials.getString(tableStoreRawmColType));
+	     	            int quantity = rs_rawMaterials.getInt(tableStoreRawmColQuantity);
 	     	            
 	     	            RawMaterial rawMaterial = new RawMaterial(type);
 	     	            rawMaterial.setQuantity(quantity);
@@ -77,14 +77,14 @@ public class Storehouse_dao {
 	            	} while (rs_rawMaterials.next());
 	            }
 	            
-	            query = "SELECT * FROM " + TABLE_STORE_CONT + ";";
+	            query = "SELECT * FROM " + tableStoreCont + ";";
 	            rs_containers = stmt.executeQuery(query);
 	            List<Container> containers = new ArrayList<>();
 	            if(rs_containers.first()) {
 	            	do {
-	            		ContainerType type = ContainerType.valueOf(rs_containers.getString(TABLE_STORE_CONT_COL_TYPE));
-	            		int volume = rs_containers.getInt(TABLE_STORE_CONT_COL_VOLUME);
-	            		int quantity = rs_containers.getInt(TABLE_STORE_CONT_COL_QUANTITY);
+	            		ContainerType type = ContainerType.valueOf(rs_containers.getString(tableStoreContColType));
+	            		int volume = rs_containers.getInt(tableStoreContColVolume);
+	            		int quantity = rs_containers.getInt(tableStoreContColQuantity);
 	            		
 	            		Container container = new Container(type, volume);
 	            		container.setQuantity(quantity);
@@ -93,15 +93,15 @@ public class Storehouse_dao {
 	            	} while (rs_containers.next());
 	            }
 	            
-	            query = "SELECT * FROM " + TABLE_STORE_PROD + ";";
+	            query = "SELECT * FROM " + tableStoreProd + ";";
 	            rs_products = stmt.executeQuery(query);
 	            List<Product> products = new ArrayList<>();
 	            if(rs_products.first()) {
 	            	do {
-	            		String beerId = rs_products.getString(TABLE_STORE_PROD_BEERID);
-	            		ContainerType contType = ContainerType.valueOf(rs_products.getString(TABLE_STORE_PROD_COL_CONTTYPE));
-	            		int contVolume = rs_products.getInt(TABLE_STORE_PROD_COL_CONTVOLUME);
-	            		int quantity = rs_products.getInt(TABLE_STORE_PROD_COL_QUANTITY);
+	            		String beerId = rs_products.getString(tableStoreProdBeerId);
+	            		ContainerType contType = ContainerType.valueOf(rs_products.getString(tableStoreProdContType));
+	            		int contVolume = rs_products.getInt(tableStoreProdContVolume);
+	            		int quantity = rs_products.getInt(tableStoreProdQuantity);
 
 	            		Beer beer = Beer_dao.getBeerById(beerId);
 	            		Container container = new Container(contType, contVolume);
@@ -154,26 +154,26 @@ public class Storehouse_dao {
             conn = DaoHelper.getConnection();
             stmt = DaoHelper.getStatement(conn, StatementMode.WRITE);
             
-            query = "DELETE FROM " + TABLE_STORE_RAWM + ";";
+            query = "DELETE FROM " + tableStoreRawm + ";";
             stmt.executeUpdate(query);
             for (RawMaterial rawMaterial : storehouse.getAllRawMaterials()) {
-            	query = "INSERT INTO " + TABLE_STORE_RAWM + "VALUES ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");";
+            	query = "INSERT INTO " + tableStoreRawm + "VALUES ('" + rawMaterial.getType().name() + "', " + rawMaterial.getQuantity() + ");";
             	stmt.executeUpdate(query);
 			}
             
-            query = "DELETE FROM " + TABLE_STORE_CONT + ";";
+            query = "DELETE FROM " + tableStoreCont + ";";
             stmt.executeUpdate(query);
             for (Container container : storehouse.getAllContainers()) {
-            	query = "INSERT INTO " + TABLE_STORE_CONT + "VALUES ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+            	query = "INSERT INTO " + tableStoreCont + "VALUES ('" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
 				stmt.executeUpdate(query);
 			}
             
-            query = "DELETE FROM " + TABLE_STORE_PROD + ";";
+            query = "DELETE FROM " + tableStoreProd + ";";
             stmt.executeUpdate(query);
             for (Product product : storehouse.getAllProducts()) {
             	Beer beer = product.getBeer();
             	Container container = product.getContainer();
-            	query = "INSERT INTO " + TABLE_STORE_PROD + "VALUES ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
+            	query = "INSERT INTO " + tableStoreProd + "VALUES ('" + beer.getId() + "', '" + container.getType().name() + "', " + container.getVolume() + ", " + container.getQuantity() + ");";
             	stmt.executeUpdate(query);
             }
             

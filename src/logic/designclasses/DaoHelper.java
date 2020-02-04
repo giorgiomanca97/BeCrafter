@@ -17,10 +17,10 @@ import java.util.logging.Logger;
 
 public class DaoHelper {
 	// Informazioni database
-	private static String USER = "root";
-	private static String PASS = "becrafter";
-	private static String DB_URL = "jdbc:mariadb://localhost:3306/becrafter";
-	private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
+	private static String user = "root";
+	private static String pass = "becrafter";
+	private static String dbURL = "jdbc:mariadb://localhost:3306/becrafter";
+	private static String driverClassName = "org.mariadb.jdbc.Driver";
 	
 	
 	private DaoHelper() {
@@ -29,25 +29,25 @@ public class DaoHelper {
 	
 	
 	public static String getUser() { 
-		return USER;
+		return user;
 	}
 	
 	public static String getPass() {
-		return PASS;
+		return pass;
 	}
 	
 	public static String getDB() {
-		return DB_URL;
+		return dbURL;
 	}
 	
 	public static String getDriver() {
-		return DRIVER_CLASS_NAME;
+		return driverClassName;
 	}
 	
 		
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName(DRIVER_CLASS_NAME);
-		return DriverManager.getConnection(DB_URL, USER, PASS);
+		Class.forName(driverClassName);
+		return DriverManager.getConnection(dbURL, user, pass);
 	}
 	
 	public static Statement getStatement(Connection conn, StatementMode mode) throws SQLException {

@@ -6,7 +6,7 @@ import logic.entity.Container;
 import logic.entity.Product;
 
 public class Product_dao {
-	private static String SEP = "-";
+	private static String sep = "-";
 	
 	
 	private Product_dao () {
@@ -20,14 +20,14 @@ public class Product_dao {
 		Container container = product.getContainer();
 		
 		stringBuilder.append(beer.getId());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(Container_dao.containerToText(container));
 		
 		return stringBuilder.toString();
 	}
 	
 	public static Product textToProduct(String text) throws TextParseException {		
-		String[] pieces = text.split(SEP);
+		String[] pieces = text.split(sep);
 		
 		if(pieces.length != 2) {
 			throw new TextParseException();

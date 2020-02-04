@@ -4,7 +4,7 @@ import error.TextParseException;
 import logic.entity.BillingInfo;
 
 public class BillingInfo_dao {
-	private static String SEP = ";";
+	private static String sep = ";";
 	
 	private BillingInfo_dao() {
 		
@@ -14,26 +14,26 @@ public class BillingInfo_dao {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		stringBuilder.append(billingInfo.getFirstName());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getLastName());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getAddress());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getCity());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getCountry());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getPostalCode());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getPhone());
-		stringBuilder.append(SEP);
+		stringBuilder.append(sep);
 		stringBuilder.append(billingInfo.getCard());
 		
 		return stringBuilder.toString();
 	}
 	
 	public static BillingInfo textToBillingInfo(String text) throws TextParseException{	
-		String[] pieces = text.split(SEP);
+		String[] pieces = text.split(sep);
 		
 		if(pieces.length != 8) {
 			throw new TextParseException();
