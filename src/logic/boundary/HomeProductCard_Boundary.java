@@ -16,14 +16,14 @@ import logic.entity.Price;
 import logic.entity.Volume;
 
 public class HomeProductCard_Boundary {
-	@FXML private ImageView iv_beer_icon;
-	@FXML private Label tb_beer_name;
-	@FXML private Label tb_type;
-	@FXML private Label tb_color;
-	@FXML private Label tb_alcohol;
-	@FXML private Label tb_filtering;
-	@FXML private Label tb_volume;
-	@FXML private Label tb_price;
+	@FXML private ImageView ivBeerIcon;
+	@FXML private Label tbBeerName;
+	@FXML private Label tbType;
+	@FXML private Label tbColor;
+	@FXML private Label tbAlcohol;
+	@FXML private Label tbFiltering;
+	@FXML private Label tbVolume;
+	@FXML private Label tbPrice;
 	
 	private Home_Bean homeBean;
 	
@@ -36,16 +36,17 @@ public class HomeProductCard_Boundary {
 		homeBean = new Home_Bean();
 		homeBean.loadDisplayedProductAt(index);
 		
-		tb_beer_name.setText(homeBean.getBeerName());
-		tb_type.setText(homeBean.getBeerType().toString());
-		tb_color.setText(homeBean.getBeerColor().toString());
-		tb_alcohol.setText(String.valueOf(homeBean.getBeerAlcohol()) + "%");
-		tb_filtering.setText(homeBean.getBeerFiltering().toString());
-		tb_volume.setText(Volume.toText(homeBean.getContainerVolume()));
-		tb_price.setText(Price.toText(homeBean.getPrice()) + " €");
-		iv_beer_icon.setImage(BeerImageLoader.loadImage(homeBean.getContainerType()));
+		tbBeerName.setText(homeBean.getBeerName());
+		tbType.setText(homeBean.getBeerType().toString());
+		tbColor.setText(homeBean.getBeerColor().toString());
+		tbAlcohol.setText(String.valueOf(homeBean.getBeerAlcohol()) + "%");
+		tbFiltering.setText(homeBean.getBeerFiltering().toString());
+		tbVolume.setText(Volume.toText(homeBean.getContainerVolume()));
+		tbPrice.setText(Price.toText(homeBean.getPrice()) + " €");
+		ivBeerIcon.setImage(BeerImageLoader.loadImage(homeBean.getContainerType()));
 	}
 	
+	@FXML
 	public void onMousePressed() {
 		if(homeBean != null) {
 			try {
@@ -59,4 +60,5 @@ public class HomeProductCard_Boundary {
 			}			
 		}
 	}
+
 }

@@ -9,27 +9,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#onMousePressed" prefHeight="166.0" prefWidth="332.0" style="-fx-background-color: #E0E0E0; -fx-background-radius: 16;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.HomeProductCard_Boundary">
    <children>
-      <ImageView fx:id="iv_beer_icon" fitHeight="110.0" fitWidth="110.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="28.0" />
+      <ImageView fx:id="ivBeerIcon" fitHeight="110.0" fitWidth="110.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="28.0" />
       <VBox layoutX="110.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="tb_beer_name" alignment="CENTER" prefHeight="54.0" prefWidth="222.0" text="Beer name" textAlignment="CENTER">
+            <Label fx:id="tbBeerName" alignment="CENTER" prefHeight="54.0" prefWidth="222.0" text="Beer name" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <HBox prefHeight="30.0" prefWidth="222.0">
                <children>
-                  <Label fx:id="tb_type" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="Type">
+                  <Label fx:id="tbType" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="Type">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tb_color" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="Color">
+                  <Label fx:id="tbColor" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="Color">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tb_alcohol" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="0%">
+                  <Label fx:id="tbAlcohol" alignment="CENTER" prefHeight="30.0" prefWidth="74.0" text="0%">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -38,19 +38,19 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="222.0">
                <children>
-                  <Label fx:id="tb_filtering" alignment="CENTER" prefHeight="30.0" prefWidth="111.0" text="Filter">
+                  <Label fx:id="tbFiltering" alignment="CENTER" prefHeight="30.0" prefWidth="111.0" text="Filter">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tb_volume" alignment="CENTER" prefHeight="30.0" prefWidth="111.0" text="0 cl">
+                  <Label fx:id="tbVolume" alignment="CENTER" prefHeight="30.0" prefWidth="111.0" text="0 cl">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="tb_price" alignment="CENTER" prefHeight="52.0" prefWidth="222.0" text="00,00 €">
+            <Label fx:id="tbPrice" alignment="CENTER" prefHeight="52.0" prefWidth="222.0" text="00,00 €">
                <font>
                   <Font size="24.0" />
                </font>

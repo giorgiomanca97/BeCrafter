@@ -54,7 +54,7 @@
                         <Image url="@../icons/cart.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lbl_cartCounter" alignment="CENTER" prefHeight="30.0" text="Checkout">
+                  <Label fx:id="lblCartCounter" alignment="CENTER" prefHeight="30.0" text="Checkout">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -77,7 +77,7 @@
                         <Image url="@../icons/user.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lbl_login" prefHeight="30.0" text="Login">
+                  <Label fx:id="lblLogin" prefHeight="30.0" text="Login">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -123,12 +123,12 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField fx:id="tf_search" prefHeight="30.0">
+                  <TextField fx:id="tfSearch" prefHeight="30.0">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button fx:id="btn_search" mnemonicParsing="false" onAction="#updateProducts" prefHeight="30.0" prefWidth="220.0" text="Search">
+                  <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#updateProducts" prefHeight="30.0" prefWidth="220.0" text="Search">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                      </VBox.margin>
@@ -178,7 +178,7 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_ale" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Ale">
+                              <CheckBox fx:id="cbAle" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Ale">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -190,7 +190,7 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="36.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_lambic" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Lambic">
+                              <CheckBox fx:id="cbLambic" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Lambic">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -202,7 +202,7 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="58.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_lager" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Lager">
+                              <CheckBox fx:id="cbLager" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Lager">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -229,7 +229,7 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_light" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Light">
+                              <CheckBox fx:id="cbLight" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Light">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -241,7 +241,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_amber" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Amber">
+                              <CheckBox fx:id="cbAmber" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Amber">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -253,7 +253,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_ruby" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Ruby">
+                              <CheckBox fx:id="cbRuby" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Ruby">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -265,7 +265,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="65.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_dark" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Dark">
+                              <CheckBox fx:id="cbDark" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Dark">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -292,7 +292,7 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_bottle" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Bottle">
+                              <CheckBox fx:id="cbBottle" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Bottle">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -304,7 +304,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_can" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Can">
+                              <CheckBox fx:id="cbCan" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Can">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -316,7 +316,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_barrel" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Barrel">
+                              <CheckBox fx:id="cbBarrel" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Barrel">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -343,7 +343,7 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_filtered" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Filtered">
+                              <CheckBox fx:id="cbFiltered" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Filtered">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -355,7 +355,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CheckBox fx:id="cb_unfiltered" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Unfiltered">
+                              <CheckBox fx:id="cbUnfiltered" mnemonicParsing="false" onAction="#updateProducts" prefWidth="120.0" text="Unfiltered">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -379,12 +379,12 @@
          <content>
             <AnchorPane>
                <children>
-                  <TilePane fx:id="tp_products" prefColumns="3" prefRows="1" prefTileHeight="180.0" prefTileWidth="348.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TilePane fx:id="tpProducts" prefColumns="3" prefRows="1" prefTileHeight="180.0" prefTileWidth="348.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-      <VBox fx:id="vb_menu" layoutX="1110.0" layoutY="75.0" onMouseExited="#closeMenu" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
+      <VBox fx:id="vbMenu" layoutX="1110.0" layoutY="75.0" onMouseExited="#closeMenu" style="-fx-background-color: #F0F0F0; -fx-border-color: #000000;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0">
          <children>
             <HBox disable="true">
                <children>

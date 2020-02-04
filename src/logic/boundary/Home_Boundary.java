@@ -22,24 +22,24 @@ import logic.entity.BeerType;
 import logic.entity.ContainerType;
 
 public class Home_Boundary {
-	@FXML private TextField tf_search;
-	@FXML private Button btn_search;
-	@FXML private CheckBox cb_ale;
-	@FXML private CheckBox cb_lambic;
-	@FXML private CheckBox cb_lager;
-	@FXML private CheckBox cb_light;
-	@FXML private CheckBox cb_amber;
-	@FXML private CheckBox cb_ruby;
-	@FXML private CheckBox cb_dark;
-	@FXML private CheckBox cb_bottle;
-	@FXML private CheckBox cb_can;
-	@FXML private CheckBox cb_barrel;
-	@FXML private CheckBox cb_filtered;
-	@FXML private CheckBox cb_unfiltered;
-	@FXML private TilePane tp_products;
-	@FXML private Label lbl_cartCounter;
-	@FXML private Label lbl_login;
-	@FXML private VBox vb_menu;
+	@FXML private TextField tfSearch;
+	@FXML private Button btnSearch;
+	@FXML private CheckBox cbAle;
+	@FXML private CheckBox cbLambic;
+	@FXML private CheckBox cbLager;
+	@FXML private CheckBox cbLight;
+	@FXML private CheckBox cbAmber;
+	@FXML private CheckBox cbRuby;
+	@FXML private CheckBox cbDark;
+	@FXML private CheckBox cbBottle;
+	@FXML private CheckBox cbCan;
+	@FXML private CheckBox cbBarrel;
+	@FXML private CheckBox cbFiltered;
+	@FXML private CheckBox cbUnfiltered;
+	@FXML private TilePane tpProducts;
+	@FXML private Label lblCartCounter;
+	@FXML private Label lblLogin;
+	@FXML private VBox vbMenu;
 	
 	private Home_Bean homeBean;
 	
@@ -56,53 +56,53 @@ public class Home_Boundary {
 		List<BeerColor> beerColors = new ArrayList<BeerColor>();
 		List<ContainerType> containerTypes = new ArrayList<ContainerType>();
 		List<BeerFiltering> beerFilterings = new ArrayList<BeerFiltering>();
-		String searchName = tf_search.getText();
+		String searchName = tfSearch.getText();
 		
-		if(cb_ale.isSelected()) {
+		if(cbAle.isSelected()) {
 			beerTypes.add(BeerType.ALE);
 		}
-		if(cb_lambic.isSelected()) {
+		if(cbLambic.isSelected()) {
 			beerTypes.add(BeerType.LAMBIC);
 		}
-		if(cb_lager.isSelected()) {
+		if(cbLager.isSelected()) {
 			beerTypes.add(BeerType.LAGER);
 		}
-		if(cb_light.isSelected()) {
+		if(cbLight.isSelected()) {
 			beerColors.add(BeerColor.LIGHT);
 		}
-		if(cb_amber.isSelected()) {
+		if(cbAmber.isSelected()) {
 			beerColors.add(BeerColor.AMBER);
 		}
-		if(cb_ruby.isSelected()) {
+		if(cbRuby.isSelected()) {
 			beerColors.add(BeerColor.RUBY);
 		}
-		if(cb_dark.isSelected()) {
+		if(cbDark.isSelected()) {
 			beerColors.add(BeerColor.DARK);
 		}
-		if(cb_bottle.isSelected()) {
+		if(cbBottle.isSelected()) {
 			containerTypes.add(ContainerType.BOTTLE);
 		}
-		if(cb_can.isSelected()) {
+		if(cbCan.isSelected()) {
 			containerTypes.add(ContainerType.CAN);
 		}
-		if(cb_barrel.isSelected()) {
+		if(cbBarrel.isSelected()) {
 			containerTypes.add(ContainerType.BARREL);
 		}
-		if(cb_filtered.isSelected()) {
+		if(cbFiltered.isSelected()) {
 			beerFilterings.add(BeerFiltering.FILTERED);
 		}
-		if(cb_unfiltered.isSelected()) {
+		if(cbUnfiltered.isSelected()) {
 			beerFilterings.add(BeerFiltering.UNFILTERED);
 		}
 		
 		homeBean.displayProducts(beerTypes, beerColors, containerTypes, beerFilterings, searchName);
-		tp_products.getChildren().clear();
+		tpProducts.getChildren().clear();
 		try {
 			for (int i = 0; i < homeBean.countDisplayedProducts(); i++) {
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.HOME_PRODUCTCARD);
 				HomeProductCard_Boundary product_view = (HomeProductCard_Boundary) pageLoader.getController();
 				product_view.loadProduct(i);
-				tp_products.getChildren().add(pageLoader.getRootView());
+				tpProducts.getChildren().add(pageLoader.getRootView());
 			}
 		} catch (IOException ioe) {
 			Logger.getGlobal().log(Level.SEVERE, "Page loading error");
@@ -114,22 +114,22 @@ public class Home_Boundary {
 		String email = homeBean.loggedCustomer();
 		
 		if(email != null) {
-			lbl_login.setText(email);
+			lblLogin.setText(email);
 		}
 	}
 		
 	@FXML
 	public void openMenu() {
 		if(homeBean.loggedCustomer() != null) {
-			vb_menu.setDisable(false);
-			vb_menu.setOpacity(1);
+			vbMenu.setDisable(false);
+			vbMenu.setOpacity(1);
 		}	
 	}
 	
 	@FXML
 	public void closeMenu() {
-		vb_menu.setDisable(true);
-		vb_menu.setOpacity(0);
+		vbMenu.setDisable(true);
+		vbMenu.setOpacity(0);
 	}
 
 	@FXML 
@@ -161,7 +161,7 @@ public class Home_Boundary {
 		if(email != null) {
 			homeBean.logoutCustomer(email);
 			closeMenu();
-			lbl_login.setText("Login");
+			lblLogin.setText("Login");
 		}
 	}
 

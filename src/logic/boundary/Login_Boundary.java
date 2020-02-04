@@ -16,33 +16,33 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 public class Login_Boundary {
-	@FXML private TextField tf_email;
-	@FXML private PasswordField psw_password;
-	@FXML private Label lbl_error;
+	@FXML private TextField tfEmail;
+	@FXML private PasswordField pswPassword;
+	@FXML private Label lblError;
 
 	Login_Bean loginBean = null;
 	
 	
 	public void initialize() {
 		loginBean = new Login_Bean();
-		lbl_error.setText("");
+		lblError.setText("");
 	}
 
 	@FXML 
 	public void onLoginClicked() {
-		loginBean.setEmail(tf_email.getText());
-		loginBean.setPassword(psw_password.getText());
+		loginBean.setEmail(tfEmail.getText());
+		loginBean.setPassword(pswPassword.getText());
 		
-		lbl_error.setText("");
+		lblError.setText("");
 		try {
 			loginBean.login();
 			onBackPressed();
 		} catch (LoginException le) {
-			lbl_error.setText("Email and Password do not match");
+			lblError.setText("Email and Password do not match");
 		} catch (EmptyFieldException efe) {
-			lbl_error.setText("Please fill all the fields");
+			lblError.setText("Please fill all the fields");
 		} catch (IllegalCharacterException ice) {
-			lbl_error.setText("Email and Password do not match");
+			lblError.setText("Email and Password do not match");
 		} 
 	}
 

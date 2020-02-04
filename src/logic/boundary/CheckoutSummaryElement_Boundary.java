@@ -16,17 +16,17 @@ import logic.entity.Volume;
 import javafx.scene.control.TextField;
 
 public class CheckoutSummaryElement_Boundary {
-	@FXML private Label lbl_number;
-	@FXML private ImageView img_containerType;
-	@FXML private Label lbl_beerName;
-	@FXML private Label lbl_beerType;
-	@FXML private Label lbl_beerColor;
-	@FXML private Label lbl_beerAlcohol;
-	@FXML private Label lbl_beerFiltering;
-	@FXML private Label lbl_containerVolume;
-	@FXML private TextField tf_quantity;
-	@FXML private Label lbl_totalVolume;
-	@FXML private Label lbl_price;
+	@FXML private Label lblNumber;
+	@FXML private ImageView imgContainerType;
+	@FXML private Label lblBeerName;
+	@FXML private Label lblBeerType;
+	@FXML private Label lblBeerColor;
+	@FXML private Label lblBeerAlcohol;
+	@FXML private Label lblBeerFiltering;
+	@FXML private Label lblContainerVolume;
+	@FXML private TextField tfQuantity;
+	@FXML private Label lblTotalVolume;
+	@FXML private Label lblPrice;
 	
 	private CheckoutSummary_Boundary csBoundary;
 	private int index;
@@ -50,15 +50,15 @@ public class CheckoutSummaryElement_Boundary {
 	}
 	
 	private void loadProduct() {
-		lbl_number.setText(String.valueOf(this.index + 1));
-		img_containerType.setImage(BeerImageLoader.loadImage(checkoutSummaryBean.getContainerType()));
-		lbl_beerName.setText(checkoutSummaryBean.getBeerName());
-		lbl_beerType.setText(checkoutSummaryBean.getBeerType().toString());
-		lbl_beerColor.setText(checkoutSummaryBean.getBeerColor().toString());
-		lbl_beerAlcohol.setText(String.valueOf(checkoutSummaryBean.getBeerAlcohol()) + "%");
-		lbl_beerFiltering.setText(checkoutSummaryBean.getBeerFiltering().toString());
-		lbl_containerVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume()));
-		tf_quantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
+		lblNumber.setText(String.valueOf(this.index + 1));
+		imgContainerType.setImage(BeerImageLoader.loadImage(checkoutSummaryBean.getContainerType()));
+		lblBeerName.setText(checkoutSummaryBean.getBeerName());
+		lblBeerType.setText(checkoutSummaryBean.getBeerType().toString());
+		lblBeerColor.setText(checkoutSummaryBean.getBeerColor().toString());
+		lblBeerAlcohol.setText(String.valueOf(checkoutSummaryBean.getBeerAlcohol()) + "%");
+		lblBeerFiltering.setText(checkoutSummaryBean.getBeerFiltering().toString());
+		lblContainerVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume()));
+		tfQuantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
 	}
 
 
@@ -69,7 +69,7 @@ public class CheckoutSummaryElement_Boundary {
 			q = 1;
 		}
 		checkoutSummaryBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
+		tfQuantity.setText(String.valueOf(q));
 		
 		updateQuantity();
 	}
@@ -78,10 +78,10 @@ public class CheckoutSummaryElement_Boundary {
 	@FXML 
 	public void onQuantityChange() {
 		try {
-			int q = Integer.parseUnsignedInt(tf_quantity.getText());
+			int q = Integer.parseUnsignedInt(tfQuantity.getText());
 			checkoutSummaryBean.setQuantity(q);
 		} catch (NumberFormatException nfe) {
-			tf_quantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
+			tfQuantity.setText(String.valueOf(checkoutSummaryBean.getQuantity()));
 		}
 		
 		updateQuantity();
@@ -92,15 +92,15 @@ public class CheckoutSummaryElement_Boundary {
 	public void onAddPressed() {
 		int q = checkoutSummaryBean.getQuantity() + 1;
 		checkoutSummaryBean.setQuantity(q);
-		tf_quantity.setText(String.valueOf(q));
+		tfQuantity.setText(String.valueOf(q));
 		
 		updateQuantity();
 	}
 	
 	
 	private void updateQuantity() {
-		lbl_totalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
-		lbl_price.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()) + " €");
+		lblTotalVolume.setText(Volume.toText(checkoutSummaryBean.getContainerVolume() * checkoutSummaryBean.getQuantity()));
+		lblPrice.setText(Price.toText(checkoutSummaryBean.getPrice() * checkoutSummaryBean.getQuantity()) + " €");
 		
 		try {
 			checkoutSummaryBean.updateProductInsideCart();

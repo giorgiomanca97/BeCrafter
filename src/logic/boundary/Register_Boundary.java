@@ -21,21 +21,21 @@ import javafx.scene.control.PasswordField;
 
 
 public class Register_Boundary {
-	@FXML private TextField tf_r_email;
-	@FXML private PasswordField psw_password;
-	@FXML private PasswordField psw_passwordConfirm;
-	@FXML private TextField tf_r_firstname;
-	@FXML private TextField tf_r_lastname;
-	@FXML private TextField tf_r_address;
-	@FXML private TextField tf_r_city;
-	@FXML private TextField tf_r_country;
-	@FXML private TextField tf_r_postalcode;
-	@FXML private TextField tf_r_phoneNumber;
-	@FXML private TextField tf_r_creditCardNumber;
-	@FXML private CheckBox cb_agreement;
-	@FXML private Label lbl_error;
-	@FXML private Label lbl_r_infoPassword;
-	@FXML private Label lbl_r_infoCredit;
+	@FXML private TextField tfrEmail;
+	@FXML private PasswordField pswPassword;
+	@FXML private PasswordField pswPasswordConfirm;
+	@FXML private TextField tfrFirstname;
+	@FXML private TextField tfrLastname;
+	@FXML private TextField tfrAddress;
+	@FXML private TextField tfrCity;
+	@FXML private TextField tfrCountry;
+	@FXML private TextField tfrPostalcode;
+	@FXML private TextField tfrPhoneNumber;
+	@FXML private TextField tfrCreditCardNumber;
+	@FXML private CheckBox cbAgreement;
+	@FXML private Label lblError;
+	@FXML private Label lblrInfoPassword;
+	@FXML private Label lblrInfoCredit;
 	
 	Register_Bean registerBean = null;
 	
@@ -43,50 +43,50 @@ public class Register_Boundary {
 	public void initialize() {
 		registerBean = new Register_Bean();
 		
-		lbl_r_infoPassword.setOpacity(0f);
-		lbl_r_infoCredit.setOpacity(0f);
-		lbl_error.setText("");
+		lblrInfoPassword.setOpacity(0f);
+		lblrInfoCredit.setOpacity(0f);
+		lblError.setText("");
 	}
 
 	@FXML 
 	public void onRegisterClicked() {
-		lbl_error.setText("");
-		registerBean.setEmail(tf_r_email.getText());
-		registerBean.setPassword(psw_password.getText());
-		registerBean.setConfirmPassword(psw_passwordConfirm.getText());
-		registerBean.setFirstName(tf_r_firstname.getText());
-		registerBean.setLastName(tf_r_lastname.getText());
-		registerBean.setAddress(tf_r_address.getText());
-		registerBean.setCity(tf_r_city.getText());
-		registerBean.setCountry(tf_r_country.getText());
-		registerBean.setPostalCode(tf_r_postalcode.getText());
-		registerBean.setPhoneNumber(tf_r_phoneNumber.getText());
-		registerBean.setCreditCard(tf_r_creditCardNumber.getText());
+		lblError.setText("");
+		registerBean.setEmail(tfrEmail.getText());
+		registerBean.setPassword(pswPassword.getText());
+		registerBean.setConfirmPassword(pswPasswordConfirm.getText());
+		registerBean.setFirstName(tfrFirstname.getText());
+		registerBean.setLastName(tfrLastname.getText());
+		registerBean.setAddress(tfrAddress.getText());
+		registerBean.setCity(tfrCity.getText());
+		registerBean.setCountry(tfrCountry.getText());
+		registerBean.setPostalCode(tfrPostalcode.getText());
+		registerBean.setPhoneNumber(tfrPhoneNumber.getText());
+		registerBean.setCreditCard(tfrCreditCardNumber.getText());
 		
-		if(cb_agreement.isSelected()) {
+		if(cbAgreement.isSelected()) {
 			try {
 				registerBean.register();
 				PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
 				pageLoader.showOnPrimaryStage();
 			} catch (InvalidEmailException iee) {
-				lbl_error.setText("The email is not a valid mail");
+				lblError.setText("The email is not a valid mail");
 			} catch (UsedEmailException uee) {
-				lbl_error.setText("The email is already registered");
+				lblError.setText("The email is already registered");
 			} catch (InvalidPasswordException ipe) {
-				lbl_error.setText("The password do not match the specifics");
+				lblError.setText("The password do not match the specifics");
 			} catch (EmptyFieldException efe) {
-				lbl_error.setText("Please fill all the fields");
+				lblError.setText("Please fill all the fields");
 			} catch (IllegalCharacterException ice) {
-				lbl_error.setText("Please remove the ' character from the fields");
+				lblError.setText("Please remove the ' character from the fields");
 			} catch (WrongFieldException wfe) {
-				lbl_error.setText("Some fields are not correct");
+				lblError.setText("Some fields are not correct");
 			} catch (PasswordMatchingException psm) {
-				lbl_error.setText("The password fields do not match");
+				lblError.setText("The password fields do not match");
 			} catch (IOException ioe) {
 				Logger.getGlobal().log(Level.SEVERE, "Page loading error");
 			}
 		} else {
-			lbl_error.setText("Please accept the agreement to register");
+			lblError.setText("Please accept the agreement to register");
 		}
 		
 	}
@@ -103,21 +103,21 @@ public class Register_Boundary {
 
 	@FXML
 	public void onInfoPasswordEntered() {
-		lbl_r_infoPassword.setOpacity(1f);
+		lblrInfoPassword.setOpacity(1f);
 	}
 
 	@FXML 
 	public void onInfoPasswordExited() {
-		lbl_r_infoPassword.setOpacity(0f);
+		lblrInfoPassword.setOpacity(0f);
 	}
 
 	@FXML 
 	public void onInfoCreditEntered() {
-		lbl_r_infoCredit.setOpacity(1f);
+		lblrInfoCredit.setOpacity(1f);
 	}
 	
 	@FXML 
 	public void onInfoCreditExited() {
-		lbl_r_infoCredit.setOpacity(0f);
+		lblrInfoCredit.setOpacity(0f);
 	}
 }
