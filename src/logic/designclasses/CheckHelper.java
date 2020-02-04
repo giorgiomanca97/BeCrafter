@@ -2,7 +2,7 @@ package logic.designclasses;
 
 
 public class CheckHelper {
-	private static String invalidEmailChars = ",:;!?^*+/%[](){}";
+	private static String invalidEmailChars = "',:;!?^*+/%[](){}";
 	
 	private CheckHelper() {
 		

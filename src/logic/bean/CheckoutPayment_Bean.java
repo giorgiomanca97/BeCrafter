@@ -165,12 +165,8 @@ public class CheckoutPayment_Bean{
 		}
 	}
 	
-	public String confirmPurchase() throws EmptyCartException, InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {
-		if(cpEmail.length() == 0) {
-			throw new EmptyFieldException();
-		}
-		
-		if(!cpEmail.contains("@")) {
+	public String confirmPurchase() throws EmptyCartException, InvalidEmailException, EmptyFieldException, UsedEmailException, IllegalCharacterException, PaymentRefusedException, IdException, WrongFieldException  {		
+		if(!CheckHelper.isValidEmail(cpEmail)) {
 			throw new InvalidEmailException();
 		}
 		
@@ -179,7 +175,7 @@ public class CheckoutPayment_Bean{
 		return BuyBeer_Controller.getInstance().confirmPurchase(cpEmail, billingInfo);
 	}
 	
-	public void login() throws InexistentEmailException, WrongPasswordException, EmptyFieldException, IllegalCharacterException {
+	public void login() throws InvalidEmailException, InexistentEmailException, WrongPasswordException, EmptyFieldException, IllegalCharacterException {
 		if(cpEmail.length() == 0 || cpPassword.length() == 0) {
 			throw new EmptyFieldException();
 		}

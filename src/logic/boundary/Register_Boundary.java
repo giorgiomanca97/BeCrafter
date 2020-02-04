@@ -64,32 +64,37 @@ public class Register_Boundary {
 		registerBean.setCreditCard(tfrCreditCardNumber.getText());
 		
 		if(cbAgreement.isSelected()) {
-			try {
-				registerBean.register();
-				PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
-				pageLoader.showOnPrimaryStage();
-			} catch (InvalidEmailException iee) {
-				lblError.setText("The email is not a valid mail");
-			} catch (UsedEmailException uee) {
-				lblError.setText("The email is already registered");
-			} catch (InvalidPasswordException ipe) {
-				lblError.setText("The password do not match the specifics");
-			} catch (EmptyFieldException efe) {
-				lblError.setText("Please fill all the fields");
-			} catch (IllegalCharacterException ice) {
-				lblError.setText("Please remove the ' character from the fields");
-			} catch (WrongFieldException wfe) {
-				lblError.setText("Some fields are not correct");
-			} catch (PasswordMatchingException psm) {
-				lblError.setText("The password fields do not match");
-			} catch (IOException ioe) {
-				Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
-			}
+			register();
 		} else {
 			lblError.setText("Please accept the agreement to register");
 		}
 		
 	}
+	
+	private void register() {
+		try {
+			registerBean.register();
+			PageLoader pageLoader = new PageLoader(PageLoader.Page.REGISTER_CONFIRMATION);
+			pageLoader.showOnPrimaryStage();
+		} catch (InvalidEmailException iee) {
+			lblError.setText("The email is not a valid mail");
+		} catch (UsedEmailException uee) {
+			lblError.setText("The email is already registered");
+		} catch (InvalidPasswordException ipe) {
+			lblError.setText("The password do not match the specifics");
+		} catch (EmptyFieldException efe) {
+			lblError.setText("Please fill all the fields");
+		} catch (IllegalCharacterException ice) {
+			lblError.setText("Please remove the ' character from the fields");
+		} catch (WrongFieldException wfe) {
+			lblError.setText("Some fields are not correct");
+		} catch (PasswordMatchingException psm) {
+			lblError.setText("The password fields do not match");
+		} catch (IOException ioe) {
+			Logger.getGlobal().log(Level.SEVERE, PageLoader.getErrorMessage());
+		}
+	}
+	
 	
 	@FXML 
 	public void onBackPressed() {
