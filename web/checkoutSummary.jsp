@@ -3,7 +3,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="checkoutSummaryBean" scope="request" class="logic.bean.CheckoutSummary_Bean"/>
+<jsp:useBean id="checkoutSummaryBean" scope="request" class="logic.bean.CheckoutSummaryBean"/>
 
 <%
 String toRemove = request.getParameter("remove");

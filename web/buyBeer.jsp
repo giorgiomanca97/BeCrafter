@@ -10,7 +10,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="buyBeerBean" scope="request" class="logic.bean.BuyBeer_Bean"/>
+<jsp:useBean id="buyBeerBean" scope="request" class="logic.bean.BuyBeerBean"/>
 
 <%
 boolean wrongQuantity = false;

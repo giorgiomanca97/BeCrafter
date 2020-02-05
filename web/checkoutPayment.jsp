@@ -13,7 +13,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="checkoutPaymentBean" scope="request" class="logic.bean.CheckoutPayment_Bean"/>
+<jsp:useBean id="checkoutPaymentBean" scope="request" class="logic.bean.CheckoutPaymentBean"/>
 <jsp:setProperty name="checkoutPaymentBean" property="*" />
 
 <%

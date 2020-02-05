@@ -10,7 +10,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
-<jsp:useBean id="homeBean" scope="request" class="logic.bean.Home_Bean"/>
+<jsp:useBean id="homeBean" scope="request" class="logic.bean.HomeBean"/>
 
 <%
 boolean logoutPressed = request.getParameter("logoutPressed") != null && request.getParameter("logoutPressed").equals("1");

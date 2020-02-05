@@ -4,7 +4,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="loginBean" scope="request" class="logic.bean.Login_Bean"/>
+<jsp:useBean id="loginBean" scope="request" class="logic.bean.LoginBean"/>
 <jsp:setProperty name="loginBean" property="*" />
 
 <%

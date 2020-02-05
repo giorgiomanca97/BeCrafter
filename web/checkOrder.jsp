@@ -4,7 +4,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="checkOrderBean" scope="request" class="logic.bean.CheckOrder_Bean"/>
+<jsp:useBean id="checkOrderBean" scope="request" class="logic.bean.CheckOrderBean"/>
 <jsp:setProperty name="checkOrderBean" property="orderId" />
 
 <%

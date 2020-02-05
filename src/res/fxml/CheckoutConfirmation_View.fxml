@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutConfirmation_Boundary">
+<AnchorPane prefHeight="540.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.CheckoutConfirmationBoundary">
    <children>
       <Label alignment="CENTER" layoutX="335.0" layoutY="100.0" prefHeight="50.0" prefWidth="500.0" text="Congratulation">
          <font>
